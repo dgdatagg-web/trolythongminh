@@ -77,36 +77,37 @@ body {
 .sub-tag {
   font-size: 12px; letter-spacing: 5px; color: rgba(6,182,212,.65);
   text-transform: uppercase; font-weight: 600;
-  position: relative; z-index: 1; margin-bottom: 52px;
+  position: relative; z-index: 1; margin-bottom: 60px;
 }
 
-/* NOVA acronym breakdown */
+/* NOVA acronym — clean stacked layout */
 .nova-acronym {
-  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-  position: relative; z-index: 1; max-width: 860px;
+  position: relative; z-index: 1;
+  max-width: 680px; width: 100%;
+  display: flex; flex-direction: column; gap: 0;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(6,182,212,.15);
+  border-radius: 20px; overflow: hidden;
 }
-.na-card {
-  flex: 1 1 180px; max-width: 200px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(6,182,212,.2);
-  border-radius: 16px; padding: 22px 18px;
-  text-align: left;
-  position: relative; overflow: hidden;
+.na-row {
+  display: grid; grid-template-columns: 72px 1fr;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(255,255,255,.06);
 }
-.na-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, #06b6d4, #3b82f6);
-}
+.na-row:last-child { border-bottom: none; }
 .na-letter {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 52px; font-weight: 900; letter-spacing: -2px; line-height: 1;
+  font-size: 40px; font-weight: 900; letter-spacing: -2px;
   background: linear-gradient(135deg, #06b6d4, #3b82f6);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px 0;
+  border-right: 1px solid rgba(6,182,212,.12);
+  background-color: rgba(6,182,212,.04);
 }
-.na-word { font-size: 14px; font-weight: 800; color: #f1f5f9; margin-bottom: 6px; }
-.na-desc { font-size: 12px; color: rgba(148,163,184,.65); line-height: 1.6; }
+.na-content { padding: 18px 22px; text-align: left; display: flex; flex-direction: column; justify-content: center; }
+.na-word { font-size: 15px; font-weight: 800; color: #f1f5f9; margin-bottom: 4px; }
+.na-desc { font-size: 12px; color: rgba(148,163,184,.6); line-height: 1.6; }
 
 /* ─── SLIDE 2: PAIN POINTS ─── */
 .s2 {
@@ -404,25 +405,33 @@ body {
   <div class="sub-tag">AI Personal Assistant · Vietnam</div>
 
   <div class="nova-acronym">
-    <div class="na-card">
+    <div class="na-row">
       <div class="na-letter">N</div>
-      <div class="na-word">Neural</div>
-      <div class="na-desc">Trí tuệ nhân tạo được đào tạo sâu — không chỉ tra cứu, mà thực sự suy nghĩ và phân tích cho bạn.</div>
+      <div class="na-content">
+        <div class="na-word">Neural</div>
+        <div class="na-desc">Trí tuệ nhân tạo được đào tạo sâu — không chỉ tra cứu, mà thực sự suy nghĩ, phân tích và đưa ra góc nhìn cho bạn.</div>
+      </div>
     </div>
-    <div class="na-card">
+    <div class="na-row">
       <div class="na-letter">O</div>
-      <div class="na-word">Operations</div>
-      <div class="na-desc">Không phải chatbot trả lời chung chung. NOVA tham gia trực tiếp vào vận hành thực tế của bạn.</div>
+      <div class="na-content">
+        <div class="na-word">Operations</div>
+        <div class="na-desc">Không phải chatbot trả lời chung chung. NOVA tham gia trực tiếp vào vận hành thực tế — kế toán, F&B, trading, ecom.</div>
+      </div>
     </div>
-    <div class="na-card">
+    <div class="na-row">
       <div class="na-letter">V</div>
-      <div class="na-word">Value</div>
-      <div class="na-desc">Mỗi câu trả lời đều phải tạo ra giá trị đo được — tiết kiệm thời gian, tránh rủi ro, tăng doanh thu.</div>
+      <div class="na-content">
+        <div class="na-word">Value</div>
+        <div class="na-desc">Mỗi câu trả lời phải tạo ra giá trị đo được — tiết kiệm thời gian, tránh rủi ro, tăng doanh thu. Không nói chuyện cho vui.</div>
+      </div>
     </div>
-    <div class="na-card">
+    <div class="na-row">
       <div class="na-letter">A</div>
-      <div class="na-word">Ally</div>
-      <div class="na-desc">Không phải tool. Không phải vendor. Là đồng minh — bảo vệ lợi ích của bạn, không của ai khác.</div>
+      <div class="na-content">
+        <div class="na-word">Automation</div>
+        <div class="na-desc">Những việc lặp đi lặp lại — nhắc deadline, tổng hợp báo cáo, trả lời câu hỏi thường gặp — NOVA tự động hóa hết. Bạn chỉ làm việc quan trọng.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -635,7 +644,7 @@ body {
       <div class="bcard">
         <div class="bcard-logo">NOVA</div>
         <div class="bcard-info">
-          <div class="nm">Neural Operations Value Ally</div>
+          <div class="rl">Neural Operations Value Automation</div>
           <div class="rl">AI Personal Assistant · RRE</div>
         </div>
       </div>
@@ -663,8 +672,8 @@ body {
     <div class="mf-line">NOVA tồn tại để bạn <strong>làm được nhiều hơn.</strong></div>
     <div class="mf-line">Thông tin của bạn là <strong>của bạn. Mãi mãi.</strong></div>
     <div class="mf-line">Không hứa hẹn. <strong>Bring receipts.</strong></div>
-    <div class="mf-line">Neural. Operations. Value. <strong>Ally.</strong></div>
-    <div class="mf-line">Bạn không cần biết tech.<br><strong>NOVA cần biết — và NOVA biết.</strong></div>
+    <div class="mf-line">Neural. Operations. Value. <strong>Automation.</strong></div>
+    <div class="mf-line">Bạn không cần biết tech.<br><strong>NOVA tự động hóa — để bạn làm việc quan trọng hơn.</strong></div>
   </div>
 </div>
 
