@@ -3,466 +3,501 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOVA — Brand Identity</title>
+<title>MINDY — Brand Identity</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800;900&family=Space+Grotesk:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Space+Grotesk:wght@400;600;700;800&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
-  background: #050912;
-  color: #f1f5f9;
-  font-family: 'Inter', sans-serif;
+  background: #faf8f5;
+  color: #1a1a2e;
+  font-family: 'Be Vietnam Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ─── SLIDE 1: HERO LOGO ─── */
 .slide {
-  width: 100vw; min-height: 100vh;
+  width: 100%; min-height: 100vh;
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
+  padding: 80px 40px;
   text-align: center;
   position: relative; overflow: hidden;
-  padding: 60px 40px;
 }
 
-.s1 { background: #050912; }
-
-/* Animated star field */
-.stars-bg {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    radial-gradient(1px 1px at 10% 20%, #fff 0%, transparent 100%),
-    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 60% 15%, #fff 0%, transparent 100%),
-    radial-gradient(1px 1px at 75% 45%, rgba(255,255,255,.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 85% 70%, #fff 0%, transparent 100%),
-    radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,.7) 0%, transparent 100%),
-    radial-gradient(1px 1px at 50% 90%, rgba(255,255,255,.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,.8) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 40% 40%, rgba(6,182,212,.8) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 70% 80%, rgba(6,182,212,.6) 0%, transparent 100%);
+/* Warm, human background */
+.s1 {
+  background: linear-gradient(160deg, #fffbf7 0%, #fdf4eb 50%, #faf0e6 100%);
 }
-
-.glow-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
+.s1::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 20% 30%, rgba(234,88,12,.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(234,179,8,.05) 0%, transparent 50%),
+    radial-gradient(circle at 60% 20%, rgba(239,68,68,.04) 0%, transparent 40%);
   pointer-events: none;
 }
-.orb1 { width: 500px; height: 500px; background: rgba(6,182,212,.12); top: 50%; left: 50%; transform: translate(-50%, -50%); }
-.orb2 { width: 300px; height: 300px; background: rgba(59,130,246,.08); top: 20%; right: 10%; }
-.orb3 { width: 200px; height: 200px; background: rgba(139,92,246,.08); bottom: 20%; left: 15%; }
 
-/* Logo mark */
-.logo-mark {
-  position: relative; margin-bottom: 40px; display: inline-block;
+/* Grid paper subtle texture */
+.s1::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(234,88,12,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(234,88,12,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
 }
 
-.logo-ring {
-  width: 140px; height: 140px;
-  border: 2px solid rgba(6,182,212,.3);
-  border-radius: 50%;
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  animation: spin 20s linear infinite;
-}
-.logo-ring2 {
-  width: 110px; height: 110px;
-  border: 1px solid rgba(6,182,212,.15);
-  border-radius: 50%;
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  animation: spin 15s linear infinite reverse;
-}
+/* Logo */
+.logo-container { position: relative; z-index: 1; margin-bottom: 48px; }
 
-@keyframes spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-
-.logo-core {
-  width: 90px; height: 90px;
-  background: radial-gradient(circle, rgba(6,182,212,.15), rgba(6,182,212,.05));
-  border: 1.5px solid rgba(6,182,212,.5);
-  border-radius: 50%;
+.logo-blob {
+  width: 160px; height: 160px;
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  background: linear-gradient(135deg, #ea580c, #f97316, #fb923c);
   display: flex; align-items: center; justify-content: center;
-  font-size: 36px;
-  box-shadow: 0 0 30px rgba(6,182,212,.3), 0 0 60px rgba(6,182,212,.1), inset 0 0 20px rgba(6,182,212,.1);
-  position: relative; z-index: 1;
-  margin: 25px;
-}
-
-/* Ring orbit dot */
-.orbit-dot {
-  position: absolute;
-  width: 6px; height: 6px;
-  background: var(--cyan, #06b6d4);
-  border-radius: 50%;
-  box-shadow: 0 0 8px #06b6d4;
-}
-
-.logo-wordmark {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 72px; font-weight: 800; letter-spacing: -3px;
-  background: linear-gradient(135deg, #fff 30%, #06b6d4 70%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  position: relative; z-index: 1;
-  margin-bottom: 8px;
+  font-size: 56px; font-weight: 800; color: #fff;
+  box-shadow: 0 20px 60px rgba(234,88,12,.35), 0 0 0 8px rgba(234,88,12,.08);
+  animation: morph 8s ease-in-out infinite;
+  margin: 0 auto;
+}
+@keyframes morph {
+  0%,100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+  33% { border-radius: 70% 30% 46% 54% / 30% 62% 38% 70%; }
+  66% { border-radius: 30% 70% 70% 30% / 50% 50% 70% 30%; }
 }
 
-.logo-sub {
-  font-size: 13px; letter-spacing: 5px; color: rgba(6,182,212,.7);
+.brand-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 80px; font-weight: 800; letter-spacing: -3px;
+  color: #1a1a2e;
+  position: relative; z-index: 1; margin-bottom: 4px;
+  line-height: 1;
+}
+.brand-name .dot { color: #ea580c; }
+
+.brand-tagline-main {
+  font-size: 18px; color: #92400e; letter-spacing: 3px;
   text-transform: uppercase; font-weight: 600;
+  position: relative; z-index: 1; margin-bottom: 32px;
+}
+
+.brand-tagline-sub {
+  font-size: 20px; color: #78716c; line-height: 1.7;
+  max-width: 520px; font-style: italic;
   position: relative; z-index: 1;
 }
 
-.s1-caption {
-  position: relative; z-index: 1;
-  margin-top: 48px; max-width: 480px;
-  font-size: 18px; color: rgba(148,163,184,.7); line-height: 1.7;
-  font-style: italic;
+/* ─── SLIDE 2: BRAND RATIONALE ─── */
+.s2 { background: #1a1a2e; color: #faf8f5; }
+.s2::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(234,88,12,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 30%, rgba(251,146,60,.06) 0%, transparent 60%);
+  pointer-events: none;
 }
 
-/* ─── SLIDE 2: COLOR SYSTEM ─── */
-.s2 { background: #080d1a; border-top: 1px solid rgba(255,255,255,.06); }
-
-.slide-title {
+.slide-h {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 42px; font-weight: 800; letter-spacing: -1.5px;
-  margin-bottom: 56px; position: relative; z-index: 1;
+  font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -1.5px;
+  margin-bottom: 56px; position: relative; z-index: 1; line-height: 1.1;
 }
-.slide-title span { color: #06b6d4; }
+.slide-h .accent { color: #fb923c; }
 
-.colors-row {
-  display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
-  position: relative; z-index: 1; width: 100%; max-width: 900px;
-}
-
-.color-card {
-  flex: 1 1 220px; max-width: 260px;
-  border-radius: 20px; overflow: hidden;
-  border: 1px solid rgba(255,255,255,.08);
-  background: #0c1222;
-}
-.color-swatch { height: 120px; position: relative; }
-.color-swatch::after {
-  content: attr(data-hex);
-  position: absolute; bottom: 12px; left: 14px;
-  font-size: 12px; font-family: monospace; letter-spacing: 1px;
-  font-weight: 700;
-}
-.sw-cyan { background: #06b6d4; }
-.sw-cyan::after { color: rgba(5,9,18,.7); }
-.sw-white { background: linear-gradient(135deg, #ffffff, #e2e8f0); }
-.sw-white::after { color: rgba(5,9,18,.5); }
-.sw-dark { background: #050912; border: 1px solid rgba(255,255,255,.1); }
-.sw-dark::after { color: rgba(255,255,255,.5); }
-.sw-accent { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
-.sw-accent::after { color: rgba(255,255,255,.8); }
-
-.color-info { padding: 18px; }
-.color-name { font-size: 15px; font-weight: 800; margin-bottom: 6px; }
-.color-desc { font-size: 12px; color: rgba(148,163,184,.7); line-height: 1.6; }
-.color-tag {
-  display: inline-block; margin-top: 10px; padding: 3px 8px;
-  background: rgba(6,182,212,.1); border: 1px solid rgba(6,182,212,.2);
-  border-radius: 4px; font-size: 10px; font-weight: 700; color: #06b6d4;
-  letter-spacing: 1px;
-}
-
-/* ─── SLIDE 3: PSYCHOLOGY ─── */
-.s3 {
-  background: #050912;
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-
-.psych-grid {
+.rationale-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
-  max-width: 900px; width: 100%;
+  max-width: 860px; width: 100%; position: relative; z-index: 1;
+}
+.rat-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 20px; padding: 28px; text-align: left;
+}
+.rat-card .num { font-size: 40px; font-weight: 900; color: rgba(234,88,12,.3); letter-spacing: -2px; display: block; margin-bottom: 8px; }
+.rat-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: #faf8f5; }
+.rat-card p { font-size: 14px; color: rgba(250,248,245,.55); line-height: 1.7; }
+
+/* ─── SLIDE 3: COLOR SYSTEM ─── */
+.s3 { background: #faf8f5; }
+
+.colors-showcase {
+  width: 100%; max-width: 960px;
   position: relative; z-index: 1;
 }
 
-.psych-card {
-  background: #0c1222;
-  border-radius: 20px; padding: 32px;
-  border: 1px solid rgba(255,255,255,.07);
-  text-align: left;
-  position: relative; overflow: hidden;
-  transition: transform .3s;
+.color-row {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.1);
+  margin-bottom: 40px; height: 160px;
 }
-.psych-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-}
-.pc1::before { background: linear-gradient(90deg, #06b6d4, #3b82f6); }
-.pc2::before { background: linear-gradient(90deg, #10b981, #06b6d4); }
-.pc3::before { background: linear-gradient(90deg, #8b5cf6, #3b82f6); }
-.pc4::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
-
-.psych-num {
-  font-size: 48px; font-weight: 900; letter-spacing: -2px;
-  background: linear-gradient(135deg, rgba(6,182,212,.4), rgba(6,182,212,.1));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  margin-bottom: 8px; display: block;
-}
-.psych-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
-.psych-card p { font-size: 14px; color: rgba(148,163,184,.7); line-height: 1.7; }
-
-/* ─── SLIDE 4: BRAND IN USE ─── */
-.s4 { background: #080d1a; border-top: 1px solid rgba(255,255,255,.06); }
-
-.brand-showcase {
-  display: flex; gap: 32px; flex-wrap: wrap; justify-content: center;
-  max-width: 1000px; width: 100%;
-  position: relative; z-index: 1;
+.color-block { position: relative; cursor: pointer; }
+.color-block .label {
+  position: absolute; bottom: 14px; left: 14px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* Business card mockup */
-.bcard {
-  width: 320px; height: 180px;
-  background: linear-gradient(135deg, #0c1222, #050912);
-  border: 1px solid rgba(6,182,212,.2);
-  border-radius: 16px; padding: 28px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  box-shadow: 0 20px 40px rgba(0,0,0,.4), 0 0 40px rgba(6,182,212,.06);
-  position: relative; overflow: hidden;
-}
-.bcard::before {
-  content: '';
-  position: absolute; bottom: -30px; right: -30px;
-  width: 120px; height: 120px;
-  background: radial-gradient(circle, rgba(6,182,212,.15), transparent 70%);
-  border-radius: 50%;
-}
-.bcard-top { display: flex; align-items: center; gap: 10px; }
-.bcard-logo { font-size: 20px; font-weight: 900; font-family: 'Space Grotesk', sans-serif; background: linear-gradient(135deg, #fff, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.bcard-dot { width: 5px; height: 5px; border-radius: 50%; background: #06b6d4; box-shadow: 0 0 6px #06b6d4; }
-.bcard-name { font-size: 17px; font-weight: 800; }
-.bcard-role { font-size: 11px; color: rgba(6,182,212,.7); letter-spacing: 2px; text-transform: uppercase; }
+.cb1 { background: #ea580c; }
+.cb1 .label { color: rgba(255,255,255,.8); }
+.cb2 { background: #f97316; }
+.cb2 .label { color: rgba(255,255,255,.7); }
+.cb3 { background: #fed7aa; }
+.cb3 .label { color: rgba(234,88,12,.6); }
+.cb4 { background: #1a1a2e; }
+.cb4 .label { color: rgba(255,255,255,.5); }
+.cb5 { background: #faf8f5; border: 1px solid rgba(0,0,0,.06); }
+.cb5 .label { color: rgba(26,26,46,.4); }
 
-/* App icon */
-.app-icon {
-  width: 100px; height: 100px;
-  background: linear-gradient(135deg, #050912, #0c1222);
-  border: 1.5px solid rgba(6,182,212,.4);
-  border-radius: 24px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 44px;
-  box-shadow: 0 0 30px rgba(6,182,212,.2), 0 20px 40px rgba(0,0,0,.4);
+.color-details {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+}
+.cd { text-align: center; }
+.cd-hex { font-size: 12px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; font-family: monospace; }
+.cd-name { font-size: 11px; color: #a8a29e; }
+
+.color-meaning {
+  margin-top: 40px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.cm { background: #fff; border: 1px solid rgba(0,0,0,.07); border-radius: 16px; padding: 24px; text-align: left; }
+.cm-dot { width: 24px; height: 24px; border-radius: 50%; margin-bottom: 14px; }
+.cm h4 { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+.cm p { font-size: 13px; color: #78716c; line-height: 1.6; }
+
+/* ─── SLIDE 4: TYPOGRAPHY ─── */
+.s4 { background: #1a1a2e; }
+
+.type-showcase {
+  width: 100%; max-width: 860px;
+  position: relative; z-index: 1; text-align: left;
 }
 
-/* Notification mockup */
-.notif {
-  background: #0c1222;
-  border: 1px solid rgba(6,182,212,.2);
-  border-radius: 14px; padding: 16px 20px;
-  width: 280px;
-  display: flex; gap: 12px; align-items: flex-start;
-  box-shadow: 0 10px 30px rgba(0,0,0,.3);
-}
-.notif-av {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: linear-gradient(135deg, #06b6d4, #3b82f6);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; flex-shrink: 0;
-}
-.notif-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
-.notif-text { font-size: 11px; color: rgba(148,163,184,.7); line-height: 1.5; }
-.notif-time { font-size: 10px; color: rgba(6,182,212,.6); margin-top: 4px; }
+.type-block { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.type-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.type-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: rgba(251,146,60,.6); text-transform: uppercase; margin-bottom: 10px; }
 
-/* Tagline */
-.brand-tagline {
-  width: 100%;
-  text-align: center;
-  padding: 32px;
-  background: linear-gradient(135deg, rgba(6,182,212,.06), rgba(59,130,246,.04));
-  border: 1px solid rgba(6,182,212,.15);
-  border-radius: 16px;
+.t-display {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
-  color: rgba(255,255,255,.5);
+  font-size: 56px; font-weight: 800; letter-spacing: -2px; color: #faf8f5; line-height: 1.1;
 }
-.brand-tagline span { color: #06b6d4; }
-.brand-tagline em { font-style: normal; color: #fff; }
+.t-headline { font-size: 28px; font-weight: 700; color: rgba(250,248,245,.8); line-height: 1.3; }
+.t-body { font-size: 16px; color: rgba(250,248,245,.5); line-height: 1.8; max-width: 560px; }
+.t-ui { font-size: 13px; font-weight: 600; color: #fb923c; letter-spacing: 1px; text-transform: uppercase; }
 
-/* ─── SLIDE 5: MANIFESTO ─── */
-.s5 {
-  background: #050912;
-  border-top: 1px solid rgba(255,255,255,.06);
+/* ─── SLIDE 5: BRAND IN USE ─── */
+.s5 { background: #faf8f5; }
+
+.use-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  max-width: 960px; width: 100%;
+  position: relative; z-index: 1;
+}
+
+/* Phone mockup — warm style */
+.phone-warm {
+  background: #1a1a2e;
+  border-radius: 32px; overflow: hidden;
+  box-shadow: 0 30px 60px rgba(26,26,46,.25);
+  border: 5px solid #2d2d44;
+  grid-column: span 1;
+}
+.ph-notch { height: 24px; background: #1a1a2e; display: flex; align-items: center; justify-content: center; }
+.ph-notch::after { content: ''; width: 70px; height: 12px; background: #2d2d44; border-radius: 100px; display: block; }
+.ph-header { background: #2d2d44; padding: 12px 14px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.ph-av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #ea580c, #f97316); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #fff; flex-shrink: 0; }
+.ph-name { font-size: 12px; font-weight: 700; color: #faf8f5; }
+.ph-status { font-size: 9px; color: #10b981; display: flex; align-items: center; gap: 3px; }
+.ph-status::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: #10b981; display: inline-block; }
+.ph-body { padding: 12px; background: #13131f; display: flex; flex-direction: column; gap: 8px; }
+.ph-msg { display: flex; gap: 6px; align-items: flex-end; }
+.ph-msg.me { flex-direction: row-reverse; }
+.ph-bub { max-width: 80%; padding: 8px 11px; font-size: 10.5px; line-height: 1.55; border-radius: 12px; }
+.ph-bub.ai { background: #2d2d44; color: rgba(250,248,245,.85); border-bottom-left-radius: 3px; }
+.ph-bub.user { background: #ea580c; color: #fff; border-bottom-right-radius: 3px; }
+.ph-bub strong { font-weight: 700; }
+
+/* Card mockups */
+.card-notif {
+  background: #fff; border-radius: 16px; padding: 18px;
+  border: 1px solid rgba(0,0,0,.07);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.notif-ic {
+  width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+  background: linear-gradient(135deg, #ea580c, #f97316);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.notif-t { font-size: 13px; font-weight: 700; color: #1a1a2e; margin-bottom: 3px; }
+.notif-d { font-size: 11px; color: #78716c; line-height: 1.5; }
+.notif-time { font-size: 9px; color: #ea580c; margin-top: 4px; font-weight: 600; }
+
+/* Business card */
+.biz-card {
+  background: #1a1a2e;
+  border-radius: 14px; padding: 24px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 150px;
+  box-shadow: 0 12px 30px rgba(26,26,46,.2);
+  position: relative; overflow: hidden;
+}
+.biz-card::after {
+  content: '';
+  position: absolute; bottom: -20px; right: -20px;
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, rgba(234,88,12,.2), transparent 70%);
+}
+.biz-logo { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; color: #faf8f5; }
+.biz-logo span { color: #f97316; }
+.biz-info { }
+.biz-name { font-size: 14px; font-weight: 700; color: #faf8f5; }
+.biz-sub { font-size: 10px; color: rgba(251,146,60,.6); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+
+/* Price badge */
+.price-badge {
+  background: linear-gradient(135deg, #ea580c, #f97316);
+  border-radius: 14px; padding: 20px;
+  color: #fff; text-align: center;
+}
+.pb-from { font-size: 11px; opacity: .7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.pb-price { font-size: 36px; font-weight: 900; letter-spacing: -1px; }
+.pb-price sub { font-size: 14px; font-weight: 400; opacity: .7; letter-spacing: 0; }
+.pb-tag { font-size: 10px; opacity: .8; margin-top: 6px; }
+
+/* ─── SLIDE 6: MANIFESTO ─── */
+.s6 {
+  background: #ea580c;
+  color: #fff;
+}
+.s6::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 20% 50%, rgba(255,255,255,.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 90% 20%, rgba(0,0,0,.15) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .manifesto {
-  max-width: 680px; width: 100%;
-  position: relative; z-index: 1;
-  text-align: left;
+  max-width: 700px; width: 100%;
+  position: relative; z-index: 1; text-align: left;
 }
-.manifesto-line {
+.m-line {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(20px, 3vw, 28px);
-  font-weight: 700; letter-spacing: -0.5px;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  color: rgba(255,255,255,.3);
-  line-height: 1.4;
+  font-size: clamp(22px, 3.5vw, 34px); font-weight: 700;
+  padding: 18px 0; line-height: 1.3;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.5);
   transition: color .3s;
 }
-.manifesto-line:hover { color: rgba(255,255,255,.9); }
-.manifesto-line strong { color: #06b6d4; }
-.manifesto-line:last-child { border-bottom: none; }
+.m-line:last-child { border-bottom: none; }
+.m-line:hover { color: #fff; }
+.m-line strong { color: #fff; }
+.m-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 40px; display: block; position: relative; z-index: 1; }
 
-@media (max-width: 640px) {
-  .psych-grid { grid-template-columns: 1fr; }
-  .logo-wordmark { font-size: 52px; }
-  .brand-showcase { flex-direction: column; align-items: center; }
+@media (max-width: 700px) {
+  .rationale-grid, .color-meaning { grid-template-columns: 1fr; }
+  .use-grid { grid-template-columns: 1fr; }
+  .color-row { grid-template-columns: repeat(5, 1fr); height: 100px; }
+  .color-details { display: none; }
+  .brand-name { font-size: 56px; }
 }
 </style>
 </head>
 <body>
 
-<!-- SLIDE 1: LOGO + IDENTITY -->
+<!-- SLIDE 1: LOGO REVEAL -->
 <div class="slide s1">
-  <div class="stars-bg"></div>
-  <div class="glow-orb orb1"></div>
-  <div class="glow-orb orb2"></div>
-  <div class="glow-orb orb3"></div>
-
-  <div class="logo-mark">
-    <div class="logo-ring"></div>
-    <div class="logo-ring2"></div>
-    <div class="logo-core">⚡</div>
+  <div class="logo-container">
+    <div class="logo-blob">M</div>
   </div>
-
-  <div class="logo-wordmark">NOVA</div>
-  <div class="logo-sub">AI Personal Assistant · Vietnam</div>
-
-  <div class="s1-caption">
-    "Không phải công cụ. Không phải chatbot.<br>
-    Là người đồng hành thông minh nhất bạn từng có."
+  <div class="brand-name">MINDY<span class="dot">.</span></div>
+  <div class="brand-tagline-main">Your Mindful AI Deputy</div>
+  <div class="brand-tagline-sub">
+    "Trợ lý thông minh nhất bạn từng có.<br>Không cần biết tech."
   </div>
 </div>
 
-<!-- SLIDE 2: COLOR SYSTEM -->
+<!-- SLIDE 2: RATIONALE — VÌ SAO MINDY -->
 <div class="slide s2">
-  <div class="glow-orb orb1"></div>
-  <div class="slide-title">Hệ màu sắc.<br><span>Mỗi màu có lý do.</span></div>
+  <div class="slide-h" style="position:relative;z-index:1;">Vì sao là<br><span class="accent">MINDY?</span></div>
 
-  <div class="colors-row">
-    <div class="color-card">
-      <div class="color-swatch sw-cyan" data-hex="#06B6D4"></div>
-      <div class="color-info">
-        <div class="color-name">Electric Cyan</div>
-        <div class="color-desc">Màu của trí tuệ lạnh và tốc độ. Không phải xanh corporate nhàm — là xanh của tia sét. Gợi lên sự chính xác và power.</div>
-        <div class="color-tag">PRIMARY</div>
-      </div>
+  <div class="rationale-grid">
+    <div class="rat-card">
+      <span class="num">01</span>
+      <h3>Dễ đọc — dễ nhớ với người Việt</h3>
+      <p>2 âm tiết, phát âm tự nhiên không vấp. Người Việt từ 20 đến 60 tuổi đều đọc được ngay, không cần giải thích cách đọc.</p>
     </div>
-    <div class="color-card">
-      <div class="color-swatch sw-white" data-hex="#FFFFFF"></div>
-      <div class="color-info">
-        <div class="color-name">Pure White</div>
-        <div class="color-desc">Clarity tuyệt đối. Khi mọi thứ xung quanh là noise, trắng là signal. Không cần giải thích. Tạo cảm giác an tâm và minh bạch.</div>
-        <div class="color-tag">CLARITY</div>
-      </div>
+    <div class="rat-card">
+      <span class="num">02</span>
+      <h3>"Mind" = Trí tuệ — không phải tool</h3>
+      <p>Mindy đến từ "Mindful" — tư duy cẩn thận, thấu đáo. Không phải AI làm theo lệnh. Là AI thực sự suy nghĩ cùng bạn.</p>
     </div>
-    <div class="color-card">
-      <div class="color-swatch sw-dark" data-hex="#050912"></div>
-      <div class="color-info">
-        <div class="color-name">Void Dark</div>
-        <div class="color-desc">Không phải đen thông thường — là khoảng không gian giữa các vì sao. Tạo depth, bí ẩn, và cảm giác private. Thông tin của bạn được bảo vệ.</div>
-        <div class="color-tag">DEPTH</div>
-      </div>
+    <div class="rat-card">
+      <span class="num">03</span>
+      <h3>Personality — như tên người thật</h3>
+      <p>Tên cá nhân = tạo kết nối cảm xúc. Người dùng không cảm thấy "tôi đang dùng app" — họ cảm thấy "tôi có trợ lý tên Mindy."</p>
     </div>
-    <div class="color-card">
-      <div class="color-swatch sw-accent" data-hex="Gradient"></div>
-      <div class="color-info">
-        <div class="color-name">Intelligence Gradient</div>
-        <div class="color-desc">Blue → Cyan. Hành trình từ ổn định đến năng động. Dùng cho CTA và highlight quan trọng — mắt người tự động bị thu hút.</div>
-        <div class="color-tag">ACCENT</div>
-      </div>
+    <div class="rat-card">
+      <span class="num">04</span>
+      <h3>Bảo vệ được thương hiệu</h3>
+      <p>Không confuse với competitor lớn. Domain khả dụng. Google-friendly. Không bị "quá tech" mà mất đi sự gần gũi với founder non-tech.</p>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 3: PSYCHOLOGY -->
+<!-- SLIDE 3: COLOR SYSTEM -->
 <div class="slide s3">
-  <div class="glow-orb orb1"></div>
-  <div class="slide-title" style="position:relative;z-index:1;">Brand tạo ra <span>tâm lý gì?</span></div>
+  <div class="slide-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,4vw,48px); font-weight:800; letter-spacing:-1.5px; margin-bottom:48px; position:relative;z-index:1; color:#1a1a2e;">
+    Hệ màu sắc.<br><span style="color:#ea580c;">Ấm áp. Đáng tin. Gần gũi.</span>
+  </div>
 
-  <div class="psych-grid">
-    <div class="psych-card pc1">
-      <span class="psych-num">01</span>
-      <h3>An toàn & Bảo mật</h3>
-      <p>Dark background + instance riêng = "thứ này không để ai khác nhìn vào." Người dùng cảm thấy thông tin của họ được che chắn, không bị phơi bày.</p>
+  <div class="colors-showcase">
+    <div class="color-row">
+      <div class="color-block cb1"><span class="label">#EA580C</span></div>
+      <div class="color-block cb2"><span class="label">#F97316</span></div>
+      <div class="color-block cb3"><span class="label">#FED7AA</span></div>
+      <div class="color-block cb4"><span class="label">#1A1A2E</span></div>
+      <div class="color-block cb5"><span class="label">#FAF8F5</span></div>
     </div>
-    <div class="psych-card pc2">
-      <span class="psych-num">02</span>
-      <h3>Sắc bén & Chính xác</h3>
-      <p>Cyan accent + clean layout = precision không mơ hồ. Tâm lý "thứ này biết chính xác nó đang làm gì" — không phải AI guess, là AI biết.</p>
+    <div class="color-details">
+      <div class="cd"><div class="cd-hex">#EA580C</div><div class="cd-name">Burnt Orange</div></div>
+      <div class="cd"><div class="cd-hex">#F97316</div><div class="cd-name">Warm Orange</div></div>
+      <div class="cd"><div class="cd-hex">#FED7AA</div><div class="cd-name">Peach Light</div></div>
+      <div class="cd"><div class="cd-hex">#1A1A2E</div><div class="cd-name">Deep Navy</div></div>
+      <div class="cd"><div class="cd-hex">#FAF8F5</div><div class="cd-name">Warm White</div></div>
     </div>
-    <div class="psych-card pc3">
-      <span class="psych-num">03</span>
-      <h3>Power không phô trương</h3>
-      <p>Không có màu đỏ, không có màu vàng kêu gọi. Power ở đây là power của trí tuệ — subtle, deep, và tự tin. Như có vũ khí bí mật trong tay.</p>
-    </div>
-    <div class="psych-card pc4">
-      <span class="psych-num">04</span>
-      <h3>Đối tác, không phải tool</h3>
-      <p>Tên "Nova" + star identity = personality riêng. Người dùng không cảm thấy mình đang dùng app — họ cảm thấy mình đang làm việc cùng ai đó.</p>
+    <div class="color-meaning">
+      <div class="cm">
+        <div class="cm-dot" style="background:#ea580c;"></div>
+        <h4>Burnt Orange — Tin tưởng & Nhiệt huyết</h4>
+        <p>Màu của lửa — năng lượng, hành động, nhưng không hung hăng. Gợi cảm giác an toàn và warmth. Người Việt cảm nhận đây là màu của sự chân thành.</p>
+      </div>
+      <div class="cm">
+        <div class="cm-dot" style="background:#1a1a2e;"></div>
+        <h4>Deep Navy — Chuyên nghiệp & Đáng tin</h4>
+        <p>Không phải đen lạnh. Navy ấm hơn, gần gũi hơn. Tạo cảm giác "người này biết mình đang làm gì" — authority không intimidating.</p>
+      </div>
+      <div class="cm">
+        <div class="cm-dot" style="background:#fed7aa; border: 1px solid rgba(0,0,0,.1);"></div>
+        <h4>Peach Light — Tiếp cận & Dịu dàng</h4>
+        <p>Màu của da, của gần gũi. Dùng cho background nhẹ và accent ấm. Xóa bỏ cảm giác "AI lạnh lùng" — tạo warmth cho interface.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 4: BRAND IN USE -->
+<!-- SLIDE 4: TYPOGRAPHY -->
 <div class="slide s4">
-  <div class="glow-orb orb1"></div>
-  <div class="slide-title" style="position:relative;z-index:1;">Brand trong <span>thực tế.</span></div>
+  <div class="slide-h" style="position:relative;z-index:1; color:#faf8f5;">
+    Typography.<br><span style="color:#fb923c;">Chữ cũng là brand.</span>
+  </div>
 
-  <div class="brand-showcase">
-    <!-- Business card -->
-    <div class="bcard">
-      <div class="bcard-top">
-        <div class="bcard-logo">NOVA</div>
-        <div class="bcard-dot"></div>
-      </div>
-      <div>
-        <div class="bcard-name">Nova ⚡</div>
-        <div class="bcard-role">AI Personal Assistant</div>
-      </div>
+  <div class="type-showcase">
+    <div class="type-block">
+      <div class="type-label">Display — Space Grotesk 800</div>
+      <div class="t-display">MINDY.</div>
     </div>
-
-    <!-- App icon -->
-    <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
-      <div class="app-icon">⚡</div>
-      <div style="font-size:12px; color:rgba(148,163,184,.5); text-align:center;">App Icon<br>iOS / Android</div>
+    <div class="type-block">
+      <div class="type-label">Headline — Be Vietnam Pro 700</div>
+      <div class="t-headline">Trợ lý thông minh nhất<br>bạn từng có.</div>
     </div>
+    <div class="type-block">
+      <div class="type-label">Body — Be Vietnam Pro 400</div>
+      <div class="t-body">Mindy được setup riêng cho ngành của bạn — hiểu context, hiểu số liệu, hiểu cách bạn làm việc. Không phải AI generic. Là AI của bạn.</div>
+    </div>
+    <div class="type-block">
+      <div class="type-label">UI Label — Be Vietnam Pro 600</div>
+      <div class="t-ui">Kế toán · Trading · F&B · Ecom</div>
+    </div>
+  </div>
+</div>
 
-    <!-- Notification -->
-    <div>
-      <div class="notif">
-        <div class="notif-av">⚡</div>
+<!-- SLIDE 5: BRAND IN USE -->
+<div class="slide s5">
+  <div class="slide-h" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,4vw,46px); font-weight:800; letter-spacing:-1.5px; margin-bottom:48px; position:relative;z-index:1; color:#1a1a2e;">
+    Brand trong<br><span style="color:#ea580c;">thực tế.</span>
+  </div>
+
+  <div class="use-grid">
+    <!-- Phone -->
+    <div class="phone-warm">
+      <div class="ph-notch"></div>
+      <div class="ph-header">
+        <div class="ph-av">M</div>
         <div>
-          <div class="notif-title">Nova · Nhắc nhở</div>
-          <div class="notif-text">Hạn nộp thuế VAT T3: còn 3 ngày. Số tiền: 16,500,000₫. Tôi đã chuẩn bị form cho bạn.</div>
+          <div class="ph-name">Mindy · AI Deputy</div>
+          <div class="ph-status">Online 24/7</div>
+        </div>
+      </div>
+      <div class="ph-body">
+        <div class="ph-msg me"><div class="ph-bub user">Thuế tháng này nộp bao nhiêu?</div></div>
+        <div class="ph-msg"><div class="ph-bub ai">Tháng 3 của bạn: VAT đầu ra 28.5M, đầu vào 12M → <strong>nộp 16.5M₫</strong>. Hạn 20/4. Tôi đã set nhắc 3 ngày trước.</div></div>
+        <div class="ph-msg me"><div class="ph-bub user">Cổ phiếu VNM thế nào?</div></div>
+        <div class="ph-msg"><div class="ph-bub ai">VNM: <strong>75,200₫</strong>, -0.8% hôm nay. P/E 18.2x vs ngành 20.1x — đang undervalued nhẹ. Pull full report không?</div></div>
+      </div>
+    </div>
+
+    <!-- Right column: stacked cards -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <!-- Notification -->
+      <div class="card-notif">
+        <div class="notif-ic">🔔</div>
+        <div>
+          <div class="notif-t">Mindy nhắc bạn</div>
+          <div class="notif-d">Hạn nộp thuế VAT T3 còn 3 ngày. Số tiền: 16,500,000₫. Form đã chuẩn bị sẵn.</div>
           <div class="notif-time">Vừa xong · Tap để xem</div>
         </div>
       </div>
+
+      <!-- Business card -->
+      <div class="biz-card">
+        <div class="biz-logo">MINDY<span>.</span></div>
+        <div class="biz-info">
+          <div class="biz-name">Your AI Deputy</div>
+          <div class="biz-sub">Rat Race Escape · AI Division</div>
+        </div>
+      </div>
+
+      <!-- Price badge -->
+      <div class="price-badge">
+        <div class="pb-from">Bắt đầu từ</div>
+        <div class="pb-price">2M<sub>/tháng</sub></div>
+        <div class="pb-tag">Setup 48h · Không cần biết tech</div>
+      </div>
     </div>
 
-    <!-- Tagline -->
-    <div class="brand-tagline">
-      <em>Clarity</em><span>.</span> <em>Strength</em><span>.</span> <em>Awareness</em><span>.</span><br>
-      <span>Structure</span>. Truth.
+    <!-- Tagline card -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="background:#1a1a2e; border-radius:20px; padding:32px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:800; color:#faf8f5; line-height:1.3; letter-spacing:-.5px;">
+          Mindful.<br>
+          <span style="color:#f97316;">Không phải<br>mindless.</span>
+        </div>
+        <div style="font-size:12px; color:rgba(250,248,245,.35); letter-spacing:2px; text-transform:uppercase; margin-top:20px;">MINDY · Brand Principle</div>
+      </div>
+      <div style="background:#ea580c; border-radius:20px; padding:24px; text-align:center;">
+        <div style="font-size:32px; font-weight:900; font-family:'Space Grotesk',sans-serif; color:#fff; letter-spacing:-1px;">81%</div>
+        <div style="font-size:11px; color:rgba(255,255,255,.75); margin-top:4px; text-transform:uppercase; letter-spacing:1px;">ROI tháng đầu tiên</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 5: MANIFESTO -->
-<div class="slide s5">
-  <div class="glow-orb orb1"></div>
-  <div class="slide-title" style="position:relative;z-index:1; margin-bottom:40px;">Brand <span>Manifesto.</span></div>
-
+<!-- SLIDE 6: MANIFESTO -->
+<div class="slide s6">
+  <span class="m-label">MINDY · Brand Manifesto</span>
   <div class="manifesto">
-    <div class="manifesto-line">Nova không tồn tại để <strong>thay thế bạn.</strong></div>
-    <div class="manifesto-line">Nova tồn tại để bạn <strong>làm được nhiều hơn.</strong></div>
-    <div class="manifesto-line">Không hứa hẹn. <strong>Bring receipts.</strong></div>
-    <div class="manifesto-line">Không hype. <strong>Just results.</strong></div>
-    <div class="manifesto-line">Thông tin của bạn là <strong>của bạn. Mãi mãi.</strong></div>
-    <div class="manifesto-line">Nova là người đầu tiên bạn hỏi.<br>Và người cuối cùng bạn cần <strong>lo lắng về.</strong></div>
+    <div class="m-line">Founder Việt Nam xứng đáng có<br><strong>trợ lý đẳng cấp thế giới.</strong></div>
+    <div class="m-line">Không cần biết tech.<br><strong>Không cần trả lương khủng.</strong></div>
+    <div class="m-line">Thông tin của bạn là của bạn.<br><strong>Luôn luôn. Mãi mãi.</strong></div>
+    <div class="m-line">Mindy không hứa.<br><strong>Mindy làm — rồi cho bạn xem số.</strong></div>
+    <div class="m-line"><strong>Mindful. Không phải mindless.</strong></div>
   </div>
 </div>
 
