@@ -292,17 +292,19 @@ body {
 
 .use-wrap {
   max-width: 1000px; width: 100%;
-  display: grid; grid-template-columns: 260px 1fr; gap: 28px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  align-items: stretch;
   position: relative; z-index: 1;
 }
 @media (max-width: 800px) { .use-wrap { grid-template-columns: 1fr; } }
 
-/* Phone */
+/* Phone — constrained height to match right col */
+.phone-col { display: flex; justify-content: center; }
 .phone {
   background: #0f172a; border-radius: 34px;
   border: 5px solid #1e293b;
   box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.05);
-  overflow: hidden;
+  overflow: hidden; width: 260px;
 }
 .p-notch { height: 26px; background: #0f172a; display: flex; align-items: center; justify-content: center; }
 .p-notch::after { content: ''; width: 72px; height: 12px; background: #1e293b; border-radius: 100px; }
@@ -326,44 +328,50 @@ body {
 .p-bar { flex: 1; background: rgba(255,255,255,.06); border-radius: 100px; padding: 6px 10px; font-size: 9px; color: rgba(100,116,139,.7); }
 .p-send { width: 26px; height: 26px; border-radius: 50%; background: #2563eb; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; color: #fff; }
 
-/* Right side stacked */
-.use-right { display: flex; flex-direction: column; gap: 16px; }
+/* Right side — 3 cards filling full height */
+.use-right { display: flex; flex-direction: column; gap: 14px; }
 
 .notif-card {
   background: #0a1020; border: 1px solid rgba(6,182,212,.2);
-  border-radius: 14px; padding: 16px 18px;
+  border-radius: 14px; padding: 18px 20px;
   display: flex; gap: 12px; align-items: flex-start;
 }
-.notif-ic { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #06b6d4, #2563eb); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-.notif-t { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
-.notif-d { font-size: 11px; color: rgba(148,163,184,.6); line-height: 1.5; }
-.notif-time { font-size: 9px; color: #06b6d4; margin-top: 4px; font-weight: 600; }
+.notif-ic { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #06b6d4, #2563eb); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.notif-t { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.notif-d { font-size: 12px; color: rgba(148,163,184,.6); line-height: 1.55; }
+.notif-time { font-size: 10px; color: #06b6d4; margin-top: 5px; font-weight: 600; }
 
+/* Biz card — full width, more content */
 .bcard {
   background: linear-gradient(135deg, #0c1525, #050912);
   border: 1px solid rgba(6,182,212,.18);
-  border-radius: 14px; padding: 22px;
-  display: flex; justify-content: space-between; align-items: flex-end;
+  border-radius: 14px; padding: 24px 26px;
+  display: flex; flex-direction: column; gap: 16px;
   box-shadow: 0 12px 30px rgba(0,0,0,.3);
   position: relative; overflow: hidden;
 }
-.bcard::after { content: ''; position: absolute; bottom: -30px; right: -30px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(6,182,212,.12), transparent 70%); }
-.bcard-logo { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #fff, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.bcard-info .nm { font-size: 13px; font-weight: 700; text-align: right; }
-.bcard-info .rl { font-size: 9px; color: rgba(6,182,212,.6); letter-spacing: 1.5px; text-transform: uppercase; text-align: right; margin-top: 2px; }
+.bcard::after { content: ''; position: absolute; bottom: -40px; right: -40px; width: 140px; height: 140px; background: radial-gradient(circle, rgba(6,182,212,.1), transparent 70%); }
+.bcard-top { display: flex; justify-content: space-between; align-items: center; }
+.bcard-logo { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 800; background: linear-gradient(135deg, #fff, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.bcard-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981; }
+.bcard-tagline { font-size: 14px; color: rgba(148,163,184,.55); line-height: 1.5; }
+.bcard-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+.bcard-info .nm { font-size: 12px; font-weight: 700; color: rgba(241,245,249,.7); }
+.bcard-info .rl { font-size: 9px; color: rgba(6,182,212,.5); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
 
+/* Tagline + KPIs — grows to fill remaining space */
 .tagline-box {
   background: linear-gradient(135deg, rgba(6,182,212,.08), rgba(37,99,235,.06));
   border: 1px solid rgba(6,182,212,.2);
-  border-radius: 14px; padding: 24px;
-  flex: 1;
+  border-radius: 14px; padding: 24px 26px;
+  flex: 1; display: flex; flex-direction: column; justify-content: space-between;
 }
-.tagline-box .tq { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -.5px; line-height: 1.35; margin-bottom: 16px; }
+.tagline-box .tq { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -.5px; line-height: 1.3; margin-bottom: 20px; }
 .tagline-box .tq span { color: #06b6d4; }
-.kpis-row { display: flex; gap: 20px; flex-wrap: wrap; }
-.kpi { }
-.kpi .v { font-size: 26px; font-weight: 900; letter-spacing: -1px; color: #22d3ee; }
-.kpi .l { font-size: 10px; color: rgba(100,116,139,.7); margin-top: 1px; }
+.kpis-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.kpi { background: rgba(255,255,255,.04); border-radius: 10px; padding: 12px; text-align: center; }
+.kpi .v { font-size: 28px; font-weight: 900; letter-spacing: -1px; color: #22d3ee; display: block; }
+.kpi .l { font-size: 10px; color: rgba(100,116,139,.7); margin-top: 3px; }
 
 /* ─── SLIDE 6: MANIFESTO ─── */
 .s6 {
@@ -571,24 +579,26 @@ body {
 
   <div class="use-wrap">
     <!-- Phone mockup -->
-    <div class="phone">
-      <div class="p-notch"></div>
-      <div class="p-head">
-        <div class="p-av">N</div>
-        <div>
-          <div class="p-nm">NOVA · Your AI Ally</div>
-          <div class="p-st">Online 24/7</div>
+    <div class="phone-col">
+      <div class="phone">
+        <div class="p-notch"></div>
+        <div class="p-head">
+          <div class="p-av">N</div>
+          <div>
+            <div class="p-nm">NOVA · Your AI Ally</div>
+            <div class="p-st">Online 24/7</div>
+          </div>
         </div>
-      </div>
-      <div class="p-msgs">
-        <div class="pm me"><div class="pb user">Margin tháng này ổn không?</div></div>
-        <div class="pm"><div class="pb ai">Net margin: <strong>30.2%</strong> — tốt hơn tháng trước 4.3%. Kare Tonkatsu đang kéo lên, Udon kéo xuống. Chi tiết?</div></div>
-        <div class="pm me"><div class="pb user">Đề xuất action đi</div></div>
-        <div class="pm"><div class="pb ai"><strong>3 việc cần làm tuần này:</strong><br>1. Tăng giá Udon +5k<br>2. Push Kare combo T2<br>3. Kiểm lại COGS Takoyaki</div></div>
-      </div>
-      <div class="p-input">
-        <div class="p-bar">Hỏi NOVA...</div>
-        <div class="p-send">↑</div>
+        <div class="p-msgs">
+          <div class="pm me"><div class="pb user">Margin tháng này ổn không?</div></div>
+          <div class="pm"><div class="pb ai">Net margin: <strong>30.2%</strong> — tốt hơn tháng trước 4.3%. Kare Tonkatsu đang kéo lên, Udon kéo xuống. Chi tiết?</div></div>
+          <div class="pm me"><div class="pb user">Đề xuất action đi</div></div>
+          <div class="pm"><div class="pb ai"><strong>3 việc cần làm tuần này:</strong><br>1. Tăng giá Udon +5k<br>2. Push Kare combo T2<br>3. Kiểm lại COGS Takoyaki</div></div>
+        </div>
+        <div class="p-input">
+          <div class="p-bar">Hỏi NOVA...</div>
+          <div class="p-send">↑</div>
+        </div>
       </div>
     </div>
 
@@ -598,26 +608,32 @@ body {
         <div class="notif-ic">⚡</div>
         <div>
           <div class="notif-t">NOVA · Cảnh báo quan trọng</div>
-          <div class="notif-d">Deadline thuế VAT còn 3 ngày. Số tiền: 16,500,000₫. Tôi đã chuẩn bị hồ sơ sẵn.</div>
-          <div class="notif-time">Vừa xong · Tap để xem</div>
+          <div class="notif-d">Deadline thuế VAT còn 3 ngày. Số tiền: 16,500,000₫. Tôi đã chuẩn bị hồ sơ sẵn cho bạn.</div>
+          <div class="notif-time">Vừa xong · Tap để xem chi tiết</div>
         </div>
       </div>
 
       <div class="bcard">
-        <div class="bcard-logo">NOVA</div>
-        <div class="bcard-info">
-          <div class="rl">Neural Operations Value Automation</div>
-          <div class="rl">AI Personal Assistant · RRE</div>
+        <div class="bcard-top">
+          <div class="bcard-logo">NOVA</div>
+          <div class="bcard-dot"></div>
+        </div>
+        <div class="bcard-tagline">Neural Operations Value Automation —<br>Trợ lý AI cá nhân cho founder Việt Nam.</div>
+        <div class="bcard-bottom">
+          <div class="bcard-info">
+            <div class="nm">Rat Race Escape · AI Division</div>
+            <div class="rl">TP.HCM · Vietnam</div>
+          </div>
         </div>
       </div>
 
       <div class="tagline-box">
-        <div class="tq">Không phải tool.<br><span>Là đồng minh của bạn.</span></div>
+        <div class="tq">Không phải tool.<br><span>Là người luôn ở đó khi cần.</span></div>
         <div class="kpis-row">
-          <div class="kpi"><div class="v">90h</div><div class="l">tiết kiệm/tháng</div></div>
-          <div class="kpi"><div class="v">24/7</div><div class="l">không nghỉ</div></div>
-          <div class="kpi"><div class="v">81%</div><div class="l">ROI tháng 1</div></div>
-          <div class="kpi"><div class="v">0</div><div class="l">data leak</div></div>
+          <div class="kpi"><span class="v">90h</span><div class="l">tiết kiệm/tháng</div></div>
+          <div class="kpi"><span class="v">24/7</span><div class="l">không nghỉ</div></div>
+          <div class="kpi"><span class="v">81%</span><div class="l">ROI tháng 1</div></div>
+          <div class="kpi"><span class="v">0</span><div class="l">data leak</div></div>
         </div>
       </div>
     </div>
