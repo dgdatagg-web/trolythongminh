@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA — Brand Identity</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800;900&family=Space+Grotesk:wght@400;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #050912;
+  color: #f1f5f9;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SLIDE 1: HERO LOGO ─── */
+.slide {
+  width: 100vw; min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  position: relative; overflow: hidden;
+  padding: 60px 40px;
+}
+
+.s1 { background: #050912; }
+
+/* Animated star field */
+.stars-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 15%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 45%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 70%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 90%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,.8) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 40%, rgba(6,182,212,.8) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 80%, rgba(6,182,212,.6) 0%, transparent 100%);
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.orb1 { width: 500px; height: 500px; background: rgba(6,182,212,.12); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.orb2 { width: 300px; height: 300px; background: rgba(59,130,246,.08); top: 20%; right: 10%; }
+.orb3 { width: 200px; height: 200px; background: rgba(139,92,246,.08); bottom: 20%; left: 15%; }
+
+/* Logo mark */
+.logo-mark {
+  position: relative; margin-bottom: 40px; display: inline-block;
+}
+
+.logo-ring {
+  width: 140px; height: 140px;
+  border: 2px solid rgba(6,182,212,.3);
+  border-radius: 50%;
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  animation: spin 20s linear infinite;
+}
+.logo-ring2 {
+  width: 110px; height: 110px;
+  border: 1px solid rgba(6,182,212,.15);
+  border-radius: 50%;
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  animation: spin 15s linear infinite reverse;
+}
+
+@keyframes spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+.logo-core {
+  width: 90px; height: 90px;
+  background: radial-gradient(circle, rgba(6,182,212,.15), rgba(6,182,212,.05));
+  border: 1.5px solid rgba(6,182,212,.5);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+  box-shadow: 0 0 30px rgba(6,182,212,.3), 0 0 60px rgba(6,182,212,.1), inset 0 0 20px rgba(6,182,212,.1);
+  position: relative; z-index: 1;
+  margin: 25px;
+}
+
+/* Ring orbit dot */
+.orbit-dot {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: var(--cyan, #06b6d4);
+  border-radius: 50%;
+  box-shadow: 0 0 8px #06b6d4;
+}
+
+.logo-wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 72px; font-weight: 800; letter-spacing: -3px;
+  background: linear-gradient(135deg, #fff 30%, #06b6d4 70%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  position: relative; z-index: 1;
+  margin-bottom: 8px;
+}
+
+.logo-sub {
+  font-size: 13px; letter-spacing: 5px; color: rgba(6,182,212,.7);
+  text-transform: uppercase; font-weight: 600;
+  position: relative; z-index: 1;
+}
+
+.s1-caption {
+  position: relative; z-index: 1;
+  margin-top: 48px; max-width: 480px;
+  font-size: 18px; color: rgba(148,163,184,.7); line-height: 1.7;
+  font-style: italic;
+}
+
+/* ─── SLIDE 2: COLOR SYSTEM ─── */
+.s2 { background: #080d1a; border-top: 1px solid rgba(255,255,255,.06); }
+
+.slide-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 42px; font-weight: 800; letter-spacing: -1.5px;
+  margin-bottom: 56px; position: relative; z-index: 1;
+}
+.slide-title span { color: #06b6d4; }
+
+.colors-row {
+  display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+  position: relative; z-index: 1; width: 100%; max-width: 900px;
+}
+
+.color-card {
+  flex: 1 1 220px; max-width: 260px;
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background: #0c1222;
+}
+.color-swatch { height: 120px; position: relative; }
+.color-swatch::after {
+  content: attr(data-hex);
+  position: absolute; bottom: 12px; left: 14px;
+  font-size: 12px; font-family: monospace; letter-spacing: 1px;
+  font-weight: 700;
+}
+.sw-cyan { background: #06b6d4; }
+.sw-cyan::after { color: rgba(5,9,18,.7); }
+.sw-white { background: linear-gradient(135deg, #ffffff, #e2e8f0); }
+.sw-white::after { color: rgba(5,9,18,.5); }
+.sw-dark { background: #050912; border: 1px solid rgba(255,255,255,.1); }
+.sw-dark::after { color: rgba(255,255,255,.5); }
+.sw-accent { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+.sw-accent::after { color: rgba(255,255,255,.8); }
+
+.color-info { padding: 18px; }
+.color-name { font-size: 15px; font-weight: 800; margin-bottom: 6px; }
+.color-desc { font-size: 12px; color: rgba(148,163,184,.7); line-height: 1.6; }
+.color-tag {
+  display: inline-block; margin-top: 10px; padding: 3px 8px;
+  background: rgba(6,182,212,.1); border: 1px solid rgba(6,182,212,.2);
+  border-radius: 4px; font-size: 10px; font-weight: 700; color: #06b6d4;
+  letter-spacing: 1px;
+}
+
+/* ─── SLIDE 3: PSYCHOLOGY ─── */
+.s3 {
+  background: #050912;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.psych-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  max-width: 900px; width: 100%;
+  position: relative; z-index: 1;
+}
+
+.psych-card {
+  background: #0c1222;
+  border-radius: 20px; padding: 32px;
+  border: 1px solid rgba(255,255,255,.07);
+  text-align: left;
+  position: relative; overflow: hidden;
+  transition: transform .3s;
+}
+.psych-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.pc1::before { background: linear-gradient(90deg, #06b6d4, #3b82f6); }
+.pc2::before { background: linear-gradient(90deg, #10b981, #06b6d4); }
+.pc3::before { background: linear-gradient(90deg, #8b5cf6, #3b82f6); }
+.pc4::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+
+.psych-num {
+  font-size: 48px; font-weight: 900; letter-spacing: -2px;
+  background: linear-gradient(135deg, rgba(6,182,212,.4), rgba(6,182,212,.1));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 8px; display: block;
+}
+.psych-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+.psych-card p { font-size: 14px; color: rgba(148,163,184,.7); line-height: 1.7; }
+
+/* ─── SLIDE 4: BRAND IN USE ─── */
+.s4 { background: #080d1a; border-top: 1px solid rgba(255,255,255,.06); }
+
+.brand-showcase {
+  display: flex; gap: 32px; flex-wrap: wrap; justify-content: center;
+  max-width: 1000px; width: 100%;
+  position: relative; z-index: 1;
+}
+
+/* Business card mockup */
+.bcard {
+  width: 320px; height: 180px;
+  background: linear-gradient(135deg, #0c1222, #050912);
+  border: 1px solid rgba(6,182,212,.2);
+  border-radius: 16px; padding: 28px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  box-shadow: 0 20px 40px rgba(0,0,0,.4), 0 0 40px rgba(6,182,212,.06);
+  position: relative; overflow: hidden;
+}
+.bcard::before {
+  content: '';
+  position: absolute; bottom: -30px; right: -30px;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(6,182,212,.15), transparent 70%);
+  border-radius: 50%;
+}
+.bcard-top { display: flex; align-items: center; gap: 10px; }
+.bcard-logo { font-size: 20px; font-weight: 900; font-family: 'Space Grotesk', sans-serif; background: linear-gradient(135deg, #fff, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.bcard-dot { width: 5px; height: 5px; border-radius: 50%; background: #06b6d4; box-shadow: 0 0 6px #06b6d4; }
+.bcard-name { font-size: 17px; font-weight: 800; }
+.bcard-role { font-size: 11px; color: rgba(6,182,212,.7); letter-spacing: 2px; text-transform: uppercase; }
+
+/* App icon */
+.app-icon {
+  width: 100px; height: 100px;
+  background: linear-gradient(135deg, #050912, #0c1222);
+  border: 1.5px solid rgba(6,182,212,.4);
+  border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 44px;
+  box-shadow: 0 0 30px rgba(6,182,212,.2), 0 20px 40px rgba(0,0,0,.4);
+}
+
+/* Notification mockup */
+.notif {
+  background: #0c1222;
+  border: 1px solid rgba(6,182,212,.2);
+  border-radius: 14px; padding: 16px 20px;
+  width: 280px;
+  display: flex; gap: 12px; align-items: flex-start;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+.notif-av {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.notif-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.notif-text { font-size: 11px; color: rgba(148,163,184,.7); line-height: 1.5; }
+.notif-time { font-size: 10px; color: rgba(6,182,212,.6); margin-top: 4px; }
+
+/* Tagline */
+.brand-tagline {
+  width: 100%;
+  text-align: center;
+  padding: 32px;
+  background: linear-gradient(135deg, rgba(6,182,212,.06), rgba(59,130,246,.04));
+  border: 1px solid rgba(6,182,212,.15);
+  border-radius: 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
+  color: rgba(255,255,255,.5);
+}
+.brand-tagline span { color: #06b6d4; }
+.brand-tagline em { font-style: normal; color: #fff; }
+
+/* ─── SLIDE 5: MANIFESTO ─── */
+.s5 {
+  background: #050912;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.manifesto {
+  max-width: 680px; width: 100%;
+  position: relative; z-index: 1;
+  text-align: left;
+}
+.manifesto-line {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700; letter-spacing: -0.5px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  color: rgba(255,255,255,.3);
+  line-height: 1.4;
+  transition: color .3s;
+}
+.manifesto-line:hover { color: rgba(255,255,255,.9); }
+.manifesto-line strong { color: #06b6d4; }
+.manifesto-line:last-child { border-bottom: none; }
+
+@media (max-width: 640px) {
+  .psych-grid { grid-template-columns: 1fr; }
+  .logo-wordmark { font-size: 52px; }
+  .brand-showcase { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: LOGO + IDENTITY -->
+<div class="slide s1">
+  <div class="stars-bg"></div>
+  <div class="glow-orb orb1"></div>
+  <div class="glow-orb orb2"></div>
+  <div class="glow-orb orb3"></div>
+
+  <div class="logo-mark">
+    <div class="logo-ring"></div>
+    <div class="logo-ring2"></div>
+    <div class="logo-core">⚡</div>
+  </div>
+
+  <div class="logo-wordmark">NOVA</div>
+  <div class="logo-sub">AI Personal Assistant · Vietnam</div>
+
+  <div class="s1-caption">
+    "Không phải công cụ. Không phải chatbot.<br>
+    Là người đồng hành thông minh nhất bạn từng có."
+  </div>
+</div>
+
+<!-- SLIDE 2: COLOR SYSTEM -->
+<div class="slide s2">
+  <div class="glow-orb orb1"></div>
+  <div class="slide-title">Hệ màu sắc.<br><span>Mỗi màu có lý do.</span></div>
+
+  <div class="colors-row">
+    <div class="color-card">
+      <div class="color-swatch sw-cyan" data-hex="#06B6D4"></div>
+      <div class="color-info">
+        <div class="color-name">Electric Cyan</div>
+        <div class="color-desc">Màu của trí tuệ lạnh và tốc độ. Không phải xanh corporate nhàm — là xanh của tia sét. Gợi lên sự chính xác và power.</div>
+        <div class="color-tag">PRIMARY</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch sw-white" data-hex="#FFFFFF"></div>
+      <div class="color-info">
+        <div class="color-name">Pure White</div>
+        <div class="color-desc">Clarity tuyệt đối. Khi mọi thứ xung quanh là noise, trắng là signal. Không cần giải thích. Tạo cảm giác an tâm và minh bạch.</div>
+        <div class="color-tag">CLARITY</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch sw-dark" data-hex="#050912"></div>
+      <div class="color-info">
+        <div class="color-name">Void Dark</div>
+        <div class="color-desc">Không phải đen thông thường — là khoảng không gian giữa các vì sao. Tạo depth, bí ẩn, và cảm giác private. Thông tin của bạn được bảo vệ.</div>
+        <div class="color-tag">DEPTH</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch sw-accent" data-hex="Gradient"></div>
+      <div class="color-info">
+        <div class="color-name">Intelligence Gradient</div>
+        <div class="color-desc">Blue → Cyan. Hành trình từ ổn định đến năng động. Dùng cho CTA và highlight quan trọng — mắt người tự động bị thu hút.</div>
+        <div class="color-tag">ACCENT</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: PSYCHOLOGY -->
+<div class="slide s3">
+  <div class="glow-orb orb1"></div>
+  <div class="slide-title" style="position:relative;z-index:1;">Brand tạo ra <span>tâm lý gì?</span></div>
+
+  <div class="psych-grid">
+    <div class="psych-card pc1">
+      <span class="psych-num">01</span>
+      <h3>An toàn & Bảo mật</h3>
+      <p>Dark background + instance riêng = "thứ này không để ai khác nhìn vào." Người dùng cảm thấy thông tin của họ được che chắn, không bị phơi bày.</p>
+    </div>
+    <div class="psych-card pc2">
+      <span class="psych-num">02</span>
+      <h3>Sắc bén & Chính xác</h3>
+      <p>Cyan accent + clean layout = precision không mơ hồ. Tâm lý "thứ này biết chính xác nó đang làm gì" — không phải AI guess, là AI biết.</p>
+    </div>
+    <div class="psych-card pc3">
+      <span class="psych-num">03</span>
+      <h3>Power không phô trương</h3>
+      <p>Không có màu đỏ, không có màu vàng kêu gọi. Power ở đây là power của trí tuệ — subtle, deep, và tự tin. Như có vũ khí bí mật trong tay.</p>
+    </div>
+    <div class="psych-card pc4">
+      <span class="psych-num">04</span>
+      <h3>Đối tác, không phải tool</h3>
+      <p>Tên "Nova" + star identity = personality riêng. Người dùng không cảm thấy mình đang dùng app — họ cảm thấy mình đang làm việc cùng ai đó.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: BRAND IN USE -->
+<div class="slide s4">
+  <div class="glow-orb orb1"></div>
+  <div class="slide-title" style="position:relative;z-index:1;">Brand trong <span>thực tế.</span></div>
+
+  <div class="brand-showcase">
+    <!-- Business card -->
+    <div class="bcard">
+      <div class="bcard-top">
+        <div class="bcard-logo">NOVA</div>
+        <div class="bcard-dot"></div>
+      </div>
+      <div>
+        <div class="bcard-name">Nova ⚡</div>
+        <div class="bcard-role">AI Personal Assistant</div>
+      </div>
+    </div>
+
+    <!-- App icon -->
+    <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+      <div class="app-icon">⚡</div>
+      <div style="font-size:12px; color:rgba(148,163,184,.5); text-align:center;">App Icon<br>iOS / Android</div>
+    </div>
+
+    <!-- Notification -->
+    <div>
+      <div class="notif">
+        <div class="notif-av">⚡</div>
+        <div>
+          <div class="notif-title">Nova · Nhắc nhở</div>
+          <div class="notif-text">Hạn nộp thuế VAT T3: còn 3 ngày. Số tiền: 16,500,000₫. Tôi đã chuẩn bị form cho bạn.</div>
+          <div class="notif-time">Vừa xong · Tap để xem</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tagline -->
+    <div class="brand-tagline">
+      <em>Clarity</em><span>.</span> <em>Strength</em><span>.</span> <em>Awareness</em><span>.</span><br>
+      <span>Structure</span>. Truth.
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: MANIFESTO -->
+<div class="slide s5">
+  <div class="glow-orb orb1"></div>
+  <div class="slide-title" style="position:relative;z-index:1; margin-bottom:40px;">Brand <span>Manifesto.</span></div>
+
+  <div class="manifesto">
+    <div class="manifesto-line">Nova không tồn tại để <strong>thay thế bạn.</strong></div>
+    <div class="manifesto-line">Nova tồn tại để bạn <strong>làm được nhiều hơn.</strong></div>
+    <div class="manifesto-line">Không hứa hẹn. <strong>Bring receipts.</strong></div>
+    <div class="manifesto-line">Không hype. <strong>Just results.</strong></div>
+    <div class="manifesto-line">Thông tin của bạn là <strong>của bạn. Mãi mãi.</strong></div>
+    <div class="manifesto-line">Nova là người đầu tiên bạn hỏi.<br>Và người cuối cùng bạn cần <strong>lo lắng về.</strong></div>
+  </div>
+</div>
+
+</body>
+</html>
