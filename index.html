@@ -111,7 +111,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 48px;display:fl
 .pcc .body{background:rgba(255,255,255,.04);border-radius:8px;padding:7px 9px;color:rgba(226,232,240,.7);border-left:2px solid rgba(34,211,238,.3);}
 .pcc.q .body{border-left:none;background:rgba(255,255,255,.03);color:rgba(148,163,184,.6);}
 
-/* PRICING */
+/* NIGHT LOG */
+.night-log{background:#060c18;border:1px solid rgba(6,182,212,.12);border-radius:20px;overflow:hidden;max-width:780px;margin:0 auto;}
+.nl-header{background:#080f1e;padding:14px 20px;border-bottom:1px solid rgba(6,182,212,.1);display:flex;align-items:center;gap:10px;}
+.nl-dot{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 8px #10b981;animation:pulse 2s infinite;}
+.nl-title{font-size:12px;font-weight:700;color:rgba(148,163,184,.7);}
+.nl-date{font-size:11px;color:rgba(100,116,139,.5);margin-left:auto;}
+.nl-body{padding:16px 20px;display:flex;flex-direction:column;gap:0;}
+.nl-row{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);opacity:0;transform:translateX(-10px);transition:opacity .5s ease,transform .5s ease;}
+.nl-row:last-child{border-bottom:none;}
+.nl-row.show{opacity:1;transform:translateX(0);}
+.nl-time{font-size:10px;color:rgba(100,116,139,.5);font-family:'Space Grotesk',sans-serif;white-space:nowrap;margin-top:2px;min-width:44px;}
+.nl-icon{font-size:16px;flex-shrink:0;width:28px;text-align:center;}
+.nl-text{flex:1;}
+.nl-text .action{font-size:12px;font-weight:700;color:#e2e8f0;margin-bottom:2px;}
+.nl-text .detail{font-size:11px;color:rgba(100,116,139,.6);line-height:1.5;}
+.nl-tag{display:inline-block;padding:2px 8px;border-radius:100px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+.nl-tag.done{background:rgba(16,185,129,.1);color:#6ee7b7;border:1px solid rgba(16,185,129,.2);}
+.nl-tag.alert{background:rgba(245,158,11,.1);color:#fcd34d;border:1px solid rgba(245,158,11,.2);}
+.nl-tag.insight{background:rgba(6,182,212,.1);color:#67e8f9;border:1px solid rgba(6,182,212,.2);}
 .price-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
 @media(max-width:800px){.price-cards{grid-template-columns:1fr;max-width:360px;margin:0 auto;}}
 .pc2{background:#0a1020;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px;display:flex;flex-direction:column;position:relative;transition:transform .2s;}
@@ -276,6 +294,79 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
         <div class="step-n">03</div>
         <h3>Dùng ngay, hỗ trợ liên tục</h3>
         <p>Hỏi NOVA qua Telegram bất cứ lúc nào. Đội ngũ maintain, update, và cải tiến NOVA của bạn hàng tháng.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NIGHT LOG -->
+<section class="section s-dark" id="nightlog">
+  <div class="glow" style="width:400px;height:400px;background:rgba(6,182,212,.05);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="sec-inner">
+    <span class="sec-label reveal">Hoạt động đêm qua</span>
+    <h2 class="sec-h reveal d1">Chủ tôi ngủ lúc 23:00.<br><span>Đây là những gì tôi đã làm.</span></h2>
+    <p class="sec-sub reveal d2">Log thực tế từ một đêm bình thường — khi founder nghỉ ngơi, tôi tiếp tục làm việc.</p>
+    <div class="night-log reveal d3">
+      <div class="nl-header">
+        <div class="nl-dot"></div>
+        <div class="nl-title">NOVA · Activity Log</div>
+        <div class="nl-date">Hôm qua · 23:00 — 07:00</div>
+      </div>
+      <div class="nl-body" id="nl-body">
+        <div class="nl-row">
+          <div class="nl-time">23:04</div>
+          <div class="nl-icon">📊</div>
+          <div class="nl-text">
+            <div class="action">Tổng hợp báo cáo doanh thu ngày</div>
+            <div class="detail">Grab: 47 đơn · 7,120,000₫ · So với hôm qua: +12% · Kare Tonkatsu dẫn đầu 22 đơn</div>
+            <span class="nl-tag done">hoàn thành</span>
+          </div>
+        </div>
+        <div class="nl-row">
+          <div class="nl-time">23:31</div>
+          <div class="nl-icon">⚠️</div>
+          <div class="nl-text">
+            <div class="action">Phát hiện nguyên liệu sắp hết</div>
+            <div class="detail">Sốt cà-ri Nhật còn ~3 ngày · Đã soạn đơn nhập hàng gửi cho Chi xử lý sáng mai</div>
+            <span class="nl-tag alert">cần xử lý</span>
+          </div>
+        </div>
+        <div class="nl-row">
+          <div class="nl-time">00:15</div>
+          <div class="nl-icon">💡</div>
+          <div class="nl-text">
+            <div class="action">Phân tích pattern đơn hàng thứ 3</div>
+            <div class="detail">Thứ 3 tăng +34% so với thứ 2 · Nhóm khách office 11h-13h chiếm 61% · Đề xuất: thêm combo trưa thứ 3</div>
+            <span class="nl-tag insight">insight</span>
+          </div>
+        </div>
+        <div class="nl-row">
+          <div class="nl-time">01:48</div>
+          <div class="nl-icon">📝</div>
+          <div class="nl-text">
+            <div class="action">Trả lời 3 câu hỏi từ khách Zalo</div>
+            <div class="detail">"Bếp mở mấy giờ?" · "Có giao Bình Thạnh không?" · "Curry có cay không?" — Đã reply đầy đủ, lịch sự</div>
+            <span class="nl-tag done">hoàn thành</span>
+          </div>
+        </div>
+        <div class="nl-row">
+          <div class="nl-time">03:22</div>
+          <div class="nl-icon">📈</div>
+          <div class="nl-text">
+            <div class="action">Kiểm tra đối thủ cạnh tranh</div>
+            <div class="detail">Bếp Nhật ABC vừa ra menu mới · Phân tích giá + review → Kansai vẫn giữ lợi thế về tốc độ giao và rating</div>
+            <span class="nl-tag insight">insight</span>
+          </div>
+        </div>
+        <div class="nl-row">
+          <div class="nl-time">06:45</div>
+          <div class="nl-icon">☀️</div>
+          <div class="nl-text">
+            <div class="action">Chuẩn bị brief sáng cho chủ</div>
+            <div class="detail">3 điểm quan trọng nhất hôm nay · 1 quyết định cần Will xem · Dự báo đơn hàng hôm nay: 51–58 đơn</div>
+            <span class="nl-tag done">sẵn sàng</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -511,6 +602,21 @@ const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08 });
 els.forEach(el => obs.observe(el));
+
+// NIGHT LOG — staggered row reveal
+const nlRows = document.querySelectorAll('.nl-row');
+const nlObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      nlRows.forEach((row, i) => {
+        setTimeout(() => row.classList.add('show'), i * 180);
+      });
+      nlObs.disconnect();
+    }
+  });
+}, { threshold: 0.2 });
+const nlSection = document.getElementById('nightlog');
+if (nlSection) nlObs.observe(nlSection);
 
 // SLOTS BAR ANIMATION — trigger when pricing section visible
 const pricingSection = document.getElementById('pricing');
