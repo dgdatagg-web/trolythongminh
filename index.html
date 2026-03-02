@@ -29,13 +29,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 48px;display:fl
 .reveal.visible{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}
 
-/* CAT EASTER EGG */
-#nova-cat{position:fixed;bottom:60px;left:-120px;z-index:9999;font-size:36px;pointer-events:none;animation:catWalk 0s linear forwards;}
-#nova-cat .sparkles{position:absolute;top:-10px;left:0;font-size:14px;opacity:0;animation:sparkle 0s ease forwards;}
-@keyframes catWalk{0%{left:-120px;transform:scaleX(1);}45%{left:calc(100vw + 60px);transform:scaleX(1);}46%{left:calc(100vw + 60px);transform:scaleX(-1);}100%{left:-120px;transform:scaleX(-1);}}
-@keyframes sparkle{0%,100%{opacity:0;}30%,70%{opacity:1;}}
-.cat-trail{position:fixed;pointer-events:none;font-size:10px;z-index:9998;animation:fadeTrail 1.2s ease forwards;}
-@keyframes fadeTrail{0%{opacity:.8;transform:translateY(0);}100%{opacity:0;transform:translateY(-20px);}}
+/* CAT 3D EASTER EGG */
+#nova-cat-wrap{position:fixed;bottom:55px;left:-160px;z-index:9999;pointer-events:none;perspective:400px;}
+#nova-cat-3d{font-size:42px;display:inline-block;transform-style:preserve-3d;animation:catBob 0.55s ease-in-out infinite alternate;}
+@keyframes catBob{0%{transform:translateY(0px) rotateY(-8deg) rotateZ(-2deg) scale3d(1,1,1);}100%{transform:translateY(-7px) rotateY(8deg) rotateZ(2deg) scale3d(1.05,0.97,1.05);}}
+.cat-shadow{width:44px;height:8px;background:radial-gradient(ellipse,rgba(6,182,212,.35) 0%,transparent 70%);border-radius:50%;margin:0 auto;animation:shadowPulse 0.55s ease-in-out infinite alternate;}
+@keyframes shadowPulse{0%{transform:scaleX(1);opacity:.7;}100%{transform:scaleX(0.7);opacity:.3;}}
+.cat-trail{position:fixed;pointer-events:none;font-size:11px;z-index:9998;animation:fadeTrail 1.4s ease forwards;}
+@keyframes fadeTrail{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-28px) scale(0.5);}}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
@@ -175,8 +176,11 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
 </head>
 <body>
 
-<!-- NOVA CAT EASTER EGG -->
-<div id="nova-cat">🐱<span class="sparkles">✨⭐💫</span></div>
+<!-- NOVA CAT 3D -->
+<div id="nova-cat-wrap">
+  <div id="nova-cat-3d">🐱</div>
+  <div class="cat-shadow"></div>
+</div>
 
 <nav>
   <div class="nav-logo">NOVA ⚡</div>
@@ -379,54 +383,77 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
   <div class="sec-inner">
     <span class="sec-label reveal">Bảng giá</span>
     <h2 class="sec-h reveal d1">Đơn giản. Minh bạch.<br><span>Không phí ẩn.</span></h2>
-    <p class="sec-sub reveal d2">Không cam kết dài hạn · Không phí setup · Dừng bất kỳ lúc nào · Số Claudible credits ghi rõ từ đầu</p>
+    <p class="sec-sub reveal d2">Campaign giới hạn thời gian — discount dành riêng cho early founders. Hết slots là hết.</p>
     <div class="price-cards">
       <div class="pc2 reveal d1">
-        <div class="pc2-tier">Cơ Bản</div>
+        <div class="pc2-tier">Người Mới</div>
+        <div class="pc2-was">5.000.000₫/tháng</div>
         <div class="pc2-price">2M<sub>/tháng</sub></div>
         <div class="pc2-credit">75 Claudible credits/ngày</div>
+        <div class="pc2-save">↓ Tiết kiệm 3 triệu/tháng · Founder Discount</div>
         <div class="pc2-hr"></div>
-        <div class="pc2-desc">Dành cho founder bắt đầu. Cài đặt đầy đủ, hỗ trợ theo hướng dẫn.</div>
+        <div class="pc2-desc">Dành cho founder bắt đầu. Setup đầy đủ, hỗ trợ theo hướng dẫn.</div>
         <ul class="pc2-list">
           <li><span class="ok">✓</span> Cài đặt AI chuyên biệt cho ngành bạn</li>
           <li><span class="ok">✓</span> Hỗ trợ kỹ thuật 90% lỗi thường gặp</li>
           <li><span class="ok">✓</span> 1 lần sửa lỗi ngoài phạm vi/tháng miễn phí</li>
           <li><span class="add">+</span> Nâng lên 180 credits/ngày: <strong>+500k/tháng</strong></li>
         </ul>
-        <a href="https://t.me/willdaolam" class="pc2-btn outline">Bắt Đầu</a>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+          <div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;">
+            <div id="slots-bar-1" style="height:100%;background:linear-gradient(90deg,#06b6d4,#2563eb);border-radius:10px;width:0%;transition:width 1.5s ease;"></div>
+          </div>
+          <span style="font-size:10px;color:rgba(6,182,212,.7);font-weight:700;white-space:nowrap;" id="slots-txt-1">500 slots · 2 tháng</span>
+        </div>
+        <a href="https://t.me/willdaolam" class="pc2-btn outline">Đăng Ký Ngay</a>
       </div>
       <div class="pc2 feat reveal d2">
         <div class="pc2-badge">PHỔ BIẾN NHẤT</div>
-        <div class="pc2-tier">Chuyên Nghiệp</div>
+        <div class="pc2-tier">Tiêu Chuẩn</div>
+        <div class="pc2-was">10.000.000₫/tháng</div>
         <div class="pc2-price">5M<sub>/tháng</sub></div>
         <div class="pc2-credit">180 Claudible credits/ngày</div>
+        <div class="pc2-save">↓ Tiết kiệm 5 triệu/tháng · SME Discount</div>
         <div class="pc2-hr"></div>
         <div class="pc2-desc">Hỗ trợ toàn diện không giới hạn. Không bao giờ tính thêm chi phí ẩn.</div>
         <ul class="pc2-list">
-          <li><span class="ok">✓</span> Tất cả tính năng Cơ Bản</li>
+          <li><span class="ok">✓</span> Tất cả tính năng Người Mới</li>
           <li><span class="ok">✓</span> Hỗ trợ toàn diện · sửa mọi lỗi mọi lúc</li>
           <li><span class="ok">✓</span> Tuỳ chỉnh nâng cao theo yêu cầu</li>
           <li><span class="ok">✓</span> Cập nhật & cải tiến hàng tháng</li>
           <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+900k/tháng</strong></li>
         </ul>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+          <div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;">
+            <div id="slots-bar-2" style="height:100%;background:linear-gradient(90deg,#2563eb,#8b5cf6);border-radius:10px;width:0%;transition:width 1.5s ease;"></div>
+          </div>
+          <span style="font-size:10px;color:rgba(99,102,241,.8);font-weight:700;white-space:nowrap;" id="slots-txt-2">400 slots · 3 tháng</span>
+        </div>
         <a href="https://t.me/willdaolam" class="pc2-btn fill">Chọn Gói Này →</a>
       </div>
       <div class="pc2 reveal d3">
-        <div class="pc2-tier">Gói Năm</div>
+        <div class="pc2-badge" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">FOUNDING MEMBERS</div>
+        <div class="pc2-tier">Chuyên Gia</div>
         <div class="pc2-was">60.000.000₫/năm</div>
         <div class="pc2-price">25M<sub>/năm</sub></div>
         <div class="pc2-credit">180 Claudible credits/ngày</div>
-        <div class="pc2-save">↓ Tiết kiệm 35 triệu · 2,08 triệu/tháng</div>
+        <div class="pc2-save">↓ Tiết kiệm 35 triệu · Founding Member Discount</div>
         <div class="pc2-hr"></div>
-        <div class="pc2-desc">Toàn bộ tính năng Chuyên Nghiệp 12 tháng.</div>
+        <div class="pc2-desc">Chỉ 100 suất. Khoá giá vĩnh viễn. Ưu tiên mọi thứ.</div>
         <ul class="pc2-list">
-          <li><span class="ok">✓</span> Tất cả tính năng Chuyên Nghiệp · 12 tháng</li>
+          <li><span class="ok">✓</span> Tất cả tính năng Tiêu Chuẩn · 12 tháng</li>
           <li><span class="ok">✓</span> Khoá giá — không tăng khi gia hạn</li>
           <li><span class="ok">✓</span> Ưu tiên cài đặt & onboarding</li>
           <li><span class="ok">✓</span> 1 buổi tư vấn chiến lược cùng đội ngũ</li>
           <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+5M/năm</strong></li>
         </ul>
-        <a href="https://t.me/willdaolam" class="pc2-btn outline">Đăng Ký Gói Năm</a>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+          <div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;">
+            <div id="slots-bar-3" style="height:100%;background:linear-gradient(90deg,#f59e0b,#ef4444);border-radius:10px;width:0%;transition:width 1.5s ease;"></div>
+          </div>
+          <span style="font-size:10px;color:rgba(245,158,11,.8);font-weight:700;white-space:nowrap;" id="slots-txt-3">100 slots · 1 tháng</span>
+        </div>
+        <a href="https://t.me/willdaolam" class="pc2-btn outline">Đăng Ký Founding</a>
       </div>
     </div>
   </div>
@@ -485,54 +512,95 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 els.forEach(el => obs.observe(el));
 
-// NOVA CAT — walks across screen on load, then again every 90s
-const cat = document.getElementById('nova-cat');
-const sparkles = cat.querySelector('.sparkles');
-const trails = ['✨','⭐','💫','🌟'];
+// SLOTS BAR ANIMATION — trigger when pricing section visible
+const pricingSection = document.getElementById('pricing');
+const slotsObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      setTimeout(() => { document.getElementById('slots-bar-1').style.width = '22%'; }, 200);
+      setTimeout(() => { document.getElementById('slots-bar-2').style.width = '15%'; }, 400);
+      setTimeout(() => { document.getElementById('slots-bar-3').style.width = '38%'; }, 600);
+      slotsObs.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+if (pricingSection) slotsObs.observe(pricingSection);
+
+// NOVA CAT 3D — walks across, bounces with 3D perspective
+const catWrap = document.getElementById('nova-cat-wrap');
+const cat3d = document.getElementById('nova-cat-3d');
+const trailEmojis = ['✨','⭐','💫','🌟','⚡'];
+let catRunning = false;
 
 function spawnTrail(x, y) {
   const t = document.createElement('div');
   t.className = 'cat-trail';
-  t.textContent = trails[Math.floor(Math.random()*trails.length)];
-  t.style.cssText = `left:${x}px;bottom:${y}px;`;
+  t.textContent = trailEmojis[Math.floor(Math.random() * trailEmojis.length)];
+  t.style.cssText = `left:${x}px;bottom:${y + 10 + Math.random()*20}px;`;
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), 1200);
+  setTimeout(() => t.remove(), 1400);
 }
 
 function runCat() {
-  const dur = 9000;
-  cat.style.animation = 'none';
-  cat.style.bottom = '60px';
-  cat.style.left = '-120px';
-  void cat.offsetWidth;
+  if (catRunning) return;
+  catRunning = true;
+  const vw = window.innerWidth;
+  const dur = 8500; // ms to cross screen
+  let startTime = null;
+  let trailTimer = null;
+  let facingRight = true;
 
-  // walk right
-  let start = null;
-  let trailInterval;
-  cat.style.transform = 'scaleX(1)';
+  catWrap.style.left = '-160px';
+  catWrap.style.bottom = '55px';
+  cat3d.style.filter = 'drop-shadow(0 0 12px rgba(6,182,212,.8))';
 
-  const anim = cat.animate([
-    { left: '-120px' },
-    { left: `calc(100vw + 120px)` }
-  ], { duration: dur, easing: 'linear', fill: 'forwards' });
+  // squash on start
+  cat3d.style.animation = 'none';
+  void cat3d.offsetWidth;
+  cat3d.style.animation = 'catBob 0.55s ease-in-out infinite alternate';
 
-  sparkles.style.opacity = '1';
-  trailInterval = setInterval(() => {
-    const rect = cat.getBoundingClientRect();
-    spawnTrail(rect.left + 10, 60);
-  }, 300);
+  function step(ts) {
+    if (!startTime) startTime = ts;
+    const elapsed = ts - startTime;
+    const progress = Math.min(elapsed / dur, 1);
+    const x = -160 + (vw + 320) * progress;
 
-  anim.onfinish = () => {
-    clearInterval(trailInterval);
-    sparkles.style.opacity = '0';
-    cat.style.left = '-120px';
-  };
+    catWrap.style.left = x + 'px';
+
+    // subtle vertical bounce via sin
+    const bounce = Math.sin(elapsed / 200) * 5;
+    catWrap.style.bottom = (55 + bounce) + 'px';
+
+    // 3D lean based on speed phase
+    const lean = Math.sin(elapsed / 300) * 15;
+    cat3d.style.transform = `rotateY(${facingRight ? lean : -lean}deg) rotateZ(${facingRight ? -lean*0.2 : lean*0.2}deg)`;
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      // reached end — flip and pause
+      clearInterval(trailTimer);
+      facingRight = false;
+      cat3d.style.transform = 'scaleX(-1)';
+      catWrap.style.left = (vw + 20) + 'px';
+      setTimeout(() => {
+        catRunning = false;
+      }, 800);
+    }
+  }
+
+  trailTimer = setInterval(() => {
+    const rect = catWrap.getBoundingClientRect();
+    spawnTrail(rect.left + 20, 55);
+  }, 280);
+
+  requestAnimationFrame(step);
 }
 
-// first run after 3s
-setTimeout(runCat, 3000);
-// then every 90s
-setInterval(runCat, 90000);
+// first run at 2.5s
+setTimeout(runCat, 2500);
+// then every 80s
+setInterval(runCat, 80000);
 </script>
 </body>
 </html>
