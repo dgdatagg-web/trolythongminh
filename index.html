@@ -155,6 +155,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 48px;display:fl
 .pc2-btn.outline{border:1px solid rgba(255,255,255,.12);color:rgba(148,163,184,.7);}
 .pc2-btn.outline:hover{border-color:rgba(255,255,255,.28);color:#f1f5f9;}
 
+/* COUNTDOWN */
+.pc2-countdown{background:rgba(0,0,0,.25);border-radius:10px;padding:10px 12px;margin-bottom:12px;border:1px solid rgba(255,255,255,.06);}
+.pc2-countdown-label{font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(148,163,184,.45);text-transform:uppercase;margin-bottom:6px;}
+.pc2-countdown-timer{display:flex;gap:4px;align-items:center;}
+.cd-block{text-align:center;flex:1;background:rgba(255,255,255,.04);border-radius:7px;padding:5px 2px;}
+.cd-num{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:900;letter-spacing:-1px;display:block;line-height:1;}
+.cd-lbl{font-size:8px;color:rgba(100,116,139,.5);margin-top:2px;text-transform:uppercase;letter-spacing:.5px;}
+.cd-sep{font-size:16px;font-weight:900;color:rgba(255,255,255,.12);align-self:center;padding-bottom:10px;}
+.pc2-countdown.urgent .cd-num{color:#ef4444;}
+.pc2-countdown.urgent .cd-block{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);animation:urgentBlink 1s ease-in-out infinite alternate;}
+@keyframes urgentBlink{0%{opacity:1;}100%{opacity:.6;}}
+.pc2-countdown.warning .cd-num{color:#f59e0b;}
+.pc2-countdown.normal .cd-num{color:#06b6d4;}
+/* SLOTS PROGRESS */
+.slots-wrap{margin-bottom:14px;}
+.slots-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.slots-bought{font-size:10px;font-weight:700;}
+.slots-remain{font-size:10px;color:rgba(148,163,184,.4);}
+.slots-bar-track{height:5px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;}
+.slots-bar-fill{height:100%;border-radius:10px;width:0%;transition:width 1.5s ease;}
+
 /* FAQ */
 .faq-list{display:flex;flex-direction:column;gap:10px;max-width:700px;margin:0 auto;}
 .faq-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;}
@@ -559,11 +580,27 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <li><span class="ok">✓</span> 1 lần sửa lỗi ngoài phạm vi/tháng miễn phí</li>
           <li><span class="add">+</span> Nâng lên 180 credits/ngày: <strong>+500k/tháng</strong></li>
         </ul>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-          <div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;">
-            <div id="slots-bar-1" style="height:100%;background:linear-gradient(90deg,#06b6d4,#2563eb);border-radius:10px;width:0%;transition:width 1.5s ease;"></div>
+        <!-- countdown + slots gói 1 -->
+        <div class="pc2-countdown normal" id="cd-wrap-1">
+          <div class="pc2-countdown-label">⏳ Giá ưu đãi kết thúc sau</div>
+          <div class="pc2-countdown-timer">
+            <div class="cd-block"><span class="cd-num" id="cd1-d">--</span><div class="cd-lbl">ngày</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-block"><span class="cd-num" id="cd1-h">--</span><div class="cd-lbl">giờ</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-block"><span class="cd-num" id="cd1-m">--</span><div class="cd-lbl">phút</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-block"><span class="cd-num" id="cd1-s">--</span><div class="cd-lbl">giây</div></div>
           </div>
-          <span style="font-size:10px;color:rgba(6,182,212,.7);font-weight:700;white-space:nowrap;" id="slots-txt-1">500 slots · 2 tháng</span>
+        </div>
+        <div class="slots-wrap">
+          <div class="slots-top">
+            <span class="slots-bought" style="color:#06b6d4;" id="slots-bought-1">🔥 47 người đã đăng ký</span>
+            <span class="slots-remain" id="slots-remain-1">còn 453 / 500 suất</span>
+          </div>
+          <div class="slots-bar-track">
+            <div class="slots-bar-fill" id="slots-bar-1" style="background:linear-gradient(90deg,#06b6d4,#2563eb);"></div>
+          </div>
         </div>
         <a href="https://t.me/willdaolam" class="pc2-btn outline">Đăng Ký Ngay</a>
       </div>
@@ -583,11 +620,27 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <li><span class="ok">✓</span> Cập nhật & cải tiến hàng tháng</li>
           <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+900k/tháng</strong></li>
         </ul>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-          <div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;">
-            <div id="slots-bar-2" style="height:100%;background:linear-gradient(90deg,#2563eb,#8b5cf6);border-radius:10px;width:0%;transition:width 1.5s ease;"></div>
+        <!-- countdown + slots gói 2 -->
+        <div class="pc2-countdown normal" id="cd-wrap-2">
+          <div class="pc2-countdown-label">⏳ Giá ưu đãi kết thúc sau</div>
+          <div class="pc2-countdown-timer">
+            <div class="cd-block"><span class="cd-num" id="cd2-d">--</span><div class="cd-lbl">ngày</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-block"><span class="cd-num" id="cd2-h">--</span><div class="cd-lbl">giờ</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-block"><span class="cd-num" id="cd2-m">--</span><div class="cd-lbl">phút</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-block"><span class="cd-num" id="cd2-s">--</span><div class="cd-lbl">giây</div></div>
           </div>
-          <span style="font-size:10px;color:rgba(99,102,241,.8);font-weight:700;white-space:nowrap;" id="slots-txt-2">400 slots · 3 tháng</span>
+        </div>
+        <div class="slots-wrap">
+          <div class="slots-top">
+            <span class="slots-bought" style="color:#8b5cf6;" id="slots-bought-2">🔥 29 người đã đăng ký</span>
+            <span class="slots-remain" id="slots-remain-2">còn 371 / 400 suất</span>
+          </div>
+          <div class="slots-bar-track">
+            <div class="slots-bar-fill" id="slots-bar-2" style="background:linear-gradient(90deg,#2563eb,#8b5cf6);"></div>
+          </div>
         </div>
         <a href="https://t.me/willdaolam" class="pc2-btn fill">Chọn Gói Này →</a>
       </div>
@@ -607,11 +660,27 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <li><span class="ok">✓</span> 1 buổi tư vấn chiến lược cùng đội ngũ</li>
           <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+5M/năm</strong></li>
         </ul>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-          <div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;">
-            <div id="slots-bar-3" style="height:100%;background:linear-gradient(90deg,#f59e0b,#ef4444);border-radius:10px;width:0%;transition:width 1.5s ease;"></div>
+        <!-- countdown + slots gói 3 -->
+        <div class="pc2-countdown urgent" id="cd-wrap-3">
+          <div class="pc2-countdown-label">🔴 Giá ưu đãi kết thúc sau</div>
+          <div class="pc2-countdown-timer">
+            <div class="cd-block"><span class="cd-num" id="cd3-d">--</span><div class="cd-lbl">ngày</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-block"><span class="cd-num" id="cd3-h">--</span><div class="cd-lbl">giờ</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-block"><span class="cd-num" id="cd3-m">--</span><div class="cd-lbl">phút</div></div>
+            <div class="cd-sep">:</div>
+            <div class="cd-block"><span class="cd-num" id="cd3-s">--</span><div class="cd-lbl">giây</div></div>
           </div>
-          <span style="font-size:10px;color:rgba(245,158,11,.8);font-weight:700;white-space:nowrap;" id="slots-txt-3">100 slots · 1 tháng</span>
+        </div>
+        <div class="slots-wrap">
+          <div class="slots-top">
+            <span class="slots-bought" style="color:#f59e0b;" id="slots-bought-3">🔥 38 người đã đăng ký</span>
+            <span class="slots-remain" id="slots-remain-3">còn 62 / 100 suất</span>
+          </div>
+          <div class="slots-bar-track">
+            <div class="slots-bar-fill" id="slots-bar-3" style="background:linear-gradient(90deg,#f59e0b,#ef4444);"></div>
+          </div>
         </div>
         <a href="https://t.me/willdaolam" class="pc2-btn outline">Đăng Ký Founding</a>
       </div>
@@ -737,18 +806,73 @@ const nlObs = new IntersectionObserver((entries) => {
 const nlSection = document.getElementById('nightlog');
 if (nlSection) nlObs.observe(nlSection);
 
-// SLOTS BAR ANIMATION — trigger when pricing section visible
+// COUNTDOWN TIMERS
+// Deadlines: gói 1 = 60 ngày, gói 2 = 90 ngày, gói 3 = 30 ngày từ launch (2026-03-03)
+const LAUNCH = new Date('2026-03-03T00:00:00+07:00').getTime();
+const deadlines = [
+  LAUNCH + 60 * 86400000,  // gói 1: 60 ngày
+  LAUNCH + 90 * 86400000,  // gói 2: 90 ngày
+  LAUNCH + 30 * 86400000,  // gói 3: 30 ngày (urgent!)
+];
+const cdIds = [
+  ['cd1-d','cd1-h','cd1-m','cd1-s','cd-wrap-1'],
+  ['cd2-d','cd2-h','cd2-m','cd2-s','cd-wrap-2'],
+  ['cd3-d','cd3-h','cd3-m','cd3-s','cd-wrap-3'],
+];
+
+function pad(n){ return String(n).padStart(2,'0'); }
+
+function updateCountdowns() {
+  const now = Date.now();
+  deadlines.forEach((dl, i) => {
+    const diff = dl - now;
+    const [dId,hId,mId,sId,wrapId] = cdIds[i];
+    if (diff <= 0) {
+      document.getElementById(dId).textContent = '00';
+      document.getElementById(hId).textContent = '00';
+      document.getElementById(mId).textContent = '00';
+      document.getElementById(sId).textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById(dId).textContent = pad(d);
+    document.getElementById(hId).textContent = pad(h);
+    document.getElementById(mId).textContent = pad(m);
+    document.getElementById(sId).textContent = pad(s);
+    // auto urgency class when < 7 days
+    const wrap = document.getElementById(wrapId);
+    if (wrap && d < 7) { wrap.className = 'pc2-countdown urgent'; }
+    else if (wrap && d < 15) { wrap.className = 'pc2-countdown warning'; }
+  });
+}
+updateCountdowns();
+setInterval(updateCountdowns, 1000);
+
+// SLOTS BAR ANIMATION
+const slotsData = [
+  { bar: 'slots-bar-1', bought: 47, total: 500, boughtEl: 'slots-bought-1', remainEl: 'slots-remain-1' },
+  { bar: 'slots-bar-2', bought: 29, total: 400, boughtEl: 'slots-bought-2', remainEl: 'slots-remain-2' },
+  { bar: 'slots-bar-3', bought: 38, total: 100, boughtEl: 'slots-bought-3', remainEl: 'slots-remain-3' },
+];
+
 const pricingSection = document.getElementById('pricing');
 const slotsObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      setTimeout(() => { document.getElementById('slots-bar-1').style.width = '22%'; }, 200);
-      setTimeout(() => { document.getElementById('slots-bar-2').style.width = '15%'; }, 400);
-      setTimeout(() => { document.getElementById('slots-bar-3').style.width = '38%'; }, 600);
+      slotsData.forEach((s, i) => {
+        const pct = (s.bought / s.total * 100).toFixed(1);
+        setTimeout(() => {
+          const bar = document.getElementById(s.bar);
+          if (bar) bar.style.width = pct + '%';
+        }, 200 + i * 200);
+      });
       slotsObs.disconnect();
     }
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.2 });
 if (pricingSection) slotsObs.observe(pricingSection);
 
 // NOVA CAT 3D — walks across, bounces with 3D perspective
