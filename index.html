@@ -144,7 +144,12 @@ body{background:#050912;color:#f1f5f9;font-family:'Inter',sans-serif;-webkit-fon
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,9,18,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);}
-.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,#fff,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+/* NAV LOGO ANIMATION */
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,#fff,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:flex;align-items:center;gap:0;overflow:hidden;}
+.nav-logo-icon{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid rgba(6,182,212,.5);box-shadow:0 0 12px rgba(6,182,212,.4);flex-shrink:0;animation:iconPop .6s cubic-bezier(.34,1.56,.64,1) forwards;}
+.nav-logo-text{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;animation:textSlide .5s ease .5s forwards;background:linear-gradient(135deg,#fff,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+@keyframes iconPop{0%{transform:scale(0) rotate(-180deg);opacity:0;}100%{transform:scale(1) rotate(0deg);opacity:1;}}
+@keyframes textSlide{0%{max-width:0;opacity:0;margin-left:0;}100%{max-width:200px;opacity:1;margin-left:10px;}}
 .nav-links{display:flex;gap:32px;}
 .nav-links a{font-size:13px;color:rgba(148,163,184,.7);text-decoration:none;font-weight:500;transition:color .2s;}
 .nav-links a:hover{color:#f1f5f9;}
@@ -349,6 +354,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 48px;display:fl
 .typing-dot:nth-child(3){animation-delay:.4s;}
 @keyframes typingBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
 
+/* NOVA SHOWCASE */
+.nova-showcase{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;max-width:1000px;margin:0 auto;}
+@media(max-width:800px){.nova-showcase{grid-template-columns:1fr;gap:36px;}}
+.nova-portrait{position:relative;display:flex;justify-content:center;}
+.nova-portrait img{width:280px;height:380px;object-fit:cover;object-position:top;border-radius:24px;border:2px solid rgba(6,182,212,.3);box-shadow:0 0 60px rgba(6,182,212,.2),0 20px 60px rgba(0,0,0,.5);}
+.nova-portrait::before{content:'';position:absolute;inset:-2px;border-radius:26px;background:linear-gradient(135deg,rgba(6,182,212,.4),transparent,rgba(37,99,235,.3));z-index:-1;animation:borderGlow 3s ease-in-out infinite alternate;}
+@keyframes borderGlow{0%{opacity:.4;}100%{opacity:1;}}
+.nova-portrait-badge{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);padding:6px 18px;background:rgba(5,9,18,.85);backdrop-filter:blur(8px);border:1px solid rgba(6,182,212,.3);border-radius:100px;font-size:11px;font-weight:700;color:#06b6d4;white-space:nowrap;}
+.nova-convo{display:flex;flex-direction:column;gap:10px;}
+.nc-intro{font-size:13px;color:rgba(148,163,184,.55);margin-bottom:6px;line-height:1.6;}
+.nc-msg{display:flex;gap:10px;align-items:flex-start;}
+.nc-msg.user{flex-direction:row-reverse;}
+.nc-avatar{width:30px;height:30px;border-radius:50%;flex-shrink:0;object-fit:cover;border:1.5px solid rgba(6,182,212,.3);}
+.nc-avatar-user{width:30px;height:30px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#2563eb,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;border:1.5px solid rgba(37,99,235,.4);}
+.nc-bubble{max-width:85%;padding:9px 13px;border-radius:14px;font-size:12px;line-height:1.6;color:#e2e8f0;}
+.nc-msg.nova .nc-bubble{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.2);border-bottom-left-radius:4px;}
+.nc-msg.user .nc-bubble{background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.25);border-bottom-right-radius:4px;color:#cbd5e1;}
+.nc-time{font-size:9px;color:rgba(100,116,139,.4);margin-top:3px;}
+
 /* TEAM */
 .team-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:640px;margin:0 auto;}
 @media(max-width:600px){.team-row{grid-template-columns:1fr;}}
@@ -387,7 +411,10 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
 </div>
 
 <nav>
-  <div class="nav-logo">NOVA ⚡</div>
+  <div class="nav-logo">
+    <img src="nova-avatar.jpg" alt="NOVA" class="nav-logo-icon">
+    <span class="nav-logo-text">NOVA ⚡</span>
+  </div>
   <div class="nav-links">
     <a href="#pain">Vấn đề</a>
     <a href="#how">Cách hoạt động</a>
@@ -506,7 +533,7 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
         <div class="phone-notch"></div>
         <div class="phone-screen">
           <div class="chat-header">
-            <div class="chat-avatar">⚡</div>
+            <img src="nova-avatar.jpg" alt="NOVA" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid rgba(6,182,212,.4);box-shadow:0 0 10px rgba(6,182,212,.3);flex-shrink:0;">
             <div class="chat-info">
               <div class="name">NOVA</div>
               <div class="status">● online</div>
@@ -659,6 +686,38 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <div class="pcc q"><div class="who">Nhà giao dịch</div><div class="body">USD mạnh — giữ hay đóng vị thế EUR/USD?</div></div>
           <div class="pcc a"><div class="who">NOVA</div><div class="body">DXY +0,4% sau số việc làm. 1,0820 đang bị test. Đề xuất: giảm 50% vị thế, SL 1,0800.</div></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOVA SHOWCASE -->
+<section class="section" id="nova">
+  <div class="glow" style="width:500px;height:500px;background:rgba(6,182,212,.07);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="nova-showcase">
+    <div class="nova-portrait reveal">
+      <img src="nova-avatar.jpg" alt="NOVA AI Assistant">
+      <div class="nova-portrait-badge">⚡ NOVA · AI Assistant · Online 24/7</div>
+    </div>
+    <div class="nova-convo reveal d2">
+      <span class="sec-label" style="text-align:left;">Gặp NOVA</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,40px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:8px;">Nhân viên AI của bạn.<br><span style="color:#06b6d4;">Thông minh. Tận tâm. Không bao giờ nghỉ.</span></h2>
+      <p class="nc-intro">Dưới đây là một đoạn trò chuyện thực tế — câu hỏi của founder, câu trả lời của NOVA. Không script, không cắt bớt.</p>
+      <div class="nc-msg user">
+        <div class="nc-avatar-user">W</div>
+        <div><div class="nc-bubble">Tháng này lợi nhuận tôi bao nhiêu? Chi phí nào đang ăn nhiều nhất?</div><div class="nc-time" style="text-align:right;">09:14</div></div>
+      </div>
+      <div class="nc-msg nova">
+        <img src="nova-avatar.jpg" alt="NOVA" class="nc-avatar">
+        <div><div class="nc-bubble">Tháng 3 của anh:<br>• Doanh thu: <strong>87,400,000₫</strong><br>• Chi phí: 61,200,000₫<br>• <strong>Lợi nhuận: 26,200,000₫ (30%)</strong><br><br>Chi phí ăn nhiều nhất: Nguyên liệu 38% — tăng 4% so với tháng 2. Nguyên nhân: giá sốt cà-ri tăng. Mình đã tìm được nhà cung cấp thay thế rẻ hơn 12% nếu anh muốn xem.</div><div class="nc-time">09:14</div></div>
+      </div>
+      <div class="nc-msg user">
+        <div class="nc-avatar-user">W</div>
+        <div><div class="nc-bubble">Nhà cung cấp nào? So sánh giúp tôi</div><div class="nc-time" style="text-align:right;">09:15</div></div>
+      </div>
+      <div class="nc-msg nova">
+        <img src="nova-avatar.jpg" alt="NOVA" class="nc-avatar">
+        <div><div class="nc-bubble">Đang pull data... Có 3 option:<br>• <strong>NCC Hà Nội:</strong> 85k/kg, MOQ 10kg, ship 2 ngày<br>• <strong>NCC Bình Dương:</strong> 79k/kg, MOQ 5kg, ship 1 ngày ✅<br>• <strong>NCC hiện tại:</strong> 90k/kg<br><br>Tiết kiệm nếu đổi Bình Dương: ~<strong>2,100,000₫/tháng</strong>. Mình soạn email liên hệ thử không?</div><div class="nc-time">09:15</div></div>
       </div>
     </div>
   </div>
