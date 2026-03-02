@@ -3,1068 +3,439 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trợ Lý AI Cá Nhân — Rat Race Escape</title>
+<title>NOVA — Trợ Lý AI Cá Nhân · Việt Nam</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;600;700;800&display=swap');
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg:      #050912;
-  --s1:      #080d1a;
-  --s2:      #0c1222;
-  --blue:    #2563eb;
-  --blue2:   #3b82f6;
-  --cyan:    #06b6d4;
-  --green:   #10b981;
-  --red:     #ef4444;
-  --yellow:  #f59e0b;
-  --purple:  #8b5cf6;
-  --text:    #f1f5f9;
-  --sub:     #94a3b8;
-  --dim:     #475569;
-  --border:  rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-}
-
 html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+body { background: #050912; color: #f1f5f9; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-a { text-decoration: none; }
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(5,9,18,.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,.06); }
+.nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; background: linear-gradient(135deg, #fff, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 13px; color: rgba(148,163,184,.7); text-decoration: none; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: #f1f5f9; }
+.nav-cta { padding: 9px 20px; background: linear-gradient(135deg, #06b6d4, #2563eb); color: #fff; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(6,182,212,.3); transition: all .2s; }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(6,182,212,.4); }
 
-/* ───── NAV ───── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  padding: 0 6%;
-  height: 64px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(5,9,18,.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.logo { font-size: 17px; font-weight: 800; letter-spacing: -.3px; }
-.logo em { font-style: normal; color: var(--cyan); }
-.nav-btn {
-  padding: 9px 22px;
-  background: var(--blue2); color: #fff;
-  font-size: 13px; font-weight: 700;
-  border-radius: 8px;
-  transition: background .2s;
-}
-.nav-btn:hover { background: #2563eb; }
+/* STARS */
+.stars { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(1px 1px at 8% 15%, rgba(255,255,255,.9) 0%, transparent 100%), radial-gradient(1px 1px at 25% 55%, rgba(255,255,255,.6) 0%, transparent 100%), radial-gradient(1px 1px at 55% 12%, rgba(255,255,255,.8) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 38% 38%, rgba(6,182,212,.9) 0%, transparent 100%), radial-gradient(1px 1px at 88% 68%, rgba(255,255,255,.7) 0%, transparent 100%), radial-gradient(1px 1px at 72% 82%, rgba(255,255,255,.5) 0%, transparent 100%); }
+.glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
 
-/* ───── HERO ───── */
-.hero {
-  padding: 130px 6% 80px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  max-width: 1280px;
-  margin: 0 auto;
-  min-height: 100vh;
-}
-@media (max-width: 880px) {
-  .hero { grid-template-columns: 1fr; padding: 110px 5% 60px; }
-  .hero-visual { display: none; }
-}
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; } .d5 { transition-delay: .5s; }
 
-.hero-tag {
-  display: inline-block;
-  padding: 4px 14px;
-  background: rgba(6,182,212,.1);
-  border: 1px solid rgba(6,182,212,.25);
-  border-radius: 100px;
-  font-size: 11px; font-weight: 600; letter-spacing: 2px;
-  color: var(--cyan); text-transform: uppercase;
-  margin-bottom: 24px;
-}
-.hero h1 {
-  font-size: clamp(38px, 5.5vw, 66px);
-  font-weight: 900; letter-spacing: -2px; line-height: 1.05;
-  margin-bottom: 20px;
-}
-.hero h1 .grad {
-  background: linear-gradient(135deg, var(--blue2), var(--cyan));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.hero-p {
-  font-size: 18px; color: var(--sub); line-height: 1.75;
-  max-width: 480px; margin-bottom: 36px;
-}
-.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
-.btn-cta {
-  display: inline-block; padding: 15px 32px;
-  background: var(--blue2); color: #fff;
-  font-size: 16px; font-weight: 700; border-radius: 10px;
-  box-shadow: 0 12px 28px rgba(59,130,246,.35);
-  transition: all .2s;
-}
-.btn-cta:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 18px 36px rgba(59,130,246,.4); }
-.btn-ghost {
-  display: inline-block; padding: 15px 28px;
-  border: 1px solid var(--border2); color: var(--sub);
-  font-size: 16px; font-weight: 600; border-radius: 10px;
-  transition: all .2s;
-}
-.btn-ghost:hover { color: var(--text); border-color: var(--sub); }
+/* HERO */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 40px 80px; position: relative; overflow: hidden; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(6,182,212,.08); border: 1px solid rgba(6,182,212,.2); border-radius: 100px; font-size: 12px; font-weight: 600; color: #06b6d4; margin-bottom: 28px; position: relative; z-index: 1; }
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #06b6d4; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+.hero-h { font-family: 'Space Grotesk', sans-serif; font-size: clamp(38px, 6vw, 72px); font-weight: 900; letter-spacing: -3px; line-height: 1.05; margin-bottom: 20px; position: relative; z-index: 1; }
+.hero-h span { background: linear-gradient(135deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-sub { font-size: clamp(15px, 2vw, 18px); color: rgba(148,163,184,.65); max-width: 560px; line-height: 1.7; margin-bottom: 40px; position: relative; z-index: 1; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; margin-bottom: 64px; }
+.btn-primary { padding: 14px 28px; background: linear-gradient(135deg, #06b6d4, #2563eb); color: #fff; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; box-shadow: 0 8px 24px rgba(6,182,212,.3); transition: all .2s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(6,182,212,.45); }
+.btn-ghost { padding: 14px 28px; border: 1px solid rgba(255,255,255,.15); color: rgba(241,245,249,.8); border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all .2s; }
+.btn-ghost:hover { border-color: rgba(255,255,255,.3); color: #fff; }
+.hero-stats { display: flex; gap: 48px; position: relative; z-index: 1; flex-wrap: wrap; justify-content: center; }
+.hs { text-align: center; }
+.hs .v { font-size: 36px; font-weight: 900; letter-spacing: -2px; color: #22d3ee; display: block; }
+.hs .l { font-size: 12px; color: rgba(100,116,139,.7); margin-top: 3px; }
+.hero-divider { width: 1px; height: 40px; background: rgba(255,255,255,.1); align-self: center; }
 
-.hero-kpis {
-  display: flex; gap: 28px; flex-wrap: wrap;
-  padding-top: 32px; border-top: 1px solid var(--border);
-}
-.kpi-num { font-size: 26px; font-weight: 900; letter-spacing: -1px; color: var(--cyan); }
-.kpi-lbl { font-size: 12px; color: var(--dim); margin-top: 2px; }
+/* PAIN SECTION */
+.section { padding: 100px 40px; position: relative; overflow: hidden; }
+.sec-label { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: rgba(6,182,212,.5); text-transform: uppercase; margin-bottom: 14px; display: block; text-align: center; }
+.sec-h { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; text-align: center; margin-bottom: 14px; }
+.sec-h span { color: #06b6d4; }
+.sec-sub { font-size: 16px; color: rgba(148,163,184,.55); text-align: center; max-width: 560px; margin: 0 auto 56px; line-height: 1.7; }
+.sec-inner { max-width: 1080px; margin: 0 auto; }
+.s-dark { background: #080d1a; border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05); }
 
-/* ───── PHONE MOCKUP ───── */
-.phone-wrap { display: flex; justify-content: center; align-items: center; }
+/* Pain grid */
+.pain-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+@media (max-width: 700px) { .pain-grid { grid-template-columns: 1fr; } }
+.pain-card { background: rgba(239,68,68,.04); border: 1px solid rgba(239,68,68,.12); border-radius: 16px; padding: 22px; transition: border-color .2s, transform .2s; }
+.pain-card:hover { border-color: rgba(239,68,68,.28); transform: translateX(4px); }
+.pain-num { font-size: 11px; font-weight: 800; color: rgba(252,165,165,.5); letter-spacing: 1px; margin-bottom: 10px; }
+.pain-card h3 { font-size: 15px; font-weight: 700; color: #fca5a5; margin-bottom: 8px; }
+.pain-card p { font-size: 13px; color: rgba(148,163,184,.6); line-height: 1.65; }
+.pain-card .quote { font-size: 12px; color: rgba(252,165,165,.45); font-style: italic; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(239,68,68,.1); }
 
-.phone {
-  width: 280px;
-  background: #0f172a;
-  border-radius: 36px;
-  border: 6px solid #1e293b;
-  box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.06);
-  overflow: hidden;
-  position: relative;
-}
-.phone-notch {
-  height: 28px; background: #0f172a;
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.phone-notch::after {
-  content: '';
-  width: 80px; height: 14px;
-  background: #1e293b;
-  border-radius: 100px;
-  display: block;
-}
-.phone-header {
-  background: #1e293b;
-  padding: 12px 16px;
-  display: flex; align-items: center; gap: 10px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.phone-avatar {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue), var(--cyan));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 800; color: #fff;
-}
-.phone-name { font-size: 13px; font-weight: 700; }
-.phone-status { font-size: 10px; color: var(--green); display: flex; align-items: center; gap: 4px; }
-.phone-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); display: inline-block; }
-.phone-msgs { padding: 14px 12px; display: flex; flex-direction: column; gap: 10px; background: #050912; }
+/* How it works */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 700px) { .steps { grid-template-columns: 1fr; } }
+.step { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 16px; padding: 28px; position: relative; overflow: hidden; transition: transform .2s; }
+.step:hover { transform: translateY(-4px); }
+.step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #06b6d4, #2563eb); }
+.step-n { font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 900; color: rgba(6,182,212,.12); letter-spacing: -2px; line-height: 1; margin-bottom: 14px; }
+.step h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+.step p { font-size: 13px; color: rgba(148,163,184,.6); line-height: 1.65; }
 
-.msg { display: flex; gap: 8px; align-items: flex-end; }
-.msg.me { flex-direction: row-reverse; }
-.msg-av { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
-.msg-av.ai { background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #fff; }
-.msg-av.user { background: #1e293b; color: var(--sub); }
-.bubble {
-  max-width: 80%; padding: 9px 12px;
-  font-size: 11px; line-height: 1.6;
-  border-radius: 14px;
-}
-.bubble.ai { background: #1e293b; color: var(--text); border-bottom-left-radius: 4px; }
-.bubble.user { background: var(--blue2); color: #fff; border-bottom-right-radius: 4px; }
-.bubble strong { font-weight: 700; color: var(--cyan); }
-.msg-time { font-size: 9px; color: var(--dim); text-align: right; margin-top: 2px; padding: 0 4px; }
+/* Proof */
+.proof-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 700px) { .proof-row { grid-template-columns: 1fr; } }
+.proof-c { background: #0a1020; border: 1px solid rgba(255,255,255,.07); border-radius: 16px; overflow: hidden; transition: transform .2s, border-color .2s; }
+.proof-c:hover { transform: translateY(-4px); border-color: rgba(6,182,212,.2); }
+.pc-head { background: #0f1828; padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.pc-pill { display: inline-block; padding: 3px 10px; background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.25); color: #6ee7b7; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; border-radius: 100px; margin-bottom: 8px; text-transform: uppercase; }
+.pc-head h3 { font-size: 14px; font-weight: 800; margin-bottom: 3px; }
+.pc-head p { font-size: 11px; color: rgba(148,163,184,.5); }
+.pc-nums { display: flex; gap: 8px; padding: 14px 20px; }
+.pn { text-align: center; flex: 1; }
+.pn .v { font-size: 20px; font-weight: 900; color: #22d3ee; display: block; letter-spacing: -1px; }
+.pn .l { font-size: 9px; color: rgba(100,116,139,.7); margin-top: 2px; }
+.pc-chat { padding: 14px 20px; background: rgba(0,0,0,.2); }
+.pcc { font-size: 11px; margin-bottom: 8px; line-height: 1.55; }
+.pcc .who { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+.pcc.q .who { color: rgba(100,116,139,.6); }
+.pcc.a .who { color: #22d3ee; }
+.pcc .body { background: rgba(255,255,255,.04); border-radius: 8px; padding: 7px 9px; color: rgba(226,232,240,.7); border-left: 2px solid rgba(34,211,238,.3); }
+.pcc.q .body { border-left: none; background: rgba(255,255,255,.03); color: rgba(148,163,184,.6); }
 
-.phone-input {
-  background: #1e293b;
-  padding: 10px 14px;
-  display: flex; align-items: center; gap: 8px;
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-.phone-input-bar {
-  flex: 1; background: rgba(255,255,255,.06);
-  border-radius: 100px; padding: 7px 12px;
-  font-size: 10px; color: var(--dim);
-}
-.phone-send {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: var(--blue2); display: flex; align-items: center; justify-content: center;
-  font-size: 12px; flex-shrink: 0;
-}
+/* Pricing */
+.price-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 800px) { .price-cards { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; } }
+.pc2 { background: #0a1020; border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 30px; display: flex; flex-direction: column; position: relative; transition: transform .2s; }
+.pc2:hover { transform: translateY(-4px); }
+.pc2.feat { border-color: #2563eb; box-shadow: 0 0 0 1px #2563eb, 0 20px 50px rgba(37,99,235,.2); background: linear-gradient(135deg, #0c1525, #0a1020); }
+.pc2-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); padding: 4px 16px; background: #2563eb; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; border-radius: 100px; white-space: nowrap; }
+.pc2-tier { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(148,163,184,.5); text-transform: uppercase; margin-bottom: 14px; }
+.pc2-was { font-size: 13px; color: rgba(148,163,184,.35); text-decoration: line-through; margin-bottom: 2px; }
+.pc2-price { font-size: 44px; font-weight: 900; letter-spacing: -2px; line-height: 1; color: #f1f5f9; }
+.pc2-price sub { font-size: 13px; font-weight: 400; color: rgba(148,163,184,.5); letter-spacing: 0; vertical-align: baseline; }
+.pc2-credit { font-size: 13px; color: #06b6d4; font-weight: 700; margin-top: 5px; }
+.pc2-save { font-size: 11px; color: #10b981; font-weight: 700; margin-top: 3px; }
+.pc2-hr { border: none; border-top: 1px solid rgba(255,255,255,.07); margin: 18px 0; }
+.pc2-desc { font-size: 13px; color: rgba(148,163,184,.55); margin-bottom: 18px; line-height: 1.6; }
+.pc2-list { list-style: none; flex: 1; margin-bottom: 24px; }
+.pc2-list li { font-size: 12px; color: rgba(148,163,184,.65); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.04); display: flex; gap: 8px; line-height: 1.5; }
+.pc2-list li:last-child { border-bottom: none; }
+.pc2-list li .ok { color: #10b981; flex-shrink: 0; }
+.pc2-list li .add { color: #f59e0b; flex-shrink: 0; }
+.pc2-btn { display: block; text-align: center; padding: 13px; font-size: 14px; font-weight: 700; border-radius: 10px; text-decoration: none; transition: all .2s; }
+.pc2-btn.fill { background: linear-gradient(135deg, #2563eb, #06b6d4); color: #fff; box-shadow: 0 6px 20px rgba(37,99,235,.3); }
+.pc2-btn.fill:hover { box-shadow: 0 12px 28px rgba(37,99,235,.45); transform: translateY(-1px); }
+.pc2-btn.outline { border: 1px solid rgba(255,255,255,.12); color: rgba(148,163,184,.7); }
+.pc2-btn.outline:hover { border-color: rgba(255,255,255,.28); color: #f1f5f9; }
 
-/* ───── TICKER ───── */
-.ticker-bar {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--s1);
-  overflow: hidden; padding: 13px 0;
-}
-.ticker-inner { display: flex; animation: tick 30s linear infinite; white-space: nowrap; }
-.ticker-item {
-  padding: 0 48px; font-size: 13px; color: var(--dim);
-  flex-shrink: 0; display: flex; align-items: center; gap: 8px;
-}
-.ticker-item .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; }
-@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto; }
+.faq-item { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; overflow: hidden; }
+.faq-q { padding: 18px 22px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }
+.faq-q:hover { background: rgba(255,255,255,.04); }
+.faq-q::after { content: '+'; font-size: 18px; color: rgba(6,182,212,.6); font-weight: 300; flex-shrink: 0; }
+.faq-a { padding: 0 22px 18px; font-size: 13px; color: rgba(148,163,184,.65); line-height: 1.7; }
 
-/* ───── SECTION BASE ───── */
-.sec { padding: 100px 6%; max-width: 1280px; margin: 0 auto; }
-.sec-full { padding: 100px 6%; }
-.tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--cyan); text-transform: uppercase; margin-bottom: 12px; }
-.h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -1px; line-height: 1.1; margin-bottom: 16px; }
-.lead { font-size: 18px; color: var(--sub); max-width: 560px; line-height: 1.7; margin-bottom: 56px; }
-hr.rule { border: none; border-top: 1px solid var(--border); }
+/* CTA FINAL */
+.cta-final { text-align: center; padding: 120px 40px; position: relative; overflow: hidden; }
+.cta-big { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 5vw, 60px); font-weight: 900; letter-spacing: -2px; line-height: 1.1; margin-bottom: 16px; }
+.cta-big .red { background: linear-gradient(135deg, #ef4444, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.cta-final-sub { font-size: 16px; color: rgba(148,163,184,.55); margin-bottom: 44px; }
+.contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 640px; margin: 0 auto 28px; }
+@media (max-width: 600px) { .contact-cards { grid-template-columns: 1fr; } }
+.cc { display: flex; gap: 16px; align-items: center; padding: 22px 24px; border-radius: 16px; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+.cc:hover { transform: translateY(-3px); }
+.cc.tg { background: linear-gradient(135deg, #0c1525, #0a1f3d); border: 1px solid rgba(6,182,212,.25); box-shadow: 0 8px 32px rgba(6,182,212,.1); }
+.cc.tg:hover { box-shadow: 0 16px 48px rgba(6,182,212,.22); }
+.cc.em { background: linear-gradient(135deg, #1a0c25, #1f0a1a); border: 1px solid rgba(139,92,246,.25); box-shadow: 0 8px 32px rgba(139,92,246,.1); }
+.cc.em:hover { box-shadow: 0 16px 48px rgba(139,92,246,.22); }
+.cc-ic { width: 50px; height: 50px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.cc.tg .cc-ic { background: linear-gradient(135deg, #06b6d4, #2563eb); color: #fff; }
+.cc.em .cc-ic { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #fff; }
+.cc-name { font-size: 15px; font-weight: 800; color: #f1f5f9; margin-bottom: 3px; }
+.cc-role { font-size: 11px; color: rgba(148,163,184,.5); margin-bottom: 7px; }
+.cc-act { font-size: 12px; font-weight: 700; }
+.cc.tg .cc-act { color: #06b6d4; }
+.cc.em .cc-act { color: #a78bfa; }
+.urgency-bar { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(148,163,184,.45); padding: 10px 22px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 100px; }
+.u-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981; animation: pulse 2s infinite; }
 
-/* ───── PAIN — split layout ───── */
-.pain-split {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
-}
-@media (max-width: 800px) { .pain-split { grid-template-columns: 1fr; } }
-
-.pain-list { display: flex; flex-direction: column; gap: 24px; }
-.pain-row {
-  display: flex; gap: 16px; align-items: flex-start;
-  padding: 20px; background: var(--s1);
-  border: 1px solid rgba(239,68,68,.15);
-  border-radius: 14px;
-  transition: border-color .2s;
-}
-.pain-row:hover { border-color: rgba(239,68,68,.3); }
-.pain-num {
-  width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
-  background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 800; color: #fca5a5;
-}
-.pain-text h3 { font-size: 15px; font-weight: 700; color: #fca5a5; margin-bottom: 4px; }
-.pain-text p { font-size: 13px; color: var(--sub); line-height: 1.6; }
-
-/* Chat comparison mockup */
-.chat-compare {
-  display: flex; flex-direction: column; gap: 16px;
-}
-.chat-box {
-  background: var(--s2);
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.chat-box-header {
-  padding: 12px 16px;
-  background: var(--s1);
-  display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-}
-.chat-box-title { font-size: 12px; font-weight: 700; }
-.badge-bad { padding: 3px 8px; background: rgba(239,68,68,.15); color: #fca5a5; font-size: 10px; font-weight: 700; border-radius: 4px; }
-.badge-good { padding: 3px 8px; background: rgba(16,185,129,.15); color: #6ee7b7; font-size: 10px; font-weight: 700; border-radius: 4px; }
-.chat-msgs { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
-.chat-msg { font-size: 11.5px; line-height: 1.55; }
-.chat-msg .who { font-weight: 700; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
-.chat-msg.q .who { color: var(--sub); }
-.chat-msg.a .who { color: var(--cyan); }
-.chat-msg .body { color: var(--sub); background: rgba(255,255,255,.04); padding: 8px 10px; border-radius: 8px; }
-.chat-msg.a .body { color: var(--text); border-left: 2px solid var(--cyan); }
-.chat-msg.a.bad .body { color: #fca5a5; border-left-color: var(--red); }
-.wait-msg { font-size: 11px; color: var(--dim); font-style: italic; padding: 8px 10px; }
-
-/* ───── PROOF — full receipts ───── */
-.proof-bg { background: var(--s1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-.receipt {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  margin-bottom: 24px;
-}
-.receipt-head {
-  padding: 28px 32px;
-  background: var(--s2);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-}
-.receipt-pill {
-  display: inline-block; padding: 4px 12px;
-  background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.25);
-  color: #6ee7b7; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-  border-radius: 100px; text-transform: uppercase; margin-bottom: 10px;
-}
-.receipt-head h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
-.receipt-head p { font-size: 13px; color: var(--sub); }
-.receipt-nums {
-  display: flex; gap: 12px; flex-wrap: wrap;
-}
-.rnum {
-  text-align: center; padding: 12px 16px;
-  background: var(--s1); border: 1px solid var(--border); border-radius: 10px;
-  min-width: 80px;
-}
-.rnum .v { font-size: 22px; font-weight: 900; letter-spacing: -1px; color: var(--cyan); }
-.rnum .l { font-size: 10px; color: var(--dim); margin-top: 3px; }
-
-.receipt-body { padding: 28px 32px; }
-
-/* Before/After grid */
-.ba {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-}
-@media (max-width: 680px) { .ba { grid-template-columns: 1fr; } }
-.ba-col { border-radius: 12px; padding: 20px; }
-.ba-col.before { background: rgba(239,68,68,.05); border: 1px solid rgba(239,68,68,.15); }
-.ba-col.after { background: rgba(16,185,129,.05); border: 1px solid rgba(16,185,129,.15); }
-.ba-h { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.06); }
-.ba-col.before .ba-h { color: #fca5a5; }
-.ba-col.after .ba-h { color: #6ee7b7; }
-.ba-li { font-size: 13px; color: var(--sub); padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.04); display: flex; gap: 8px; line-height: 1.5; }
-.ba-li:last-child { border-bottom: none; }
-.ba-li .mark { flex-shrink: 0; }
-.ba-col.before .ba-li .mark { color: var(--red); }
-.ba-col.after .ba-li .mark { color: var(--green); }
-
-/* ───── FEATURES — alternating split ───── */
-.feat-split {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  margin-bottom: 80px; padding-bottom: 80px;
-  border-bottom: 1px solid var(--border);
-}
-.feat-split:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.feat-split.rev { direction: rtl; }
-.feat-split.rev > * { direction: ltr; }
-@media (max-width: 800px) {
-  .feat-split { grid-template-columns: 1fr; direction: ltr; gap: 36px; }
-  .feat-split.rev > * { direction: ltr; }
-}
-
-.feat-text .tag { margin-bottom: 10px; }
-.feat-text h3 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; letter-spacing: -.5px; margin-bottom: 14px; line-height: 1.2; }
-.feat-text p { font-size: 16px; color: var(--sub); line-height: 1.8; margin-bottom: 20px; }
-.feat-bullets { list-style: none; }
-.feat-bullets li {
-  font-size: 14px; color: var(--sub); padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex; gap: 10px; align-items: flex-start;
-}
-.feat-bullets li:last-child { border-bottom: none; }
-.feat-bullets li::before { content: '→'; color: var(--cyan); flex-shrink: 0; font-weight: 700; }
-
-/* Visual mockups for features */
-.mock-box {
-  background: var(--s1);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-}
-.mock-topbar {
-  background: var(--s2); padding: 12px 16px;
-  display: flex; align-items: center; gap: 8px;
-  border-bottom: 1px solid var(--border);
-}
-.mac-dot { width: 10px; height: 10px; border-radius: 50%; }
-.mock-title { font-size: 12px; color: var(--sub); margin-left: 6px; }
-.mock-content { padding: 20px; }
-
-/* Security mockup */
-.sec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.sec-tile {
-  background: var(--s2); border: 1px solid var(--border);
-  border-radius: 10px; padding: 14px;
-  font-size: 11px;
-}
-.sec-tile .ic { font-size: 20px; margin-bottom: 6px; }
-.sec-tile .t { font-weight: 700; color: var(--text); margin-bottom: 4px; }
-.sec-tile .d { color: var(--sub); font-size: 10px; line-height: 1.5; }
-.sec-tile.highlight { border-color: rgba(16,185,129,.3); background: rgba(16,185,129,.06); }
-.sec-tile.highlight .t { color: #6ee7b7; }
-
-/* Analytics mockup */
-.chart-row { display: flex; align-items: flex-end; gap: 6px; height: 80px; margin-bottom: 14px; }
-.bar-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
-.bar { width: 100%; border-radius: 4px 4px 0 0; background: linear-gradient(to top, var(--blue), var(--cyan)); }
-.bar-lbl { font-size: 9px; color: var(--dim); }
-.chart-legend { display: flex; gap: 16px; }
-.legend-item { font-size: 10px; color: var(--sub); display: flex; align-items: center; gap: 5px; }
-.legend-dot { width: 6px; height: 6px; border-radius: 50%; }
-
-.insight-row {
-  display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;
-}
-.insight-tag {
-  padding: 5px 10px; font-size: 11px;
-  background: rgba(6,182,212,.1); border: 1px solid rgba(6,182,212,.2);
-  color: var(--cyan); border-radius: 6px; font-weight: 600;
-}
-
-/* Domain pills */
-.domain-grid { display: flex; flex-direction: column; gap: 10px; padding: 20px; }
-.domain-row { display: flex; gap: 8px; align-items: center; }
-.domain-pill {
-  padding: 8px 14px; border-radius: 100px; font-size: 12px; font-weight: 700;
-  display: flex; align-items: center; gap: 6px;
-}
-.domain-pill.active { background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.3); color: var(--blue2); }
-.domain-pill.active2 { background: rgba(6,182,212,.1); border: 1px solid rgba(6,182,212,.2); color: var(--cyan); }
-.domain-pill.active3 { background: rgba(139,92,246,.1); border: 1px solid rgba(139,92,246,.2); color: #a78bfa; }
-.domain-pill.active4 { background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.2); color: #6ee7b7; }
-.domain-status { font-size: 10px; color: var(--green); margin-left: auto; }
-
-/* ───── COMPARISON TABLE ───── */
-.table-wrap {
-  background: var(--s1);
-  border: 1px solid var(--border);
-  border-radius: 20px; overflow: hidden;
-}
-table { width: 100%; border-collapse: collapse; }
-thead th {
-  padding: 18px 24px;
-  font-size: 13px; font-weight: 700;
-  background: var(--s2); text-align: center;
-  border-bottom: 1px solid var(--border);
-}
-thead th:first-child { text-align: left; }
-thead th.hl { color: var(--cyan); background: rgba(6,182,212,.06); }
-td {
-  padding: 15px 24px; font-size: 14px;
-  border-bottom: 1px solid var(--border); text-align: center;
-}
-td:first-child { text-align: left; color: var(--sub); }
-td.hl { background: rgba(6,182,212,.04); }
-tr:last-child td { border-bottom: none; }
-.yes { color: var(--green); font-size: 17px; }
-.no  { color: var(--dim);   font-size: 17px; }
-.val-good { color: var(--cyan); font-weight: 700; }
-
-/* ───── PRICING ───── */
-.price-wrap {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-}
-@media (max-width: 860px) { .price-wrap { grid-template-columns: 1fr; max-width: 380px; } }
-
-.pcard {
-  background: var(--s1); border: 1px solid var(--border);
-  border-radius: 20px; padding: 32px;
-  position: relative; transition: transform .2s;
-}
-.pcard:hover { transform: translateY(-4px); }
-.pcard.best {
-  border-color: var(--blue2);
-  box-shadow: 0 0 0 1px var(--blue2), 0 24px 48px rgba(59,130,246,.2);
-}
-.best-tag {
-  position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-  padding: 4px 18px;
-  background: var(--blue2); color: #fff;
-  font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
-  border-radius: 100px; white-space: nowrap;
-}
-.pname { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; margin-bottom: 16px; }
-.pamt { font-size: 48px; font-weight: 900; letter-spacing: -2px; line-height: 1; }
-.pamt sub { font-size: 14px; font-weight: 400; color: var(--dim); letter-spacing: 0; }
-.pwas { font-size: 16px; color: var(--dim); text-decoration: line-through; margin-top: 6px; }
-.psave { font-size: 12px; color: var(--green); font-weight: 700; margin-top: 3px; }
-.phr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
-.pdesc { font-size: 13px; color: var(--sub); margin-bottom: 20px; line-height: 1.6; }
-.plist { list-style: none; margin-bottom: 28px; }
-.plist li {
-  font-size: 13px; color: var(--sub); padding: 7px 0;
-  border-bottom: 1px solid rgba(255,255,255,.04);
-  display: flex; gap: 8px;
-}
-.plist li:last-child { border-bottom: none; }
-.plist li .ok { color: var(--green); flex-shrink: 0; }
-.plist li .add { color: var(--yellow); flex-shrink: 0; }
-.pbtn {
-  display: block; text-align: center; padding: 13px;
-  font-size: 14px; font-weight: 700; border-radius: 10px;
-  transition: all .2s;
-}
-.pbtn.fill {
-  background: linear-gradient(135deg, var(--blue), var(--cyan));
-  color: #fff; box-shadow: 0 8px 20px rgba(59,130,246,.3);
-}
-.pbtn.fill:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(59,130,246,.4); }
-.pbtn.line {
-  border: 1px solid var(--border); color: var(--sub);
-}
-.pbtn.line:hover { border-color: var(--sub); color: var(--text); }
-
-.urgency {
-  margin-top: 28px; padding: 24px 32px;
-  background: linear-gradient(135deg, rgba(37,99,235,.08), rgba(6,182,212,.06));
-  border: 1px solid rgba(37,99,235,.25);
-  border-radius: 16px;
-  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
-}
-.urgency h3 { font-size: 16px; font-weight: 800; color: var(--cyan); margin-bottom: 4px; }
-.urgency p { font-size: 13px; color: var(--sub); }
-
-/* ───── TESTIMONIALS ───── */
-.testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-@media (max-width: 680px) { .testi-grid { grid-template-columns: 1fr; } }
-.tcard {
-  background: var(--s1); border: 1px solid var(--border);
-  border-radius: 16px; padding: 28px;
-}
-.stars { color: var(--yellow); font-size: 13px; margin-bottom: 12px; letter-spacing: 2px; }
-.quote { font-size: 15px; font-style: italic; color: var(--text); line-height: 1.8; margin-bottom: 18px; }
-.tname { font-size: 13px; font-weight: 700; color: var(--cyan); }
-.trole { font-size: 11px; color: var(--dim); margin-top: 2px; }
-
-/* ───── FAQ ───── */
-.faq { max-width: 760px; }
-.fq { border-bottom: 1px solid var(--border); padding: 24px 0; }
-.fq-q { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
-.fq-a { font-size: 15px; color: var(--sub); line-height: 1.75; }
-
-/* ───── FINAL CTA ───── */
-.final {
-  padding: 110px 6%;
-  text-align: center;
-  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(37,99,235,.1) 0%, transparent 65%);
-  position: relative;
-}
-.final h2 { font-size: clamp(30px, 5vw, 56px); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 16px; line-height: 1.1; }
-.final h2 .g { background: linear-gradient(135deg, var(--blue2), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.final p { font-size: 18px; color: var(--sub); max-width: 460px; margin: 0 auto 40px; }
-.final-note { font-size: 12px; color: var(--dim); margin-top: 16px; }
-
-/* ───── FOOTER ───── */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 24px 6%; text-align: center;
-  font-size: 12px; color: var(--dim);
-}
+/* FOOTER */
+footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.f-logo { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #fff, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.f-copy { font-size: 12px; color: rgba(100,116,139,.5); }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Rat Race <em>Escape</em></div>
-  <a href="#pricing" class="nav-btn">Bảng Giá →</a>
+  <div class="nav-logo">NOVA ⚡</div>
+  <div class="nav-links">
+    <a href="#pain">Vấn đề</a>
+    <a href="#how">Cách hoạt động</a>
+    <a href="#proof">Kết quả</a>
+    <a href="#pricing">Bảng giá</a>
+  </div>
+  <a href="https://t.me/willdaolam" class="nav-cta">Bắt đầu ngay →</a>
 </nav>
 
-<!-- ═══ HERO ═══ -->
-<div class="hero">
-  <div class="hero-text">
-    <div class="hero-tag">AI Personal Assistant · Vietnam</div>
-    <h1>Trợ lý thông minh nhất<br>bạn từng có —<br><span class="grad">không cần biết tech.</span></h1>
-    <p class="hero-p">Setup trong 48 giờ. Bảo mật tuyệt đối. Làm được mọi thứ trợ lý người thật không làm được — từ kế toán đến phân tích thị trường đến trading.</p>
-    <div class="hero-btns">
-      <a href="#pricing" class="btn-cta">Bắt Đầu Từ 2 Triệu →</a>
-      <a href="#proof" class="btn-ghost">Xem Bằng Chứng</a>
-    </div>
-    <div class="hero-kpis">
-      <div><div class="kpi-num">90h</div><div class="kpi-lbl">tiết kiệm/tháng</div></div>
-      <div><div class="kpi-num">24/7</div><div class="kpi-lbl">không nghỉ</div></div>
-      <div><div class="kpi-num">48h</div><div class="kpi-lbl">setup xong</div></div>
-      <div><div class="kpi-num">0</div><div class="kpi-lbl">rủi ro leak</div></div>
-    </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="stars"></div>
+  <div class="glow" style="width:700px;height:700px;background:rgba(6,182,212,.08);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="glow" style="width:350px;height:350px;background:rgba(37,99,235,.06);top:20%;right:5%;"></div>
+
+  <div class="hero-badge reveal"><div class="hero-badge-dot"></div> Trợ lý AI cá nhân — sẵn sàng 24/7</div>
+  <h1 class="hero-h reveal d1">Bạn không cần<br><span>làm mọi thứ một mình</span><br>nữa.</h1>
+  <p class="hero-sub reveal d2">NOVA — trợ lý AI cá nhân được cài đặt riêng cho doanh nghiệp của bạn. Hỏi bất cứ lúc nào. Nhận câu trả lời có thể dùng được ngay.</p>
+  <div class="hero-btns reveal d3">
+    <a href="https://t.me/willdaolam" class="btn-primary">Nhắn Will ngay →</a>
+    <a href="#proof" class="btn-ghost">Xem kết quả thực tế</a>
   </div>
-
-  <!-- Phone mockup -->
-  <div class="hero-visual phone-wrap">
-    <div class="phone">
-      <div class="phone-notch"></div>
-      <div class="phone-header">
-        <div class="phone-avatar">AI</div>
-        <div>
-          <div class="phone-name">Trợ Lý AI · Kế Toán</div>
-          <div class="phone-status">Online · Sẵn sàng 24/7</div>
-        </div>
-      </div>
-      <div class="phone-msgs">
-        <div class="msg me">
-          <div class="msg-av user">U</div>
-          <div>
-            <div class="bubble user">Tháng này tôi phải nộp thuế bao nhiêu?</div>
-            <div class="msg-time">10:32</div>
-          </div>
-        </div>
-        <div class="msg">
-          <div class="msg-av ai">⚡</div>
-          <div>
-            <div class="bubble ai">Dựa trên data tháng 3 của bạn:<br><br>• Doanh thu: <strong>285,000,000₫</strong><br>• VAT đầu ra: <strong>28,500,000₫</strong><br>• VAT đầu vào: <strong>12,000,000₫</strong><br>• <strong>→ Nộp: 16,500,000₫</strong><br><br>Hạn chót: 20/04. Tôi đã nhắc lịch cho bạn rồi.</div>
-            <div class="msg-time">10:32</div>
-          </div>
-        </div>
-        <div class="msg me">
-          <div class="msg-av user">U</div>
-          <div>
-            <div class="bubble user">Cổ phiếu VNM hôm nay thế nào?</div>
-            <div class="msg-time">10:35</div>
-          </div>
-        </div>
-        <div class="msg">
-          <div class="msg-av ai">⚡</div>
-          <div>
-            <div class="bubble ai">VNM đang ở <strong>75,200₫</strong>, -0.8% so với hôm qua. P/E 18.2x, ngành F&B VN trung bình 20.1x. Muốn tôi pull full report không?</div>
-            <div class="msg-time">10:35</div>
-          </div>
-        </div>
-      </div>
-      <div class="phone-input">
-        <div class="phone-input-bar">Nhắn tin...</div>
-        <div class="phone-send">↑</div>
-      </div>
-    </div>
+  <div class="hero-stats reveal d4">
+    <div class="hs"><span class="v">90h</span><div class="l">tiết kiệm/tháng</div></div>
+    <div class="hero-divider"></div>
+    <div class="hs"><span class="v">24/7</span><div class="l">không nghỉ</div></div>
+    <div class="hero-divider"></div>
+    <div class="hs"><span class="v">81%</span><div class="l">hoàn vốn tháng 1</div></div>
+    <div class="hero-divider"></div>
+    <div class="hs"><span class="v">48h</span><div class="l">thời gian cài đặt</div></div>
   </div>
-</div>
+</section>
 
-<!-- Ticker -->
-<div class="ticker-bar">
-  <div class="ticker-inner">
-    <div class="ticker-item"><span class="dot"></span> Bảo mật tuyệt đối — instance riêng mỗi khách</div>
-    <div class="ticker-item"><span class="dot"></span> Response tức thì 24/7 — không bao giờ "để mai"</div>
-    <div class="ticker-item"><span class="dot"></span> Custom riêng cho ngành của bạn</div>
-    <div class="ticker-item"><span class="dot"></span> Kế toán · Trading · F&B · Ecom · Bất động sản</div>
-    <div class="ticker-item"><span class="dot"></span> Phân tích data từ số thành insight ngay</div>
-    <div class="ticker-item"><span class="dot"></span> Onboarding 48 giờ — không cần IT</div>
-    <div class="ticker-item"><span class="dot"></span> Rẻ hơn thuê người thật 3–5 lần</div>
-    <div class="ticker-item"><span class="dot"></span> Bảo mật tuyệt đối — instance riêng mỗi khách</div>
-    <div class="ticker-item"><span class="dot"></span> Response tức thì 24/7 — không bao giờ "để mai"</div>
-    <div class="ticker-item"><span class="dot"></span> Custom riêng cho ngành của bạn</div>
-    <div class="ticker-item"><span class="dot"></span> Kế toán · Trading · F&B · Ecom · Bất động sản</div>
-    <div class="ticker-item"><span class="dot"></span> Phân tích data từ số thành insight ngay</div>
-    <div class="ticker-item"><span class="dot"></span> Onboarding 48 giờ — không cần IT</div>
-    <div class="ticker-item"><span class="dot"></span> Rẻ hơn thuê người thật 3–5 lần</div>
-  </div>
-</div>
-
-<!-- ═══ PAIN ═══ -->
-<hr class="rule">
-<section class="sec">
-  <div class="tag">Vấn đề</div>
-  <div class="h2">Bạn đang trả lương nhân sự<br>nhưng vẫn không yên tâm.</div>
-  <p class="lead">4 nỗi đau phổ biến — và lý do tại sao thuê thêm người không phải câu trả lời:</p>
-
-  <div class="pain-split">
-    <div class="pain-list">
-      <div class="pain-row">
+<!-- PAIN -->
+<section class="section s-dark" id="pain">
+  <div class="glow" style="width:500px;height:500px;background:rgba(6,182,212,.05);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="sec-inner">
+    <span class="sec-label reveal">Vấn đề</span>
+    <h2 class="sec-h reveal d1">Bạn đang mất tiền<br><span>mỗi ngày vì những lý do này.</span></h2>
+    <p class="sec-sub reveal d2">Không phải vì bạn không đủ giỏi. Mà vì bạn đang thiếu người hỗ trợ đúng lúc.</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal d1">
         <div class="pain-num">01</div>
-        <div class="pain-text">
-          <h3>Lo thông tin nội bộ bị leak</h3>
-          <p>Trợ lý người thật biết số liệu, biết khách hàng, biết chiến lược. Rủi ro không kiểm soát được.</p>
-        </div>
+        <h3>Không biết tin tưởng ai với thông tin nội bộ</h3>
+        <p>Nhân viên biết số liệu, biết khách, biết chiến lược — rồi một ngày nghỉ việc hoặc chia sẻ cho đối thủ.</p>
+        <div class="quote">"Em xin nghỉ anh ơi." — và 3 tháng sau đối thủ dùng đúng playbook của bạn.</div>
       </div>
-      <div class="pain-row">
+      <div class="pain-card reveal d2">
         <div class="pain-num">02</div>
-        <div class="pain-text">
-          <h3>Giỏi 1 việc, dốt 9 việc còn lại</h3>
-          <p>Kế toán không phân tích thị trường được. Marketing không đọc P&L. Để có người đa năng phải trả rất cao.</p>
-        </div>
+        <h3>Cần hỗ trợ nhiều mảng, người giỏi thì đắt</h3>
+        <p>Kế toán không phân tích thị trường. Marketing không đọc báo cáo lãi lỗ. Người đa năng lương 20–30 triệu vẫn không đủ.</p>
+        <div class="quote">"Tìm người vừa hiểu số vừa hiểu marketing ở Việt Nam — gần như không tồn tại."</div>
       </div>
-      <div class="pain-row">
+      <div class="pain-card reveal d3">
         <div class="pain-num">03</div>
-        <div class="pain-text">
-          <h3>8–15 triệu/tháng không đo được ROI</h3>
-          <p>Kinh tế khó, tìm người giỏi thì khó, giữ lại còn khó hơn. Không có hỗ trợ thì founder ôm hết.</p>
-        </div>
+        <h3>Hỏi là phải chờ — quyết định bị trễ</h3>
+        <p>Cần thông tin gấp lúc 10 giờ đêm, nhân sự đã về. Cần phân tích cuối tuần, phải đợi Thứ 2.</p>
+        <div class="quote">"Lúc mình cần nhất thì không ai trả lời."</div>
       </div>
-      <div class="pain-row">
+      <div class="pain-card reveal d4">
         <div class="pain-num">04</div>
-        <div class="pain-text">
-          <h3>Research chậm, quyết định trễ</h3>
-          <p>Muốn tìm hiểu một vấn đề mà nhân sự mất 1–2 ngày — trong khi quyết định cần đưa ra ngay hôm nay.</p>
-        </div>
+        <h3>Dữ liệu rải rác — không ai tổng hợp</h3>
+        <p>Số liệu ở bảng tính. Email ở hộp thư. Báo cáo ở lưu trữ đám mây. Không ai kéo lại và nói điều quan trọng nhất.</p>
+        <div class="quote">"Có data nhưng không có insight. Có thông tin nhưng không có quyết định."</div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Chat compare -->
-    <div class="chat-compare">
-      <div class="chat-box">
-        <div class="chat-box-header">
-          <div class="chat-box-title">Trợ lý người thật</div>
-          <div class="badge-bad">Chậm · Rủi ro</div>
+<!-- HOW -->
+<section class="section" id="how">
+  <div class="glow" style="width:400px;height:400px;background:rgba(6,182,212,.06);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="sec-inner">
+    <span class="sec-label reveal">Cách hoạt động</span>
+    <h2 class="sec-h reveal d1">Từ ý tưởng đến<br><span>trợ lý riêng trong 48 giờ.</span></h2>
+    <p class="sec-sub reveal d2">Không cần biết kỹ thuật. Chúng tôi lo hết phần phức tạp.</p>
+    <div class="steps">
+      <div class="step reveal d1">
+        <div class="step-n">01</div>
+        <h3>Tư vấn miễn phí</h3>
+        <p>Nhắn Will hoặc Grey. Chúng tôi tìm hiểu ngành của bạn, workflow hiện tại, và xác định NOVA cần làm gì cho bạn cụ thể.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-n">02</div>
+        <h3>Cài đặt & huấn luyện</h3>
+        <p>Trong 48 giờ, NOVA được cài đặt và huấn luyện theo ngành của bạn — kế toán, F&B, kinh doanh, hay bất kỳ lĩnh vực nào.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-n">03</div>
+        <h3>Dùng ngay, hỗ trợ liên tục</h3>
+        <p>Hỏi NOVA qua Telegram bất cứ lúc nào. Đội ngũ của chúng tôi maintain, update, và cải tiến NOVA của bạn hàng tháng.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="section s-dark" id="proof">
+  <div class="glow" style="width:500px;height:500px;background:rgba(6,182,212,.05);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="sec-inner">
+    <span class="sec-label reveal">Kết quả thực tế</span>
+    <h2 class="sec-h reveal d1">Không hứa suông.<br><span>Đây là số liệu.</span></h2>
+    <p class="sec-sub reveal d2">3 trường hợp thực tế — kế toán, ăn uống, giao dịch tài chính. Số không làm tròn.</p>
+    <div class="proof-row">
+      <div class="proof-c reveal d1">
+        <div class="pc-head">
+          <div class="pc-pill">Thực tế · Kế Toán</div>
+          <h3>Văn phòng kế toán · TP.HCM</h3>
+          <p>3 nhân sự · 20 khách hàng</p>
         </div>
-        <div class="chat-msgs">
-          <div class="chat-msg q"><div class="who">Bạn</div><div class="body">Tính giúp mình ROI chiến dịch tháng 3 với?</div></div>
-          <div class="chat-msg a bad"><div class="who">Trợ lý</div><div class="body">Dạ để em xem lại file... em gửi chiều nha anh</div></div>
-          <div class="wait-msg">⏱ 4 giờ sau...</div>
-          <div class="chat-msg a bad"><div class="who">Trợ lý</div><div class="body">Em tính xong rồi ạ, nhưng em không chắc công thức em dùng đúng không...</div></div>
+        <div class="pc-nums">
+          <div class="pn"><span class="v">-55%</span><div class="l">công việc thủ công</div></div>
+          <div class="pn"><span class="v">81%</span><div class="l">hoàn vốn tháng 1</div></div>
+          <div class="pn"><span class="v">0</span><div class="l">deadline bị lỡ</div></div>
+        </div>
+        <div class="pc-chat">
+          <div class="pcc q"><div class="who">Kế toán trưởng</div><div class="body">Khách hỏi về thuế thu nhập DN cho công ty mới thành lập...</div></div>
+          <div class="pcc a"><div class="who">NOVA</div><div class="body">Miễn 2 năm đầu nếu doanh thu &lt; 3 tỷ/năm (NĐ 218/2013). Mình soạn email trả lời giúp chị không?</div></div>
         </div>
       </div>
-      <div class="chat-box">
-        <div class="chat-box-header">
-          <div class="chat-box-title">AI Assistant</div>
-          <div class="badge-good">Tức thì · Chính xác</div>
+      <div class="proof-c reveal d2">
+        <div class="pc-head">
+          <div class="pc-pill">Thực tế · F&B</div>
+          <h3>Kansai Osaka · TP.HCM</h3>
+          <p>90 ngày · 4.257 đơn · 646 triệu doanh thu</p>
         </div>
-        <div class="chat-msgs">
-          <div class="chat-msg q"><div class="who">Bạn</div><div class="body">Tính giúp mình ROI chiến dịch tháng 3 với?</div></div>
-          <div class="chat-msg a"><div class="who">AI</div><div class="body">Chi phí KM: 12M₫ → Revenue tăng thêm: 87M₫ → <strong>ROI: 625%</strong>. So với tháng 2 (ROI 280%), tháng 3 hiệu quả hơn 2.2x. Campaign nào muốn phân tích sâu hơn?</div></div>
+        <div class="pc-nums">
+          <div class="pn"><span class="v">+75%</span><div class="l">tăng trưởng T2/26</div></div>
+          <div class="pn"><span class="v">63x</span><div class="l">hoàn vốn khuyến mãi tốt nhất</div></div>
+        </div>
+        <div class="pc-chat">
+          <div class="pcc q"><div class="who">Chủ quán</div><div class="body">Thứ 2 sao ế quá vậy NOVA?</div></div>
+          <div class="pcc a"><div class="who">NOVA</div><div class="body">Thứ 2 thấp hơn trung bình -72%, ổn định 12 tuần. Đề xuất: giảm 15% Cà-ri Tonkatsu Thứ 2. Hoàn vốn ước tính 8–12 lần.</div></div>
+        </div>
+      </div>
+      <div class="proof-c reveal d3">
+        <div class="pc-head">
+          <div class="pc-pill">Mô phỏng · Tài Chính</div>
+          <h3>Nhà đầu tư cá nhân</h3>
+          <p>Dựa trên tình huống thực tế · T3/2025</p>
+        </div>
+        <div class="pc-nums">
+          <div class="pn"><span class="v">24/7</span><div class="l">theo dõi thị trường</div></div>
+          <div class="pn"><span class="v">&lt;5s</span><div class="l">phản hồi</div></div>
+          <div class="pn"><span class="v">0</span><div class="l">lộ dữ liệu</div></div>
+        </div>
+        <div class="pc-chat">
+          <div class="pcc q"><div class="who">Nhà giao dịch</div><div class="body">Đô la Mỹ mạnh — giữ hay đóng vị thế EUR/USD?</div></div>
+          <div class="pcc a"><div class="who">NOVA</div><div class="body">DXY +0,4% sau số liệu việc làm. Ngưỡng 1,0820 đang bị test. Đề xuất: giảm 50% vị thế, đặt dừng lỗ 1,0800.</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ PROOF ═══ -->
-<div class="proof-bg" id="proof">
-<section class="sec">
-  <div class="tag">Bằng chứng thực tế</div>
-  <div class="h2">Không hứa suông.<br>Đây là số liệu thực.</div>
-  <p class="lead">2 pilot tại TP.HCM — văn phòng kế toán và bếp F&B. Số không làm tròn.</p>
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="glow" style="width:600px;height:600px;background:rgba(6,182,212,.06);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="sec-inner">
+    <span class="sec-label reveal">Bảng giá</span>
+    <h2 class="sec-h reveal d1">Đơn giản. Minh bạch.<br><span>Không phí ẩn.</span></h2>
+    <p class="sec-sub reveal d2">Không cam kết dài hạn · Không phí setup · Dừng bất kỳ lúc nào · Số credit được ghi rõ từ đầu</p>
+    <div class="price-cards">
+      <div class="pc2 reveal d1">
+        <div class="pc2-tier">Cơ Bản</div>
+        <div class="pc2-price">2M<sub>/tháng</sub></div>
+        <div class="pc2-credit">75 credit/ngày</div>
+        <div class="pc2-hr"></div>
+        <div class="pc2-desc">Dành cho founder bắt đầu. Cài đặt đầy đủ, hỗ trợ theo hướng dẫn.</div>
+        <ul class="pc2-list">
+          <li><span class="ok">✓</span> Cài đặt AI chuyên biệt cho ngành bạn</li>
+          <li><span class="ok">✓</span> Hỗ trợ kỹ thuật 90% lỗi thường gặp</li>
+          <li><span class="ok">✓</span> 1 lần sửa lỗi ngoài phạm vi/tháng miễn phí</li>
+          <li><span class="add">+</span> Nâng lên 180 credit/ngày: <strong>+500k/tháng</strong></li>
+        </ul>
+        <a href="https://t.me/willdaolam" class="pc2-btn outline">Bắt Đầu</a>
+      </div>
 
-  <div class="receipt">
-    <div class="receipt-head">
-      <div>
-        <div class="receipt-pill">Pilot #1 đã hoàn thành</div>
-        <h3>Văn Phòng Kế Toán ABC · TP.HCM</h3>
-        <p>3 nhân sự · 20 khách hàng · Audit 1 tuần · Tháng 3/2025</p>
+      <div class="pc2 feat reveal d2">
+        <div class="pc2-badge">PHỔ BIẾN NHẤT</div>
+        <div class="pc2-tier">Chuyên Nghiệp</div>
+        <div class="pc2-price">5M<sub>/tháng</sub></div>
+        <div class="pc2-credit">180 credit/ngày</div>
+        <div class="pc2-hr"></div>
+        <div class="pc2-desc">Hỗ trợ toàn diện không giới hạn. Không bao giờ tính thêm chi phí ẩn.</div>
+        <ul class="pc2-list">
+          <li><span class="ok">✓</span> Tất cả tính năng Cơ Bản</li>
+          <li><span class="ok">✓</span> Hỗ trợ toàn diện · sửa mọi lỗi mọi lúc</li>
+          <li><span class="ok">✓</span> Tuỳ chỉnh nâng cao theo yêu cầu</li>
+          <li><span class="ok">✓</span> Cập nhật & cải tiến hàng tháng</li>
+          <li><span class="add">+</span> Nâng lên 400 credit/ngày: <strong>+900k/tháng</strong></li>
+        </ul>
+        <a href="https://t.me/willdaolam" class="pc2-btn fill">Chọn Gói Này →</a>
       </div>
-      <div class="receipt-nums">
-        <div class="rnum"><div class="v">162h</div><div class="l">thủ công/tháng</div></div>
-        <div class="rnum"><div class="v">-55%</div><div class="l">giảm tải</div></div>
-        <div class="rnum"><div class="v">81%</div><div class="l">ROI tháng 1</div></div>
-      </div>
-    </div>
-    <div class="receipt-body">
-      <div class="ba">
-        <div class="ba-col before">
-          <div class="ba-h">Trước khi có AI</div>
-          <div class="ba-li"><span class="mark">✕</span>Nhập 920 hóa đơn/tháng bằng tay vào MISA (~30h)</div>
-          <div class="ba-li"><span class="mark">✕</span>Trả lời 100+ câu hỏi thuế lặp qua Zalo (~20h)</div>
-          <div class="ba-li"><span class="mark">✕</span>Track deadline bằng Excel → hay bỏ sót → bị phạt</div>
-          <div class="ba-li"><span class="mark">✕</span>Báo cáo tài chính: 70+ giờ/tháng cho 20 khách</div>
-          <div class="ba-li"><span class="mark">✕</span>Không có khả năng nhận thêm khách mới</div>
-        </div>
-        <div class="ba-col after">
-          <div class="ba-h">Sau khi có AI</div>
-          <div class="ba-li"><span class="mark">✓</span>AI xử lý 85% → chỉ review + approve (~4h)</div>
-          <div class="ba-li"><span class="mark">✓</span>AI trả lời tức thì 24/7 → chỉ handle case phức tạp (~2h)</div>
-          <div class="ba-li"><span class="mark">✓</span>80 alerts/tháng tự động → zero deadline missed</div>
-          <div class="ba-li"><span class="mark">✓</span>Auto-generate + review (~8h tổng)</div>
-          <div class="ba-li"><span class="mark">✓</span>Khả năng nhận thêm 40–60% khách mới</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="receipt">
-    <div class="receipt-head">
-      <div>
-        <div class="receipt-pill">Pilot #2 đã hoàn thành</div>
-        <h3>Kansai Osaka F&B · GrabFood · TP.HCM</h3>
-        <p>90 ngày dữ liệu thực · 4,257 đơn · 646,432,000₫ gross revenue</p>
-      </div>
-      <div class="receipt-nums">
-        <div class="rnum"><div class="v">+75%</div><div class="l">tăng trưởng T2</div></div>
-        <div class="rnum"><div class="v">63x</div><div class="l">ROI promo tốt nhất</div></div>
-        <div class="rnum"><div class="v">8x</div><div class="l">chênh lệch ROI promo</div></div>
-      </div>
-    </div>
-    <div class="receipt-body">
-      <div class="ba">
-        <div class="ba-col before">
-          <div class="ba-h">Trước khi có AI</div>
-          <div class="ba-li"><span class="mark">✕</span>Không biết SKU nào đang nuôi sống bếp real-time</div>
-          <div class="ba-li"><span class="mark">✕</span>Thứ 2 doanh thu -80% — chấp nhận, không hành động</div>
-          <div class="ba-li"><span class="mark">✕</span>Chi ngân sách KM theo cảm tính, không đo ROI</div>
-          <div class="ba-li"><span class="mark">✕</span>Platform fee 14.4% — không có chiến lược đối phó</div>
-        </div>
-        <div class="ba-col after">
-          <div class="ba-h">Sau khi có AI</div>
-          <div class="ba-li"><span class="mark">✓</span>Top 2 SKUs = 40.2% revenue — identify và bảo vệ ngay</div>
-          <div class="ba-li"><span class="mark">✓</span>Phân tích nguyên nhân → promo strategy cụ thể cho Thứ 2</div>
-          <div class="ba-li"><span class="mark">✓</span>ROI-ranked promotions → cùng budget, thu nhiều hơn</div>
-          <div class="ba-li"><span class="mark">✓</span>Tối ưu pricing mix để counteract platform fee</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</div>
-
-<!-- ═══ FEATURES ═══ -->
-<hr class="rule">
-<section class="sec">
-  <div class="tag">Tính năng</div>
-  <div class="h2">AI của bạn làm được gì?</div>
-  <p class="lead">Không phải chatbot generic. Được setup riêng cho ngành và cách làm việc của bạn.</p>
-
-  <!-- Feature 1: Security -->
-  <div class="feat-split">
-    <div class="feat-text">
-      <div class="tag">Bảo mật</div>
-      <h3>Instance riêng.<br>Dữ liệu không đi đâu hết.</h3>
-      <p>Mỗi khách có 1 AI instance hoàn toàn độc lập. Không share infrastructure, không chạy qua hệ thống của người khác. Thông tin nội bộ của bạn chỉ bạn thấy.</p>
-      <ul class="feat-bullets">
-        <li>Instance AI riêng biệt cho từng khách hàng</li>
-        <li>Dữ liệu không bao giờ chạy qua server chung</li>
-        <li>Không có nhân viên nào của RRE đọc được conversation của bạn</li>
-        <li>Bảo mật tốt hơn cả nhân sự người thật</li>
-      </ul>
-    </div>
-    <div>
-      <div class="mock-box">
-        <div class="mock-topbar">
-          <div class="mac-dot" style="background:#ef4444"></div>
-          <div class="mac-dot" style="background:#f59e0b; margin-left:5px;"></div>
-          <div class="mac-dot" style="background:#10b981; margin-left:5px;"></div>
-          <span class="mock-title">Security Dashboard</span>
-        </div>
-        <div class="sec-grid" style="padding:16px; gap:10px;">
-          <div class="sec-tile highlight">
-            <div class="ic">🔒</div>
-            <div class="t">Instance của bạn</div>
-            <div class="d">Hoàn toàn độc lập · Không ai khác có quyền truy cập</div>
-          </div>
-          <div class="sec-tile">
-            <div class="ic">🛡️</div>
-            <div class="t">Data isolation</div>
-            <div class="d">Zero data sharing · No cross-client contamination</div>
-          </div>
-          <div class="sec-tile">
-            <div class="ic">📍</div>
-            <div class="t">Data location</div>
-            <div class="d">Chỉ trên server riêng của bạn · Không lưu ngoài</div>
-          </div>
-          <div class="sec-tile highlight">
-            <div class="ic">✓</div>
-            <div class="t">Status: Secure</div>
-            <div class="d">0 external access · 0 data leak events · Last check: now</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Feature 2: Multi-domain -->
-  <div class="feat-split rev">
-    <div class="feat-text">
-      <div class="tag">Đa năng</div>
-      <h3>Một AI.<br>Nhiều domain chuyên sâu.</h3>
-      <p>Không phải AI "biết tất cả nhưng sâu không được". AI của bạn được custom riêng theo ngành — hiểu context, hiểu luật, hiểu số liệu của bạn.</p>
-      <ul class="feat-bullets">
-        <li>Kế toán: Thông tư 78, 219, 80/2021, MISA integration</li>
-        <li>Trading/Forex: Technical analysis, risk management, báo cáo</li>
-        <li>F&B: SKU analysis, platform fee optimization, COGS</li>
-        <li>Ecom: GMV tracking, ROAS, inventory management</li>
-      </ul>
-    </div>
-    <div>
-      <div class="mock-box">
-        <div class="mock-topbar">
-          <div class="mac-dot" style="background:#ef4444"></div>
-          <div class="mac-dot" style="background:#f59e0b; margin-left:5px;"></div>
-          <div class="mac-dot" style="background:#10b981; margin-left:5px;"></div>
-          <span class="mock-title">AI Domain Configuration</span>
-        </div>
-        <div class="domain-grid">
-          <div class="domain-row">
-            <div class="domain-pill active">Kế toán & Thuế</div>
-            <div class="domain-status">✓ Active</div>
-          </div>
-          <div class="domain-row">
-            <div class="domain-pill active2">Trading & Forex</div>
-            <div class="domain-status">✓ Active</div>
-          </div>
-          <div class="domain-row">
-            <div class="domain-pill active3">F&B Operations</div>
-            <div class="domain-status">✓ Active</div>
-          </div>
-          <div class="domain-row">
-            <div class="domain-pill active4">Research & Analysis</div>
-            <div class="domain-status">✓ Active</div>
-          </div>
-          <div style="padding: 10px; background: rgba(16,185,129,.06); border: 1px solid rgba(16,185,129,.15); border-radius: 10px; font-size: 12px; color: #6ee7b7; margin-top: 4px;">
-            ✓ Tất cả domains được custom theo context thực tế của bạn
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Feature 3: Analytics -->
-  <div class="feat-split">
-    <div class="feat-text">
-      <div class="tag">Phân tích data</div>
-      <h3>Từ số liệu thô<br>thành quyết định.</h3>
-      <p>Không chỉ tóm tắt. AI đọc file của bạn, phân tích pattern, và đưa ra recommendation cụ thể có thể hành động ngay.</p>
-      <ul class="feat-bullets">
-        <li>Upload CSV, Excel, PDF — AI đọc và phân tích ngay</li>
-        <li>Phát hiện anomaly và trend mà mắt thường bỏ qua</li>
-        <li>So sánh kỳ với kỳ, SKU với SKU, channel với channel</li>
-        <li>Output là action items, không chỉ là summary</li>
-      </ul>
-    </div>
-    <div>
-      <div class="mock-box">
-        <div class="mock-topbar">
-          <div class="mac-dot" style="background:#ef4444"></div>
-          <div class="mac-dot" style="background:#f59e0b; margin-left:5px;"></div>
-          <div class="mac-dot" style="background:#10b981; margin-left:5px;"></div>
-          <span class="mock-title">Revenue Analysis · Tháng 3/2026</span>
-        </div>
-        <div class="mock-content">
-          <div style="font-size:11px; color: var(--dim); margin-bottom:10px;">Doanh thu theo ngày (triệu ₫)</div>
-          <div class="chart-row">
-            <div class="bar-col"><div class="bar" style="height:45px"></div><div class="bar-lbl">T2</div></div>
-            <div class="bar-col"><div class="bar" style="height:70px"></div><div class="bar-lbl">T3</div></div>
-            <div class="bar-col"><div class="bar" style="height:65px"></div><div class="bar-lbl">T4</div></div>
-            <div class="bar-col"><div class="bar" style="height:80px"></div><div class="bar-lbl">T5</div></div>
-            <div class="bar-col"><div class="bar" style="height:72px"></div><div class="bar-lbl">T6</div></div>
-            <div class="bar-col"><div class="bar" style="height:20px; background: rgba(239,68,68,.6);"></div><div class="bar-lbl">T2</div></div>
-            <div class="bar-col"><div class="bar" style="height:75px"></div><div class="bar-lbl">T3</div></div>
-          </div>
-          <div style="font-size:11px; color: #fca5a5; background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.2); border-radius:8px; padding:8px 10px; margin-bottom:10px;">
-            ⚠ Thứ 2 doanh thu -72% vs trung bình tuần → AI đề xuất: chạy promo "Bữa trưa Thứ 2"
-          </div>
-          <div class="insight-row">
-            <div class="insight-tag">Peak: 18h–22h</div>
-            <div class="insight-tag">Top SKU: Kare Tonkatsu</div>
-            <div class="insight-tag">Best promo: ROI 63x</div>
-          </div>
-        </div>
+      <div class="pc2 reveal d3">
+        <div class="pc2-tier">Gói Năm</div>
+        <div class="pc2-was">60.000.000₫/năm</div>
+        <div class="pc2-price">25M<sub>/năm</sub></div>
+        <div class="pc2-credit">180 credit/ngày</div>
+        <div class="pc2-save">↓ Tiết kiệm 35 triệu · 2,08 triệu/tháng</div>
+        <div class="pc2-hr"></div>
+        <div class="pc2-desc">Toàn bộ tính năng Chuyên Nghiệp 12 tháng. Khoá giá, ưu tiên onboarding.</div>
+        <ul class="pc2-list">
+          <li><span class="ok">✓</span> Tất cả tính năng Chuyên Nghiệp · 12 tháng</li>
+          <li><span class="ok">✓</span> Khoá giá — không tăng khi gia hạn</li>
+          <li><span class="ok">✓</span> Ưu tiên cài đặt & onboarding</li>
+          <li><span class="ok">✓</span> 1 buổi tư vấn chiến lược cùng đội ngũ</li>
+          <li><span class="add">+</span> Nâng lên 400 credit/ngày: <strong>+5M/năm</strong></li>
+        </ul>
+        <a href="https://t.me/willdaolam" class="pc2-btn outline">Đăng Ký Gói Năm</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ COMPARISON ═══ -->
-<div style="background: var(--s1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-<section class="sec">
-  <div class="tag">So sánh</div>
-  <div class="h2">AI vs. Trợ lý người thật</div>
-  <p class="lead">Không phải thay thế. Là làm những việc con người không nên làm.</p>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Tiêu chí</th>
-          <th>Trợ lý người thật</th>
-          <th class="hl">AI Assistant (RRE)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Chi phí hàng tháng</td><td>8–15 triệu + BHXH</td><td class="hl val-good">2–5 triệu</td></tr>
-        <tr><td>Rủi ro leak thông tin</td><td>Cao — không kiểm soát</td><td class="hl"><span class="yes">✓</span> Zero — instance riêng</td></tr>
-        <tr><td>Đa năng nhiều lĩnh vực</td><td><span class="no">—</span> Giỏi 1–2 mảng</td><td class="hl"><span class="yes">✓</span> Kế toán, research, trading, data</td></tr>
-        <tr><td>Availability</td><td>8h–17h, nghỉ lễ, ốm</td><td class="hl val-good">24/7/365</td></tr>
-        <tr><td>Tốc độ response</td><td>Phút đến giờ</td><td class="hl val-good">Vài giây</td></tr>
-        <tr><td>Thời gian onboarding</td><td>2–4 tuần thử việc</td><td class="hl val-good">48 giờ</td></tr>
-        <tr><td>Drama, nghỉ đột ngột, xin tăng lương</td><td>Luôn có thể xảy ra</td><td class="hl"><span class="yes">✓</span> Không bao giờ</td></tr>
-        <tr><td>ROI đo được</td><td>Khó đo chính xác</td><td class="hl"><span class="yes">✓</span> 81% ROI tháng đầu (thực đo)</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-</div>
-
-<!-- ═══ PRICING ═══ -->
-<section class="sec" id="pricing">
-  <div class="tag">Bảng giá</div>
-  <div class="h2">Đơn giản. Minh bạch.<br>Không phí ẩn.</div>
-  <p class="lead">Không cam kết dài hạn. Không phí setup. Dừng bất kỳ lúc nào.</p>
-
-  <div class="price-wrap">
-    <div class="pcard">
-      <div class="pname">Basic</div>
-      <div class="pamt">2M<sub>/tháng</sub></div>
-      <div class="phr"></div>
-      <div class="pdesc">Dành cho founder bắt đầu trải nghiệm. Setup đầy đủ, hỗ trợ theo manual.</div>
-      <ul class="plist">
-        <li><span class="ok">✓</span> Setup AI chuyên biệt cho ngành của bạn</li>
-        <li><span class="ok">✓</span> Hỗ trợ kỹ thuật — 90% lỗi thường gặp có hướng dẫn sẵn</li>
-        <li><span class="ok">✓</span> 1 lần fix lỗi ngoài chỉ định miễn phí/tháng</li>
-        <li><span class="add">+</span> Fix thêm ngoài chỉ định: 500K/lần</li>
-      </ul>
-      <a href="#contact" class="pbtn line">Bắt Đầu</a>
-    </div>
-
-    <div class="pcard best">
-      <div class="best-tag">PHỔ BIẾN NHẤT</div>
-      <div class="pname">Pro</div>
-      <div class="pamt">5M<sub>/tháng</sub></div>
-      <div class="phr"></div>
-      <div class="pdesc">Full support không giới hạn. Cho founder cần AI hoạt động liên tục, không lo phát sinh.</div>
-      <ul class="plist">
-        <li><span class="ok">✓</span> Tất cả tính năng Basic</li>
-        <li><span class="ok">✓</span> Full support — không tính thêm bao giờ</li>
-        <li><span class="ok">✓</span> Fix mọi lỗi, mọi lúc, ưu tiên</li>
-        <li><span class="ok">✓</span> Custom nâng cao theo yêu cầu riêng</li>
-        <li><span class="ok">✓</span> Update & cải tiến hàng tháng</li>
-      </ul>
-      <a href="#contact" class="pbtn fill">Chọn Pro</a>
-    </div>
-
-    <div class="pcard">
-      <div class="pname">Gói Năm</div>
-      <div class="pwas">60,000,000₫/năm</div>
-      <div class="pamt">25M<sub>/năm</sub></div>
-      <div class="psave">↓ Tiết kiệm 35 triệu · 2.08M/tháng</div>
-      <div class="phr"></div>
-      <div class="pdesc">Toàn bộ tính năng Pro trong 12 tháng. Chỉ mở giới hạn slots.</div>
-      <ul class="plist">
-        <li><span class="ok">✓</span> Tất cả tính năng Pro · 12 tháng</li>
-        <li><span class="ok">✓</span> Lock giá — không tăng khi renew</li>
-        <li><span class="ok">✓</span> Ưu tiên onboarding & setup</li>
-        <li><span class="ok">✓</span> 1 buổi strategy session với RRE team</li>
-      </ul>
-      <a href="#contact" class="pbtn line">Đăng Ký Gói Năm</a>
-    </div>
-  </div>
-
-  <div class="urgency">
-    <div>
-      <h3>Gói Năm đang mở — slots có giới hạn</h3>
-      <p>Khi đủ số lượng, gói này đóng. Không có ngày hết hạn cố định.</p>
-    </div>
-    <a href="#contact" class="btn-cta" style="white-space:nowrap; padding: 13px 28px;">Đăng Ký Ngay →</a>
-  </div>
-</section>
-
-<!-- ═══ TESTIMONIALS ═══ -->
-<hr class="rule">
-<section class="sec">
-  <div class="tag">Thực tế</div>
-  <div class="h2">Founder nói gì<br>sau khi dùng</div>
-
-  <div class="testi-grid">
-    <div class="tcard">
-      <div class="stars">★★★★★</div>
-      <p class="quote">"Mình làm trading forex — cần phân tích nhanh và bảo mật tuyệt đối. Tìm người hiểu cả trading lẫn tài chính gần như không thể, hoặc phải trả rất cao. AI setup xong là dùng ngay — hỏi gì cũng có câu trả lời tức thì. Close deal trong 15 phút."</p>
-      <div class="tname">Founder, Trading/Forex · TP.HCM</div>
-      <div class="trole">Client đầu tiên của RRE</div>
-    </div>
-    <div class="tcard">
-      <div class="stars">★★★★★</div>
-      <p class="quote">"Tôi tính thuê thêm 1 kế toán 8 triệu/tháng. Thử AI trước — 90% việc cần thuê người đó AI xử lý được hết. Tiết kiệm 6 triệu/tháng, thông tin không bị rủi ro, response nhanh hơn nhiều. ROI tháng đầu đã dương."</p>
-      <div class="tname">Chủ văn phòng kế toán · TP.HCM</div>
-      <div class="trole">20 khách hàng · Pilot simulation</div>
+<!-- FAQ -->
+<section class="section s-dark">
+  <div class="sec-inner">
+    <span class="sec-label reveal">Câu hỏi thường gặp</span>
+    <h2 class="sec-h reveal d1" style="margin-bottom:44px;">Thắc mắc<br><span>phổ biến nhất.</span></h2>
+    <div class="faq-list">
+      <div class="faq-item reveal d1"><div class="faq-q">Credit/ngày là gì? Tôi có bị giới hạn không?</div><div class="faq-a">Credit là đơn vị tính sức dùng AI. Gói Cơ Bản (75 credit/ngày) đủ cho khoảng 30–50 câu hỏi thông thường — hầu hết founder không dùng hết. Nếu cần nhiều hơn, bạn có thể add-on thêm credit bất kỳ lúc nào, không cần đổi gói.</div></div>
+      <div class="faq-item reveal d2"><div class="faq-q">Tôi không biết gì về kỹ thuật — có cần biết không?</div><div class="faq-a">Hoàn toàn không. Bạn chỉ cần Telegram và biết gõ câu hỏi. Chúng tôi lo toàn bộ phần setup, cấu hình, và maintenance.</div></div>
+      <div class="faq-item reveal d3"><div class="faq-q">Dữ liệu của tôi có an toàn không?</div><div class="faq-a">Mỗi khách hàng có instance riêng biệt — dữ liệu của bạn không bao giờ được chia sẻ với ai. Không lưu trữ thông tin nhạy cảm nếu bạn không yêu cầu.</div></div>
+      <div class="faq-item reveal d4"><div class="faq-q">Tôi có thể dừng bất kỳ lúc nào không?</div><div class="faq-a">Có. Không có hợp đồng dài hạn, không phí hủy. Gói tháng tính theo tháng — dừng là dừng.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FAQ ═══ -->
-<div style="background: var(--s1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-<section class="sec">
-  <div class="tag">FAQ</div>
-  <div class="h2">Giải đáp thẳng thắn</div>
-  <div class="faq">
-    <div class="fq"><div class="fq-q">Tôi không biết tech gì — có dùng được không?</div><div class="fq-a">Hoàn toàn được. Chúng tôi setup toàn bộ trong 48 giờ. Bạn chỉ cần chat — giống nhắn Zalo. Không cần cài app, không cần học gì.</div></div>
-    <div class="fq"><div class="fq-q">Thông tin nội bộ có bị rò rỉ không?</div><div class="fq-a">Không. Mỗi client có 1 instance AI hoàn toàn riêng biệt. Dữ liệu của bạn không bao giờ chạy qua hệ thống của người khác, không share, không lưu ngoài.</div></div>
-    <div class="fq"><div class="fq-q">Basic và Pro thực tế khác nhau thế nào?</div><div class="fq-a">Basic phù hợp nếu bạn dùng AI cho việc đơn giản — nếu có lỗi ngoài chỉ định sẽ tính thêm 500K/lần. Pro là full support không giới hạn, không bao giờ phát sinh thêm.</div></div>
-    <div class="fq"><div class="fq-q">Gói Năm mở đến khi nào?</div><div class="fq-a">Không có ngày hết hạn cố định — khi đủ slots sẽ đóng và giá về 5M/tháng (60M/năm).</div></div>
-    <div class="fq"><div class="fq-q">Nếu không hài lòng thì sao?</div><div class="fq-a">Gói tháng không có cam kết — dừng bất kỳ lúc nào. Chúng tôi tin vào chất lượng, không giữ chân bằng hợp đồng.</div></div>
+<!-- CTA FINAL -->
+<section class="cta-final" id="contact">
+  <div class="stars"></div>
+  <div class="glow" style="width:600px;height:600px;background:rgba(6,182,212,.07);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="glow" style="width:400px;height:400px;background:rgba(239,68,68,.06);top:60%;left:60%;"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="cta-big reveal">Bao giờ bạn mới ngừng<br><span class="red">làm mọi thứ một mình?</span></div>
+    <p class="cta-final-sub reveal d1">Câu trả lời là: ngay hôm nay. Cài đặt trong 48 giờ. Tư vấn miễn phí.</p>
+    <div class="contact-cards reveal d2">
+      <a href="https://t.me/willdaolam" class="cc tg">
+        <div class="cc-ic">✈</div>
+        <div>
+          <div class="cc-name">Will · @willdaolam</div>
+          <div class="cc-role">Chuyên gia Tích hợp AI cho Doanh nghiệp</div>
+          <div class="cc-act">Nhắn Telegram ngay →</div>
+        </div>
+      </a>
+      <a href="mailto:greyai1993@gmail.com" class="cc em">
+        <div class="cc-ic">@</div>
+        <div>
+          <div class="cc-name">Grey · greyai1993@gmail.com</div>
+          <div class="cc-role">Chuyên gia Tích hợp AI cho Marketing</div>
+          <div class="cc-act">Gửi email ngay →</div>
+        </div>
+      </a>
+    </div>
+    <div class="urgency-bar reveal d3"><div class="u-dot"></div>Tư vấn miễn phí · Phản hồi trong 24 giờ · Suất có giới hạn</div>
   </div>
 </section>
-</div>
-
-<!-- ═══ FINAL CTA ═══ -->
-<div class="final" id="contact">
-  <h2>Sẵn sàng có AI Assistant<br><span class="g">chỉ làm việc cho bạn?</span></h2>
-  <p>Setup 48 giờ. Không cần biết tech. Từ 2 triệu/tháng.</p>
-  <a href="https://t.me/grey_agenticAI" class="btn-cta" style="font-size:17px; padding:18px 44px; display:inline-block;">Liên Hệ Tư Vấn Miễn Phí →</a>
-  <p class="final-note">Nhắn Telegram · Tư vấn 1-1 trong 24 giờ · Không cam kết</p>
-</div>
 
 <footer>
-  <p>© 2025 Rat Race Escape · AI Division · TP.HCM, Việt Nam</p>
-  <p style="margin-top:6px;">Xây dựng bởi những người đã dùng chính sản phẩm này trong vận hành thực tế.</p>
+  <div class="f-logo">NOVA ⚡</div>
+  <div class="f-copy">© 2025 Rat Race Escape · Thần Kinh · Vận Hành · Giá Trị · Tự Động Hoá</div>
 </footer>
 
+<script>
+const els = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+els.forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
