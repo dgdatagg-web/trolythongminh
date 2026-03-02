@@ -6,162 +6,177 @@
 <title>NOVA — Trợ Lý AI Cá Nhân · Việt Nam</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;600;700;800&display=swap');
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: #050912; color: #f1f5f9; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#050912;color:#f1f5f9;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
 /* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(5,9,18,.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,.06); }
-.nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; background: linear-gradient(135deg, #fff, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.nav-links { display: flex; gap: 32px; }
-.nav-links a { font-size: 13px; color: rgba(148,163,184,.7); text-decoration: none; font-weight: 500; transition: color .2s; }
-.nav-links a:hover { color: #f1f5f9; }
-.nav-cta { padding: 9px 20px; background: linear-gradient(135deg, #06b6d4, #2563eb); color: #fff; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(6,182,212,.3); transition: all .2s; }
-.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(6,182,212,.4); }
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,9,18,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,#fff,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:13px;color:rgba(148,163,184,.7);text-decoration:none;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:#f1f5f9;}
+.nav-cta{padding:9px 20px;background:linear-gradient(135deg,#06b6d4,#2563eb);color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(6,182,212,.3);transition:all .2s;}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(6,182,212,.4);}
+@media(max-width:700px){.nav-links{display:none;}.nav-logo{font-size:18px;}}
 
 /* STARS */
-.stars { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(1px 1px at 8% 15%, rgba(255,255,255,.9) 0%, transparent 100%), radial-gradient(1px 1px at 25% 55%, rgba(255,255,255,.6) 0%, transparent 100%), radial-gradient(1px 1px at 55% 12%, rgba(255,255,255,.8) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 38% 38%, rgba(6,182,212,.9) 0%, transparent 100%), radial-gradient(1px 1px at 88% 68%, rgba(255,255,255,.7) 0%, transparent 100%), radial-gradient(1px 1px at 72% 82%, rgba(255,255,255,.5) 0%, transparent 100%); }
-.glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+.stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 8% 15%,rgba(255,255,255,.9) 0%,transparent 100%),radial-gradient(1px 1px at 25% 55%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 55% 12%,rgba(255,255,255,.8) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 38% 38%,rgba(6,182,212,.9) 0%,transparent 100%),radial-gradient(1px 1px at 88% 68%,rgba(255,255,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 72% 82%,rgba(255,255,255,.5) 0%,transparent 100%);}
+.glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;}
 
 /* SCROLL REVEAL */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; } .d5 { transition-delay: .5s; }
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}
+
+/* CAT EASTER EGG */
+#nova-cat{position:fixed;bottom:60px;left:-120px;z-index:9999;font-size:36px;pointer-events:none;animation:catWalk 0s linear forwards;}
+#nova-cat .sparkles{position:absolute;top:-10px;left:0;font-size:14px;opacity:0;animation:sparkle 0s ease forwards;}
+@keyframes catWalk{0%{left:-120px;transform:scaleX(1);}45%{left:calc(100vw + 60px);transform:scaleX(1);}46%{left:calc(100vw + 60px);transform:scaleX(-1);}100%{left:-120px;transform:scaleX(-1);}}
+@keyframes sparkle{0%,100%{opacity:0;}30%,70%{opacity:1;}}
+.cat-trail{position:fixed;pointer-events:none;font-size:10px;z-index:9998;animation:fadeTrail 1.2s ease forwards;}
+@keyframes fadeTrail{0%{opacity:.8;transform:translateY(0);}100%{opacity:0;transform:translateY(-20px);}}
 
 /* HERO */
-.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 40px 80px; position: relative; overflow: hidden; }
-.hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(6,182,212,.08); border: 1px solid rgba(6,182,212,.2); border-radius: 100px; font-size: 12px; font-weight: 600; color: #06b6d4; margin-bottom: 28px; position: relative; z-index: 1; }
-.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #06b6d4; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
-.hero-h { font-family: 'Space Grotesk', sans-serif; font-size: clamp(38px, 6vw, 72px); font-weight: 900; letter-spacing: -3px; line-height: 1.05; margin-bottom: 20px; position: relative; z-index: 1; }
-.hero-h span { background: linear-gradient(135deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero-sub { font-size: clamp(15px, 2vw, 18px); color: rgba(148,163,184,.65); max-width: 560px; line-height: 1.7; margin-bottom: 40px; position: relative; z-index: 1; }
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; margin-bottom: 64px; }
-.btn-primary { padding: 14px 28px; background: linear-gradient(135deg, #06b6d4, #2563eb); color: #fff; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; box-shadow: 0 8px 24px rgba(6,182,212,.3); transition: all .2s; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(6,182,212,.45); }
-.btn-ghost { padding: 14px 28px; border: 1px solid rgba(255,255,255,.15); color: rgba(241,245,249,.8); border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all .2s; }
-.btn-ghost:hover { border-color: rgba(255,255,255,.3); color: #fff; }
-.hero-stats { display: flex; gap: 48px; position: relative; z-index: 1; flex-wrap: wrap; justify-content: center; }
-.hs { text-align: center; }
-.hs .v { font-size: 36px; font-weight: 900; letter-spacing: -2px; color: #22d3ee; display: block; }
-.hs .l { font-size: 12px; color: rgba(100,116,139,.7); margin-top: 3px; }
-.hero-divider { width: 1px; height: 40px; background: rgba(255,255,255,.1); align-self: center; }
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);border-radius:100px;font-size:12px;font-weight:600;color:#06b6d4;margin-bottom:28px;position:relative;z-index:1;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#06b6d4;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero-h{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:900;letter-spacing:-3px;line-height:1.05;margin-bottom:20px;position:relative;z-index:1;}
+.hero-h span{background:linear-gradient(135deg,#06b6d4,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:clamp(14px,2vw,18px);color:rgba(148,163,184,.65);max-width:580px;line-height:1.75;margin-bottom:40px;position:relative;z-index:1;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;margin-bottom:64px;}
+.btn-primary{padding:14px 28px;background:linear-gradient(135deg,#06b6d4,#2563eb);color:#fff;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 8px 24px rgba(6,182,212,.3);transition:all .2s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(6,182,212,.45);}
+.btn-ghost{padding:14px 28px;border:1px solid rgba(255,255,255,.15);color:rgba(241,245,249,.8);border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;transition:all .2s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);color:#fff;}
+.hero-stats{display:flex;gap:32px;position:relative;z-index:1;flex-wrap:wrap;justify-content:center;}
+.hs{text-align:center;}
+.hs .v{font-size:clamp(26px,4vw,36px);font-weight:900;letter-spacing:-2px;color:#22d3ee;display:block;}
+.hs .l{font-size:11px;color:rgba(100,116,139,.7);margin-top:3px;max-width:100px;}
+.hero-divider{width:1px;height:40px;background:rgba(255,255,255,.1);align-self:center;}
+@media(max-width:600px){.hero-divider{display:none;}.hero-stats{gap:24px;}}
 
-/* PAIN SECTION */
-.section { padding: 100px 40px; position: relative; overflow: hidden; }
-.sec-label { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: rgba(6,182,212,.5); text-transform: uppercase; margin-bottom: 14px; display: block; text-align: center; }
-.sec-h { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; text-align: center; margin-bottom: 14px; }
-.sec-h span { color: #06b6d4; }
-.sec-sub { font-size: 16px; color: rgba(148,163,184,.55); text-align: center; max-width: 560px; margin: 0 auto 56px; line-height: 1.7; }
-.sec-inner { max-width: 1080px; margin: 0 auto; }
-.s-dark { background: #080d1a; border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05); }
+/* SECTION */
+.section{padding:80px 24px;position:relative;overflow:hidden;}
+.sec-label{font-size:10px;font-weight:700;letter-spacing:4px;color:rgba(6,182,212,.5);text-transform:uppercase;margin-bottom:14px;display:block;text-align:center;}
+.sec-h{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,48px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;text-align:center;margin-bottom:14px;}
+.sec-h span{color:#06b6d4;}
+.sec-sub{font-size:15px;color:rgba(148,163,184,.55);text-align:center;max-width:560px;margin:0 auto 48px;line-height:1.7;}
+.sec-inner{max-width:1080px;margin:0 auto;}
+.s-dark{background:#080d1a;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);}
 
-/* Pain grid */
-.pain-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-@media (max-width: 700px) { .pain-grid { grid-template-columns: 1fr; } }
-.pain-card { background: rgba(239,68,68,.04); border: 1px solid rgba(239,68,68,.12); border-radius: 16px; padding: 22px; transition: border-color .2s, transform .2s; }
-.pain-card:hover { border-color: rgba(239,68,68,.28); transform: translateX(4px); }
-.pain-num { font-size: 11px; font-weight: 800; color: rgba(252,165,165,.5); letter-spacing: 1px; margin-bottom: 10px; }
-.pain-card h3 { font-size: 15px; font-weight: 700; color: #fca5a5; margin-bottom: 8px; }
-.pain-card p { font-size: 13px; color: rgba(148,163,184,.6); line-height: 1.65; }
-.pain-card .quote { font-size: 12px; color: rgba(252,165,165,.45); font-style: italic; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(239,68,68,.1); }
+/* PAIN */
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+@media(max-width:700px){.pain-grid{grid-template-columns:1fr;}}
+.pain-card{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:16px;padding:20px;transition:border-color .2s,transform .2s;}
+.pain-card:hover{border-color:rgba(239,68,68,.28);transform:translateX(4px);}
+.pain-num{font-size:11px;font-weight:800;color:rgba(252,165,165,.5);letter-spacing:1px;margin-bottom:10px;}
+.pain-card h3{font-size:15px;font-weight:700;color:#fca5a5;margin-bottom:8px;}
+.pain-card p{font-size:13px;color:rgba(148,163,184,.6);line-height:1.65;}
+.pain-card .quote{font-size:12px;color:rgba(252,165,165,.45);font-style:italic;margin-top:10px;padding-top:10px;border-top:1px solid rgba(239,68,68,.1);}
 
-/* How it works */
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-@media (max-width: 700px) { .steps { grid-template-columns: 1fr; } }
-.step { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 16px; padding: 28px; position: relative; overflow: hidden; transition: transform .2s; }
-.step:hover { transform: translateY(-4px); }
-.step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #06b6d4, #2563eb); }
-.step-n { font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 900; color: rgba(6,182,212,.12); letter-spacing: -2px; line-height: 1; margin-bottom: 14px; }
-.step h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
-.step p { font-size: 13px; color: rgba(148,163,184,.6); line-height: 1.65; }
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:700px){.steps{grid-template-columns:1fr;}}
+.step{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:26px;position:relative;overflow:hidden;transition:transform .2s;}
+.step:hover{transform:translateY(-4px);}
+.step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#06b6d4,#2563eb);}
+.step-n{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:900;color:rgba(6,182,212,.12);letter-spacing:-2px;line-height:1;margin-bottom:14px;}
+.step h3{font-size:16px;font-weight:800;margin-bottom:8px;}
+.step p{font-size:13px;color:rgba(148,163,184,.6);line-height:1.65;}
 
-/* Proof */
-.proof-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-@media (max-width: 700px) { .proof-row { grid-template-columns: 1fr; } }
-.proof-c { background: #0a1020; border: 1px solid rgba(255,255,255,.07); border-radius: 16px; overflow: hidden; transition: transform .2s, border-color .2s; }
-.proof-c:hover { transform: translateY(-4px); border-color: rgba(6,182,212,.2); }
-.pc-head { background: #0f1828; padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,.06); }
-.pc-pill { display: inline-block; padding: 3px 10px; background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.25); color: #6ee7b7; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; border-radius: 100px; margin-bottom: 8px; text-transform: uppercase; }
-.pc-head h3 { font-size: 14px; font-weight: 800; margin-bottom: 3px; }
-.pc-head p { font-size: 11px; color: rgba(148,163,184,.5); }
-.pc-nums { display: flex; gap: 8px; padding: 14px 20px; }
-.pn { text-align: center; flex: 1; }
-.pn .v { font-size: 20px; font-weight: 900; color: #22d3ee; display: block; letter-spacing: -1px; }
-.pn .l { font-size: 9px; color: rgba(100,116,139,.7); margin-top: 2px; }
-.pc-chat { padding: 14px 20px; background: rgba(0,0,0,.2); }
-.pcc { font-size: 11px; margin-bottom: 8px; line-height: 1.55; }
-.pcc .who { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
-.pcc.q .who { color: rgba(100,116,139,.6); }
-.pcc.a .who { color: #22d3ee; }
-.pcc .body { background: rgba(255,255,255,.04); border-radius: 8px; padding: 7px 9px; color: rgba(226,232,240,.7); border-left: 2px solid rgba(34,211,238,.3); }
-.pcc.q .body { border-left: none; background: rgba(255,255,255,.03); color: rgba(148,163,184,.6); }
+/* PROOF */
+.proof-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:900px){.proof-row{grid-template-columns:1fr;max-width:420px;margin:0 auto;}}
+.proof-c{background:#0a1020;border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;transition:transform .2s,border-color .2s;}
+.proof-c:hover{transform:translateY(-4px);border-color:rgba(6,182,212,.2);}
+.pc-head{background:#0f1828;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);}
+.pc-pill{display:inline-block;padding:3px 10px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);color:#6ee7b7;font-size:9px;font-weight:700;letter-spacing:1.5px;border-radius:100px;margin-bottom:7px;text-transform:uppercase;}
+.pc-head h3{font-size:13px;font-weight:800;margin-bottom:2px;}
+.pc-head p{font-size:10px;color:rgba(148,163,184,.5);}
+.pc-quote{padding:14px 18px;background:rgba(6,182,212,.03);border-bottom:1px solid rgba(255,255,255,.05);}
+.pc-quote blockquote{font-size:12px;color:rgba(226,232,240,.75);font-style:italic;line-height:1.6;padding-left:10px;border-left:2px solid rgba(6,182,212,.3);}
+.pc-quote cite{display:block;font-size:10px;color:rgba(100,116,139,.6);margin-top:6px;font-style:normal;}
+.pc-nums{display:flex;gap:8px;padding:12px 18px;}
+.pn{text-align:center;flex:1;}
+.pn .v{font-size:18px;font-weight:900;color:#22d3ee;display:block;letter-spacing:-1px;}
+.pn .l{font-size:9px;color:rgba(100,116,139,.7);margin-top:2px;}
+.pc-chat{padding:12px 18px;background:rgba(0,0,0,.2);}
+.pcc{font-size:11px;margin-bottom:8px;line-height:1.55;}
+.pcc .who{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
+.pcc.q .who{color:rgba(100,116,139,.6);}
+.pcc.a .who{color:#22d3ee;}
+.pcc .body{background:rgba(255,255,255,.04);border-radius:8px;padding:7px 9px;color:rgba(226,232,240,.7);border-left:2px solid rgba(34,211,238,.3);}
+.pcc.q .body{border-left:none;background:rgba(255,255,255,.03);color:rgba(148,163,184,.6);}
 
-/* Pricing */
-.price-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-@media (max-width: 800px) { .price-cards { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; } }
-.pc2 { background: #0a1020; border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 30px; display: flex; flex-direction: column; position: relative; transition: transform .2s; }
-.pc2:hover { transform: translateY(-4px); }
-.pc2.feat { border-color: #2563eb; box-shadow: 0 0 0 1px #2563eb, 0 20px 50px rgba(37,99,235,.2); background: linear-gradient(135deg, #0c1525, #0a1020); }
-.pc2-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); padding: 4px 16px; background: #2563eb; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; border-radius: 100px; white-space: nowrap; }
-.pc2-tier { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(148,163,184,.5); text-transform: uppercase; margin-bottom: 14px; }
-.pc2-was { font-size: 13px; color: rgba(148,163,184,.35); text-decoration: line-through; margin-bottom: 2px; }
-.pc2-price { font-size: 44px; font-weight: 900; letter-spacing: -2px; line-height: 1; color: #f1f5f9; }
-.pc2-price sub { font-size: 13px; font-weight: 400; color: rgba(148,163,184,.5); letter-spacing: 0; vertical-align: baseline; }
-.pc2-credit { font-size: 13px; color: #06b6d4; font-weight: 700; margin-top: 5px; }
-.pc2-save { font-size: 11px; color: #10b981; font-weight: 700; margin-top: 3px; }
-.pc2-hr { border: none; border-top: 1px solid rgba(255,255,255,.07); margin: 18px 0; }
-.pc2-desc { font-size: 13px; color: rgba(148,163,184,.55); margin-bottom: 18px; line-height: 1.6; }
-.pc2-list { list-style: none; flex: 1; margin-bottom: 24px; }
-.pc2-list li { font-size: 12px; color: rgba(148,163,184,.65); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.04); display: flex; gap: 8px; line-height: 1.5; }
-.pc2-list li:last-child { border-bottom: none; }
-.pc2-list li .ok { color: #10b981; flex-shrink: 0; }
-.pc2-list li .add { color: #f59e0b; flex-shrink: 0; }
-.pc2-btn { display: block; text-align: center; padding: 13px; font-size: 14px; font-weight: 700; border-radius: 10px; text-decoration: none; transition: all .2s; }
-.pc2-btn.fill { background: linear-gradient(135deg, #2563eb, #06b6d4); color: #fff; box-shadow: 0 6px 20px rgba(37,99,235,.3); }
-.pc2-btn.fill:hover { box-shadow: 0 12px 28px rgba(37,99,235,.45); transform: translateY(-1px); }
-.pc2-btn.outline { border: 1px solid rgba(255,255,255,.12); color: rgba(148,163,184,.7); }
-.pc2-btn.outline:hover { border-color: rgba(255,255,255,.28); color: #f1f5f9; }
+/* PRICING */
+.price-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:800px){.price-cards{grid-template-columns:1fr;max-width:360px;margin:0 auto;}}
+.pc2{background:#0a1020;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px;display:flex;flex-direction:column;position:relative;transition:transform .2s;}
+.pc2:hover{transform:translateY(-4px);}
+.pc2.feat{border-color:#2563eb;box-shadow:0 0 0 1px #2563eb,0 20px 50px rgba(37,99,235,.2);background:linear-gradient(135deg,#0c1525,#0a1020);}
+.pc2-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);padding:4px 16px;background:#2563eb;color:#fff;font-size:10px;font-weight:800;letter-spacing:1.5px;border-radius:100px;white-space:nowrap;}
+.pc2-tier{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(148,163,184,.5);text-transform:uppercase;margin-bottom:14px;}
+.pc2-was{font-size:13px;color:rgba(148,163,184,.35);text-decoration:line-through;margin-bottom:2px;}
+.pc2-price{font-size:44px;font-weight:900;letter-spacing:-2px;line-height:1;color:#f1f5f9;}
+.pc2-price sub{font-size:13px;font-weight:400;color:rgba(148,163,184,.5);letter-spacing:0;vertical-align:baseline;}
+.pc2-credit{font-size:13px;color:#06b6d4;font-weight:700;margin-top:5px;}
+.pc2-save{font-size:11px;color:#10b981;font-weight:700;margin-top:3px;}
+.pc2-hr{border:none;border-top:1px solid rgba(255,255,255,.07);margin:18px 0;}
+.pc2-desc{font-size:13px;color:rgba(148,163,184,.55);margin-bottom:18px;line-height:1.6;}
+.pc2-list{list-style:none;flex:1;margin-bottom:24px;}
+.pc2-list li{font-size:12px;color:rgba(148,163,184,.65);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:8px;line-height:1.5;}
+.pc2-list li:last-child{border-bottom:none;}
+.pc2-list li .ok{color:#10b981;flex-shrink:0;}
+.pc2-list li .add{color:#f59e0b;flex-shrink:0;}
+.pc2-btn{display:block;text-align:center;padding:13px;font-size:14px;font-weight:700;border-radius:10px;text-decoration:none;transition:all .2s;}
+.pc2-btn.fill{background:linear-gradient(135deg,#2563eb,#06b6d4);color:#fff;box-shadow:0 6px 20px rgba(37,99,235,.3);}
+.pc2-btn.fill:hover{box-shadow:0 12px 28px rgba(37,99,235,.45);transform:translateY(-1px);}
+.pc2-btn.outline{border:1px solid rgba(255,255,255,.12);color:rgba(148,163,184,.7);}
+.pc2-btn.outline:hover{border-color:rgba(255,255,255,.28);color:#f1f5f9;}
 
 /* FAQ */
-.faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 0 auto; }
-.faq-item { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; overflow: hidden; }
-.faq-q { padding: 18px 22px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }
-.faq-q:hover { background: rgba(255,255,255,.04); }
-.faq-q::after { content: '+'; font-size: 18px; color: rgba(6,182,212,.6); font-weight: 300; flex-shrink: 0; }
-.faq-a { padding: 0 22px 18px; font-size: 13px; color: rgba(148,163,184,.65); line-height: 1.7; }
+.faq-list{display:flex;flex-direction:column;gap:10px;max-width:700px;margin:0 auto;}
+.faq-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;}
+.faq-q{padding:18px 22px;font-size:14px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s;}
+.faq-q:hover{background:rgba(255,255,255,.04);}
+.faq-q::after{content:'+';font-size:18px;color:rgba(6,182,212,.6);font-weight:300;flex-shrink:0;}
+.faq-a{padding:0 22px 18px;font-size:13px;color:rgba(148,163,184,.65);line-height:1.7;}
+
+/* TEAM */
+.team-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:640px;margin:0 auto;}
+@media(max-width:600px){.team-row{grid-template-columns:1fr;}}
+.team-card{background:#0a1020;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 22px;transition:transform .2s,border-color .2s;}
+.team-card:hover{transform:translateY(-4px);border-color:rgba(6,182,212,.25);}
+.team-avatar{width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid rgba(6,182,212,.3);margin-bottom:14px;box-shadow:0 0 24px rgba(6,182,212,.15);}
+.team-name{font-size:17px;font-weight:800;margin-bottom:4px;}
+.team-role{font-size:11px;color:#06b6d4;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
+.team-bio{font-size:12px;color:rgba(148,163,184,.55);line-height:1.6;margin-bottom:16px;}
+.team-contact{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;text-decoration:none;padding:7px 16px;border-radius:8px;transition:all .2s;}
+.team-contact.tg{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.2);color:#06b6d4;}
+.team-contact.tg:hover{background:rgba(6,182,212,.18);}
+.team-contact.em{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);color:#a78bfa;}
+.team-contact.em:hover{background:rgba(139,92,246,.18);}
 
 /* CTA FINAL */
-.cta-final { text-align: center; padding: 120px 40px; position: relative; overflow: hidden; }
-.cta-big { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 5vw, 60px); font-weight: 900; letter-spacing: -2px; line-height: 1.1; margin-bottom: 16px; }
-.cta-big .red { background: linear-gradient(135deg, #ef4444, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.cta-final-sub { font-size: 16px; color: rgba(148,163,184,.55); margin-bottom: 44px; }
-.contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 640px; margin: 0 auto 28px; }
-@media (max-width: 600px) { .contact-cards { grid-template-columns: 1fr; } }
-.cc { display: flex; gap: 16px; align-items: center; padding: 22px 24px; border-radius: 16px; text-decoration: none; transition: transform .2s, box-shadow .2s; }
-.cc:hover { transform: translateY(-3px); }
-.cc.tg { background: linear-gradient(135deg, #0c1525, #0a1f3d); border: 1px solid rgba(6,182,212,.25); box-shadow: 0 8px 32px rgba(6,182,212,.1); }
-.cc.tg:hover { box-shadow: 0 16px 48px rgba(6,182,212,.22); }
-.cc.em { background: linear-gradient(135deg, #1a0c25, #1f0a1a); border: 1px solid rgba(139,92,246,.25); box-shadow: 0 8px 32px rgba(139,92,246,.1); }
-.cc.em:hover { box-shadow: 0 16px 48px rgba(139,92,246,.22); }
-.cc-ic { width: 50px; height: 50px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-.cc.tg .cc-ic { background: linear-gradient(135deg, #06b6d4, #2563eb); color: #fff; }
-.cc.em .cc-ic { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #fff; }
-.cc-name { font-size: 15px; font-weight: 800; color: #f1f5f9; margin-bottom: 3px; }
-.cc-role { font-size: 11px; color: rgba(148,163,184,.5); margin-bottom: 7px; }
-.cc-act { font-size: 12px; font-weight: 700; }
-.cc.tg .cc-act { color: #06b6d4; }
-.cc.em .cc-act { color: #a78bfa; }
-.urgency-bar { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(148,163,184,.45); padding: 10px 22px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 100px; }
-.u-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981; animation: pulse 2s infinite; }
+.cta-final{text-align:center;padding:100px 24px;position:relative;overflow:hidden;}
+.cta-big{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,5vw,58px);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:16px;}
+.cta-big .red{background:linear-gradient(135deg,#ef4444,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.cta-final-sub{font-size:16px;color:rgba(148,163,184,.55);margin-bottom:44px;}
+.urgency-bar{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:rgba(148,163,184,.45);padding:10px 22px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:100px;margin-top:24px;}
+.u-dot{width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 6px #10b981;animation:pulse 2s infinite;}
 
 /* FOOTER */
-footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-.f-logo { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #fff, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.f-copy { font-size: 12px; color: rgba(100,116,139,.5); }
+footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.f-logo{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:800;background:linear-gradient(135deg,#fff,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.f-copy{font-size:12px;color:rgba(100,116,139,.5);}
 </style>
 </head>
 <body>
+
+<!-- NOVA CAT EASTER EGG -->
+<div id="nova-cat">🐱<span class="sparkles">✨⭐💫</span></div>
 
 <nav>
   <div class="nav-logo">NOVA ⚡</div>
@@ -169,6 +184,7 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
     <a href="#pain">Vấn đề</a>
     <a href="#how">Cách hoạt động</a>
     <a href="#proof">Kết quả</a>
+    <a href="#team">Đội ngũ</a>
     <a href="#pricing">Bảng giá</a>
   </div>
   <a href="https://t.me/willdaolam" class="nav-cta">Bắt đầu ngay →</a>
@@ -182,19 +198,19 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
 
   <div class="hero-badge reveal"><div class="hero-badge-dot"></div> Đang làm việc — 24/7 không nghỉ</div>
   <h1 class="hero-h reveal d1">Tôi đang làm việc.<br><span>Chủ tôi đang nghỉ ngơi.</span><br>Bạn thì sao?</h1>
-  <p class="hero-sub reveal d2">Tôi là NOVA — nhân viên AI của chủ tôi. Tôi xử lý báo cáo, phân tích số liệu, trả lời câu hỏi, theo dõi deadline. Chủ tôi không cần động tay vào bất cứ thứ gì nữa. Còn bạn — ai đang làm việc cho bạn lúc này?</p>
+  <p class="hero-sub reveal d2">Tôi là NOVA — nhân viên AI riêng của chủ tôi. Xử lý báo cáo, phân tích số liệu, trả lời câu hỏi, theo dõi deadline. Chủ tôi không cần động tay vào bất cứ thứ gì nữa. Còn bạn — ai đang làm việc cho bạn lúc này?</p>
   <div class="hero-btns reveal d3">
     <a href="https://t.me/willdaolam" class="btn-primary">Tôi muốn có nhân viên như vậy →</a>
     <a href="#proof" class="btn-ghost">Xem tôi đã làm gì</a>
   </div>
   <div class="hero-stats reveal d4">
-    <div class="hs"><span class="v">90h</span><div class="l">làm thay chủ mỗi tháng</div></div>
+    <div class="hs"><span class="v">4.257</span><div class="l">đơn hàng tôi đã phân tích</div></div>
     <div class="hero-divider"></div>
-    <div class="hs"><span class="v">24/7</span><div class="l">không nghỉ, không xin phép</div></div>
+    <div class="hs"><span class="v">646M₫</span><div class="l">doanh thu tôi theo dõi</div></div>
     <div class="hero-divider"></div>
-    <div class="hs"><span class="v">81%</span><div class="l">hoàn vốn ngay tháng 1</div></div>
+    <div class="hs"><span class="v">90h</span><div class="l">tôi làm thay chủ mỗi tháng</div></div>
     <div class="hero-divider"></div>
-    <div class="hs"><span class="v">48h</span><div class="l">là tôi bắt đầu làm việc</div></div>
+    <div class="hs"><span class="v">48h</span><div class="l">là tôi bắt đầu làm việc cho bạn</div></div>
   </div>
 </section>
 
@@ -216,7 +232,7 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
         <div class="pain-num">02</div>
         <h3>Cần hỗ trợ nhiều mảng, người giỏi thì đắt</h3>
         <p>Kế toán không phân tích thị trường. Marketing không đọc báo cáo lãi lỗ. Người đa năng lương 20–30 triệu vẫn không đủ.</p>
-        <div class="quote">"Tìm người vừa hiểu số vừa hiểu marketing ở Việt Nam — gần như không tồn tại."</div>
+        <div class="quote">"Tìm người vừa hiểu số vừa hiểu marketing — gần như không tồn tại."</div>
       </div>
       <div class="pain-card reveal d3">
         <div class="pain-num">03</div>
@@ -239,7 +255,7 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
   <div class="glow" style="width:400px;height:400px;background:rgba(6,182,212,.06);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
   <div class="sec-inner">
     <span class="sec-label reveal">Cách hoạt động</span>
-    <h2 class="sec-h reveal d1">Từ ý tưởng đến<br><span>trợ lý riêng trong 48 giờ.</span></h2>
+    <h2 class="sec-h reveal d1">Từ ý tưởng đến<br><span>nhân viên AI trong 48 giờ.</span></h2>
     <p class="sec-sub reveal d2">Không cần biết kỹ thuật. Chúng tôi lo hết phần phức tạp.</p>
     <div class="steps">
       <div class="step reveal d1">
@@ -250,12 +266,12 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
       <div class="step reveal d2">
         <div class="step-n">02</div>
         <h3>Cài đặt & huấn luyện</h3>
-        <p>Trong 48 giờ, NOVA được cài đặt và huấn luyện theo ngành của bạn — kế toán, F&B, kinh doanh, hay bất kỳ lĩnh vực nào.</p>
+        <p>Trong 48 giờ, NOVA được cài đặt và huấn luyện theo ngành — kế toán, F&B, kinh doanh, hay bất kỳ lĩnh vực nào.</p>
       </div>
       <div class="step reveal d3">
         <div class="step-n">03</div>
         <h3>Dùng ngay, hỗ trợ liên tục</h3>
-        <p>Hỏi NOVA qua Telegram bất cứ lúc nào. Đội ngũ của chúng tôi maintain, update, và cải tiến NOVA của bạn hàng tháng.</p>
+        <p>Hỏi NOVA qua Telegram bất cứ lúc nào. Đội ngũ maintain, update, và cải tiến NOVA của bạn hàng tháng.</p>
       </div>
     </div>
   </div>
@@ -267,13 +283,17 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
   <div class="sec-inner">
     <span class="sec-label reveal">Kết quả thực tế</span>
     <h2 class="sec-h reveal d1">Không hứa suông.<br><span>Đây là số liệu.</span></h2>
-    <p class="sec-sub reveal d2">3 trường hợp thực tế — kế toán, ăn uống, giao dịch tài chính. Số không làm tròn.</p>
+    <p class="sec-sub reveal d2">2 trường hợp thực tế tại TP.HCM — số không làm tròn.</p>
     <div class="proof-row">
       <div class="proof-c reveal d1">
         <div class="pc-head">
           <div class="pc-pill">Thực tế · Kế Toán</div>
           <h3>Văn phòng kế toán · TP.HCM</h3>
-          <p>3 nhân sự · 20 khách hàng</p>
+          <p>3 nhân sự · 20 khách hàng · Audit 1 tuần</p>
+        </div>
+        <div class="pc-quote">
+          <blockquote>"Trước mất 30 tiếng nhập hóa đơn mỗi tháng. Giờ còn 4 tiếng. Tôi dùng thời gian đó để nhận thêm 6 khách mới."</blockquote>
+          <cite>— Kế toán trưởng, ẩn tên theo yêu cầu</cite>
         </div>
         <div class="pc-nums">
           <div class="pn"><span class="v">-55%</span><div class="l">công việc thủ công</div></div>
@@ -281,8 +301,8 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
           <div class="pn"><span class="v">0</span><div class="l">deadline bị lỡ</div></div>
         </div>
         <div class="pc-chat">
-          <div class="pcc q"><div class="who">Kế toán trưởng</div><div class="body">Khách hỏi về thuế thu nhập DN cho công ty mới thành lập...</div></div>
-          <div class="pcc a"><div class="who">NOVA</div><div class="body">Miễn 2 năm đầu nếu doanh thu &lt; 3 tỷ/năm (NĐ 218/2013). Mình soạn email trả lời giúp chị không?</div></div>
+          <div class="pcc q"><div class="who">Kế toán trưởng</div><div class="body">Khách hỏi thuế thu nhập DN công ty mới thành lập...</div></div>
+          <div class="pcc a"><div class="who">NOVA</div><div class="body">Miễn 2 năm nếu DT &lt; 3 tỷ/năm (NĐ 218/2013). Soạn email trả lời giúp chị không?</div></div>
         </div>
       </div>
       <div class="proof-c reveal d2">
@@ -291,13 +311,17 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
           <h3>Kansai Osaka · TP.HCM</h3>
           <p>90 ngày · 4.257 đơn · 646 triệu doanh thu</p>
         </div>
+        <div class="pc-quote">
+          <blockquote>"Tôi không biết Thứ 2 chết đến mức đó cho đến khi NOVA phân tích 90 ngày data và đề xuất chiến lược promo cụ thể."</blockquote>
+          <cite>— Chủ bếp Kansai Osaka · Will · @willdaolam</cite>
+        </div>
         <div class="pc-nums">
-          <div class="pn"><span class="v">+75%</span><div class="l">tăng trưởng T2/26</div></div>
-          <div class="pn"><span class="v">63x</span><div class="l">hoàn vốn khuyến mãi tốt nhất</div></div>
+          <div class="pn"><span class="v">+75%</span><div class="l">tăng trưởng T2</div></div>
+          <div class="pn"><span class="v">63x</span><div class="l">ROI promo tốt nhất</div></div>
         </div>
         <div class="pc-chat">
           <div class="pcc q"><div class="who">Chủ quán</div><div class="body">Thứ 2 sao ế quá vậy NOVA?</div></div>
-          <div class="pcc a"><div class="who">NOVA</div><div class="body">Thứ 2 thấp hơn trung bình -72%, ổn định 12 tuần. Đề xuất: giảm 15% Cà-ri Tonkatsu Thứ 2. Hoàn vốn ước tính 8–12 lần.</div></div>
+          <div class="pcc a"><div class="who">NOVA</div><div class="body">Thứ 2 thấp hơn TB -72%, ổn định 12 tuần. Đề xuất: giảm 15% Cà-ri Tonkatsu Thứ 2. ROI ước tính 8–12 lần.</div></div>
         </div>
       </div>
       <div class="proof-c reveal d3">
@@ -306,48 +330,76 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
           <h3>Nhà đầu tư cá nhân</h3>
           <p>Dựa trên tình huống thực tế · T3/2025</p>
         </div>
+        <div class="pc-quote">
+          <blockquote>"Lúc 11 giờ đêm cần quyết định về vị thế — không ai pick máy. NOVA trả lời trong 3 giây với đầy đủ số liệu."</blockquote>
+          <cite>— Nhà giao dịch cá nhân, ẩn tên theo yêu cầu</cite>
+        </div>
         <div class="pc-nums">
           <div class="pn"><span class="v">24/7</span><div class="l">theo dõi thị trường</div></div>
           <div class="pn"><span class="v">&lt;5s</span><div class="l">phản hồi</div></div>
-          <div class="pn"><span class="v">0</span><div class="l">lộ dữ liệu</div></div>
         </div>
         <div class="pc-chat">
-          <div class="pcc q"><div class="who">Nhà giao dịch</div><div class="body">Đô la Mỹ mạnh — giữ hay đóng vị thế EUR/USD?</div></div>
-          <div class="pcc a"><div class="who">NOVA</div><div class="body">DXY +0,4% sau số liệu việc làm. Ngưỡng 1,0820 đang bị test. Đề xuất: giảm 50% vị thế, đặt dừng lỗ 1,0800.</div></div>
+          <div class="pcc q"><div class="who">Nhà giao dịch</div><div class="body">USD mạnh — giữ hay đóng vị thế EUR/USD?</div></div>
+          <div class="pcc a"><div class="who">NOVA</div><div class="body">DXY +0,4% sau số việc làm. 1,0820 đang bị test. Đề xuất: giảm 50% vị thế, SL 1,0800.</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="glow" style="width:500px;height:500px;background:rgba(6,182,212,.05);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="sec-inner">
+    <span class="sec-label reveal">Đội ngũ</span>
+    <h2 class="sec-h reveal d1">Người tạo ra<br><span>nhân viên AI của bạn.</span></h2>
+    <p class="sec-sub reveal d2">Không phải công ty lớn. Là founder thực sự đã dùng AI để vận hành doanh nghiệp của chính mình.</p>
+    <div class="team-row">
+      <div class="team-card reveal d1">
+        <img src="will-avatar.jpg" alt="Will" class="team-avatar">
+        <div class="team-name">Will</div>
+        <div class="team-role">AI Business Integration</div>
+        <div class="team-bio">Founder Kansai Osaka F&B. Đã dùng NOVA để phân tích 4.257 đơn hàng, tối ưu menu, và tăng trưởng 75% trong 2 tháng. Tôi không bán thứ mình chưa dùng.</div>
+        <a href="https://t.me/willdaolam" class="team-contact tg">✈ @willdaolam</a>
+      </div>
+      <div class="team-card reveal d2">
+        <img src="grey-avatar.jpg" alt="Grey" class="team-avatar">
+        <div class="team-name">Grey</div>
+        <div class="team-role">AI Marketing Integration</div>
+        <div class="team-bio">Chuyên gia AI cho E-commerce & Marketing. Đã giúp founder thoát khỏi dependency vào platform, xây dữ liệu riêng và tăng ROAS không cần tăng ngân sách.</div>
+        <a href="mailto:greyai1993@gmail.com" class="team-contact em">@ greyai1993@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
-<section class="section" id="pricing">
+<section class="section s-dark" id="pricing">
   <div class="glow" style="width:600px;height:600px;background:rgba(6,182,212,.06);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
   <div class="sec-inner">
     <span class="sec-label reveal">Bảng giá</span>
     <h2 class="sec-h reveal d1">Đơn giản. Minh bạch.<br><span>Không phí ẩn.</span></h2>
-    <p class="sec-sub reveal d2">Không cam kết dài hạn · Không phí setup · Dừng bất kỳ lúc nào · Số credit được ghi rõ từ đầu</p>
+    <p class="sec-sub reveal d2">Không cam kết dài hạn · Không phí setup · Dừng bất kỳ lúc nào · Số Claudible credits ghi rõ từ đầu</p>
     <div class="price-cards">
       <div class="pc2 reveal d1">
         <div class="pc2-tier">Cơ Bản</div>
         <div class="pc2-price">2M<sub>/tháng</sub></div>
-        <div class="pc2-credit">75 credit/ngày</div>
+        <div class="pc2-credit">75 Claudible credits/ngày</div>
         <div class="pc2-hr"></div>
         <div class="pc2-desc">Dành cho founder bắt đầu. Cài đặt đầy đủ, hỗ trợ theo hướng dẫn.</div>
         <ul class="pc2-list">
           <li><span class="ok">✓</span> Cài đặt AI chuyên biệt cho ngành bạn</li>
           <li><span class="ok">✓</span> Hỗ trợ kỹ thuật 90% lỗi thường gặp</li>
           <li><span class="ok">✓</span> 1 lần sửa lỗi ngoài phạm vi/tháng miễn phí</li>
-          <li><span class="add">+</span> Nâng lên 180 credit/ngày: <strong>+500k/tháng</strong></li>
+          <li><span class="add">+</span> Nâng lên 180 credits/ngày: <strong>+500k/tháng</strong></li>
         </ul>
         <a href="https://t.me/willdaolam" class="pc2-btn outline">Bắt Đầu</a>
       </div>
-
       <div class="pc2 feat reveal d2">
         <div class="pc2-badge">PHỔ BIẾN NHẤT</div>
         <div class="pc2-tier">Chuyên Nghiệp</div>
         <div class="pc2-price">5M<sub>/tháng</sub></div>
-        <div class="pc2-credit">180 credit/ngày</div>
+        <div class="pc2-credit">180 Claudible credits/ngày</div>
         <div class="pc2-hr"></div>
         <div class="pc2-desc">Hỗ trợ toàn diện không giới hạn. Không bao giờ tính thêm chi phí ẩn.</div>
         <ul class="pc2-list">
@@ -355,25 +407,24 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
           <li><span class="ok">✓</span> Hỗ trợ toàn diện · sửa mọi lỗi mọi lúc</li>
           <li><span class="ok">✓</span> Tuỳ chỉnh nâng cao theo yêu cầu</li>
           <li><span class="ok">✓</span> Cập nhật & cải tiến hàng tháng</li>
-          <li><span class="add">+</span> Nâng lên 400 credit/ngày: <strong>+900k/tháng</strong></li>
+          <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+900k/tháng</strong></li>
         </ul>
         <a href="https://t.me/willdaolam" class="pc2-btn fill">Chọn Gói Này →</a>
       </div>
-
       <div class="pc2 reveal d3">
         <div class="pc2-tier">Gói Năm</div>
         <div class="pc2-was">60.000.000₫/năm</div>
         <div class="pc2-price">25M<sub>/năm</sub></div>
-        <div class="pc2-credit">180 credit/ngày</div>
+        <div class="pc2-credit">180 Claudible credits/ngày</div>
         <div class="pc2-save">↓ Tiết kiệm 35 triệu · 2,08 triệu/tháng</div>
         <div class="pc2-hr"></div>
-        <div class="pc2-desc">Toàn bộ tính năng Chuyên Nghiệp 12 tháng. Khoá giá, ưu tiên onboarding.</div>
+        <div class="pc2-desc">Toàn bộ tính năng Chuyên Nghiệp 12 tháng.</div>
         <ul class="pc2-list">
           <li><span class="ok">✓</span> Tất cả tính năng Chuyên Nghiệp · 12 tháng</li>
           <li><span class="ok">✓</span> Khoá giá — không tăng khi gia hạn</li>
           <li><span class="ok">✓</span> Ưu tiên cài đặt & onboarding</li>
           <li><span class="ok">✓</span> 1 buổi tư vấn chiến lược cùng đội ngũ</li>
-          <li><span class="add">+</span> Nâng lên 400 credit/ngày: <strong>+5M/năm</strong></li>
+          <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+5M/năm</strong></li>
         </ul>
         <a href="https://t.me/willdaolam" class="pc2-btn outline">Đăng Ký Gói Năm</a>
       </div>
@@ -382,14 +433,14 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
 </section>
 
 <!-- FAQ -->
-<section class="section s-dark">
+<section class="section">
   <div class="sec-inner">
     <span class="sec-label reveal">Câu hỏi thường gặp</span>
-    <h2 class="sec-h reveal d1" style="margin-bottom:44px;">Thắc mắc<br><span>phổ biến nhất.</span></h2>
+    <h2 class="sec-h reveal d1" style="margin-bottom:40px;">Thắc mắc<br><span>phổ biến nhất.</span></h2>
     <div class="faq-list">
-      <div class="faq-item reveal d1"><div class="faq-q">Credit/ngày là gì? Tôi có bị giới hạn không?</div><div class="faq-a">Credit là đơn vị tính sức dùng AI. Gói Cơ Bản (75 credit/ngày) đủ cho khoảng 30–50 câu hỏi thông thường — hầu hết founder không dùng hết. Nếu cần nhiều hơn, bạn có thể add-on thêm credit bất kỳ lúc nào, không cần đổi gói.</div></div>
+      <div class="faq-item reveal d1"><div class="faq-q">Claudible credits/ngày là gì? Tôi có bị cắt giữa chừng không?</div><div class="faq-a">Claudible credits là đơn vị tính sức dùng AI của platform. 75 credits/ngày đủ cho ~30–50 câu hỏi thông thường — đa số founder không dùng hết. Nếu cần nhiều hơn, add-on bất kỳ lúc nào mà không cần đổi gói.</div></div>
       <div class="faq-item reveal d2"><div class="faq-q">Tôi không biết gì về kỹ thuật — có cần biết không?</div><div class="faq-a">Hoàn toàn không. Bạn chỉ cần Telegram và biết gõ câu hỏi. Chúng tôi lo toàn bộ phần setup, cấu hình, và maintenance.</div></div>
-      <div class="faq-item reveal d3"><div class="faq-q">Dữ liệu của tôi có an toàn không?</div><div class="faq-a">Mỗi khách hàng có instance riêng biệt — dữ liệu của bạn không bao giờ được chia sẻ với ai. Không lưu trữ thông tin nhạy cảm nếu bạn không yêu cầu.</div></div>
+      <div class="faq-item reveal d3"><div class="faq-q">Dữ liệu của tôi có an toàn không?</div><div class="faq-a">Mỗi khách hàng có instance riêng biệt — dữ liệu của bạn không bao giờ được chia sẻ với ai khác. Không lưu trữ thông tin nhạy cảm nếu bạn không yêu cầu.</div></div>
       <div class="faq-item reveal d4"><div class="faq-q">Tôi có thể dừng bất kỳ lúc nào không?</div><div class="faq-a">Có. Không có hợp đồng dài hạn, không phí hủy. Gói tháng tính theo tháng — dừng là dừng.</div></div>
     </div>
   </div>
@@ -402,23 +453,19 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
   <div class="glow" style="width:400px;height:400px;background:rgba(239,68,68,.06);top:60%;left:60%;"></div>
   <div style="position:relative;z-index:1;">
     <div class="cta-big reveal">Nhân viên của bạn<br>đang làm gì <span class="red">lúc 11 giờ đêm nay?</span></div>
-    <p class="cta-final-sub reveal d1">Nhân viên AI của tôi — đang chạy. Không than mệt. Không xin nghỉ. Bạn cũng có thể có một người như vậy.</p>
-    <div class="contact-cards reveal d2">
-      <a href="https://t.me/willdaolam" class="cc tg">
-        <div class="cc-ic">✈</div>
-        <div>
-          <div class="cc-name">Will · @willdaolam</div>
-          <div class="cc-role">Chuyên gia Tích hợp AI cho Doanh nghiệp</div>
-          <div class="cc-act">Nhắn Telegram ngay →</div>
-        </div>
+    <p class="cta-final-sub reveal d1">Nhân viên AI của tôi đang chạy. Không than mệt. Không xin nghỉ. Bạn cũng có thể có một người như vậy trong 48 giờ.</p>
+    <div class="team-row reveal d2" style="max-width:640px;margin:0 auto 24px;">
+      <a href="https://t.me/willdaolam" class="team-card" style="text-decoration:none;">
+        <img src="will-avatar.jpg" alt="Will" class="team-avatar">
+        <div class="team-name">Will</div>
+        <div class="team-role">AI Business Integration</div>
+        <div class="team-contact tg" style="margin-top:8px;">✈ Nhắn Telegram ngay →</div>
       </a>
-      <a href="mailto:greyai1993@gmail.com" class="cc em">
-        <div class="cc-ic">@</div>
-        <div>
-          <div class="cc-name">Grey · greyai1993@gmail.com</div>
-          <div class="cc-role">Chuyên gia Tích hợp AI cho Marketing</div>
-          <div class="cc-act">Gửi email ngay →</div>
-        </div>
+      <a href="mailto:greyai1993@gmail.com" class="team-card" style="text-decoration:none;">
+        <img src="grey-avatar.jpg" alt="Grey" class="team-avatar">
+        <div class="team-name">Grey</div>
+        <div class="team-role">AI Marketing Integration</div>
+        <div class="team-contact em" style="margin-top:8px;">@ Gửi email ngay →</div>
       </a>
     </div>
     <div class="urgency-bar reveal d3"><div class="u-dot"></div>Tư vấn miễn phí · Phản hồi trong 24 giờ · Suất có giới hạn</div>
@@ -427,15 +474,65 @@ footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 48px; displa
 
 <footer>
   <div class="f-logo">NOVA ⚡</div>
-  <div class="f-copy">© 2025 Rat Race Escape · Thần Kinh · Vận Hành · Giá Trị · Tự Động Hoá</div>
+  <div class="f-copy">© 2025 Rat Race Escape · Thoát khỏi cuộc đua chuột. Bắt đầu từ hôm nay.</div>
 </footer>
 
 <script>
+// SCROLL REVEAL
 const els = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 els.forEach(el => obs.observe(el));
+
+// NOVA CAT — walks across screen on load, then again every 90s
+const cat = document.getElementById('nova-cat');
+const sparkles = cat.querySelector('.sparkles');
+const trails = ['✨','⭐','💫','🌟'];
+
+function spawnTrail(x, y) {
+  const t = document.createElement('div');
+  t.className = 'cat-trail';
+  t.textContent = trails[Math.floor(Math.random()*trails.length)];
+  t.style.cssText = `left:${x}px;bottom:${y}px;`;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 1200);
+}
+
+function runCat() {
+  const dur = 9000;
+  cat.style.animation = 'none';
+  cat.style.bottom = '60px';
+  cat.style.left = '-120px';
+  void cat.offsetWidth;
+
+  // walk right
+  let start = null;
+  let trailInterval;
+  cat.style.transform = 'scaleX(1)';
+
+  const anim = cat.animate([
+    { left: '-120px' },
+    { left: `calc(100vw + 120px)` }
+  ], { duration: dur, easing: 'linear', fill: 'forwards' });
+
+  sparkles.style.opacity = '1';
+  trailInterval = setInterval(() => {
+    const rect = cat.getBoundingClientRect();
+    spawnTrail(rect.left + 10, 60);
+  }, 300);
+
+  anim.onfinish = () => {
+    clearInterval(trailInterval);
+    sparkles.style.opacity = '0';
+    cat.style.left = '-120px';
+  };
+}
+
+// first run after 3s
+setTimeout(runCat, 3000);
+// then every 90s
+setInterval(runCat, 90000);
 </script>
 </body>
 </html>
