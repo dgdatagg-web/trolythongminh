@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://trolythongminh.io.vn/sitemap.xml
