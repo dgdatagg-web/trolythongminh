@@ -387,7 +387,110 @@ body {
 .kpi .v { font-size: 28px; font-weight: 900; letter-spacing: -1px; color: #22d3ee; display: block; }
 .kpi .l { font-size: 10px; color: rgba(100,116,139,.7); margin-top: 3px; }
 
-/* ─── SLIDE 6: MANIFESTO ─── */
+/* ─── SLIDE 7: CTA ─── */
+.s-cta {
+  background: #050912;
+  border-top: 1px solid rgba(255,255,255,.06);
+  min-height: 100vh;
+}
+
+.cta-wrap {
+  max-width: 760px; width: 100%;
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 48px;
+  text-align: center;
+}
+
+.cta-hook { }
+.cta-hook-line {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 5vw, 56px); font-weight: 900; letter-spacing: -2px; line-height: 1.1;
+  color: rgba(255,255,255,.9);
+}
+.cta-hook-line.red {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-size: clamp(34px, 6vw, 68px);
+}
+.cta-hook-line.muted { color: rgba(255,255,255,.25); font-size: clamp(22px, 4vw, 44px); }
+
+.cta-divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(6,182,212,.5), transparent);
+}
+
+.cta-block { width: 100%; }
+.cta-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(18px, 2.5vw, 28px); font-weight: 800; letter-spacing: -.5px;
+  margin-bottom: 10px; color: rgba(255,255,255,.8);
+}
+.cta-title span { color: #06b6d4; }
+.cta-sub { font-size: 14px; color: rgba(148,163,184,.5); margin-bottom: 36px; }
+
+.cta-contacts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+@media (max-width: 640px) { .cta-contacts { grid-template-columns: 1fr; } }
+
+.cta-card {
+  display: flex; gap: 16px; align-items: center;
+  padding: 22px 24px; border-radius: 18px;
+  text-decoration: none; text-align: left;
+  transition: transform .2s, box-shadow .2s;
+  position: relative; overflow: hidden;
+}
+.cta-card::before {
+  content: ''; position: absolute; inset: 0;
+  opacity: 0; transition: opacity .2s;
+  background: linear-gradient(135deg, rgba(255,255,255,.03), transparent);
+}
+.cta-card:hover { transform: translateY(-3px); }
+.cta-card:hover::before { opacity: 1; }
+
+.cta-card.tg {
+  background: linear-gradient(135deg, #0c1525, #0a1f3d);
+  border: 1px solid rgba(6,182,212,.25);
+  box-shadow: 0 8px 32px rgba(6,182,212,.1);
+}
+.cta-card.tg:hover { box-shadow: 0 16px 48px rgba(6,182,212,.2); }
+
+.cta-card.em {
+  background: linear-gradient(135deg, #1a0c25, #1f0a1a);
+  border: 1px solid rgba(139,92,246,.25);
+  box-shadow: 0 8px 32px rgba(139,92,246,.1);
+}
+.cta-card.em:hover { box-shadow: 0 16px 48px rgba(139,92,246,.2); }
+
+.cta-card-icon {
+  width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 900;
+}
+.cta-card.tg .cta-card-icon { background: linear-gradient(135deg, #06b6d4, #2563eb); color: #fff; }
+.cta-card.em .cta-card-icon { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #fff; }
+
+.cta-card-name { font-size: 15px; font-weight: 800; color: #f1f5f9; margin-bottom: 3px; }
+.cta-card-role { font-size: 11px; color: rgba(148,163,184,.55); margin-bottom: 8px; line-height: 1.4; }
+.cta-card-action {
+  font-size: 12px; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.cta-card.tg .cta-card-action { color: #06b6d4; }
+.cta-card.em .cta-card-action { color: #a78bfa; }
+
+.cta-urgency {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; color: rgba(148,163,184,.45);
+  padding: 10px 20px; background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07); border-radius: 100px;
+}
+.cta-urgency-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #10b981;
+  box-shadow: 0 0 6px #10b981; flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+
 .s6 {
   background: #050912;
   border-top: 1px solid rgba(255,255,255,.06);
@@ -724,13 +827,61 @@ body {
   <div class="stars-bg"></div>
   <div class="glow g1"></div>
   <div class="manifesto">
-    <span class="mf-label">NOVA · Neural Operations Value Ally · Manifesto</span>
+    <span class="mf-label">NOVA · Neural Operations Value Automation · Manifesto</span>
     <div class="mf-line">NOVA không tồn tại để <strong>thay thế bạn.</strong></div>
     <div class="mf-line">NOVA tồn tại để bạn <strong>làm được nhiều hơn.</strong></div>
     <div class="mf-line">Thông tin của bạn là <strong>của bạn. Mãi mãi.</strong></div>
     <div class="mf-line">Không hứa hẹn. <strong>Bring receipts.</strong></div>
     <div class="mf-line">Neural. Operations. Value. <strong>Automation.</strong></div>
     <div class="mf-line">Bạn không cần biết tech.<br><strong>NOVA tự động hóa — để bạn làm việc quan trọng hơn.</strong></div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 7: CTA ═══ -->
+<div class="slide s-cta">
+  <div class="stars-bg"></div>
+  <div class="glow g1"></div>
+  <div class="glow" style="width:400px;height:400px;background:rgba(239,68,68,.08);top:60%;left:60%;"></div>
+
+  <div class="cta-wrap">
+    <!-- Pain hook -->
+    <div class="cta-hook">
+      <div class="cta-hook-line">Ngay lúc này, đối thủ của bạn</div>
+      <div class="cta-hook-line red">đang có trợ lý AI.</div>
+      <div class="cta-hook-line muted">Còn bạn thì chưa.</div>
+    </div>
+
+    <div class="cta-divider"></div>
+
+    <!-- CTA block -->
+    <div class="cta-block">
+      <div class="cta-title">Setup trong <span>48 giờ.</span> Từ <span>2 triệu/tháng.</span></div>
+      <div class="cta-sub">Không cần biết tech. Không cam kết dài hạn. Dừng bất kỳ lúc nào.</div>
+
+      <div class="cta-contacts">
+        <a href="https://t.me/willdaolam" class="cta-card tg">
+          <div class="cta-card-icon">✈</div>
+          <div class="cta-card-info">
+            <div class="cta-card-name">Will · @willdaolam</div>
+            <div class="cta-card-role">AI Business Integration Specialist</div>
+            <div class="cta-card-action">Nhắn Telegram ngay →</div>
+          </div>
+        </a>
+        <a href="mailto:greyai1993@gmail.com" class="cta-card em">
+          <div class="cta-card-icon">@</div>
+          <div class="cta-card-info">
+            <div class="cta-card-name">Grey · greyai1993@gmail.com</div>
+            <div class="cta-card-role">AI Marketing Integration Specialist</div>
+            <div class="cta-card-action">Gửi email ngay →</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="cta-urgency">
+        <div class="cta-urgency-dot"></div>
+        Tư vấn miễn phí · Response trong 24 giờ · Slots có giới hạn
+      </div>
+    </div>
   </div>
 </div>
 
