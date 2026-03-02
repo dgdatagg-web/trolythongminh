@@ -387,6 +387,66 @@ body {
 .kpi .v { font-size: 28px; font-weight: 900; letter-spacing: -1px; color: #22d3ee; display: block; }
 .kpi .l { font-size: 10px; color: rgba(100,116,139,.7); margin-top: 3px; }
 
+/* ─── SLIDE 7: PRICING ─── */
+.s-price {
+  background: #080d1a;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.price-section { max-width: 960px; width: 100%; position: relative; z-index: 1; text-align: center; }
+.price-label { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: rgba(6,182,212,.5); text-transform: uppercase; margin-bottom: 12px; }
+.price-h { font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 4vw, 44px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 10px; }
+.price-h span { color: #06b6d4; }
+.price-sub { font-size: 13px; color: rgba(148,163,184,.5); margin-bottom: 44px; }
+
+.p-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; text-align: left; }
+@media (max-width: 800px) { .p-cards { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; } }
+
+.p-card {
+  background: #0a1020; border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px; padding: 28px;
+  display: flex; flex-direction: column;
+  position: relative; transition: transform .2s;
+}
+.p-card:hover { transform: translateY(-4px); }
+.p-card.featured {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb, 0 20px 48px rgba(37,99,235,.2);
+  background: linear-gradient(135deg, #0c1525, #0a1020);
+}
+.p-badge {
+  position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+  padding: 4px 16px; background: #2563eb; color: #fff;
+  font-size: 10px; font-weight: 800; letter-spacing: 1.5px; border-radius: 100px; white-space: nowrap;
+}
+.p-tier { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(148,163,184,.5); text-transform: uppercase; margin-bottom: 14px; }
+.p-was { font-size: 14px; color: rgba(148,163,184,.35); text-decoration: line-through; margin-bottom: 2px; }
+.p-price { font-size: 44px; font-weight: 900; letter-spacing: -2px; line-height: 1; color: #f1f5f9; }
+.p-price sub { font-size: 13px; font-weight: 400; color: rgba(148,163,184,.5); letter-spacing: 0; }
+.p-save { font-size: 11px; color: #10b981; font-weight: 700; margin-top: 4px; }
+.p-hr { border: none; border-top: 1px solid rgba(255,255,255,.07); margin: 18px 0; }
+.p-desc { font-size: 12px; color: rgba(148,163,184,.55); margin-bottom: 18px; line-height: 1.6; }
+.p-list { list-style: none; margin-bottom: 24px; flex: 1; }
+.p-list li { font-size: 12px; color: rgba(148,163,184,.65); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.04); display: flex; gap: 7px; line-height: 1.5; }
+.p-list li:last-child { border-bottom: none; }
+.p-list li .ok { color: #10b981; flex-shrink: 0; }
+.p-list li .add { color: #f59e0b; flex-shrink: 0; }
+.p-btn {
+  display: block; text-align: center; padding: 12px;
+  font-size: 13px; font-weight: 700; border-radius: 10px;
+  text-decoration: none; transition: all .2s;
+}
+.p-btn.fill { background: linear-gradient(135deg, #2563eb, #06b6d4); color: #fff; box-shadow: 0 6px 20px rgba(37,99,235,.3); }
+.p-btn.fill:hover { box-shadow: 0 10px 28px rgba(37,99,235,.45); transform: translateY(-1px); }
+.p-btn.outline { border: 1px solid rgba(255,255,255,.12); color: rgba(148,163,184,.7); }
+.p-btn.outline:hover { border-color: rgba(255,255,255,.25); color: #f1f5f9; }
+
+.p-urgency {
+  margin-top: 28px; display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; color: rgba(148,163,184,.4);
+  padding: 10px 20px; background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07); border-radius: 100px;
+}
+
 /* ─── SLIDE 7: CTA ─── */
 .s-cta {
   background: #050912;
@@ -837,7 +897,75 @@ body {
   </div>
 </div>
 
-<!-- ═══ SLIDE 7: CTA ═══ -->
+<!-- ═══ SLIDE 7: PRICING ═══ -->
+<div class="slide s-price">
+  <div class="glow g1"></div>
+  <div class="glow" style="width:300px;height:300px;background:rgba(37,99,235,.07);bottom:10%;right:10%;"></div>
+
+  <div class="price-section">
+    <div class="price-label">Bảng giá</div>
+    <div class="price-h">Đơn giản. Minh bạch.<br><span>Không phí ẩn.</span></div>
+    <div class="price-sub">Không cam kết dài hạn · Không phí setup · Dừng bất kỳ lúc nào</div>
+
+    <div class="p-cards">
+      <!-- Basic -->
+      <div class="p-card">
+        <div class="p-tier">Basic</div>
+        <div class="p-price">2M<sub>/tháng</sub></div>
+        <div class="p-hr"></div>
+        <div class="p-desc">Dành cho founder bắt đầu trải nghiệm. Setup đầy đủ, hỗ trợ theo manual.</div>
+        <ul class="p-list">
+          <li><span class="ok">✓</span> Setup AI chuyên biệt cho ngành của bạn</li>
+          <li><span class="ok">✓</span> Hỗ trợ kỹ thuật 90% lỗi thường gặp</li>
+          <li><span class="ok">✓</span> 1 lần fix lỗi ngoài chỉ định/tháng miễn phí</li>
+          <li><span class="add">+</span> Fix thêm: 500K/lần</li>
+        </ul>
+        <a href="https://t.me/willdaolam" class="p-btn outline">Bắt Đầu</a>
+      </div>
+
+      <!-- Pro — highlighted -->
+      <div class="p-card featured">
+        <div class="p-badge">PHỔ BIẾN NHẤT</div>
+        <div class="p-tier">Pro</div>
+        <div class="p-price">5M<sub>/tháng</sub></div>
+        <div class="p-hr"></div>
+        <div class="p-desc">Full support không giới hạn. Không bao giờ tính thêm.</div>
+        <ul class="p-list">
+          <li><span class="ok">✓</span> Tất cả tính năng Basic</li>
+          <li><span class="ok">✓</span> Full support · fix mọi lỗi mọi lúc</li>
+          <li><span class="ok">✓</span> Custom nâng cao theo yêu cầu riêng</li>
+          <li><span class="ok">✓</span> Update & cải tiến hàng tháng</li>
+          <li><span class="ok">✓</span> Ưu tiên response cao nhất</li>
+        </ul>
+        <a href="https://t.me/willdaolam" class="p-btn fill">Chọn Pro →</a>
+      </div>
+
+      <!-- Annual -->
+      <div class="p-card">
+        <div class="p-tier">Gói Năm</div>
+        <div class="p-was">60,000,000₫/năm</div>
+        <div class="p-price">25M<sub>/năm</sub></div>
+        <div class="p-save">↓ Tiết kiệm 35 triệu · 2.08M/tháng</div>
+        <div class="p-hr"></div>
+        <div class="p-desc">Toàn bộ tính năng Pro 12 tháng. Chỉ mở giới hạn slots.</div>
+        <ul class="p-list">
+          <li><span class="ok">✓</span> Tất cả tính năng Pro · 12 tháng</li>
+          <li><span class="ok">✓</span> Lock giá — không tăng khi renew</li>
+          <li><span class="ok">✓</span> Ưu tiên onboarding & setup</li>
+          <li><span class="ok">✓</span> 1 buổi strategy session với team</li>
+        </ul>
+        <a href="https://t.me/willdaolam" class="p-btn outline">Đăng Ký Gói Năm</a>
+      </div>
+    </div>
+
+    <div class="p-urgency">
+      <div class="cta-urgency-dot"></div>
+      <span>Gói Năm đang mở — khi đủ slots sẽ đóng, không có ngày hết hạn cố định</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 8: CTA ═══ -->
 <div class="slide s-cta">
   <div class="stars-bg"></div>
   <div class="glow g1"></div>
