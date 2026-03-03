@@ -286,6 +286,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 48px;display:fl
 .pc2-list li{font-size:12px;color:rgba(148,163,184,.65);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:8px;line-height:1.5;}
 .pc2-list li:last-child{border-bottom:none;}
 .pc2-list li .ok{color:#10b981;flex-shrink:0;}
+.pc2-list li .err{color:#ef4444;flex-shrink:0;font-weight:900;}
 .pc2-list li .add{color:#f59e0b;flex-shrink:0;}
 .pc2-btn{display:block;text-align:center;padding:13px;font-size:14px;font-weight:700;border-radius:10px;text-decoration:none;transition:all .2s;}
 .pc2-btn.fill{background:linear-gradient(135deg,#2563eb,#06b6d4);color:#fff;box-shadow:0 6px 20px rgba(37,99,235,.3);}
@@ -766,11 +767,12 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
         <div class="pc2-credit">75 Claudible credits/ngày</div>
         <div class="pc2-save">↓ Tiết kiệm 3 triệu/tháng · Founder Discount</div>
         <div class="pc2-hr"></div>
-        <div class="pc2-desc">Dành cho founder bắt đầu. Setup đầy đủ, hỗ trợ theo hướng dẫn.</div>
+        <div class="pc2-desc">Dành cho founder bắt đầu. Setup đầy đủ, dùng theo hướng dẫn có sẵn.</div>
         <ul class="pc2-list">
           <li><span class="ok">✓</span> Cài đặt AI chuyên biệt cho ngành bạn</li>
-          <li><span class="ok">✓</span> Hỗ trợ kỹ thuật 90% lỗi thường gặp</li>
-          <li><span class="ok">✓</span> 1 lần sửa lỗi ngoài phạm vi/tháng miễn phí</li>
+          <li><span class="ok">✓</span> Tài liệu hướng dẫn sử dụng chi tiết</li>
+          <li><span class="ok">✓</span> Hỗ trợ lỗi phổ biến qua hướng dẫn có sẵn</li>
+          <li><span class="err">!</span> Lỗi ngoài phạm vi: <strong>+500k/lần</strong></li>
           <li><span class="add">+</span> Nâng lên 180 credits/ngày: <strong>+500k/tháng</strong></li>
         </ul>
         <!-- countdown + slots gói 1 -->
@@ -845,12 +847,13 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
         <div class="pc2-credit">180 Claudible credits/ngày</div>
         <div class="pc2-save">↓ Tiết kiệm 35 triệu · Founding Member Discount</div>
         <div class="pc2-hr"></div>
-        <div class="pc2-desc">Chỉ 100 suất. Khoá giá vĩnh viễn. Ưu tiên mọi thứ.</div>
+        <div class="pc2-desc" style="color:#fcd34d;font-weight:700;">🔒 Chỉ 10 suất duy nhất được giá này. Không mở lại sau khi hết.</div>
         <ul class="pc2-list">
-          <li><span class="ok">✓</span> Tất cả tính năng Tiêu Chuẩn · 12 tháng</li>
-          <li><span class="ok">✓</span> Khoá giá — không tăng khi gia hạn</li>
-          <li><span class="ok">✓</span> Ưu tiên cài đặt & onboarding</li>
-          <li><span class="ok">✓</span> 1 buổi tư vấn chiến lược cùng đội ngũ</li>
+          <li><span class="ok">✓</span> Toàn bộ tính năng Tiêu Chuẩn · 12 tháng</li>
+          <li><span class="ok">✓</span> Full support không giới hạn suốt 1 năm</li>
+          <li><span class="ok">✓</span> Khoá giá vĩnh viễn — gia hạn không tăng</li>
+          <li><span class="ok">✓</span> Ưu tiên onboarding trong 24h</li>
+          <li><span class="ok">✓</span> 1 buổi tư vấn chiến lược 1-on-1 cùng đội ngũ</li>
           <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+5M/năm</strong></li>
         </ul>
         <!-- countdown + slots gói 3 -->
@@ -869,7 +872,7 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
         <div class="slots-wrap">
           <div class="slots-top">
             <span class="slots-bought" style="color:#f59e0b;" id="slots-bought-3">🔥 2 người đã đăng ký</span>
-            <span class="slots-remain" id="slots-remain-3">còn 98 / 100 suất</span>
+            <span class="slots-remain" id="slots-remain-3">còn 8 / 10 suất</span>
           </div>
           <div class="slots-bar-track">
             <div class="slots-bar-fill" id="slots-bar-3" style="background:linear-gradient(90deg,#f59e0b,#ef4444);"></div>
@@ -1042,7 +1045,7 @@ setInterval(updateCountdowns, 1000);
 const slotsData = [
   { bar: 'slots-bar-1', bought: 47, total: 500, boughtEl: 'slots-bought-1', remainEl: 'slots-remain-1' },
   { bar: 'slots-bar-2', bought: 29, total: 400, boughtEl: 'slots-bought-2', remainEl: 'slots-remain-2' },
-  { bar: 'slots-bar-3', bought: 2, total: 100, boughtEl: 'slots-bought-3', remainEl: 'slots-remain-3' },
+  { bar: 'slots-bar-3', bought: 2, total: 10, boughtEl: 'slots-bought-3', remainEl: 'slots-remain-3' },
 ];
 
 const pricingSection = document.getElementById('pricing');
