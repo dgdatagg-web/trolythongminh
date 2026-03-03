@@ -147,7 +147,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 48px;display:fl
 /* NAV LOGO ANIMATION */
 .nav-logo{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,#fff,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:flex;align-items:center;gap:0;overflow:hidden;}
 .nav-logo-icon{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid rgba(6,182,212,.5);box-shadow:0 0 12px rgba(6,182,212,.4);flex-shrink:0;animation:iconPop .6s cubic-bezier(.34,1.56,.64,1) forwards;}
-.nav-logo-text{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;animation:textSlide .5s ease .5s forwards;background:linear-gradient(135deg,#fff,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-logo-icon-fallback{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#06b6d4,#2563eb);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:2px solid rgba(6,182,212,.5);box-shadow:0 0 12px rgba(6,182,212,.4);animation:iconPop .6s cubic-bezier(.34,1.56,.64,1) forwards;}
+.nav-logo-text{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;animation:textSlide .5s ease .4s forwards;background:linear-gradient(135deg,#fff,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:20px;font-weight:800;}
 @keyframes iconPop{0%{transform:scale(0) rotate(-180deg);opacity:0;}100%{transform:scale(1) rotate(0deg);opacity:1;}}
 @keyframes textSlide{0%{max-width:0;opacity:0;margin-left:0;}100%{max-width:200px;opacity:1;margin-left:10px;}}
 .nav-links{display:flex;gap:32px;}
@@ -412,7 +413,8 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
 
 <nav>
   <div class="nav-logo">
-    <img src="nova-avatar.jpg" alt="NOVA" class="nav-logo-icon">
+    <img src="nova-avatar.jpg" alt="NOVA" class="nav-logo-icon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-icon-fallback" style="display:none;">⚡</div>
     <span class="nav-logo-text">NOVA ⚡</span>
   </div>
   <div class="nav-links">
