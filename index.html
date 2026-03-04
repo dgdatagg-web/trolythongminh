@@ -853,6 +853,19 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
         ✈ Book Demo →
       </a>
     </div>
+    <!-- SINGLE COUNTDOWN -->
+    <div class="reveal" style="max-width:520px;margin:0 auto 32px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:16px 24px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:#f87171;text-transform:uppercase;margin-bottom:10px;">🚀 Launching Discount — Kết thúc sau</div>
+      <div style="display:flex;gap:8px;justify-content:center;align-items:center;" id="cd-wrap-main">
+        <div class="cd-block"><span class="cd-num" id="cdm-d">--</span><div class="cd-lbl">ngày</div></div>
+        <div class="cd-sep" style="color:#f87171;">:</div>
+        <div class="cd-block"><span class="cd-num" id="cdm-h">--</span><div class="cd-lbl">giờ</div></div>
+        <div class="cd-sep" style="color:#f87171;">:</div>
+        <div class="cd-block"><span class="cd-num" id="cdm-m">--</span><div class="cd-lbl">phút</div></div>
+        <div class="cd-sep" style="color:#f87171;">:</div>
+        <div class="cd-block"><span class="cd-num" id="cdm-s">--</span><div class="cd-lbl">giây</div></div>
+      </div>
+    </div>
     <div class="price-cards">
       <!-- GÓI NGƯỜI MỚI -->
       <div class="pc2 reveal d1">
@@ -872,18 +885,6 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <li><span class="err">!</span> Lỗi ngoài phạm vi cơ bản: <strong>+500k/lần</strong></li>
           <li><span class="add">+</span> Nâng lên 180 credits/ngày: <strong>+500k/tháng</strong></li>
         </ul>
-        <div class="pc2-countdown normal" id="cd-wrap-1">
-          <div class="pc2-countdown-label">🚀 Launching discount · Kết thúc sau</div>
-          <div class="pc2-countdown-timer">
-            <div class="cd-block"><span class="cd-num" id="cd1-d">--</span><div class="cd-lbl">ngày</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cd-block"><span class="cd-num" id="cd1-h">--</span><div class="cd-lbl">giờ</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cd-block"><span class="cd-num" id="cd1-m">--</span><div class="cd-lbl">phút</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cd-block"><span class="cd-num" id="cd1-s">--</span><div class="cd-lbl">giây</div></div>
-          </div>
-        </div>
         <div class="slots-wrap">
           <div class="slots-top">
             <span class="slots-bought" style="color:#22d3ee;" id="slots-bought-1">🔥 11 người đã đăng ký</span>
@@ -916,18 +917,6 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <li><span class="ok">✓</span> Cập nhật & cải tiến liên tục theo yêu cầu</li>
           <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+900k/tháng</strong></li>
         </ul>
-        <div class="pc2-countdown normal" id="cd-wrap-2">
-          <div class="pc2-countdown-label">🚀 Launching discount · Kết thúc sau</div>
-          <div class="pc2-countdown-timer">
-            <div class="cd-block"><span class="cd-num" id="cd2-d">--</span><div class="cd-lbl">ngày</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cd-block"><span class="cd-num" id="cd2-h">--</span><div class="cd-lbl">giờ</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cd-block"><span class="cd-num" id="cd2-m">--</span><div class="cd-lbl">phút</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cd-block"><span class="cd-num" id="cd2-s">--</span><div class="cd-lbl">giây</div></div>
-          </div>
-        </div>
         <div class="slots-wrap">
           <div class="slots-top">
             <span class="slots-bought" style="color:#10b981;" id="slots-bought-2">🔥 7 người đã đăng ký</span>
@@ -960,18 +949,6 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <li><span class="ok">✓</span> 1 buổi tư vấn chiến lược AI 1-on-1 cùng đội ngũ</li>
           <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+5M/năm</strong></li>
         </ul>
-        <div class="pc2-countdown urgent" id="cd-wrap-3">
-          <div class="pc2-countdown-label">🔴 Cửa sổ này đóng sau</div>
-          <div class="pc2-countdown-timer">
-            <div class="cd-block"><span class="cd-num" id="cd3-d">--</span><div class="cd-lbl">ngày</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cd-block"><span class="cd-num" id="cd3-h">--</span><div class="cd-lbl">giờ</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cd-block"><span class="cd-num" id="cd3-m">--</span><div class="cd-lbl">phút</div></div>
-            <div class="cd-sep">:</div>
-            <div class="cd-block"><span class="cd-num" id="cd3-s">--</span><div class="cd-lbl">giây</div></div>
-          </div>
-        </div>
         <div class="slots-wrap">
           <div class="slots-top">
             <span class="slots-bought" style="color:#f59e0b;" id="slots-bought-3">🔥 2 người đã khoá suất</span>
@@ -1109,39 +1086,32 @@ const deadlines = [
   LAUNCH + 30 * 86400000,  // gói 2: 30 ngày (launching discount)
   LAUNCH + 30 * 86400000,  // gói 3: 30 ngày (urgent!)
 ];
-const cdIds = [
-  ['cd1-d','cd1-h','cd1-m','cd1-s','cd-wrap-1'],
-  ['cd2-d','cd2-h','cd2-m','cd2-s','cd-wrap-2'],
-  ['cd3-d','cd3-h','cd3-m','cd3-s','cd-wrap-3'],
-];
 
 function pad(n){ return String(n).padStart(2,'0'); }
 
 function updateCountdowns() {
   const now = Date.now();
-  deadlines.forEach((dl, i) => {
-    const diff = dl - now;
-    const [dId,hId,mId,sId,wrapId] = cdIds[i];
-    if (diff <= 0) {
-      document.getElementById(dId).textContent = '00';
-      document.getElementById(hId).textContent = '00';
-      document.getElementById(mId).textContent = '00';
-      document.getElementById(sId).textContent = '00';
-      return;
-    }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById(dId).textContent = pad(d);
-    document.getElementById(hId).textContent = pad(h);
-    document.getElementById(mId).textContent = pad(m);
-    document.getElementById(sId).textContent = pad(s);
-    // auto urgency class when < 7 days
-    const wrap = document.getElementById(wrapId);
-    if (wrap && d < 7) { wrap.className = 'pc2-countdown urgent'; }
-    else if (wrap && d < 15) { wrap.className = 'pc2-countdown warning'; }
-  });
+  const dl = deadlines[0];
+  const diff = dl - now;
+  if (diff <= 0) {
+    ['cdm-d','cdm-h','cdm-m','cdm-s'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = '00';
+    });
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const el_d = document.getElementById('cdm-d');
+  const el_h = document.getElementById('cdm-h');
+  const el_m = document.getElementById('cdm-m');
+  const el_s = document.getElementById('cdm-s');
+  if (el_d) el_d.textContent = pad(d);
+  if (el_h) el_h.textContent = pad(h);
+  if (el_m) el_m.textContent = pad(m);
+  if (el_s) el_s.textContent = pad(s);
 }
 updateCountdowns();
 setInterval(updateCountdowns, 1000);
