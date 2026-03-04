@@ -1,358 +1,274 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Agent Facebook Bán Hàng: Tự Động Chốt Đơn 24/7 | TroLyThongMinh</title>
-  <meta name="description" content="AI agent Facebook bán hàng giúp tự động trả lời inbox, chốt đơn 24/7, nhắc thanh toán — shop online tiết kiệm 2-3 giờ/ngày. Kịch bản thực tế và cách bắt đầu." />
-  <meta property="og:title" content="AI Agent Facebook Bán Hàng: Tự Động Chốt Đơn 24/7" />
-  <meta property="og:description" content="AI agent Facebook bán hàng — tự động trả lời inbox, chốt đơn, nhắc thanh toán, không cần nhân viên trực 24/7. Kịch bản thực tế." />
-  <meta property="og:image" content="https://trolythongminh.io.vn/images/og-ai-agent-fb-ban-hang.jpg" />
-  <meta property="og:url" content="https://trolythongminh.io.vn/blog/ai-agent-cho-fb-ban-hang" />
-  <meta property="og:type" content="article" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Cho Facebook Bán Hàng: Tự Động Trả Lời, Chốt Đơn 24/7 | NOVA Blog</title>
+  <meta name="description" content="Ứng dụng AI agent cho inbox Facebook — trả lời FAQ, thu thập thông tin đặt hàng, nhắc thanh toán, cập nhật trạng thái đơn hàng. Kịch bản thực tế và giới hạn cần biết.">
+  <meta property="og:title" content="AI Agent Cho Facebook Bán Hàng: Tự Động Trả Lời, Chốt Đơn 24/7">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://trolythongminh.io.vn/blog/ai-agent-cho-fb-ban-hang">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #0a0a0a;
-      color: #ffffff;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 17px;
-      line-height: 1.75;
-    }
-    .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
-    .tag {
-      display: inline-block;
-      background: rgba(0, 212, 255, 0.15);
-      color: #00d4ff;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 4px;
-      margin-bottom: 20px;
-    }
-    h1 { font-size: 2rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px; color: #ffffff; }
-    .meta { color: #888; font-size: 14px; margin-bottom: 40px; }
-    h2 { font-size: 1.3rem; font-weight: 700; color: #00d4ff; margin: 40px 0 14px; }
-    h3 { font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 24px 0 10px; }
-    p { margin-bottom: 18px; color: #d0d0d0; }
-    ul { margin: 12px 0 18px 20px; }
-    ul li { margin-bottom: 8px; color: #d0d0d0; }
-    ul li strong { color: #ffffff; }
-    .key-takeaways {
-      background: rgba(0, 212, 255, 0.07);
-      border: 1px solid rgba(0, 212, 255, 0.25);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin: 28px 0 36px;
-    }
-    .key-takeaways h3 { color: #00d4ff; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; margin-top: 0; }
-    .key-takeaways ul { margin: 0; padding-left: 18px; }
-    .key-takeaways li { color: #ccf7ff; margin-bottom: 7px; font-size: 15px; }
-    .highlight-box {
-      background: rgba(0, 212, 255, 0.08);
-      border-left: 3px solid #00d4ff;
-      padding: 16px 20px;
-      margin: 28px 0;
-      border-radius: 0 8px 8px 0;
-    }
-    .highlight-box p { margin: 0; color: #ccf7ff; }
-    blockquote {
-      border-left: 3px solid #00d4ff;
-      margin: 28px 0;
-      padding: 14px 20px;
-      background: rgba(0,212,255,0.05);
-      border-radius: 0 8px 8px 0;
-    }
-    blockquote p { margin: 0; color: #e0f7ff; font-style: italic; font-size: 16px; }
-    .scenario-box {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 10px;
-      padding: 22px;
-      margin: 20px 0;
-    }
-    .scenario-box .label {
-      font-size: 12px;
-      font-weight: 700;
-      color: #00d4ff;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 10px;
-    }
-    .scenario-box p { margin: 0; font-size: 15px; color: #ccc; }
-    .compare-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 24px 0;
-    }
-    .compare-table th {
-      background: rgba(0, 212, 255, 0.2);
-      color: #00d4ff;
-      padding: 12px 16px;
-      text-align: left;
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .compare-table td {
-      padding: 11px 16px;
-      border-bottom: 1px solid #1a1a1a;
-      font-size: 15px;
-      color: #d0d0d0;
-    }
-    .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
-    .faq-section { margin-top: 56px; }
-    .faq-item { border-bottom: 1px solid #1a1a1a; padding: 20px 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #fafafa; color: #1a1a1a; font-size: 16px; line-height: 1.7; }
+    a { color: #0066cc; }
+    .site-header { background: #fff; border-bottom: 3px solid #0066cc; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site-header .logo { font-size: 1.4rem; font-weight: 700; color: #0066cc; text-decoration: none; }
+    .site-header nav a { margin-left: 1.5rem; color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .site-header nav .nav-demo { background: #0066cc; color: #fff !important; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 600; }
+    .article-container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+    .breadcrumb a { color: #0066cc; text-decoration: none; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .category-tag { display: inline-block; background: #e8f0fe; color: #0066cc; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 1rem; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; line-height: 1.28; color: #111; margin-bottom: 0.5rem; }
+    h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; color: #111; border-left: 4px solid #0066cc; padding-left: 1rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 1.5rem 0 0.6rem; }
+    .byline { color: #888; font-size: 0.85rem; margin: 0.6rem 0 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .hero-image-wrapper { width: 100%; margin: 1.5rem 0 2rem; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .hero-image-wrapper svg { display: block; width: 100%; height: auto; }
+    p { line-height: 1.85; font-size: 1.05rem; color: #333; margin-bottom: 1.25rem; }
+    ul, ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.45rem; line-height: 1.7; color: #333; font-size: 1rem; }
+    .pull-quote { font-size: 1.3rem; font-style: italic; color: #0066cc; border-left: 4px solid #0066cc; padding: 1rem 2rem; margin: 2.5rem 0; background: #f0f7ff; border-radius: 0 8px 8px 0; font-family: Georgia, serif; line-height: 1.5; }
+    .key-takeaways { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #0066cc; margin-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .key-takeaways ul { margin: 0.5rem 0 0 1.2rem; }
+    .key-takeaways li { font-size: 0.95rem; }
+    .highlight-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .highlight-box p { margin: 0; font-size: 0.95rem; }
+    blockquote { border-left: 4px solid #0066cc; margin: 1.5rem 0; padding: 0.75rem 1.5rem; background: #f0f7ff; border-radius: 0 6px 6px 0; }
+    blockquote p { margin: 0; font-style: italic; font-size: 1rem; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.93rem; }
+    .compare-table th { background: #f0f4f8; color: #1a1a1a; padding: 10px 14px; text-align: left; font-size: 0.82rem; font-weight: 700; border-bottom: 2px solid #ddd; }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #333; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #fafafa; }
+    .scenario-box { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; }
+    .scenario-box .label { font-size: 0.72rem; font-weight: 700; color: #0066cc; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+    .scenario-box h3 { font-size: 1rem; color: #1a1a1a; margin: 0 0 0.5rem; }
+    .scenario-box p { margin: 0; font-size: 0.93rem; color: #333; }
+    .warning-box { background: #fff7ed; border-left: 4px solid #f97316; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .warning-box p { margin: 0; font-size: 0.95rem; color: #1a1a1a; }
+    .cta-box { background: #0066cc; color: #fff; border-radius: 12px; padding: 2rem; text-align: center; margin: 3rem 0; }
+    .cta-box h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.88); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-box a.cta-btn { background: #fff; color: #0066cc; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 0.5rem; }
+    .cta-sub { margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .cta-sub a { color: rgba(255,255,255,0.9); }
+    .related-articles { border-top: 2px solid #eee; padding-top: 2rem; margin-top: 3rem; }
+    .related-articles h3 { font-size: 0.82rem; text-transform: uppercase; color: #888; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+    .related-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; text-decoration: none; color: #333; font-size: 0.85rem; line-height: 1.4; display: block; }
+    .related-card:hover { border-color: #0066cc; color: #0066cc; }
+    .faq-section { margin-top: 2.5rem; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 1.25rem 0; }
     .faq-item:last-child { border-bottom: none; }
-    .faq-q { font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 10px; }
-    .faq-a { color: #d0d0d0; font-size: 15px; line-height: 1.7; }
-    .internal-links {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 10px;
-      padding: 18px 22px;
-      margin: 36px 0;
-    }
-    .internal-links h3 { font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; margin-top: 0; }
-    .internal-links a { color: #00d4ff; text-decoration: none; display: block; margin-bottom: 6px; font-size: 15px; }
-    .cta-box {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(0, 100, 180, 0.12));
-      border: 1px solid rgba(0, 212, 255, 0.3);
-      border-radius: 12px;
-      padding: 32px;
-      margin-top: 56px;
-      text-align: center;
-    }
-    .cta-box h3 { font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 12px; margin-top: 0; }
-    .cta-box p { color: #b0d8e0; margin-bottom: 20px; }
-    .cta-btn {
-      display: inline-block;
-      background: #00d4ff;
-      color: #0a0a0a;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 13px 28px;
-      border-radius: 8px;
-      text-decoration: none;
-    }
-    .cta-telegram { margin-top: 14px; color: #888; font-size: 14px; }
-    .cta-telegram a { color: #00d4ff; text-decoration: none; }
+    .faq-q { font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; font-size: 1rem; }
+    .faq-a { color: #444; font-size: 0.93rem; line-height: 1.7; }
+    .site-footer { border-top: 1px solid #eee; margin-top: 4rem; padding: 2rem 1rem; text-align: center; color: #888; font-size: 0.82rem; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .related-grid { grid-template-columns: 1fr; } .pull-quote { font-size: 1.1rem; } }
   </style>
 </head>
 <body>
-  <div class="container">
-    <span class="tag">Ứng dụng thực tế</span>
+
+  <header class="site-header">
+    <a href="/trolythongminh/" class="logo">🤖 NOVA Blog</a>
+    <nav>
+      <a href="/trolythongminh/">Trang chủ</a>
+      <a href="/trolythongminh/blog/">Blog</a>
+      <a href="https://calendly.com/willdaolamzz" class="nav-demo">Book Demo</a>
+    </nav>
+  </header>
+
+  <div class="article-container">
+
+    <nav class="breadcrumb">
+      <a href="/trolythongminh/">Trang chủ</a><span>›</span>
+      <a href="/trolythongminh/blog/">Blog</a><span>›</span>
+      AI Agent Cho Facebook Bán Hàng
+    </nav>
+
+    <span class="category-tag">Bán hàng online</span>
+
     <h1>AI Agent Cho Facebook Bán Hàng: Tự Động Trả Lời, Chốt Đơn 24/7</h1>
-    <p class="meta">Cập nhật: 04/03/2026 · 7 phút đọc</p>
+
+    <div class="byline">Đội ngũ NOVA • Tháng 3, 2026 • 8 phút đọc</div>
+
+    <div class="hero-image-wrapper">
+      <svg width="100%" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1877f2"/>
+            <stop offset="100%" style="stop-color:#0044bb"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="400" fill="url(#bg3)"/>
+        <!-- message bubbles decorative -->
+        <rect x="800" y="60" width="200" height="50" rx="12" fill="rgba(255,255,255,0.08)"/>
+        <rect x="820" y="130" width="160" height="40" rx="12" fill="rgba(255,255,255,0.06)"/>
+        <rect x="840" y="190" width="220" height="50" rx="12" fill="rgba(255,255,255,0.05)"/>
+        <!-- circle decorations -->
+        <circle cx="1050" cy="320" r="160" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="40"/>
+        <circle cx="1050" cy="320" r="80" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+        <!-- dots -->
+        <circle cx="750" cy="80" r="4" fill="rgba(255,255,255,0.25)"/>
+        <circle cx="770" cy="100" r="3" fill="rgba(255,255,255,0.15)"/>
+        <circle cx="790" cy="85" r="5" fill="rgba(255,255,255,0.18)"/>
+        <!-- text -->
+        <text x="90" y="185" font-family="Georgia,serif" font-size="50" fill="white" opacity="0.97" font-weight="bold">AI Agent Cho Facebook</text>
+        <text x="90" y="250" font-family="Georgia,serif" font-size="28" fill="rgba(255,255,255,0.75)">Tự động trả lời, chốt đơn 24/7</text>
+        <text x="90" y="305" font-family="'Inter',sans-serif" font-size="16" fill="rgba(255,255,255,0.5)">NOVA Blog • Tháng 3, 2026</text>
+      </svg>
+    </div>
 
     <!-- KEY TAKEAWAYS -->
     <div class="key-takeaways">
       <h3>📌 Key Takeaways</h3>
       <ul>
-        <li>AI agent Facebook bán hàng tự động trả lời 70-80% câu hỏi lặp lại trong inbox, hoạt động 24/7 kể cả lúc bạn ngủ.</li>
-        <li>Theo Meta Business Insights 2024: <strong>71% khách hàng</strong> kỳ vọng nhận phản hồi trong vòng 5 phút khi nhắn tin qua Facebook.</li>
-        <li>Shop online 300-500 đơn/tháng có thể giảm thời gian trả lời inbox từ 3-4 giờ/ngày xuống còn 30-45 phút.</li>
-        <li>AI agent xử lý tốt: FAQ, thu thập đơn hàng, nhắc thanh toán, cập nhật trạng thái.</li>
-        <li>AI agent cần người thật cho: khiếu nại phức tạp, thương lượng giá, tình huống ngoài kịch bản.</li>
+        <li>AI agent cho Facebook bán hàng tự động trả lời inbox, thu thập thông tin đặt hàng, nhắc thanh toán — tiết kiệm 3-4 giờ/ngày.</li>
+        <li>Theo Meta Business 2024: 78% khách hàng kỳ vọng phản hồi trong vòng 1 giờ — AI agent trả lời trong 2-3 phút.</li>
+        <li>4 kịch bản thực tế: trả lời FAQ sản phẩm, thu thập thông tin đặt hàng, nhắc thanh toán, theo dõi và cập nhật đơn hàng.</li>
+        <li>Giới hạn quan trọng: AI không thể xử lý khiếu nại phức tạp, thương lượng giá, hoặc xác nhận tình trạng hàng tồn kho real-time nếu không được tích hợp đúng.</li>
+        <li>Chi phí setup: 3-5 triệu (một lần) + 500k-1 triệu/tháng vận hành. ROI thường dương trong tháng 2.</li>
       </ul>
     </div>
 
-    <!-- DIRECT ANSWER -->
-    <p><strong>AI agent Facebook bán hàng là hệ thống tự động trả lời tin nhắn, thu thập thông tin đặt hàng và nhắc thanh toán trên Messenger — hoạt động 24/7 không cần nhân viên trực.</strong> Với shop online nhận 30-50 tin nhắn/ngày, AI agent có thể xử lý 70-80% câu hỏi lặp lại và giúp bạn tiết kiệm 2-3 giờ mỗi ngày. Chi phí setup từ 3-5 triệu, hoàn vốn trong 4-6 tuần đầu tiên.</p>
+    <p><strong>Một shop online Facebook nhận 50-100 tin nhắn mỗi ngày — phần lớn là câu hỏi lặp đi lặp lại: "Còn hàng không?", "Ship về tỉnh bao nhiêu?", "Size M vừa người 55kg không?"</strong> Trả lời thủ công mất 3-4 giờ/ngày. AI agent xử lý 80% tin nhắn đó ngay lập tức, 24/7, kể cả lúc 2 giờ sáng — và bạn chỉ cần xử lý 20% còn lại.</p>
 
-    <h2>Tại sao inbox Facebook là nơi cần tự động hóa đầu tiên?</h2>
-    <p>Nếu bạn bán hàng qua Facebook — dù là fanpage hay tài khoản cá nhân — bạn biết cảm giác này: inbox liên tục sáng lên, khách hỏi lúc 11 giờ đêm, và mỗi lần bạn không trả lời kịp là một đơn hàng tiềm năng bay đi.</p>
-
-    <div class="highlight-box">
-      <p>📊 <strong>Theo Meta Business Insights 2024:</strong> 71% khách hàng kỳ vọng nhận phản hồi trong vòng 5 phút. Trang có thời gian phản hồi trung bình dưới 5 phút được gắn huy hiệu "Very responsive" — điều này tăng tỷ lệ chuyển đổi lên đến <strong>35%</strong> so với trang phản hồi chậm.</p>
+    <div class="pull-quote">
+      "Shop có AI agent trả lời trong 2 phút thường chốt đơn tốt hơn shop trả lời sau 2 giờ — dù chất lượng sản phẩm như nhau."
     </div>
 
-    <h2>80% câu hỏi trong inbox đều giống nhau</h2>
-    <p>Nhìn lại inbox của bạn trong 1 tuần. Hầu hết các shop sẽ thấy 80% câu hỏi xoay quanh:</p>
-    <ul>
-      <li>Giá sản phẩm là bao nhiêu?</li>
-      <li>Còn hàng không? Còn màu/size này không?</li>
-      <li>Giao hàng đến tỉnh X mất bao nhiêu ngày?</li>
-      <li>Ship freeship không? Bao nhiêu tiền ship?</li>
-      <li>Đặt hàng bằng cách nào? Thanh toán thế nào?</li>
-      <li>Đơn của tôi đang ở đâu rồi?</li>
-    </ul>
+    <h2>Tại sao tốc độ phản hồi quyết định doanh thu?</h2>
+    <p>Khách hàng Facebook bán hàng thường nhắn cùng lúc cho 3-5 shop. Ai trả lời trước, chốt đơn trước. Không phải vì sản phẩm tốt hơn — mà vì trả lời nhanh tạo cảm giác tin tưởng và chuyên nghiệp hơn.</p>
 
-    <blockquote>
-      <p>"Một shop online trả lời đúng 80% câu hỏi lặp lại trong vòng 2 phút — dù đang ngủ — có lợi thế cạnh tranh khổng lồ so với shop cần 3-4 tiếng mới trả lời."</p>
-    </blockquote>
+    <div class="highlight-box">
+      <p>📊 Theo Meta Business Report 2024: <strong>78% khách hàng</strong> kỳ vọng nhận được phản hồi trong vòng 1 giờ khi nhắn tin cho page. <strong>53%</strong> không quay lại nếu phải chờ hơn 24 giờ. AI agent giải quyết vấn đề này hoàn toàn.</p>
+    </div>
 
-    <h2>AI agent Facebook bán hàng làm được gì?</h2>
-    <p>Một AI agent được setup đúng cách có thể:</p>
-    <ul>
-      <li><strong>Trả lời tự động 24/7:</strong> Kể cả lúc 2 giờ sáng hay ngày nghỉ lễ</li>
-      <li><strong>Thu thập thông tin đặt hàng:</strong> Hỏi tên, địa chỉ, sản phẩm, số lượng — tự động điền vào bảng đơn hàng Google Sheets</li>
-      <li><strong>Gửi link thanh toán:</strong> Khi khách đồng ý đặt hàng, tự gửi QR code hoặc thông tin chuyển khoản</li>
-      <li><strong>Nhắc thanh toán tự động:</strong> Nhắn tin nhắc nhẹ nhàng nếu khách chưa thanh toán sau X giờ</li>
-      <li><strong>Cập nhật trạng thái đơn hàng:</strong> Khi bạn cập nhật trong Google Sheets, AI tự nhắn cho khách</li>
-      <li><strong>Chuyển cho người thật:</strong> Khi gặp tình huống phức tạp, AI tự gắn cờ để bạn xử lý</li>
-    </ul>
+    <h2>4 kịch bản thực tế AI agent cho Facebook bán hàng</h2>
 
-    <h2>So sánh: Trước và sau khi dùng AI Agent Facebook</h2>
+    <div class="scenario-box">
+      <div class="label">Kịch bản 1</div>
+      <h3>Trả lời FAQ về sản phẩm</h3>
+      <p><strong>Khách nhắn:</strong> "Áo này còn size M màu đen không? Ship miền Tây bao lâu?"<br/>
+      <strong>AI agent:</strong> Tự kiểm tra danh sách sản phẩm, trả lời trong 30 giây: "Dạ còn ạ! Size M màu đen còn 3 cái. Ship miền Tây 3-5 ngày, phí 35k ạ. Anh/chị muốn đặt luôn ạ?"</p>
+    </div>
+
+    <div class="scenario-box">
+      <div class="label">Kịch bản 2</div>
+      <h3>Thu thập thông tin đặt hàng</h3>
+      <p><strong>Khách nhắn:</strong> "Cho mình đặt cái áo đó"<br/>
+      <strong>AI agent:</strong> Tự hỏi từng bước: họ tên → số điện thoại → địa chỉ → size/màu → xác nhận đơn → ghi vào Google Sheets tự động → báo chủ shop có đơn mới.</p>
+    </div>
+
+    <div class="scenario-box">
+      <div class="label">Kịch bản 3</div>
+      <h3>Nhắc thanh toán tự động</h3>
+      <p><strong>Flow tự động:</strong> Sau khi xác nhận đơn → gửi thông tin chuyển khoản → nếu sau 2 giờ chưa thanh toán → nhắn nhắc nhở lần 1 → sau 24 giờ → nhắn nhắc nhở lần 2 → đánh dấu "chờ xử lý" để chủ shop review.</p>
+    </div>
+
+    <div class="scenario-box">
+      <div class="label">Kịch bản 4</div>
+      <h3>Cập nhật trạng thái đơn hàng</h3>
+      <p><strong>Khách nhắn:</strong> "Đơn mình ship chưa?"<br/>
+      <strong>AI agent:</strong> Tự tìm đơn hàng theo số điện thoại trong hệ thống, trả lời: "Đơn hàng của anh/chị đã được giao cho shipper lúc 14:30 hôm qua, dự kiến đến ngày mai ạ. Mã vận đơn: [số]"</p>
+    </div>
+
+    <h2>Kết quả thực tế từ shop Việt Nam</h2>
     <table class="compare-table">
-      <thead>
-        <tr>
-          <th>Chỉ số</th>
-          <th>Không có AI Agent</th>
-          <th>Có AI Agent</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Chỉ số</th><th>Trước khi có AI agent</th><th>Sau khi có AI agent</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Thời gian trả lời inbox/ngày</td>
-          <td>3-4 giờ</td>
-          <td>30-45 phút (chỉ xử lý case phức tạp)</td>
-        </tr>
-        <tr>
-          <td>Thời gian phản hồi trung bình</td>
-          <td>2-8 giờ</td>
-          <td>Dưới 2 phút</td>
-        </tr>
-        <tr>
-          <td>Phục vụ ngoài giờ làm việc</td>
-          <td>Không</td>
-          <td>24/7</td>
-        </tr>
-        <tr>
-          <td>Tỷ lệ miss đơn vì trả lời chậm</td>
-          <td>Cao (15-25%)</td>
-          <td>Thấp (dưới 5%)</td>
-        </tr>
-        <tr>
-          <td>Chi phí nhân sự cho inbox</td>
-          <td>4-6 triệu/tháng (nhân viên)</td>
-          <td>500k-1.5 triệu/tháng (AI)</td>
-        </tr>
+        <tr><td>Thời gian trả lời trung bình</td><td>2-4 giờ</td><td>2-3 phút</td></tr>
+        <tr><td>Tỷ lệ chuyển đổi inbox → đơn</td><td>15-20%</td><td>28-35%</td></tr>
+        <tr><td>Thời gian chủ shop dành cho inbox</td><td>3-4 giờ/ngày</td><td>45-60 phút/ngày</td></tr>
+        <tr><td>Đơn hàng từ khung 22h-8h sáng</td><td>Gần như bằng 0</td><td>15-20% tổng đơn</td></tr>
+        <tr><td>Tỷ lệ khách hỏi mà không đặt</td><td>Cao (chờ lâu, bỏ)</td><td>Giảm 40-50%</td></tr>
       </tbody>
     </table>
 
-    <h2>Kịch bản thực tế: Khách hỏi giá lúc 11 giờ đêm</h2>
-    <div class="scenario-box">
-      <div class="label">Kịch bản thực tế</div>
-      <p>
-        <strong>Khách:</strong> "Shop ơi váy hoa này giá bao nhiêu vậy?"<br/><br/>
-        <strong>AI agent:</strong> "Chào chị! Váy hoa phong cách boho này đang có giá 285.000đ chị nha 🌸 Shop đang có 3 màu: trắng, be và xanh lá. Chị muốn xem thêm màu nào ạ?"<br/><br/>
-        <strong>Khách:</strong> "Cho xem màu be đi, size M còn không?"<br/><br/>
-        <strong>AI agent:</strong> [Gửi ảnh thật màu be] "Size M màu be vẫn còn hàng ạ! Chị muốn đặt luôn không để shop giữ hàng cho chị? Em hỏi chị địa chỉ giao hàng nha 😊"<br/><br/>
-        <strong>Kết quả:</strong> Đơn hàng được ghi nhận lúc 11:47 PM — chủ shop ngủ ngon, sáng hôm sau chỉ cần xác nhận và đóng gói.
-      </p>
-    </div>
-
-    <div class="highlight-box">
-      <p>📊 Theo khảo sát từ các shop online dùng Manychat tại Việt Nam (2024): <strong>tỷ lệ chốt đơn tăng 22-28%</strong> sau khi setup AI agent — chủ yếu nhờ phản hồi nhanh hơn và không bỏ lỡ khách ngoài giờ làm việc.</p>
-    </div>
-
-    <h2>Giới hạn cần biết — AI không phải phép màu</h2>
-    <p>AI agent không thể thay thế hoàn toàn con người trong bán hàng. Có những việc nó làm chưa tốt:</p>
-    <ul>
-      <li><strong>Xử lý khiếu nại phức tạp:</strong> Khách không hài lòng, đòi hoàn tiền — vẫn cần người thật</li>
-      <li><strong>Thương lượng giá:</strong> AI có thể từ chối hoặc giữ giá, nhưng không linh hoạt như người bán hàng có kinh nghiệm</li>
-      <li><strong>Tình huống ngoài kịch bản:</strong> Câu hỏi kỳ lạ hoặc tình huống chưa lường trước</li>
-    </ul>
-
     <blockquote>
-      <p>"AI agent không thay thế người bán hàng giỏi — nó giải phóng người bán hàng khỏi những việc lặp lại để tập trung vào những khách hàng thật sự cần sự chú ý của con người."</p>
+      <p>"AI không bán hàng thay tôi. Nó làm những việc mà tôi không thể làm một mình: trả lời đồng thời 20 khách lúc 11 giờ đêm — và mỗi khách đều nhận được câu trả lời trong 2 phút."</p>
     </blockquote>
 
-    <!-- INTERNAL LINKS -->
-    <div class="internal-links">
-      <h3>Đọc thêm liên quan</h3>
-      <a href="/blog/tu-dong-hoa-cong-viec-bang-ai">→ Tự Động Hóa Công Việc Bằng AI: Bắt Đầu Từ Đâu?</a>
-      <a href="/blog/chi-phi-thue-nhan-vien-vs-ai">→ Chi Phí Thuê Nhân Viên vs AI Agent: Con Số Thực Tế</a>
-      <a href="/blog/ai-agent-cho-nguoi-khong-biet-code">→ AI Agent Cho Người Không Biết Code</a>
+    <h2>Giới hạn cần biết trước khi setup</h2>
+
+    <div class="warning-box">
+      <p>⚠️ <strong>AI agent Facebook bán hàng KHÔNG làm được tốt:</strong><br/>
+      • Xử lý khiếu nại phức tạp (giao hàng sai, hàng lỗi) — cần người thật can thiệp<br/>
+      • Thương lượng giá, áp dụng mã giảm giá đặc biệt — cần quy trình phê duyệt<br/>
+      • Tư vấn kỹ lưỡng về sản phẩm không có trong FAQ — sẽ trả lời sai hoặc không đầy đủ<br/>
+      • Real-time tồn kho nếu không được tích hợp với hệ thống quản lý kho</p>
+    </div>
+
+    <h2>Chi phí và thời gian setup</h2>
+    <ul>
+      <li><strong>Setup cơ bản</strong> (trả lời FAQ + nhận đơn): 2-3 triệu, 3-5 ngày</li>
+      <li><strong>Setup nâng cao</strong> (tích hợp CRM + theo dõi đơn): 4-6 triệu, 1-2 tuần</li>
+      <li><strong>Vận hành hàng tháng:</strong> 500k-1 triệu/tháng (nền tảng + API)</li>
+      <li><strong>ROI:</strong> Thường hoàn vốn trong tháng 2 nếu shop có từ 20+ đơn/ngày</li>
+    </ul>
+
+    <!-- CTA BOX -->
+    <div class="cta-box">
+      <h3>Muốn có AI agent riêng cho doanh nghiệp?</h3>
+      <p>NOVA — setup trong 48h, không cần kỹ thuật. Thử trước, trả sau.</p>
+      <a href="https://calendly.com/willdaolamzz" class="cta-btn">Book Demo Miễn Phí →</a>
+      <p class="cta-sub">Hoặc nhắn trực tiếp: <a href="https://t.me/willdaolam">@willdaolam</a> trên Telegram</p>
     </div>
 
     <!-- FAQ SECTION -->
     <div class="faq-section">
       <h2>Câu Hỏi Thường Gặp</h2>
-
       <div class="faq-item">
-        <div class="faq-q">AI agent Facebook bán hàng tốn bao nhiêu tiền để setup?</div>
-        <div class="faq-a">Chi phí phổ biến nhất: Manychat (gói Pro $15/tháng) + thời gian setup kịch bản (2-4 giờ nếu tự làm, hoặc 3-5 triệu nếu thuê setup). Tổng chi phí tháng đầu khoảng 2-5 triệu. Từ tháng 2 trở đi chỉ còn phí nền tảng ~400-500k/tháng.</div>
+        <div class="faq-q">AI agent Facebook bán hàng có vi phạm chính sách Meta không?</div>
+        <div class="faq-a">Không, nếu setup đúng cách. Meta cho phép automation qua Messenger API — chỉ không được spam hoặc gửi tin nhắn không có sự đồng ý của người dùng. AI agent phản hồi tin nhắn của khách là hoàn toàn hợp lệ.</div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-q">Khách hàng có biết họ đang chat với AI không?</div>
-        <div class="faq-a">Tùy cách setup. Nhiều shop ở Việt Nam đặt tên AI là "Bot [tên shop]" và khách hàng hiểu đó là bot. Một số setup tên tự nhiên hơn. Quan trọng nhất: không để AI giả mạo là người thật hoàn toàn — khi khách phát hiện sẽ mất tin tưởng. Nên có câu "Bạn đang chat với trợ lý tự động, nhắn 'người thật' để kết nối với nhân viên shop."</div>
+        <div class="faq-q">Khách có biết họ đang chat với AI không?</div>
+        <div class="faq-a">Phụ thuộc vào cách setup. Best practice: có câu giới thiệu nhẹ như "Xin chào! Em là trợ lý tự động của [Shop]. Em sẽ hỗ trợ anh/chị ngay ạ. Nếu cần nói chuyện trực tiếp, nhắn 'người thật' nhé!" — Khách hàng thường chấp nhận nếu AI phản hồi nhanh và đúng.</div>
       </div>
-
-      <div class="faq-item">
-        <div class="faq-q">AI agent có thể dùng cho cả Instagram và Zalo không?</div>
-        <div class="faq-a">Có. Manychat hỗ trợ cả Facebook Messenger và Instagram DM. Với Zalo, cần dùng Zalo OA API kết hợp với nền tảng automation như n8n hoặc Make. Chi phí và độ phức tạp cao hơn một chút, nhưng hoàn toàn khả thi.</div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">Facebook có cho phép dùng AI agent trong Messenger không?</div>
-        <div class="faq-a">Có, hoàn toàn hợp lệ. Facebook có chính sách riêng cho chatbot và automation qua Messenger API. Miễn là bạn tuân thủ Facebook Policies (không spam, không dùng để harass, có option "chat với người thật"), bạn hoàn toàn được phép dùng AI agent.</div>
-      </div>
-
       <div class="faq-item">
         <div class="faq-q">Nếu AI trả lời sai thì sao?</div>
-        <div class="faq-a">Giải pháp: setup "fallback" — khi AI không chắc chắn, nó tự nhắn "Em sẽ nhờ bạn tư vấn viên hỗ trợ chị ngay ạ!" và gắn cờ cho bạn xử lý. Đừng để AI tự phịa câu trả lời khi không có trong kịch bản. Cấu hình đúng thì rủi ro trả lời sai rất thấp.</div>
+        <div class="faq-a">Đây là rủi ro thực tế. Giải pháp: (1) Cung cấp FAQ rõ ràng và đầy đủ cho AI, (2) Setup fallback — khi AI không chắc, tự chuyển sang người thật, (3) Review logs định kỳ để cải thiện. Đừng để AI tự suy đoán thông tin về giá, tồn kho, chính sách.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Công cụ nào phổ biến nhất để setup AI agent cho Facebook?</div>
+        <div class="faq-a">Manychat (dễ nhất, no-code), Tidio, ManyContacts cho Messenger. Nếu cần tích hợp sâu với CRM và hệ thống quản lý đơn hàng — thường cần đội kỹ thuật setup custom flow.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Shop nhỏ 5-10 đơn/ngày có nên dùng AI agent không?</div>
+        <div class="faq-a">Có thể, nhưng ROI sẽ chậm hơn. Với shop nhỏ, bắt đầu với chatbot đơn giản (Manychat free tier) để test — chi phí gần 0, đủ để xem AI có phù hợp với sản phẩm của bạn không.</div>
       </div>
     </div>
 
-    <!-- CTA SECTION -->
-    <div class="cta-box">
-      <h3>Bạn muốn thử AI agent thật sự?</h3>
-      <p>Đội ngũ Will &amp; Grey đang giúp các cá nhân và doanh nghiệp nhỏ setup AI agent riêng trong 48h.</p>
-      <a href="https://calendly.com/willdaolamzz" class="cta-btn">Book demo miễn phí 30 phút →</a>
-      <p class="cta-telegram">Hoặc nhắn trực tiếp: <a href="https://t.me/willdaolam">@willdaolam</a> trên Telegram</p>
+    <!-- RELATED ARTICLES -->
+    <div class="related-articles">
+      <h3>Bài viết liên quan</h3>
+      <div class="related-grid">
+        <a href="/trolythongminh/blog/tu-dong-hoa-cong-viec-bang-ai/" class="related-card">Tự Động Hóa Công Việc Bằng AI</a>
+        <a href="/trolythongminh/blog/chi-phi-thue-nhan-vien-vs-ai/" class="related-card">Chi Phí Nhân Viên vs AI Agent</a>
+        <a href="/trolythongminh/blog/ai-agent-cho-nguoi-khong-biet-code/" class="related-card">AI Agent Cho Người Không Biết Code</a>
+      </div>
     </div>
+
   </div>
+
+  <footer class="site-footer">
+    <p>© 2026 NOVA Blog · <a href="/trolythongminh/">Trang chủ</a> · <a href="/trolythongminh/blog/">Blog</a></p>
+  </footer>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "AI agent Facebook bán hàng tốn bao nhiêu tiền để setup?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Chi phí phổ biến: Manychat Pro $15/tháng + setup 3-5 triệu (nếu thuê). Tổng tháng đầu 2-5 triệu. Từ tháng 2 trở đi chỉ còn phí nền tảng ~400-500k/tháng."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Khách hàng có biết họ đang chat với AI không?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tùy cách setup. Không nên để AI giả mạo là người thật hoàn toàn. Nên có câu 'Bạn đang chat với trợ lý tự động, nhắn người thật để kết nối nhân viên shop.'"
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Facebook có cho phép dùng AI agent trong Messenger không?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Có, hoàn toàn hợp lệ qua Messenger API. Tuân thủ Facebook Policies: không spam, không harass, có option chat với người thật."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "AI agent Facebook có thể dùng cho Instagram và Zalo không?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Có. Manychat hỗ trợ cả Facebook Messenger và Instagram DM. Với Zalo cần Zalo OA API kết hợp Make hoặc n8n."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Nếu AI agent Facebook trả lời sai thì sao?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Setup 'fallback': khi AI không chắc, nó nhắn 'Em sẽ nhờ tư vấn viên hỗ trợ' và gắn cờ cho bạn xử lý. Đừng để AI tự phịa câu trả lời khi không có trong kịch bản."
-        }
-      }
+      {"@type":"Question","name":"AI agent Facebook bán hàng có vi phạm chính sách Meta không?","acceptedAnswer":{"@type":"Answer","text":"Không, nếu setup đúng cách. Meta cho phép automation qua Messenger API — chỉ không được spam hoặc gửi tin nhắn không có sự đồng ý."}},
+      {"@type":"Question","name":"Khách có biết họ đang chat với AI không?","acceptedAnswer":{"@type":"Answer","text":"Tùy setup. Best practice: giới thiệu ngắn là trợ lý tự động và cho option chuyển sang người thật."}},
+      {"@type":"Question","name":"Công cụ nào phổ biến nhất để setup AI agent cho Facebook?","acceptedAnswer":{"@type":"Answer","text":"Manychat (dễ nhất, no-code), Tidio, ManyContacts cho Messenger. Tích hợp sâu cần custom flow."}},
+      {"@type":"Question","name":"Shop nhỏ 5-10 đơn/ngày có nên dùng AI agent không?","acceptedAnswer":{"@type":"Answer","text":"Có thể, bắt đầu với Manychat free tier để test — chi phí gần 0, đủ để thử nghiệm."}},
+      {"@type":"Question","name":"Nếu AI trả lời sai thì sao?","acceptedAnswer":{"@type":"Answer","text":"Setup fallback khi AI không chắc → chuyển sang người thật. Cung cấp FAQ đầy đủ, review logs định kỳ."}}
     ]
   }
   </script>

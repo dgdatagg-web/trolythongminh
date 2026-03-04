@@ -1,192 +1,128 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Agent Khác Gì ChatGPT? So Sánh Thực Tế 2025 | TroLyThongMinh</title>
-  <meta name="description" content="AI agent khác ChatGPT ở chỗ nào? Bài viết so sánh rõ 2 công cụ, khi nào dùng cái nào, và lý do bạn cần cả hai để tự động hóa công việc." />
-  <meta property="og:title" content="AI Agent Khác Gì ChatGPT? So Sánh Thực Tế 2025" />
-  <meta property="og:description" content="Hiểu rõ sự khác biệt giữa AI Agent và ChatGPT để dùng đúng công cụ cho đúng việc — so sánh bảng, ví dụ thực tế." />
-  <meta property="og:image" content="https://trolythongminh.io.vn/images/og-ai-agent-vs-chatgpt.jpg" />
-  <meta property="og:url" content="https://trolythongminh.io.vn/blog/ai-agent-khac-gi-chatgpt" />
-  <meta property="og:type" content="article" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Khác Gì ChatGPT? Đừng Nhầm 2 Thứ Này Nữa | NOVA Blog</title>
+  <meta name="description" content="AI agent và ChatGPT khác nhau như thế nào? Giải thích rõ sự khác biệt cốt lõi, bảng so sánh trực tiếp, và khi nào nên dùng cái nào.">
+  <meta property="og:title" content="AI Agent Khác Gì ChatGPT? Đừng Nhầm 2 Thứ Này Nữa">
+  <meta property="og:description" content="AI agent và ChatGPT khác nhau như thế nào? Giải thích rõ sự khác biệt cốt lõi, bảng so sánh trực tiếp, và khi nào nên dùng cái nào.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://trolythongminh.io.vn/blog/ai-agent-khac-gi-chatgpt">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #0a0a0a;
-      color: #ffffff;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 17px;
-      line-height: 1.75;
-    }
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
-    .tag {
-      display: inline-block;
-      background: rgba(0, 212, 255, 0.15);
-      color: #00d4ff;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 4px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1.25;
-      margin-bottom: 16px;
-      color: #ffffff;
-    }
-    .meta {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 40px;
-    }
-    h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #00d4ff;
-      margin: 40px 0 14px;
-    }
-    h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin: 24px 0 10px;
-    }
-    p { margin-bottom: 18px; color: #d0d0d0; }
-    ul { margin: 12px 0 18px 20px; }
-    ul li { margin-bottom: 8px; color: #d0d0d0; }
-    ul li strong { color: #ffffff; }
-    .key-takeaways {
-      background: rgba(0, 212, 255, 0.07);
-      border: 1px solid rgba(0, 212, 255, 0.25);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin: 28px 0 36px;
-    }
-    .key-takeaways h3 {
-      color: #00d4ff;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      margin-top: 0;
-    }
-    .key-takeaways ul { margin: 0; padding-left: 18px; }
-    .key-takeaways li { color: #ccf7ff; margin-bottom: 7px; font-size: 15px; }
-    .highlight-box {
-      background: rgba(0, 212, 255, 0.08);
-      border-left: 3px solid #00d4ff;
-      padding: 16px 20px;
-      margin: 28px 0;
-      border-radius: 0 8px 8px 0;
-    }
-    .highlight-box p { margin: 0; color: #ccf7ff; }
-    blockquote {
-      border-left: 3px solid #00d4ff;
-      margin: 28px 0;
-      padding: 14px 20px;
-      background: rgba(0,212,255,0.05);
-      border-radius: 0 8px 8px 0;
-    }
-    blockquote p {
-      margin: 0;
-      color: #e0f7ff;
-      font-style: italic;
-      font-size: 16px;
-    }
-    .compare-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 24px 0;
-    }
-    .compare-table th {
-      background: rgba(0, 212, 255, 0.2);
-      color: #00d4ff;
-      padding: 12px 16px;
-      text-align: left;
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .compare-table td {
-      padding: 11px 16px;
-      border-bottom: 1px solid #1a1a1a;
-      font-size: 15px;
-      color: #d0d0d0;
-    }
-    .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
-    .faq-section { margin-top: 56px; }
-    .faq-section h2 { margin-bottom: 20px; }
-    .faq-item {
-      border-bottom: 1px solid #1a1a1a;
-      padding: 20px 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #fafafa; color: #1a1a1a; font-size: 16px; line-height: 1.7; }
+    a { color: #0066cc; }
+    .site-header { background: #fff; border-bottom: 3px solid #0066cc; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site-header .logo { font-size: 1.4rem; font-weight: 700; color: #0066cc; text-decoration: none; }
+    .site-header nav a { margin-left: 1.5rem; color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .site-header nav a:hover { color: #0066cc; }
+    .site-header nav .nav-demo { background: #0066cc; color: #fff !important; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 600; }
+    .article-container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+    .breadcrumb a { color: #0066cc; text-decoration: none; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .category-tag { display: inline-block; background: #e8f0fe; color: #0066cc; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 1rem; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; line-height: 1.28; color: #111; margin-bottom: 0.5rem; }
+    h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; color: #111; border-left: 4px solid #0066cc; padding-left: 1rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 1.5rem 0 0.6rem; }
+    .byline { color: #888; font-size: 0.85rem; margin: 0.6rem 0 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .hero-image-wrapper { width: 100%; margin: 1.5rem 0 2rem; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .hero-image-wrapper svg { display: block; width: 100%; height: auto; }
+    p { line-height: 1.85; font-size: 1.05rem; color: #333; margin-bottom: 1.25rem; }
+    ul, ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.45rem; line-height: 1.7; color: #333; font-size: 1rem; }
+    .pull-quote { font-size: 1.3rem; font-style: italic; color: #0066cc; border-left: 4px solid #0066cc; padding: 1rem 2rem; margin: 2.5rem 0; background: #f0f7ff; border-radius: 0 8px 8px 0; font-family: Georgia, serif; line-height: 1.5; }
+    .key-takeaways { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #0066cc; margin-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .key-takeaways ul { margin: 0.5rem 0 0 1.2rem; }
+    .key-takeaways li { font-size: 0.95rem; }
+    .highlight-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .highlight-box p { margin: 0; font-size: 0.95rem; }
+    blockquote { border-left: 4px solid #0066cc; margin: 1.5rem 0; padding: 0.75rem 1.5rem; background: #f0f7ff; border-radius: 0 6px 6px 0; }
+    blockquote p { margin: 0; font-style: italic; font-size: 1rem; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.93rem; }
+    .compare-table th { background: #f0f4f8; color: #1a1a1a; padding: 10px 14px; text-align: left; font-size: 0.82rem; font-weight: 700; border-bottom: 2px solid #ddd; }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #333; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #fafafa; }
+    .cta-box { background: #0066cc; color: #fff; border-radius: 12px; padding: 2rem; text-align: center; margin: 3rem 0; }
+    .cta-box h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.88); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-box a.cta-btn { background: #fff; color: #0066cc; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 0.5rem; }
+    .cta-sub { margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .cta-sub a { color: rgba(255,255,255,0.9); }
+    .related-articles { border-top: 2px solid #eee; padding-top: 2rem; margin-top: 3rem; }
+    .related-articles h3 { font-size: 0.82rem; text-transform: uppercase; color: #888; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+    .related-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; text-decoration: none; color: #333; font-size: 0.85rem; line-height: 1.4; display: block; }
+    .related-card:hover { border-color: #0066cc; color: #0066cc; }
+    .faq-section { margin-top: 2.5rem; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 1.25rem 0; }
     .faq-item:last-child { border-bottom: none; }
-    .faq-q {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 10px;
-    }
-    .faq-a { color: #d0d0d0; font-size: 15px; line-height: 1.7; }
-    .internal-links {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 10px;
-      padding: 18px 22px;
-      margin: 36px 0;
-    }
-    .internal-links h3 { font-size: 14px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; margin-top: 0; }
-    .internal-links a { color: #00d4ff; text-decoration: none; display: block; margin-bottom: 6px; font-size: 15px; }
-    .internal-links a:hover { text-decoration: underline; }
-    .cta-box {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(0, 100, 180, 0.12));
-      border: 1px solid rgba(0, 212, 255, 0.3);
-      border-radius: 12px;
-      padding: 32px;
-      margin-top: 56px;
-      text-align: center;
-    }
-    .cta-box h3 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 12px;
-      margin-top: 0;
-    }
-    .cta-box p { color: #b0d8e0; margin-bottom: 20px; }
-    .cta-btn {
-      display: inline-block;
-      background: #00d4ff;
-      color: #0a0a0a;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 13px 28px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .cta-btn:hover { opacity: 0.88; }
-    .cta-telegram { margin-top: 14px; color: #888; font-size: 14px; }
-    .cta-telegram a { color: #00d4ff; text-decoration: none; }
+    .faq-q { font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; font-size: 1rem; }
+    .faq-a { color: #444; font-size: 0.93rem; line-height: 1.7; }
+    .site-footer { border-top: 1px solid #eee; margin-top: 4rem; padding: 2rem 1rem; text-align: center; color: #888; font-size: 0.82rem; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .related-grid { grid-template-columns: 1fr; } .pull-quote { font-size: 1.1rem; padding: 0.75rem 1.25rem; } }
   </style>
 </head>
 <body>
-  <div class="container">
-    <span class="tag">Kiến thức cơ bản</span>
-    <h1>AI Agent Khác Gì ChatGPT? Đừng Nhầm 2 Thứ Này Nữa</h1>
-    <p class="meta">Cập nhật: 04/03/2026 · 7 phút đọc</p>
 
-    <!-- KEY TAKEAWAYS BOX -->
+  <header class="site-header">
+    <a href="/trolythongminh/" class="logo">🤖 NOVA Blog</a>
+    <nav>
+      <a href="/trolythongminh/">Trang chủ</a>
+      <a href="/trolythongminh/blog/">Blog</a>
+      <a href="https://calendly.com/willdaolamzz" class="nav-demo">Book Demo</a>
+    </nav>
+  </header>
+
+  <div class="article-container">
+
+    <nav class="breadcrumb">
+      <a href="/trolythongminh/">Trang chủ</a><span>›</span>
+      <a href="/trolythongminh/blog/">Blog</a><span>›</span>
+      AI Agent vs ChatGPT
+    </nav>
+
+    <span class="category-tag">Kiến thức cơ bản</span>
+
+    <h1>AI Agent Khác Gì ChatGPT? Đừng Nhầm 2 Thứ Này Nữa</h1>
+
+    <div class="byline">Đội ngũ NOVA • Tháng 3, 2026 • 7 phút đọc</div>
+
+    <div class="hero-image-wrapper">
+      <svg width="100%" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0a2463"/>
+            <stop offset="100%" style="stop-color:#1e78c8"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="400" fill="url(#bg1)"/>
+        <!-- grid lines -->
+        <line x1="0" y1="100" x2="1200" y2="100" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <line x1="0" y1="200" x2="1200" y2="200" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <line x1="0" y1="300" x2="1200" y2="300" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <line x1="300" y1="0" x2="300" y2="400" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <line x1="600" y1="0" x2="600" y2="400" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <line x1="900" y1="0" x2="900" y2="400" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <!-- decorative circles -->
+        <circle cx="980" cy="200" r="220" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="50"/>
+        <circle cx="980" cy="200" r="130" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+        <circle cx="980" cy="200" r="60" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+        <!-- dots -->
+        <circle cx="200" cy="320" r="4" fill="rgba(255,255,255,0.2)"/>
+        <circle cx="250" cy="280" r="3" fill="rgba(255,255,255,0.15)"/>
+        <circle cx="180" cy="260" r="5" fill="rgba(255,255,255,0.1)"/>
+        <!-- title text -->
+        <text x="90" y="170" font-family="Georgia,serif" font-size="52" fill="white" opacity="0.97" font-weight="bold">AI Agent vs ChatGPT</text>
+        <text x="90" y="235" font-family="Georgia,serif" font-size="28" fill="rgba(255,255,255,0.75)">Hiểu đúng để dùng đúng</text>
+        <text x="90" y="295" font-family="'Inter',sans-serif" font-size="16" fill="rgba(255,255,255,0.5)">NOVA Blog • Tháng 3, 2026</text>
+      </svg>
+    </div>
+
+    <!-- KEY TAKEAWAYS -->
     <div class="key-takeaways">
       <h3>📌 Key Takeaways</h3>
       <ul>
@@ -198,21 +134,18 @@
       </ul>
     </div>
 
-    <!-- DIRECT ANSWER trong 150 chữ đầu -->
     <p><strong>AI agent khác ChatGPT ở điểm cốt lõi này: ChatGPT trả lời câu hỏi, còn AI agent thực thi hành động.</strong> Khi bạn nhắn ChatGPT "Soạn email cảm ơn khách hàng", nó viết ra — nhưng bạn vẫn phải tự copy và gửi. Một AI agent được cấu hình đúng sẽ soạn email đó, kết nối Gmail của bạn, và tự gửi luôn — không cần bạn làm thêm bước nào. Đây là ranh giới quan trọng nhất giữa hai thứ này.</p>
 
-    <h2>ChatGPT là gì, thật ra?</h2>
-    <p>ChatGPT là một <strong>mô hình ngôn ngữ lớn</strong> (Large Language Model — LLM). Về cơ bản, nó là một cỗ máy trả lời câu hỏi cực kỳ thông minh. Bạn hỏi, nó trả lời. Bạn yêu cầu viết gì đó, nó viết. Bạn cần giải thích, nó giải thích.</p>
-    <p>Vấn đề là ChatGPT chỉ làm được đúng một việc: <em>tạo ra văn bản</em>. Nó không tự kết nối Gmail của bạn, không tự đặt lịch, không tự gửi email. Mỗi cuộc hội thoại là một tờ giấy trắng mới. Theo OpenAI, ChatGPT đang phục vụ hơn <strong>200 triệu người dùng hàng tuần</strong> (tính đến Q4/2024) — nhưng phần lớn dùng nó như một công cụ hỏi đáp thông minh, không phải như agent tự động.</p>
+    <div class="pull-quote">
+      "ChatGPT là chuyên gia tư vấn: cực kỳ thông minh, nhưng chỉ tư vấn miệng. Muốn làm gì thì bạn phải tự làm."
+    </div>
 
-    <blockquote>
-      <p>"ChatGPT là chuyên gia tư vấn: cực kỳ thông minh, nhưng chỉ tư vấn miệng. Muốn làm gì thì bạn phải tự làm."</p>
-    </blockquote>
+    <h2>ChatGPT là gì, thật ra?</h2>
+    <p>ChatGPT là một <strong>mô hình ngôn ngữ lớn</strong> (Large Language Model — LLM). Về cơ bản, nó là một cỗ máy trả lời câu hỏi cực kỳ thông minh. Bạn hỏi, nó trả lời. Bạn yêu cầu viết gì đó, nó viết.</p>
+    <p>Vấn đề là ChatGPT chỉ làm được đúng một việc: <em>tạo ra văn bản</em>. Nó không tự kết nối Gmail của bạn, không tự đặt lịch, không tự gửi email. Mỗi cuộc hội thoại là một tờ giấy trắng mới. Theo OpenAI, ChatGPT đang phục vụ hơn <strong>200 triệu người dùng hàng tuần</strong> (Q4/2024) — nhưng phần lớn dùng nó như công cụ hỏi đáp thông minh, không phải như agent tự động.</p>
 
     <h2>AI Agent là gì và khác ở đâu?</h2>
-
     <p><strong>AI Agent là hệ thống AI có khả năng tự lập kế hoạch và thực thi chuỗi hành động để đạt được mục tiêu</strong>, thay vì chỉ trả lời từng câu hỏi đơn lẻ.</p>
-
     <p>Một AI Agent có thể:</p>
     <ul>
       <li>Kết nối với email, lịch, CRM, Google Sheets</li>
@@ -233,165 +166,87 @@
     <h2>So sánh trực tiếp: AI Agent vs ChatGPT</h2>
     <table class="compare-table">
       <thead>
-        <tr>
-          <th>Tiêu chí</th>
-          <th>ChatGPT</th>
-          <th>AI Agent</th>
-        </tr>
+        <tr><th>Tiêu chí</th><th>ChatGPT</th><th>AI Agent</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Cách hoạt động</td>
-          <td>Hỏi → Trả lời</td>
-          <td>Giao task → Tự thực hiện → Báo kết quả</td>
-        </tr>
-        <tr>
-          <td>Kết nối công cụ</td>
-          <td>Hạn chế (plugins)</td>
-          <td>Tích hợp sâu (email, CRM, API...)</td>
-        </tr>
-        <tr>
-          <td>Nhớ ngữ cảnh</td>
-          <td>Trong 1 cuộc trò chuyện</td>
-          <td>Xuyên suốt nhiều ngày, nhiều tác vụ</td>
-        </tr>
-        <tr>
-          <td>Tự chủ</td>
-          <td>Không — cần người hỏi từng bước</td>
-          <td>Có — tự lên kế hoạch và thực thi</td>
-        </tr>
-        <tr>
-          <td>Phù hợp cho</td>
-          <td>Viết lách, ý tưởng, giải đáp</td>
-          <td>Tự động hóa quy trình làm việc</td>
-        </tr>
-        <tr>
-          <td>Chi phí cơ bản</td>
-          <td>$20/tháng (ChatGPT Plus)</td>
-          <td>500k–2 triệu/tháng (tùy độ phức tạp)</td>
-        </tr>
-        <tr>
-          <td>Cần kỹ thuật?</td>
-          <td>Không</td>
-          <td>Không bắt buộc (có no-code options)</td>
-        </tr>
+        <tr><td>Cách hoạt động</td><td>Hỏi → Trả lời</td><td>Giao task → Tự thực hiện → Báo kết quả</td></tr>
+        <tr><td>Kết nối công cụ</td><td>Hạn chế (plugins)</td><td>Tích hợp sâu (email, CRM, API...)</td></tr>
+        <tr><td>Nhớ ngữ cảnh</td><td>Trong 1 cuộc trò chuyện</td><td>Xuyên suốt nhiều ngày, nhiều tác vụ</td></tr>
+        <tr><td>Tự chủ</td><td>Không — cần người hỏi từng bước</td><td>Có — tự lên kế hoạch và thực thi</td></tr>
+        <tr><td>Phù hợp cho</td><td>Viết lách, ý tưởng, giải đáp</td><td>Tự động hóa quy trình làm việc</td></tr>
+        <tr><td>Chi phí cơ bản</td><td>$20/tháng (ChatGPT Plus)</td><td>500k–2 triệu/tháng (tùy độ phức tạp)</td></tr>
+        <tr><td>Cần kỹ thuật?</td><td>Không</td><td>Không bắt buộc (có no-code options)</td></tr>
       </tbody>
     </table>
 
     <h2>Khi nào dùng ChatGPT, khi nào dùng AI Agent?</h2>
-    <p><strong>Dùng ChatGPT</strong> khi bạn cần:</p>
-    <ul>
-      <li>Soạn thảo nội dung nhanh: email, bài viết, caption mạng xã hội</li>
-      <li>Brainstorm ý tưởng, nghiên cứu chủ đề</li>
-      <li>Giải thích khái niệm, học kiến thức mới</li>
-      <li>Phân tích văn bản, dịch thuật nhanh</li>
-    </ul>
-    <p><strong>Dùng AI Agent</strong> khi bạn muốn:</p>
-    <ul>
-      <li>Tự động hóa quy trình lặp đi lặp lại (trả lời tin nhắn, cập nhật dữ liệu)</li>
-      <li>Kết hợp nhiều bước thành một luồng duy nhất không cần người điều phối</li>
-      <li>Có "nhân viên AI" làm việc 24/7 kể cả khi bạn không online</li>
-      <li>Xử lý dữ liệu từ nhiều nguồn và tổng hợp kết quả tự động</li>
-    </ul>
+    <p><strong>Dùng ChatGPT</strong> khi bạn cần: soạn thảo nội dung nhanh, brainstorm ý tưởng, nghiên cứu chủ đề, giải thích khái niệm, dịch thuật nhanh.</p>
+    <p><strong>Dùng AI Agent</strong> khi bạn muốn: tự động hóa quy trình lặp đi lặp lại, kết hợp nhiều bước thành một luồng duy nhất, có "nhân viên AI" làm việc 24/7, xử lý dữ liệu từ nhiều nguồn và tổng hợp kết quả tự động.</p>
 
     <div class="highlight-box">
-      <p>💡 Theo Gartner 2024: đến năm 2026, <strong>80% doanh nghiệp sẽ dùng AI agent</strong> cho ít nhất một quy trình vận hành — tăng từ mức chưa đến 5% vào năm 2023. Cuộc chuyển dịch đang xảy ra rất nhanh.</p>
+      <p>💡 Theo Gartner 2024: đến năm 2026, <strong>80% doanh nghiệp sẽ dùng AI agent</strong> cho ít nhất một quy trình vận hành — tăng từ mức chưa đến 5% vào năm 2023.</p>
     </div>
 
     <p><strong>Tóm lại: ChatGPT là công cụ — AI Agent là người thực hiện.</strong> Biết rõ điều này, bạn sẽ chọn đúng thứ cần thiết cho công việc của mình và không kỳ vọng sai vào bất kỳ công cụ nào.</p>
 
-    <!-- INTERNAL LINKS -->
-    <div class="internal-links">
-      <h3>Đọc thêm liên quan</h3>
-      <a href="/blog/bat-dau-voi-ai-agent-tu-dau">→ Bắt Đầu Với AI Agent Từ Đâu? Lộ Trình 30 Ngày Thực Tế</a>
-      <a href="/blog/tu-dong-hoa-cong-viec-bang-ai">→ Tự Động Hóa Công Việc Bằng AI: Bắt Đầu Từ Đâu?</a>
-      <a href="/blog/ai-agent-cho-nguoi-khong-biet-code">→ AI Agent Cho Người Không Biết Code: Có Thật Sự Dùng Được Không?</a>
+    <!-- CTA BOX -->
+    <div class="cta-box">
+      <h3>Muốn có AI agent riêng cho doanh nghiệp?</h3>
+      <p>NOVA — setup trong 48h, không cần kỹ thuật. Thử trước, trả sau.</p>
+      <a href="https://calendly.com/willdaolamzz" class="cta-btn">Book Demo Miễn Phí →</a>
+      <p class="cta-sub">Hoặc nhắn trực tiếp: <a href="https://t.me/willdaolam">@willdaolam</a> trên Telegram</p>
     </div>
 
     <!-- FAQ SECTION -->
     <div class="faq-section">
       <h2>Câu Hỏi Thường Gặp</h2>
-
       <div class="faq-item">
         <div class="faq-q">AI agent có cần ChatGPT để hoạt động không?</div>
-        <div class="faq-a">Không nhất thiết. AI agent có thể sử dụng nhiều mô hình AI khác nhau — Claude (Anthropic), Gemini (Google), Llama (Meta), hay GPT-4o (OpenAI). ChatGPT chỉ là một trong nhiều "bộ não" mà agent có thể dùng. Bản thân ChatGPT Plus cũng có tính năng Custom GPT cho phép tạo agent đơn giản.</div>
+        <div class="faq-a">Không nhất thiết. AI agent có thể sử dụng nhiều mô hình AI khác nhau — Claude (Anthropic), Gemini (Google), Llama (Meta), hay GPT-4o (OpenAI). ChatGPT chỉ là một trong nhiều "bộ não" mà agent có thể dùng.</div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-q">AI agent có thể tự học từ công việc tôi giao không?</div>
-        <div class="faq-a">Phần lớn AI agent hiện tại không tự học theo nghĩa truyền thống. Chúng thông minh hơn khi bạn cập nhật thêm thông tin, hướng dẫn, và kịch bản cho chúng. Một số nền tảng cao cấp có fine-tuning (học có hướng dẫn), nhưng cần kiến thức kỹ thuật.</div>
+        <div class="faq-q">AI agent có tự học từ công việc tôi giao không?</div>
+        <div class="faq-a">Phần lớn AI agent hiện tại không tự học theo nghĩa truyền thống. Chúng thông minh hơn khi bạn cập nhật thêm thông tin, hướng dẫn, và kịch bản cho chúng.</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">AI agent có đắt hơn ChatGPT không?</div>
-        <div class="faq-a">Tùy mức độ sử dụng. ChatGPT Plus tốn $20/tháng cố định. AI agent đơn giản (dùng Zapier + GPT-4o) có thể chỉ tốn 200k–500k/tháng. Agent phức tạp hơn với nhiều tích hợp có thể lên 1–3 triệu/tháng. Chi phí setup ban đầu thường từ 3–10 triệu.</div>
+        <div class="faq-a">Tùy mức độ sử dụng. ChatGPT Plus tốn $20/tháng cố định. AI agent đơn giản có thể chỉ tốn 200k–500k/tháng. Agent phức tạp hơn với nhiều tích hợp có thể lên 1–3 triệu/tháng.</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">Người không biết code có thể tự tạo AI agent không?</div>
-        <div class="faq-a">Có — với các nền tảng no-code như Zapier, Make, Manychat. Bạn setup bằng giao diện kéo-thả, không cần viết một dòng code nào. Chỉ những agent đặc thù, phức tạp hoặc cần bảo mật cao mới cần hỗ trợ kỹ thuật một lần.</div>
+        <div class="faq-a">Có — với các nền tảng no-code như Zapier, Make, Manychat. Bạn setup bằng giao diện kéo-thả, không cần viết một dòng code nào.</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">ChatGPT vs AI Agent — cái nào phù hợp hơn cho doanh nghiệp nhỏ Việt Nam?</div>
-        <div class="faq-a">Cho doanh nghiệp nhỏ ở Việt Nam, câu trả lời phụ thuộc vào mục tiêu. Nếu bạn cần hỗ trợ soạn thảo nội dung và brainstorm — ChatGPT đủ dùng. Nếu bạn muốn tự động hóa trả lời khách hàng, xử lý đơn hàng, hay tổng hợp báo cáo — AI agent sẽ mang lại ROI rõ ràng hơn trong vòng 1–3 tháng.</div>
+        <div class="faq-a">Nếu bạn cần hỗ trợ soạn thảo nội dung — ChatGPT đủ dùng. Nếu muốn tự động hóa trả lời khách hàng, xử lý đơn hàng, tổng hợp báo cáo — AI agent mang lại ROI rõ ràng hơn trong 1–3 tháng.</div>
       </div>
     </div>
 
-    <!-- CTA SECTION -->
-    <div class="cta-box">
-      <h3>Bạn muốn thử AI agent thật sự?</h3>
-      <p>Đội ngũ Will &amp; Grey đang giúp các cá nhân và doanh nghiệp nhỏ setup AI agent riêng trong 48h.</p>
-      <a href="https://calendly.com/willdaolamzz" class="cta-btn">Book demo miễn phí 30 phút →</a>
-      <p class="cta-telegram">Hoặc nhắn trực tiếp: <a href="https://t.me/willdaolam">@willdaolam</a> trên Telegram</p>
+    <!-- RELATED ARTICLES -->
+    <div class="related-articles">
+      <h3>Bài viết liên quan</h3>
+      <div class="related-grid">
+        <a href="/trolythongminh/blog/tu-dong-hoa-cong-viec-bang-ai/" class="related-card">Tự Động Hóa Công Việc Bằng AI: Bắt Đầu Từ Đâu?</a>
+        <a href="/trolythongminh/blog/ai-agent-cho-nguoi-khong-biet-code/" class="related-card">AI Agent Cho Người Không Biết Code</a>
+        <a href="/trolythongminh/blog/bat-dau-voi-ai-agent-tu-dau/" class="related-card">Lộ Trình 30 Ngày Bắt Đầu Với AI Agent</a>
+      </div>
     </div>
+
   </div>
+
+  <footer class="site-footer">
+    <p>© 2026 NOVA Blog · <a href="/trolythongminh/">Trang chủ</a> · <a href="/trolythongminh/blog/">Blog</a></p>
+  </footer>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "AI agent có cần ChatGPT để hoạt động không?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Không nhất thiết. AI agent có thể sử dụng nhiều mô hình AI khác nhau — Claude, Gemini, Llama, hay GPT-4o. ChatGPT chỉ là một trong nhiều 'bộ não' mà agent có thể dùng."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "AI agent có đắt hơn ChatGPT không?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tùy mức độ. ChatGPT Plus tốn $20/tháng. AI agent đơn giản có thể chỉ tốn 200k–500k/tháng cho phí nền tảng. Agent phức tạp hơn có thể lên 1–3 triệu/tháng, chưa kể chi phí setup ban đầu 3–10 triệu."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Người không biết code có thể tự tạo AI agent không?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Có — với các nền tảng no-code như Zapier, Make, Manychat. Bạn setup bằng giao diện kéo-thả. Chỉ những agent đặc thù mới cần hỗ trợ kỹ thuật một lần."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "AI agent khác ChatGPT ở điểm nào quan trọng nhất?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Điểm khác biệt cốt lõi: ChatGPT chỉ trả lời câu hỏi, còn AI agent tự thực hiện hành động — kết nối ứng dụng, gửi email, cập nhật dữ liệu mà không cần bạn can thiệp từng bước."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "AI agent hay ChatGPT phù hợp hơn cho doanh nghiệp nhỏ Việt Nam?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nếu cần soạn thảo nội dung — ChatGPT đủ dùng. Nếu muốn tự động hóa trả lời khách hàng, xử lý đơn hàng, tổng hợp báo cáo — AI agent mang lại ROI rõ ràng hơn trong 1–3 tháng."
-        }
-      }
+      {"@type": "Question", "name": "AI agent có cần ChatGPT để hoạt động không?", "acceptedAnswer": {"@type": "Answer", "text": "Không nhất thiết. AI agent có thể dùng Claude, Gemini, Llama, hay GPT-4o. ChatGPT chỉ là một trong nhiều bộ não mà agent có thể dùng."}},
+      {"@type": "Question", "name": "AI agent có đắt hơn ChatGPT không?", "acceptedAnswer": {"@type": "Answer", "text": "ChatGPT Plus tốn $20/tháng. AI agent đơn giản 200k–500k/tháng. Agent phức tạp hơn 1–3 triệu/tháng."}},
+      {"@type": "Question", "name": "Người không biết code có thể tự tạo AI agent không?", "acceptedAnswer": {"@type": "Answer", "text": "Có — với Zapier, Make, Manychat. Setup bằng giao diện kéo-thả, không cần code."}},
+      {"@type": "Question", "name": "AI agent khác ChatGPT ở điểm nào quan trọng nhất?", "acceptedAnswer": {"@type": "Answer", "text": "ChatGPT chỉ trả lời câu hỏi, còn AI agent tự thực hiện hành động — kết nối ứng dụng, gửi email, cập nhật dữ liệu mà không cần bạn can thiệp từng bước."}}
     ]
   }
   </script>
