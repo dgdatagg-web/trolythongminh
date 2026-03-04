@@ -867,7 +867,7 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <li><span class="add">+</span> Nâng lên 180 credits/ngày: <strong>+500k/tháng</strong></li>
         </ul>
         <div class="pc2-countdown normal" id="cd-wrap-1">
-          <div class="pc2-countdown-label">⏳ Giá ưu đãi kết thúc sau</div>
+          <div class="pc2-countdown-label">🚀 Launching discount · Kết thúc sau</div>
           <div class="pc2-countdown-timer">
             <div class="cd-block"><span class="cd-num" id="cd1-d">--</span><div class="cd-lbl">ngày</div></div>
             <div class="cd-sep">:</div>
@@ -911,7 +911,7 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <li><span class="add">+</span> Nâng lên 400 credits/ngày: <strong>+900k/tháng</strong></li>
         </ul>
         <div class="pc2-countdown normal" id="cd-wrap-2">
-          <div class="pc2-countdown-label">⏳ Giá ưu đãi kết thúc sau</div>
+          <div class="pc2-countdown-label">🚀 Launching discount · Kết thúc sau</div>
           <div class="pc2-countdown-timer">
             <div class="cd-block"><span class="cd-num" id="cd2-d">--</span><div class="cd-lbl">ngày</div></div>
             <div class="cd-sep">:</div>
@@ -1096,11 +1096,11 @@ const nlSection = document.getElementById('nightlog');
 if (nlSection) nlObs.observe(nlSection);
 
 // COUNTDOWN TIMERS
-// Deadlines: gói 1 = 60 ngày, gói 2 = 90 ngày, gói 3 = 30 ngày từ launch (2026-03-03)
+// Deadlines: tất cả gói = 30 ngày từ launch (2026-03-03) — Launching Discount
 const LAUNCH = new Date('2026-03-03T00:00:00+07:00').getTime();
 const deadlines = [
-  LAUNCH + 60 * 86400000,  // gói 1: 60 ngày
-  LAUNCH + 90 * 86400000,  // gói 2: 90 ngày
+  LAUNCH + 30 * 86400000,  // gói 1: 30 ngày (launching discount)
+  LAUNCH + 30 * 86400000,  // gói 2: 30 ngày (launching discount)
   LAUNCH + 30 * 86400000,  // gói 3: 30 ngày (urgent!)
 ];
 const cdIds = [
