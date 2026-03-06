@@ -363,7 +363,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:12px 48px;display:fl
 .nova-showcase{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;max-width:1000px;margin:0 auto;}
 @media(max-width:800px){.nova-showcase{grid-template-columns:1fr;gap:36px;}}
 .nova-portrait{position:relative;display:flex;justify-content:center;}
-.nova-portrait img{width:280px;height:380px;object-fit:cover;object-position:top;border-radius:24px;border:2px solid rgba(34,211,238,.3);box-shadow:0 0 60px rgba(34,211,238,.2),0 20px 60px rgba(0,0,0,.5);}
+.nova-portrait img{width:280px;height:380px;object-fit:cover;object-position:center 15%;border-radius:24px;border:2px solid rgba(34,211,238,.3);box-shadow:0 0 60px rgba(34,211,238,.2),0 20px 60px rgba(0,0,0,.5);}
 .nova-portrait::before{content:'';position:absolute;inset:-2px;border-radius:26px;background:linear-gradient(135deg,rgba(34,211,238,.4),transparent,rgba(37,99,235,.3));z-index:-1;animation:borderGlow 3s ease-in-out infinite alternate;}
 @keyframes borderGlow{0%{opacity:.4;}100%{opacity:1;}}
 .nova-portrait-badge{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);padding:6px 18px;background:rgba(11,15,26,.85);backdrop-filter:blur(8px);border:1px solid rgba(34,211,238,.3);border-radius:100px;font-size:11px;font-weight:700;color:#22d3ee;white-space:nowrap;}
