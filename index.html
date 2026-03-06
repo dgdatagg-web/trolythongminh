@@ -459,62 +459,36 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
   </div>
 </section>
 
-<!-- HERO DEMO SECTION -->
-<section class="section" style="padding:70px 24px 60px;overflow:visible;">
-  <div id="hero-demo-grid" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;">
-    <!-- Nova portrait -->
-    <div class="nova-portrait reveal d1" style="display:flex;justify-content:center;">
-      <div style="position:relative;">
-        <img src="nova-avatar-v2.jpg" alt="NOVA AI Assistant" style="width:280px;height:380px;object-fit:cover;object-position:top;border-radius:24px;border:2px solid rgba(34,211,238,.3);box-shadow:0 0 60px rgba(34,211,238,.2),0 20px 60px rgba(0,0,0,.5);">
-        <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);padding:6px 18px;background:rgba(11,15,26,.85);backdrop-filter:blur(8px);border:1px solid rgba(34,211,238,.3);border-radius:100px;font-size:11px;font-weight:700;color:#22d3ee;white-space:nowrap;">⚡ NOVA · AI Assistant · Online 24/7</div>
-      </div>
+<!-- NOVA SHOWCASE -->
+<section class="section" id="nova">
+  <div class="glow" style="width:500px;height:500px;background:rgba(34,211,238,.07);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="nova-showcase">
+    <div class="nova-portrait reveal">
+      <img src="nova-avatar-v2.jpg" alt="NOVA AI Assistant">
+      <div class="nova-portrait-badge">⚡ NOVA · AI Assistant · Online 24/7</div>
     </div>
-    <!-- Chat demo -->
-    <div>
-      <h2 class="reveal d1" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,48px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:12px;">Nhân viên AI của bạn.<br><span style="color:#22d3ee;">Thông minh. Tận tâm.<br>Không bao giờ nghỉ.</span></h2>
-      <p class="reveal d2" style="font-size:13px;color:rgba(170,185,210,.55);margin-bottom:20px;">Đoạn trò chuyện thực tế — không script, không cắt bớt.</p>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <!-- User msg 1 -->
-        <div class="reveal d2" style="display:flex;justify-content:flex-end;">
-          <div style="background:rgba(37,99,235,.25);border:1px solid rgba(37,99,235,.3);border-radius:16px 16px 4px 16px;padding:10px 14px;max-width:80%;font-size:13px;line-height:1.5;">Tháng này lợi nhuận tôi bao nhiêu? Chi phí nào đang ăn nhiều nhất?</div>
-        </div>
-        <!-- Nova reply 1 -->
-        <div class="reveal d3" style="display:flex;gap:8px;align-items:flex-start;">
-          <img src="nova-avatar-v2.jpg" style="width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(34,211,238,.3);">
-          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:13px;line-height:1.7;">
-            Tháng 3 của anh:<br>
-            • Doanh thu: <strong>87,400,000đ</strong><br>
-            • Chi phí: <strong>61,200,000đ</strong><br>
-            • Lợi nhuận: <strong style="color:#22d3ee;">26,200,000đ (30%)</strong><br><br>
-            Chi phí ăn nhiều nhất: Nguyên liệu 38% — tăng 4% so tháng 2. Mình đã tìm được NCC thay thế rẻ hơn 12% nếu anh muốn xem.
-          </div>
-        </div>
-        <!-- User msg 2 -->
-        <div class="reveal d4" style="display:flex;justify-content:flex-end;">
-          <div style="background:rgba(37,99,235,.25);border:1px solid rgba(37,99,235,.3);border-radius:16px 16px 4px 16px;padding:10px 14px;max-width:80%;font-size:13px;">Nhà cung cấp nào? So sánh giúp tôi</div>
-        </div>
-        <!-- Nova reply 2 -->
-        <div class="reveal d5" style="display:flex;gap:8px;align-items:flex-start;">
-          <img src="nova-avatar-v2.jpg" style="width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(34,211,238,.3);">
-          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:13px;line-height:1.7;">
-            Có 3 option:<br>
-            • NCC Hà Nội: 85k/kg, MOQ 10kg, ship 2 ngày<br>
-            • NCC Bình Dương: 79k/kg, MOQ 5kg, ship 1 ngày ✅<br>
-            • NCC hiện tại: 90k/kg<br><br>
-            Tiết kiệm nếu đổi: <strong style="color:#10b981;">~2,100,000đ/tháng</strong>. Mình soạn email đặt hàng thử nhé?
-          </div>
-        </div>
+    <div class="nova-convo reveal d2">
+      <span class="sec-label" style="text-align:left;">GẶP NOVA TRÊN PROFILE PIC ↑</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,40px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:8px;">Nhân viên AI của bạn.<br><span style="color:#22d3ee;">Thông minh. Tận tâm. Không bao giờ nghỉ.</span></h2>
+      <p class="nc-intro">Dưới đây là một đoạn trò chuyện thực tế — câu hỏi của founder, câu trả lời của NOVA. Không script, không cắt bớt.</p>
+      <div class="nc-msg user">
+        <div class="nc-avatar-user"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div><div class="nc-bubble">Tháng này lợi nhuận tôi bao nhiêu? Chi phí nào đang ăn nhiều nhất?</div><div class="nc-time" style="text-align:right;">09:14</div></div>
+      </div>
+      <div class="nc-msg nova">
+        <img src="nova-avatar-v2.jpg" alt="NOVA" class="nc-avatar">
+        <div><div class="nc-bubble">Tháng 3 của anh:<br>• Doanh thu: <strong>87,400,000₫</strong><br>• Chi phí: 61,200,000₫<br>• <strong>Lợi nhuận: 26,200,000₫ (30%)</strong><br><br>Chi phí ăn nhiều nhất: Nguyên liệu 38% — tăng 4% so với tháng 2. Nguyên nhân: giá sốt cà-ri tăng. Mình đã tìm được nhà cung cấp thay thế rẻ hơn 12% nếu anh muốn xem.</div><div class="nc-time">09:14</div></div>
+      </div>
+      <div class="nc-msg user">
+        <div class="nc-avatar-user"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div><div class="nc-bubble">Nhà cung cấp nào? So sánh giúp tôi</div><div class="nc-time" style="text-align:right;">09:15</div></div>
+      </div>
+      <div class="nc-msg nova">
+        <img src="nova-avatar-v2.jpg" alt="NOVA" class="nc-avatar">
+        <div><div class="nc-bubble">Đang pull data... Có 3 option:<br>• <strong>NCC Hà Nội:</strong> 85k/kg, MOQ 10kg, ship 2 ngày<br>• <strong>NCC Bình Dương:</strong> 79k/kg, MOQ 5kg, ship 1 ngày ✅<br>• <strong>NCC hiện tại:</strong> 90k/kg<br><br>Tiết kiệm nếu đổi Bình Dương: ~<strong>2,100,000₫/tháng</strong>. Mình soạn email liên hệ thử không?</div><div class="nc-time">09:15</div></div>
       </div>
     </div>
   </div>
-  <style>
-    @media(max-width:800px){
-      #hero-demo-grid{grid-template-columns:1fr!important;gap:36px!important;}
-      #hero-demo-grid .nova-portrait{display:none!important;}
-    }
-    .reveal.d4{transition-delay:.5s;}
-    .reveal.d5{transition-delay:.7s;}
-  </style>
 </section>
 
 
@@ -551,108 +525,6 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
   </div>
 </section>
 
-
-<!-- WHY NOT GENERIC AI -->
-<section class="section" style="padding:50px 24px;">
-  <div style="max-width:860px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:32px;">
-      <span class="sec-label">Tại Sao Không Dùng ChatGPT / Gemini Miễn Phí?</span>
-      <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,3vw,32px);font-weight:900;letter-spacing:-1px;margin-top:8px;color:#e8edf5;">Vì <span style="color:#ef4444;">ChatGPT</span> làm việc cho 200 triệu người.<br><span style="color:#22d3ee;">NOVA</span> chỉ làm việc cho bạn.</h3>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-      <div style="background:#0d1424;border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:20px;">
-        <div style="font-size:20px;margin-bottom:8px;">🚨</div>
-        <div style="font-size:12px;font-weight:700;color:#fca5a5;margin-bottom:6px;">ChatGPT + DoD</div>
-        <div style="font-size:11px;color:rgba(170,185,210,.55);line-height:1.6;">Tháng 2/2026: Sam Altman ký hợp đồng với Bộ Quốc phòng Mỹ. Data của bạn đi đâu — bạn không biết.</div>
-      </div>
-      <div style="background:#0d1424;border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:20px;">
-        <div style="font-size:20px;margin-bottom:8px;">🚫</div>
-        <div style="font-size:12px;font-weight:700;color:#fca5a5;margin-bottom:6px;">Gemini ban tài khoản</div>
-        <div style="font-size:11px;color:rgba(170,185,210,.55);line-height:1.6;">Google suspend account không báo trước khi phát hiện dùng third-party. Một ngày tỉnh dậy — mất trắng.</div>
-      </div>
-      <div style="background:#0d1424;border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:20px;">
-        <div style="font-size:20px;margin-bottom:8px;">🔗</div>
-        <div style="font-size:12px;font-weight:700;color:#fca5a5;margin-bottom:6px;">AI generic = không hiểu bạn</div>
-        <div style="font-size:11px;color:rgba(170,185,210,.55);line-height:1.6;">Mỗi lần chat là bắt đầu từ đầu. Không nhớ ngành bạn, không nhớ data bạn, không theo kịp business của bạn.</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:24px;padding:16px 24px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(34,211,238,.08));border:1px solid rgba(16,185,129,.15);border-radius:12px;">
-      <span style="font-size:13px;font-weight:700;color:#6ee7b7;">NOVA khác:</span>
-      <span style="font-size:12px;color:rgba(185,200,220,.7);margin-left:8px;">Instance riêng · Nhớ ngành bạn · Data không share · Không bị Big Tech khoá · Người Việt hỗ trợ 24/7</span>
-    </div>
-  </div>
-</section>
-
-<!-- PAIN -->
-<!-- SAFETY & CONTROL SECTION -->
-<section class="section s-dark" id="safety">
-  <div class="glow" style="width:500px;height:500px;background:rgba(16,185,129,.04);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-  <div class="sec-inner">
-    <span class="sec-label reveal">An Toàn & Kiểm Soát</span>
-    <h2 class="sec-h reveal d1">"Tôi nghe nói AI<br><span>tự ý xoá sạch dữ liệu?"</span></h2>
-    <p class="sec-sub reveal d2">Đúng — có người mất ảnh gia đình 14 năm vì AI không có guardrails. Có người bị mất trắng dữ liệu kinh doanh vì agent chạy không kiểm soát. Chúng tôi biết điều đó — và đã build sẵn giải pháp.</p>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:760px;margin:0 auto 32px;" class="reveal d2">
-      <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:22px;">
-        <div style="font-size:22px;margin-bottom:10px;">🔐</div>
-        <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:6px;">Permission Gate — Xác nhận trước khi làm</div>
-        <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.7;">NOVA không bao giờ xoá, gửi, hay thay đổi dữ liệu quan trọng mà không có lệnh rõ ràng từ bạn. Mọi action nhạy cảm đều cần confirm. Không có ngoại lệ.</div>
-      </div>
-      <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:22px;">
-        <div style="font-size:22px;margin-bottom:10px;">🛡️</div>
-        <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:6px;">Safety Guardrails — Bộ mã lệnh tặng kèm</div>
-        <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.7;">Mỗi NOVA instance được cài sẵn bộ safety rules từ ngày đầu: không tự chạy lệnh nguy hiểm, không leak data ra ngoài, không để hai agent tự nói chuyện với nhau tốn tiền vô tội vạ.</div>
-      </div>
-      <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:22px;">
-        <div style="font-size:22px;margin-bottom:10px;">🏠</div>
-        <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:6px;">IP Riêng — Bot là tài sản của bạn</div>
-        <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.7;">Chúng tôi hỗ trợ đăng ký IP riêng cho NOVA của bạn. Con bot này là tài sản bạn sở hữu — không ai lấy đi được. Bạn train nó càng lâu, nó càng hiểu business của bạn, giá trị càng cao.</div>
-      </div>
-      <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:22px;">
-        <div style="font-size:22px;margin-bottom:10px;">📈</div>
-        <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:6px;">Càng dùng — Càng có giá trị</div>
-        <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.7;">Không như AI chung — mỗi lần chat là bắt đầu từ đầu. NOVA nhớ ngành bạn, quy trình bạn, khách hàng bạn. 1 năm sau, con bot này không ai copy được — vì nó đã được train theo đúng business của bạn.</div>
-      </div>
-    </div>
-    <div class="reveal d3" style="max-width:600px;margin:0 auto;padding:16px 24px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(34,211,238,.06));border:1px solid rgba(16,185,129,.2);border-radius:12px;text-align:center;">
-      <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:4px;">🔒 Cam kết từ ngày đầu</div>
-      <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.6;">Data của bạn nằm trên instance riêng · Không bao giờ share với client khác · Bạn có toàn quyền export và sở hữu · Safety guardrails cài sẵn không thể tắt</div>
-    </div>
-  </div>
-</section>
-<section class="section s-dark" id="pain">
-  <div class="glow" style="width:500px;height:500px;background:rgba(34,211,238,.05);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-  <div class="sec-inner">
-    <span class="sec-label reveal">Vấn đề</span>
-    <h2 class="sec-h reveal d1">Bạn đang mất tiền<br><span>mỗi ngày vì những lý do này.</span></h2>
-    <p class="sec-sub reveal d2">Không phải vì bạn không đủ giỏi. Mà vì bạn đang thiếu người hỗ trợ đúng lúc.</p>
-    <div class="pain-grid">
-      <div class="pain-card reveal d1">
-        <div class="pain-num">01</div>
-        <h3>Không biết tin tưởng ai với thông tin nội bộ</h3>
-        <p>Nhân viên biết số liệu, biết khách, biết chiến lược — rồi một ngày nghỉ việc hoặc chia sẻ cho đối thủ.</p>
-        <div class="quote">"Em xin nghỉ anh ơi." — và 3 tháng sau đối thủ dùng đúng playbook của bạn.</div>
-      </div>
-      <div class="pain-card reveal d2">
-        <div class="pain-num">02</div>
-        <h3>Cần hỗ trợ nhiều mảng, người giỏi thì đắt</h3>
-        <p>Kế toán không phân tích thị trường. Marketing không đọc báo cáo lãi lỗ. Người đa năng lương 20–30 triệu vẫn không đủ.</p>
-        <div class="quote">"Tìm người vừa hiểu số vừa hiểu marketing — gần như không tồn tại."</div>
-      </div>
-      <div class="pain-card reveal d3">
-        <div class="pain-num">03</div>
-        <h3>Hỏi là phải chờ — quyết định bị trễ</h3>
-        <p>Cần thông tin gấp lúc 10 giờ đêm, nhân sự đã về. Cần phân tích cuối tuần, phải đợi Thứ 2.</p>
-        <div class="quote">"Lúc mình cần nhất thì không ai trả lời."</div>
-      </div>
-      <div class="pain-card reveal d4">
-        <div class="pain-num">04</div>
-        <h3>Dữ liệu rải rác — không ai tổng hợp</h3>
-        <p>Số liệu ở bảng tính. Email ở hộp thư. Báo cáo ở lưu trữ đám mây. Không ai kéo lại và nói điều quan trọng nhất.</p>
-        <div class="quote">"Có data nhưng không có insight. Có thông tin nhưng không có quyết định."</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- NIGHT LOG -->
 <section class="section s-dark" id="nightlog">
@@ -763,6 +635,108 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
   </div>
 </section>
 
+<!-- WHY NOT GENERIC AI -->
+<section class="section" style="padding:50px 24px;">
+  <div style="max-width:860px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <span class="sec-label">Tại Sao Không Dùng ChatGPT / Gemini Miễn Phí?</span>
+      <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,3vw,32px);font-weight:900;letter-spacing:-1px;margin-top:8px;color:#e8edf5;">Vì <span style="color:#ef4444;">ChatGPT</span> làm việc cho 200 triệu người.<br><span style="color:#22d3ee;">NOVA</span> chỉ làm việc cho bạn.</h3>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div style="background:#0d1424;border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:20px;">
+        <div style="font-size:20px;margin-bottom:8px;">🚨</div>
+        <div style="font-size:12px;font-weight:700;color:#fca5a5;margin-bottom:6px;">ChatGPT + DoD</div>
+        <div style="font-size:11px;color:rgba(170,185,210,.55);line-height:1.6;">Tháng 2/2026: Sam Altman ký hợp đồng với Bộ Quốc phòng Mỹ. Data của bạn đi đâu — bạn không biết.</div>
+      </div>
+      <div style="background:#0d1424;border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:20px;">
+        <div style="font-size:20px;margin-bottom:8px;">🚫</div>
+        <div style="font-size:12px;font-weight:700;color:#fca5a5;margin-bottom:6px;">Gemini ban tài khoản</div>
+        <div style="font-size:11px;color:rgba(170,185,210,.55);line-height:1.6;">Google suspend account không báo trước khi phát hiện dùng third-party. Một ngày tỉnh dậy — mất trắng.</div>
+      </div>
+      <div style="background:#0d1424;border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:20px;">
+        <div style="font-size:20px;margin-bottom:8px;">🔗</div>
+        <div style="font-size:12px;font-weight:700;color:#fca5a5;margin-bottom:6px;">AI generic = không hiểu bạn</div>
+        <div style="font-size:11px;color:rgba(170,185,210,.55);line-height:1.6;">Mỗi lần chat là bắt đầu từ đầu. Không nhớ ngành bạn, không nhớ data bạn, không theo kịp business của bạn.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:24px;padding:16px 24px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(34,211,238,.08));border:1px solid rgba(16,185,129,.15);border-radius:12px;">
+      <span style="font-size:13px;font-weight:700;color:#6ee7b7;">NOVA khác:</span>
+      <span style="font-size:12px;color:rgba(185,200,220,.7);margin-left:8px;">Instance riêng · Nhớ ngành bạn · Data không share · Không bị Big Tech khoá · Người Việt hỗ trợ 24/7</span>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<!-- SAFETY & CONTROL SECTION -->
+<section class="section s-dark" id="safety">
+  <div class="glow" style="width:500px;height:500px;background:rgba(16,185,129,.04);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="sec-inner">
+    <span class="sec-label reveal">An Toàn & Kiểm Soát</span>
+    <h2 class="sec-h reveal d1">"Tôi nghe nói AI<br><span>tự ý xoá sạch dữ liệu?"</span></h2>
+    <p class="sec-sub reveal d2">Đúng — có người mất ảnh gia đình 14 năm vì AI không có guardrails. Có người bị mất trắng dữ liệu kinh doanh vì agent chạy không kiểm soát. Chúng tôi biết điều đó — và đã build sẵn giải pháp.</p>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:760px;margin:0 auto 32px;" class="reveal d2">
+      <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:22px;">
+        <div style="font-size:22px;margin-bottom:10px;">🔐</div>
+        <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:6px;">Permission Gate — Xác nhận trước khi làm</div>
+        <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.7;">NOVA không bao giờ xoá, gửi, hay thay đổi dữ liệu quan trọng mà không có lệnh rõ ràng từ bạn. Mọi action nhạy cảm đều cần confirm. Không có ngoại lệ.</div>
+      </div>
+      <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:22px;">
+        <div style="font-size:22px;margin-bottom:10px;">🛡️</div>
+        <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:6px;">Safety Guardrails — Bộ mã lệnh tặng kèm</div>
+        <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.7;">Mỗi NOVA instance được cài sẵn bộ safety rules từ ngày đầu: không tự chạy lệnh nguy hiểm, không leak data ra ngoài, không để hai agent tự nói chuyện với nhau tốn tiền vô tội vạ.</div>
+      </div>
+      <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:22px;">
+        <div style="font-size:22px;margin-bottom:10px;">🏠</div>
+        <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:6px;">IP Riêng — Bot là tài sản của bạn</div>
+        <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.7;">Chúng tôi hỗ trợ đăng ký IP riêng cho NOVA của bạn. Con bot này là tài sản bạn sở hữu — không ai lấy đi được. Bạn train nó càng lâu, nó càng hiểu business của bạn, giá trị càng cao.</div>
+      </div>
+      <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:22px;">
+        <div style="font-size:22px;margin-bottom:10px;">📈</div>
+        <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:6px;">Càng dùng — Càng có giá trị</div>
+        <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.7;">Không như AI chung — mỗi lần chat là bắt đầu từ đầu. NOVA nhớ ngành bạn, quy trình bạn, khách hàng bạn. 1 năm sau, con bot này không ai copy được — vì nó đã được train theo đúng business của bạn.</div>
+      </div>
+    </div>
+    <div class="reveal d3" style="max-width:600px;margin:0 auto;padding:16px 24px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(34,211,238,.06));border:1px solid rgba(16,185,129,.2);border-radius:12px;text-align:center;">
+      <div style="font-size:13px;font-weight:700;color:#6ee7b7;margin-bottom:4px;">🔒 Cam kết từ ngày đầu</div>
+      <div style="font-size:12px;color:rgba(178,192,215,.6);line-height:1.6;">Data của bạn nằm trên instance riêng · Không bao giờ share với client khác · Bạn có toàn quyền export và sở hữu · Safety guardrails cài sẵn không thể tắt</div>
+    </div>
+  </div>
+</section>
+<section class="section s-dark" id="pain">
+  <div class="glow" style="width:500px;height:500px;background:rgba(34,211,238,.05);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="sec-inner">
+    <span class="sec-label reveal">Vấn đề</span>
+    <h2 class="sec-h reveal d1">Bạn đang mất tiền<br><span>mỗi ngày vì những lý do này.</span></h2>
+    <p class="sec-sub reveal d2">Không phải vì bạn không đủ giỏi. Mà vì bạn đang thiếu người hỗ trợ đúng lúc.</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal d1">
+        <div class="pain-num">01</div>
+        <h3>Không biết tin tưởng ai với thông tin nội bộ</h3>
+        <p>Nhân viên biết số liệu, biết khách, biết chiến lược — rồi một ngày nghỉ việc hoặc chia sẻ cho đối thủ.</p>
+        <div class="quote">"Em xin nghỉ anh ơi." — và 3 tháng sau đối thủ dùng đúng playbook của bạn.</div>
+      </div>
+      <div class="pain-card reveal d2">
+        <div class="pain-num">02</div>
+        <h3>Cần hỗ trợ nhiều mảng, người giỏi thì đắt</h3>
+        <p>Kế toán không phân tích thị trường. Marketing không đọc báo cáo lãi lỗ. Người đa năng lương 20–30 triệu vẫn không đủ.</p>
+        <div class="quote">"Tìm người vừa hiểu số vừa hiểu marketing — gần như không tồn tại."</div>
+      </div>
+      <div class="pain-card reveal d3">
+        <div class="pain-num">03</div>
+        <h3>Hỏi là phải chờ — quyết định bị trễ</h3>
+        <p>Cần thông tin gấp lúc 10 giờ đêm, nhân sự đã về. Cần phân tích cuối tuần, phải đợi Thứ 2.</p>
+        <div class="quote">"Lúc mình cần nhất thì không ai trả lời."</div>
+      </div>
+      <div class="pain-card reveal d4">
+        <div class="pain-num">04</div>
+        <h3>Dữ liệu rải rác — không ai tổng hợp</h3>
+        <p>Số liệu ở bảng tính. Email ở hộp thư. Báo cáo ở lưu trữ đám mây. Không ai kéo lại và nói điều quan trọng nhất.</p>
+        <div class="quote">"Có data nhưng không có insight. Có thông tin nhưng không có quyết định."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROOF -->
 <section class="section s-dark" id="proof">
   <div class="glow" style="width:500px;height:500px;background:rgba(34,211,238,.05);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
@@ -828,38 +802,6 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
           <div class="pcc q"><div class="who">Nhà giao dịch</div><div class="body">USD mạnh — giữ hay đóng vị thế EUR/USD?</div></div>
           <div class="pcc a"><div class="who">NOVA</div><div class="body">DXY +0,4% sau số việc làm. 1,0820 đang bị test. Đề xuất: giảm 50% vị thế, SL 1,0800.</div></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NOVA SHOWCASE -->
-<section class="section" id="nova">
-  <div class="glow" style="width:500px;height:500px;background:rgba(34,211,238,.07);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-  <div class="nova-showcase">
-    <div class="nova-portrait reveal">
-      <img src="nova-avatar-v2.jpg" alt="NOVA AI Assistant">
-      <div class="nova-portrait-badge">⚡ NOVA · AI Assistant · Online 24/7</div>
-    </div>
-    <div class="nova-convo reveal d2">
-      <span class="sec-label" style="text-align:left;">Gặp NOVA</span>
-      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,40px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:8px;">Nhân viên AI của bạn.<br><span style="color:#22d3ee;">Thông minh. Tận tâm. Không bao giờ nghỉ.</span></h2>
-      <p class="nc-intro">Dưới đây là một đoạn trò chuyện thực tế — câu hỏi của founder, câu trả lời của NOVA. Không script, không cắt bớt.</p>
-      <div class="nc-msg user">
-        <div class="nc-avatar-user"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-        <div><div class="nc-bubble">Tháng này lợi nhuận tôi bao nhiêu? Chi phí nào đang ăn nhiều nhất?</div><div class="nc-time" style="text-align:right;">09:14</div></div>
-      </div>
-      <div class="nc-msg nova">
-        <img src="nova-avatar-v2.jpg" alt="NOVA" class="nc-avatar">
-        <div><div class="nc-bubble">Tháng 3 của anh:<br>• Doanh thu: <strong>87,400,000₫</strong><br>• Chi phí: 61,200,000₫<br>• <strong>Lợi nhuận: 26,200,000₫ (30%)</strong><br><br>Chi phí ăn nhiều nhất: Nguyên liệu 38% — tăng 4% so với tháng 2. Nguyên nhân: giá sốt cà-ri tăng. Mình đã tìm được nhà cung cấp thay thế rẻ hơn 12% nếu anh muốn xem.</div><div class="nc-time">09:14</div></div>
-      </div>
-      <div class="nc-msg user">
-        <div class="nc-avatar-user"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-        <div><div class="nc-bubble">Nhà cung cấp nào? So sánh giúp tôi</div><div class="nc-time" style="text-align:right;">09:15</div></div>
-      </div>
-      <div class="nc-msg nova">
-        <img src="nova-avatar-v2.jpg" alt="NOVA" class="nc-avatar">
-        <div><div class="nc-bubble">Đang pull data... Có 3 option:<br>• <strong>NCC Hà Nội:</strong> 85k/kg, MOQ 10kg, ship 2 ngày<br>• <strong>NCC Bình Dương:</strong> 79k/kg, MOQ 5kg, ship 1 ngày ✅<br>• <strong>NCC hiện tại:</strong> 90k/kg<br><br>Tiết kiệm nếu đổi Bình Dương: ~<strong>2,100,000₫/tháng</strong>. Mình soạn email liên hệ thử không?</div><div class="nc-time">09:15</div></div>
       </div>
     </div>
   </div>
