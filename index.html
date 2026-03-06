@@ -402,9 +402,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:12px 48px;display:fl
 .u-dot{width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 6px #10b981;animation:pulse 2s infinite;}
 
 /* FOOTER */
-footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-.f-logo{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:800;background:linear-gradient(135deg,#fff,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+footer{border-top:1px solid rgba(255,255,255,.08);padding:40px 48px;background:rgba(5,8,16,.6);}
+.f-logo{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#fff,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .f-copy{font-size:12px;color:rgba(130,150,180,.5);}
+.f-tagline{font-size:11px;color:rgba(34,211,238,.5);letter-spacing:1.5px;}
 </style>
 </head>
 <body>
@@ -1045,8 +1046,39 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
 </section>
 
 <footer>
-  <div class="f-logo">NOVA ⚡</div><div style="font-size:10px;color:rgba(130,150,180,.4);letter-spacing:1px;"><b style="color:rgba(34,211,238,.5);">N</b>ext-gen <b style="color:rgba(34,211,238,.5);">O</b>perations <b style="color:rgba(34,211,238,.5);">V</b>irtual <b style="color:rgba(34,211,238,.5);">A</b>gents</div>
-  <div class="f-copy">© 2026 Rat Race Escape · Thoát khỏi cuộc đua số phận. Bắt đầu từ hôm nay.</div>
+  <div style="max-width:960px;margin:0 auto;">
+    <!-- Top row -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;margin-bottom:32px;">
+      <div>
+        <div class="f-logo">NOVA ⚡</div>
+        <div class="f-tagline" style="margin-top:6px;">Next-gen Operations Virtual Agents</div>
+        <div style="font-size:12px;color:rgba(130,150,180,.45);margin-top:8px;max-width:280px;line-height:1.6;">Nhân viên AI cá nhân cho doanh nghiệp Việt Nam.<br>Setup 48h · Hoạt động 24/7 · Từ 2.2M/tháng.</div>
+      </div>
+      <div style="display:flex;gap:48px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Dịch vụ</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="#how" style="font-size:13px;color:rgba(170,185,210,.6);text-decoration:none;">Cách hoạt động</a>
+            <a href="#pricing" style="font-size:13px;color:rgba(170,185,210,.6);text-decoration:none;">Bảng giá</a>
+            <a href="#proof" style="font-size:13px;color:rgba(170,185,210,.6);text-decoration:none;">Kết quả thực tế</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Liên hệ</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="https://t.me/willdaolam" target="_blank" style="font-size:13px;color:rgba(170,185,210,.6);text-decoration:none;">✈ @willdaolam</a>
+            <a href="https://t.me/grey_agenticAI" target="_blank" style="font-size:13px;color:rgba(170,185,210,.6);text-decoration:none;">✈ @grey_agenticAI</a>
+            <a href="/blog/" style="font-size:13px;color:rgba(170,185,210,.6);text-decoration:none;">📰 Blog</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom row -->
+    <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <div class="f-copy">© 2026 Rat Race Escape · Thoát khỏi cuộc đua số phận.</div>
+      <div style="font-size:11px;color:rgba(130,150,180,.3);">🇻🇳 Made in Vietnam</div>
+    </div>
+  </div>
 </footer>
 
 <script>
