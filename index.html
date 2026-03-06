@@ -460,8 +460,8 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
 </section>
 
 <!-- HERO DEMO SECTION -->
-<section class="section" style="padding:70px 24px 60px;">
-  <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;">
+<section class="section" style="padding:70px 24px 60px;overflow:visible;">
+  <div id="hero-demo-grid" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;">
     <!-- Nova portrait -->
     <div class="nova-portrait reveal d1" style="display:flex;justify-content:center;">
       <div style="position:relative;">
@@ -470,44 +470,51 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;display:flex
       </div>
     </div>
     <!-- Chat demo -->
-    <div class="reveal d2">
-      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px;">Nhân viên AI của bạn.<br><span style="color:#22d3ee;">Thông minh. Tận tâm.<br>Không bao giờ nghỉ.</span></h2>
-      <p style="font-size:13px;color:rgba(170,185,210,.55);margin-bottom:24px;">Dưới đây là một đoạn trò chuyện thực tế — câu hỏi của founder, câu trả lời của NOVA. Không script, không cắt bớt.</p>
-      <div style="display:flex;flex-direction:column;gap:10px;max-height:340px;overflow:hidden;">
-        <!-- User msg -->
-        <div style="display:flex;justify-content:flex-end;">
-          <div style="background:rgba(37,99,235,.25);border:1px solid rgba(37,99,235,.3);border-radius:16px 16px 4px 16px;padding:10px 14px;max-width:75%;font-size:13px;line-height:1.5;">Tháng này lợi nhuận tôi bao nhiêu? Chi phí nào đang ăn nhiều nhất?</div>
+    <div>
+      <h2 class="reveal d1" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,48px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:12px;">Nhân viên AI của bạn.<br><span style="color:#22d3ee;">Thông minh. Tận tâm.<br>Không bao giờ nghỉ.</span></h2>
+      <p class="reveal d2" style="font-size:13px;color:rgba(170,185,210,.55);margin-bottom:20px;">Đoạn trò chuyện thực tế — không script, không cắt bớt.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <!-- User msg 1 -->
+        <div class="reveal d2" style="display:flex;justify-content:flex-end;">
+          <div style="background:rgba(37,99,235,.25);border:1px solid rgba(37,99,235,.3);border-radius:16px 16px 4px 16px;padding:10px 14px;max-width:80%;font-size:13px;line-height:1.5;">Tháng này lợi nhuận tôi bao nhiêu? Chi phí nào đang ăn nhiều nhất?</div>
         </div>
-        <!-- Nova reply -->
-        <div style="display:flex;gap:8px;align-items:flex-start;">
+        <!-- Nova reply 1 -->
+        <div class="reveal d3" style="display:flex;gap:8px;align-items:flex-start;">
           <img src="nova-avatar-v2.jpg" style="width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(34,211,238,.3);">
-          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px 16px 16px 16px;padding:10px 14px;max-width:80%;font-size:13px;line-height:1.6;">
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:13px;line-height:1.7;">
             Tháng 3 của anh:<br>
             • Doanh thu: <strong>87,400,000đ</strong><br>
             • Chi phí: <strong>61,200,000đ</strong><br>
             • Lợi nhuận: <strong style="color:#22d3ee;">26,200,000đ (30%)</strong><br><br>
-            Chi phí ăn nhiều nhất: Nguyên liệu 38% — tăng 4% so với tháng 2. Nguyên nhân: giá sốt cà-ri tăng. Mình đã tìm được nhà cung cấp thay thế rẻ hơn 12% nếu anh muốn xem.
+            Chi phí ăn nhiều nhất: Nguyên liệu 38% — tăng 4% so tháng 2. Mình đã tìm được NCC thay thế rẻ hơn 12% nếu anh muốn xem.
           </div>
         </div>
         <!-- User msg 2 -->
-        <div style="display:flex;justify-content:flex-end;">
-          <div style="background:rgba(37,99,235,.25);border:1px solid rgba(37,99,235,.3);border-radius:16px 16px 4px 16px;padding:10px 14px;max-width:75%;font-size:13px;">Nhà cung cấp nào? So sánh giúp tôi</div>
+        <div class="reveal d4" style="display:flex;justify-content:flex-end;">
+          <div style="background:rgba(37,99,235,.25);border:1px solid rgba(37,99,235,.3);border-radius:16px 16px 4px 16px;padding:10px 14px;max-width:80%;font-size:13px;">Nhà cung cấp nào? So sánh giúp tôi</div>
         </div>
         <!-- Nova reply 2 -->
-        <div style="display:flex;gap:8px;align-items:flex-start;">
+        <div class="reveal d5" style="display:flex;gap:8px;align-items:flex-start;">
           <img src="nova-avatar-v2.jpg" style="width:28px;height:28px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(34,211,238,.3);">
-          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px 16px 16px 16px;padding:10px 14px;max-width:80%;font-size:13px;line-height:1.6;">
-            Đang pull data... Có 3 option:<br>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:13px;line-height:1.7;">
+            Có 3 option:<br>
             • NCC Hà Nội: 85k/kg, MOQ 10kg, ship 2 ngày<br>
             • NCC Bình Dương: 79k/kg, MOQ 5kg, ship 1 ngày ✅<br>
             • NCC hiện tại: 90k/kg<br><br>
-            Tiết kiệm nếu đổi Bình Dương: <strong style="color:#10b981;">~2,100,000đ/tháng</strong>. Mình soạn email đặt hàng thử nhé?
+            Tiết kiệm nếu đổi: <strong style="color:#10b981;">~2,100,000đ/tháng</strong>. Mình soạn email đặt hàng thử nhé?
           </div>
         </div>
       </div>
     </div>
   </div>
-  <style>@media(max-width:800px){#hero-demo-grid{grid-template-columns:1fr!important;}}</style>
+  <style>
+    @media(max-width:800px){
+      #hero-demo-grid{grid-template-columns:1fr!important;gap:36px!important;}
+      #hero-demo-grid .nova-portrait{display:none!important;}
+    }
+    .reveal.d4{transition-delay:.5s;}
+    .reveal.d5{transition-delay:.7s;}
+  </style>
 </section>
 
 
