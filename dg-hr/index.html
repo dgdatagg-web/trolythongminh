@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DG HR Bot — Hướng dẫn GM & Quản lý</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2e3347;
+    --accent: #6c63ff;
+    --accent2: #00d4aa;
+    --accent3: #ff6b6b;
+    --accent4: #ffd166;
+    --text: #e8eaf6;
+    --text-muted: #8892b0;
+    --creator: #ff6b6b;
+    --gm: #ffd166;
+    --quanly: #6c63ff;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(108,99,255,0.15);
+    border: 1px solid rgba(108,99,255,0.4);
+    color: #a89dff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  header h1 {
+    font-size: clamp(24px, 5vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  header h1 span { color: var(--accent); }
+  header p.subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto 24px;
+  }
+  .header-roles {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .role-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .role-pill.creator { background: rgba(255,107,107,0.15); border: 1px solid rgba(255,107,107,0.4); color: #ff9999; }
+  .role-pill.gm      { background: rgba(255,209,102,0.15); border: 1px solid rgba(255,209,102,0.4); color: #ffd166; }
+  .role-pill.quanly  { background: rgba(108,99,255,0.15);  border: 1px solid rgba(108,99,255,0.4);  color: #a89dff; }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── VERSION BAR ── */
+  .version-bar {
+    background: rgba(0,212,170,0.08);
+    border: 1px solid rgba(0,212,170,0.25);
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    margin: 28px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--accent2);
+  }
+  .version-bar strong { color: var(--text); }
+
+  /* ── SECTION ── */
+  .section {
+    margin-top: 40px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .section-icon.purple { background: rgba(108,99,255,0.2); }
+  .section-icon.yellow { background: rgba(255,209,102,0.2); }
+  .section-icon.red    { background: rgba(255,107,107,0.2); }
+  .section-icon.teal   { background: rgba(0,212,170,0.2); }
+  .section-icon.blue   { background: rgba(99,179,255,0.2); }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 12px; }
+
+  /* ── COMMAND BLOCKS ── */
+  .cmd-block {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin-bottom: 10px;
+  }
+  .cmd-block:last-child { margin-bottom: 0; }
+  .cmd-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .cmd-name {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent2);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cmd-desc { font-size: 14px; color: var(--text-muted); }
+  .cmd-example {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #a89dff;
+    background: rgba(108,99,255,0.1);
+    border: 1px solid rgba(108,99,255,0.2);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-top: 6px;
+    display: block;
+  }
+  .cmd-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    padding-left: 4px;
+    border-left: 2px solid var(--border);
+  }
+
+  /* ── ROLE BADGE ── */
+  .role-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag-creator { background: rgba(255,107,107,0.2); color: #ff9999; }
+  .tag-gm      { background: rgba(255,209,102,0.2); color: #ffd166; }
+  .tag-quanly  { background: rgba(108,99,255,0.2);  color: #a89dff; }
+
+  /* ── ACCESS TABLE ── */
+  .access-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .access-table th {
+    background: var(--surface2);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .access-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(46,51,71,0.5);
+  }
+  .access-table tr:last-child td { border-bottom: none; }
+  .access-table tr:hover td { background: rgba(108,99,255,0.04); }
+  .check { color: var(--accent2); font-weight: 700; }
+  .cross { color: var(--accent3); opacity: 0.5; }
+  .partial { color: var(--accent4); }
+
+  /* ── TIPS ── */
+  .tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .tip-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+  }
+  .tip-card .tip-icon { font-size: 22px; margin-bottom: 8px; }
+  .tip-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .tip-card p  { font-size: 13px; color: var(--text-muted); }
+
+  /* ── EXP TABLE ── */
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .exp-grid { grid-template-columns: 1fr; } }
+  .exp-card {
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+  }
+  .exp-card.positive { border: 1px solid rgba(0,212,170,0.3); }
+  .exp-card.negative { border: 1px solid rgba(255,107,107,0.3); }
+  .exp-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .exp-card.positive h4 { color: var(--accent2); }
+  .exp-card.negative h4 { color: var(--accent3); }
+  .exp-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(46,51,71,0.4);
+    font-size: 13px;
+  }
+  .exp-row:last-child { border-bottom: none; }
+  .exp-row .event { color: var(--text-muted); }
+  .exp-row .val { font-weight: 700; font-family: monospace; }
+  .exp-row .val.plus { color: var(--accent2); }
+  .exp-row .val.minus { color: var(--accent3); }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin: 12px 0;
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+  .alert.warning { background: rgba(255,209,102,0.08); border: 1px solid rgba(255,209,102,0.25); color: #e8d89a; }
+  .alert.info    { background: rgba(108,99,255,0.08); border: 1px solid rgba(108,99,255,0.25); color: #c0baff; }
+  .alert.success { background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); color: #8de8d8; }
+  .alert.danger  { background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.25); color: #ffaaaa; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* ── FEEDBACK ── */
+  .feedback-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    margin-top: 40px;
+  }
+  .feedback-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .feedback-section p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .feedback-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 580px) { .feedback-grid { grid-template-columns: 1fr; } }
+  .feedback-option {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-align: center;
+  }
+  .feedback-option:hover {
+    border-color: var(--accent);
+    background: rgba(108,99,255,0.08);
+  }
+  .feedback-option.selected {
+    border-color: var(--accent);
+    background: rgba(108,99,255,0.12);
+  }
+  .feedback-option .fb-icon { font-size: 24px; margin-bottom: 6px; }
+  .feedback-option h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .feedback-option p  { font-size: 12px; color: var(--text-muted); }
+  .feedback-form { display: none; }
+  .feedback-form.active { display: block; }
+  .feedback-form label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    margin-top: 14px;
+  }
+  .feedback-form input,
+  .feedback-form textarea,
+  .feedback-form select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .feedback-form input:focus,
+  .feedback-form textarea:focus,
+  .feedback-form select:focus {
+    border-color: var(--accent);
+  }
+  .feedback-form textarea { min-height: 100px; }
+  .feedback-form select option { background: var(--surface2); }
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-submit:hover { opacity: 0.9; }
+  .btn-submit:active { transform: scale(0.98); }
+  .btn-tg {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,212,170,0.15);
+    color: var(--accent2);
+    border: 1px solid rgba(0,212,170,0.3);
+    border-radius: var(--radius-sm);
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-tg:hover { background: rgba(0,212,170,0.25); }
+  .submit-success {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    color: var(--accent2);
+    font-weight: 600;
+  }
+
+  /* ── CHANGELOG ── */
+  .changelog-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(46,51,71,0.5);
+  }
+  .changelog-item:last-child { border-bottom: none; }
+  .changelog-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    font-family: monospace;
+    min-width: 85px;
+    padding-top: 2px;
+  }
+  .changelog-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .changelog-content p  { font-size: 13px; color: var(--text-muted); }
+  .version-tag {
+    display: inline-block;
+    background: rgba(108,99,255,0.2);
+    color: #a89dff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 4px;
+    margin-left: 8px;
+    font-family: monospace;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 60px;
+  }
+  footer strong { color: var(--text); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .cmd-line { flex-direction: column; gap: 4px; }
+    .access-table { font-size: 12px; }
+    .access-table th, .access-table td { padding: 8px 10px; }
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-top: 28px;
+  }
+  .toc h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 12px; }
+  .toc ul { list-style: none; }
+  .toc ul li { padding: 4px 0; }
+  .toc ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toc ul li a:hover { color: var(--accent); }
+  .toc ul li a span { opacity: 0.5; }
+
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────────────────────────────── -->
+<header>
+  <div class="header-badge">Tài liệu nội bộ · DG Group</div>
+  <h1>DG HR Bot<br><span>Hướng dẫn Quản lý</span></h1>
+  <p class="subtitle">Hướng dẫn đầy đủ cho GM &amp; Quản lý — quản lý nhân sự hiệu quả nhất với các công cụ hiện có.</p>
+  <div class="header-roles">
+    <div class="role-pill creator">👾 Creator</div>
+    <div class="role-pill gm">⚔️ GM</div>
+    <div class="role-pill quanly">🛡️ Quản lý</div>
+  </div>
+</header>
+
+<!-- ── MAIN ─────────────────────────────────────────────────────────────────── -->
+<div class="container">
+
+  <!-- Version bar -->
+  <div class="version-bar">
+    <span>📄</span>
+    <span>Phiên bản <strong>2.1</strong> · Cập nhật lần cuối: <strong>09/03/2026</strong> · Tài liệu này là nguồn sự thật chính thức. Thay đổi tại đây = thay đổi hành vi bot.</span>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3>Nội dung</h3>
+    <ul>
+      <li><a href="#phan-quyen"><span>01</span> Phân quyền &amp; truy cập</a></li>
+      <li><a href="#quan-ly-nhan-su"><span>02</span> Quản lý nhân sự</a></li>
+      <li><a href="#quan-ly-exp"><span>03</span> Quản lý EXP</a></li>
+      <li><a href="#lich-ca"><span>04</span> Lịch ca &amp; điểm danh</a></li>
+      <li><a href="#bao-cao"><span>05</span> Báo cáo &amp; tổng quan</a></li>
+      <li><a href="#best-practices"><span>06</span> Best practices</a></li>
+      <li><a href="#changelog"><span>07</span> Changelog</a></li>
+      <li><a href="#feedback"><span>08</span> Phản hồi &amp; góp ý</a></li>
+    </ul>
+  </div>
+
+  <!-- ── 01 PHÂN QUYỀN ────────────────────────────────────────────────────── -->
+  <div class="section" id="phan-quyen">
+    <div class="section-header">
+      <div class="section-icon purple">🔐</div>
+      <div>
+        <div class="section-title">01 — Phân quyền &amp; truy cập</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <table class="access-table">
+        <thead>
+          <tr>
+            <th>Quyền</th>
+            <th>🛡️ Quản lý</th>
+            <th>⚔️ GM</th>
+            <th>👾 Creator</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Check-in / Check-out</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Xem báo cáo ca (<code>/baocao</code>)</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Xem danh sách nhân viên (<code>/staff</code>)</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Submit lịch ca (<code>/lichca</code>)</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Nhập hàng (<code>/nhaphang</code>)</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Xem tài chính</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Duyệt nhân viên (<code>/approve</code>)</td><td class="partial">⚠️ Pending quanly</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Điều chỉnh EXP (<code>/exp</code>)</td><td class="cross">❌</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Assign role (<code>/setrole</code>)</td><td class="cross">❌</td><td class="partial">✅ tối đa quanly</td><td class="check">✅ mọi role</td></tr>
+          <tr><td>Archive nhân viên (<code>/fire</code>)</td><td class="cross">❌</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Tổng quan hệ thống (<code>/tongquan</code>)</td><td class="cross">❌</td><td class="check">✅</td><td class="check">✅</td></tr>
+          <tr><td>Xóa tài khoản (<code>/delete</code>)</td><td class="cross">❌</td><td class="cross">❌</td><td class="check">✅</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert info">
+      <span class="alert-icon">💡</span>
+      <span><strong>Đăng ký:</strong> Nhân viên đăng ký qua DM bot bằng <code>/dangky [tên]</code>. Bắt buộc có @username Telegram. Creator assign GM, Creator/GM assign Quản lý qua <code>/setrole</code>.</span>
+    </div>
+  </div>
+
+  <!-- ── 02 QUẢN LÝ NHÂN SỰ ──────────────────────────────────────────────── -->
+  <div class="section" id="quan-ly-nhan-su">
+    <div class="section-header">
+      <div class="section-icon yellow">👥</div>
+      <div>
+        <div class="section-title">02 — Quản lý nhân sự</div>
+      </div>
+    </div>
+
+    <!-- /staff -->
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/staff</span>
+        <span class="cmd-desc">Xem toàn bộ danh sách nhân viên. Bấm tên để xem profile chi tiết.</span>
+      </div>
+      <code class="cmd-example">/staff</code>
+      <p class="cmd-note">Hiển thị tất cả nhân viên active + pending, sắp xếp theo role. Bấm nút tên → xem EXP, streak, số ca, ngày tham gia, bộ phận.</p>
+    </div>
+
+    <!-- /approve -->
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/approve</span>
+        <span class="cmd-desc">Xem danh sách nhân viên đang chờ duyệt. <span class="role-tag tag-gm">GM</span><span class="role-tag tag-creator">Creator</span></span>
+      </div>
+      <code class="cmd-example">/approve</code>
+      <code class="cmd-example">/approve Hiếu</code>
+      <p class="cmd-note">Nhân viên đăng ký <code>/dangky [tên] quanly</code> sẽ vào queue pending. Duyệt → họ nhận role Quản lý và được thông báo qua DM.</p>
+    </div>
+
+    <!-- /setrole -->
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/setrole</span>
+        <span class="cmd-desc">Assign role cho nhân viên theo @username. <span class="role-tag tag-gm">GM</span><span class="role-tag tag-creator">Creator</span></span>
+      </div>
+      <code class="cmd-example">/setrole @hieu quanly</code>
+      <code class="cmd-example">/setrole @minh gm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← Creator only</code>
+      <p class="cmd-note">
+        GM được phép assign: <code>newbie · nhanvien · kycuu · quanly</code><br>
+        Creator được phép assign: tất cả roles kể cả <code>gm · creator</code><br>
+        Bot tự thông báo DM cho nhân viên khi role thay đổi.
+      </p>
+    </div>
+
+    <!-- /fire -->
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/fire</span>
+        <span class="cmd-desc">Archive nhân viên nghỉ việc. Dữ liệu giữ nguyên. <span class="role-tag tag-gm">GM</span><span class="role-tag tag-creator">Creator</span></span>
+      </div>
+      <code class="cmd-example">/fire Hiếu</code>
+      <p class="cmd-note">Không xóa data. Nếu họ quay lại làm việc: <code>/approve [tên]</code> để khôi phục tài khoản.</p>
+    </div>
+
+    <div class="alert warning">
+      <span class="alert-icon">⚠️</span>
+      <span><strong>/delete là không thể hoàn tác</strong> — chỉ Creator mới có quyền. Xóa toàn bộ data (EXP, check-in history, badges). Dùng <code>/fire</code> thay thế trong hầu hết trường hợp.</span>
+    </div>
+  </div>
+
+  <!-- ── 03 QUẢN LÝ EXP ──────────────────────────────────────────────────── -->
+  <div class="section" id="quan-ly-exp">
+    <div class="section-header">
+      <div class="section-icon teal">⭐</div>
+      <div>
+        <div class="section-title">03 — Quản lý EXP</div>
+      </div>
+    </div>
+
+    <!-- /exp -->
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/exp</span>
+        <span class="cmd-desc">Điều chỉnh EXP thủ công. <span class="role-tag tag-gm">GM</span><span class="role-tag tag-creator">Creator</span></span>
+      </div>
+      <code class="cmd-example">/exp Hiếu +30 KPI tháng 100%</code>
+      <code class="cmd-example">/exp Hiếu -20 đi trễ không báo</code>
+      <p class="cmd-note">Lý do bắt buộc nhập. Mọi thay đổi EXP đều được log vào hệ thống và hiển thị trên profile của nhân viên.</p>
+    </div>
+
+    <div class="exp-grid">
+      <div class="exp-card positive">
+        <h4>➕ Cộng EXP (gợi ý)</h4>
+        <div class="exp-row"><span class="event">Thêm ca ngoài lịch</span><span class="val plus">+15</span></div>
+        <div class="exp-row"><span class="event">KPI tháng 100%</span><span class="val plus">+30</span></div>
+        <div class="exp-row"><span class="event">Khách khen 5 sao</span><span class="val plus">+15</span></div>
+        <div class="exp-row"><span class="event">Perfect attendance tháng</span><span class="val plus">+50</span></div>
+        <div class="exp-row"><span class="event">Mentor (dạy Newbie lên NV)</span><span class="val plus">+30</span></div>
+        <div class="exp-row"><span class="event">Check-in đúng giờ (auto)</span><span class="val plus">+3</span></div>
+        <div class="exp-row"><span class="event">Streak 7 ngày (auto)</span><span class="val plus">+20</span></div>
+        <div class="exp-row"><span class="event">Streak 30 ngày (auto)</span><span class="val plus">+80</span></div>
+      </div>
+      <div class="exp-card negative">
+        <h4>➖ Trừ EXP (gợi ý)</h4>
+        <div class="exp-row"><span class="event">Đi trễ không báo</span><span class="val minus">-20</span></div>
+        <div class="exp-row"><span class="event">Không nộp BC</span><span class="val minus">-15</span></div>
+        <div class="exp-row"><span class="event">Vắng không báo</span><span class="val minus">-50</span></div>
+        <div class="exp-row"><span class="event">Hủy hàng không lý do</span><span class="val minus">-20</span></div>
+        <div class="exp-row"><span class="event">Lỗi đơn Grab</span><span class="val minus">-25</span></div>
+        <div class="exp-row"><span class="event">Vi phạm vệ sinh ATTP</span><span class="val minus">-100</span></div>
+        <div class="exp-row"><span class="event">Gian lận GPS check-in</span><span class="val minus">-200</span></div>
+        <div class="exp-row"><span class="event">No-show (auto, 23:30)</span><span class="val minus">-50</span></div>
+      </div>
+    </div>
+
+    <div class="alert info" style="margin-top:14px;">
+      <span class="alert-icon">📈</span>
+      <span><strong>Thăng cấp tự động:</strong> Newbie→NV (100 EXP) → Kỳ cựu (500 EXP) tự động. Quản lý (1000 EXP) cần GM/Creator duyệt thủ công qua <code>/setrole</code>.</span>
+    </div>
+  </div>
+
+  <!-- ── 04 LỊCH CA ──────────────────────────────────────────────────────── -->
+  <div class="section" id="lich-ca">
+    <div class="section-header">
+      <div class="section-icon blue">📅</div>
+      <div>
+        <div class="section-title">04 — Lịch ca &amp; điểm danh</div>
+      </div>
+    </div>
+
+    <!-- /lichca -->
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/lichca</span>
+        <span class="cmd-desc">Submit lịch ca cho nhân viên. <span class="role-tag tag-quanly">Quản lý</span><span class="role-tag tag-gm">GM</span><span class="role-tag tag-creator">Creator</span></span>
+      </div>
+      <code class="cmd-example">/lichca Hiếu: T2 T4 T6</code>
+      <code class="cmd-example">/lichca Hiếu: T2:sáng T3:tối T5:9h-13h</code>
+      <code class="cmd-example">/lichca Hiếu: T2 T4 2026-W11 &nbsp;&nbsp;← tuần cụ thể</code>
+      <code class="cmd-example">/lichca view &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← xem tuần này</code>
+      <code class="cmd-example">/lichca view 2026-W11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← xem tuần cụ thể</code>
+      <p class="cmd-note">
+        Ngày hợp lệ: <code>T2 T3 T4 T5 T6 T7 CN</code><br>
+        Ca hợp lệ: <code>sáng · tối · [giờ bắt đầu]-[giờ kết thúc]</code>
+      </p>
+    </div>
+
+    <!-- /moca /dongca -->
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/moca · /dongca</span>
+        <span class="cmd-desc">Báo cáo mở/đóng ca. Dành cho Trưởng ca. <span class="role-tag tag-gm">GM</span><span class="role-tag tag-creator">Creator</span> cũng dùng được.</span>
+      </div>
+      <code class="cmd-example">/moca &nbsp;&nbsp;&nbsp;← đầu ngày, checklist mở bếp</code>
+      <code class="cmd-example">/dongca ← cuối ngày, tổng kết ca</code>
+      <p class="cmd-note">Kết quả tự động đăng lên nhóm làm việc sau khi hoàn thành.</p>
+    </div>
+
+    <!-- Check-in monitor -->
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/baocao</span>
+        <span class="cmd-desc">Xem báo cáo ca hôm nay — ai đã check-in, check-out, BC. <span class="role-tag tag-quanly">Quản lý</span><span class="role-tag tag-gm">GM</span></span>
+      </div>
+      <code class="cmd-example">/baocao</code>
+      <p class="cmd-note">Hiển thị toàn bộ hoạt động trong ngày: check-in theo bộ phận, báo cáo ca, nhập hàng, hủy hàng.</p>
+    </div>
+
+    <div class="alert success">
+      <span class="alert-icon">🤖</span>
+      <span><strong>No-show tự động:</strong> Bot phát hiện nhân viên có lịch ca mà không check-in lúc 23:30 ICT mỗi ngày → tự trừ 50 EXP và thông báo lên nhóm.</span>
+    </div>
+  </div>
+
+  <!-- ── 05 BÁO CÁO ──────────────────────────────────────────────────────── -->
+  <div class="section" id="bao-cao">
+    <div class="section-header">
+      <div class="section-icon red">📊</div>
+      <div>
+        <div class="section-title">05 — Báo cáo &amp; tổng quan</div>
+      </div>
+    </div>
+
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/tongquan</span>
+        <span class="cmd-desc">Tổng quan toàn bộ hệ thống — nhân sự, ca làm việc, doanh thu. <span class="role-tag tag-gm">GM</span><span class="role-tag tag-creator">Creator</span></span>
+      </div>
+      <code class="cmd-example">/tongquan</code>
+    </div>
+
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/leaderboard</span>
+        <span class="cmd-desc">Bảng xếp hạng EXP toàn nhân viên. Tất cả role đều xem được.</span>
+      </div>
+      <code class="cmd-example">/leaderboard</code>
+      <code class="cmd-example">/lb</code>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">🔔 Báo cáo tự động hàng ngày</div>
+      <div class="card-desc">Bot tự đăng vào nhóm làm việc theo lịch:</div>
+      <table class="access-table">
+        <thead>
+          <tr><th>Thời gian</th><th>Nội dung</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>08:45 ICT</td><td>Nhắc Trưởng ca mở ca (<code>/moca</code>)</td></tr>
+          <tr><td>14:00 ICT</td><td>Nhắc nhân viên bàn giao ca (<code>/bc</code>)</td></tr>
+          <tr><td>22:30 ICT</td><td>Bảng điểm danh ngày</td></tr>
+          <tr><td>23:30 ICT</td><td>Phát hiện no-show → trừ EXP tự động</td></tr>
+          <tr><td>Thứ Hai 08:00</td><td>Bảng xếp hạng EXP tuần</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 06 BEST PRACTICES ────────────────────────────────────────────────── -->
+  <div class="section" id="best-practices">
+    <div class="section-header">
+      <div class="section-icon purple">💡</div>
+      <div>
+        <div class="section-title">06 — Best practices</div>
+      </div>
+    </div>
+
+    <div class="tip-grid">
+      <div class="tip-card">
+        <div class="tip-icon">📋</div>
+        <h4>Submit lịch ca sớm</h4>
+        <p>Submit lịch ca trước thứ Hai mỗi tuần. Hệ thống phát hiện no-show dựa trên lịch đã submit — không submit = không có dữ liệu theo dõi.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⭐</div>
+        <h4>EXP nhất quán</h4>
+        <p>Áp dụng EXP reward/penalty đồng đều cho tất cả. Ghi lý do rõ ràng để nhân viên hiểu và log audit minh bạch.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">👀</div>
+        <h4>Duyệt pending nhanh</h4>
+        <p>Dùng <code>/approve</code> kiểm tra hàng ngày. Nhân viên pending không thể check-in cho đến khi được duyệt.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🔥</div>
+        <h4>Theo dõi streak</h4>
+        <p>Streak = số ngày check-in liên tiếp. Nhân viên streak cao = tận tâm. Dùng <code>/staff</code> → bấm tên để xem streak từng người.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🚨</div>
+        <h4>Khi bot lỗi</h4>
+        <p>Nếu bot không phản hồi: check <code>claudible.io</code> API status trước. 502 errors = API đang lỗi, không phải code bot.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📱</div>
+        <h4>DM bot riêng tư</h4>
+        <p>Mọi lệnh cá nhân làm trong DM với bot. Bot không đọc tin nhắn thường trong nhóm — chỉ tự đăng thông báo khi có sự kiện.</p>
+      </div>
+    </div>
+
+    <div class="alert danger" style="margin-top:16px;">
+      <span class="alert-icon">🔴</span>
+      <span><strong>Tài liệu này là nguồn sự thật chính thức.</strong> Bất kỳ thay đổi nào về quy trình, lệnh, EXP values → cập nhật trang này trước, sau đó bot được update theo. Không dùng trí nhớ hoặc tin nhắn riêng lẻ làm tài liệu gốc.</span>
+    </div>
+  </div>
+
+  <!-- ── 07 CHANGELOG ──────────────────────────────────────────────────────── -->
+  <div class="section" id="changelog">
+    <div class="section-header">
+      <div class="section-icon teal">🔄</div>
+      <div>
+        <div class="section-title">07 — Changelog</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="changelog-item">
+        <div class="changelog-date">09/03/2026</div>
+        <div class="changelog-content">
+          <h4>Nhiều cải tiến lớn <span class="version-tag">v2.1</span></h4>
+          <p>Đăng ký yêu cầu @username. <code>/dangky [tên] quanly</code> request role Manager trực tiếp. <code>/staff</code> mới — danh sách + click xem profile. <code>/setrole</code> hỗ trợ @username, Creator assign GM, GM assign tối đa Quản lý. Auto-update username khi nhân viên nhắn tin. HQ group nhận thông báo mỗi lần có nhân viên mới đăng ký.</p>
+        </div>
+      </div>
+      <div class="changelog-item">
+        <div class="changelog-date">09/03/2026</div>
+        <div class="changelog-content">
+          <h4>Spec v2.0 — rewrite từ code thực tế <span class="version-tag">v2.0</span></h4>
+          <p>EXP checkin sửa lại: +3 (không phải +5). Vắng -50 (không phải -25). Không có streak +1/ngày. Comeback badge: EXP phải thực sự &lt; 0. Permissions table đầy đủ. Cron jobs section.</p>
+        </div>
+      </div>
+      <div class="changelog-item">
+        <div class="changelog-date">28/02/2026</div>
+        <div class="changelog-content">
+          <h4>Bot hoàn chỉnh — 75/75 tests pass <span class="version-tag">v1.2</span></h4>
+          <p>Newbie auto-active. Alias commands. No-show cron. Inline approve.</p>
+        </div>
+      </div>
+      <div class="changelog-item">
+        <div class="changelog-date">26/02/2026</div>
+        <div class="changelog-content">
+          <h4>Khởi tạo hệ thống <span class="version-tag">v1.0</span></h4>
+          <p>DG HR Bot ra mắt. Gamification staff management qua Telegram.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 08 FEEDBACK ──────────────────────────────────────────────────────── -->
+  <div class="feedback-section" id="feedback">
+    <h2>💬 Phản hồi &amp; góp ý</h2>
+    <p>Tính năng nào đang thiếu? Lệnh nào khó dùng? Quy trình nào cần cải thiện? Góp ý tại đây — mọi phản hồi đều được xem xét và cập nhật vào bot.</p>
+
+    <div class="feedback-grid">
+      <div class="feedback-option" onclick="selectFeedback(this, 'bot')" id="opt-bot">
+        <div class="fb-icon">🤖</div>
+        <h4>Bot cần cải tiến</h4>
+        <p>Lệnh lỗi, thiếu tính năng, flow khó dùng</p>
+      </div>
+      <div class="feedback-option" onclick="selectFeedback(this, 'process')" id="opt-process">
+        <div class="fb-icon">📋</div>
+        <h4>Quy trình cần sửa</h4>
+        <p>EXP values, permissions, cách tính điểm</p>
+      </div>
+      <div class="feedback-option" onclick="selectFeedback(this, 'doc')" id="opt-doc">
+        <div class="fb-icon">📖</div>
+        <h4>Tài liệu chưa rõ</h4>
+        <p>Hướng dẫn thiếu, không đủ ví dụ, sai thông tin</p>
+      </div>
+      <div class="feedback-option" onclick="selectFeedback(this, 'other')" id="opt-other">
+        <div class="fb-icon">✨</div>
+        <h4>Ý kiến khác</h4>
+        <p>Tính năng mới, đề xuất cải tiến</p>
+      </div>
+    </div>
+
+    <div class="feedback-form" id="feedback-form">
+      <label>Bạn là ai?</label>
+      <select id="fb-role">
+        <option value="">— Chọn role —</option>
+        <option value="quanly">🛡️ Quản lý</option>
+        <option value="gm">⚔️ GM</option>
+        <option value="creator">👾 Creator</option>
+      </select>
+
+      <label>Nội dung góp ý</label>
+      <textarea id="fb-content" placeholder="Mô tả vấn đề hoặc đề xuất của bạn..."></textarea>
+
+      <label>@Username Telegram (để được phản hồi lại)</label>
+      <input type="text" id="fb-username" placeholder="@username" />
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="btn-submit" onclick="submitFeedback()">📨 Gửi góp ý</button>
+        <a href="https://t.me/willdaolam" target="_blank" class="btn-tg">💬 Nhắn trực tiếp Will</a>
+      </div>
+
+      <div class="submit-success" id="submit-success">
+        ✅ Đã ghi nhận góp ý của bạn! Cảm ơn — sẽ được xem xét trong lần cập nhật tiếp theo.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ── FOOTER ────────────────────────────────────────────────────────────────── -->
+<footer>
+  <strong>DG HR Bot</strong> — Hướng dẫn nội bộ GM &amp; Quản lý<br>
+  <span>Tài liệu chính thức · Phiên bản 2.1 · 09/03/2026</span><br><br>
+  <span>Mọi thắc mắc: <a href="https://t.me/willdaolam" style="color:var(--accent2); text-decoration:none;">@willdaolam</a></span>
+</footer>
+
+<script>
+  let selectedType = null;
+
+  function selectFeedback(el, type) {
+    document.querySelectorAll('.feedback-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedType = type;
+    const form = document.getElementById('feedback-form');
+    form.classList.add('active');
+    form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function submitFeedback() {
+    const role    = document.getElementById('fb-role').value;
+    const content = document.getElementById('fb-content').value.trim();
+    const username = document.getElementById('fb-username').value.trim();
+
+    if (!content) {
+      document.getElementById('fb-content').focus();
+      return;
+    }
+
+    // Build Telegram message string
+    const typeLabels = {
+      bot: '🤖 Bot cần cải tiến',
+      process: '📋 Quy trình cần sửa',
+      doc: '📖 Tài liệu chưa rõ',
+      other: '✨ Ý kiến khác'
+    };
+
+    const msg = encodeURIComponent(
+      `[DG HR Bot Feedback]\n` +
+      `Loại: ${typeLabels[selectedType] || selectedType}\n` +
+      `Role: ${role || 'không rõ'}\n` +
+      `Username: ${username || 'ẩn danh'}\n\n` +
+      content
+    );
+
+    // Open Telegram with pre-filled message
+    window.open(`https://t.me/willdaolam?text=${msg}`, '_blank');
+
+    document.getElementById('fb-content').value = '';
+    document.getElementById('fb-username').value = '';
+    document.getElementById('submit-success').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('submit-success').style.display = 'none';
+    }, 5000);
+  }
+</script>
+
+</body>
+</html>
