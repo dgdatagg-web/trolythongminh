@@ -1,23 +1,25 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog AI Agent — Kiến Thức Thực Chiến Cho Doanh Nghiệp Việt | Nova AI</title>
-<meta name="description" content="Blog về AI Agent tiếng Việt — hướng dẫn thực tế, case study, so sánh và chiến lược triển khai AI cho doanh nghiệp nhỏ tại Việt Nam.">
+<title>Blog AI Agent â€” Kiáº¿n Thá»©c Thá»±c Chiáº¿n Cho Doanh Nghiá»‡p Viá»‡t | Nova AI</title>
+<meta name="description" content="Blog vá» AI Agent tiáº¿ng Viá»‡t â€” hÆ°á»›ng dáº«n thá»±c táº¿, case study, so sÃ¡nh vÃ  chiáº¿n lÆ°á»£c triá»ƒn khai AI cho doanh nghiá»‡p nhá» táº¡i Viá»‡t Nam.">
 <link rel="canonical" href="https://trolythongminh.io.vn/blog/">
-<meta property="og:title" content="Blog AI Agent — Kiến Thức Thực Chiến Cho Doanh Nghiệp Việt">
+<!-- Performance: Preload LCP image -->
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" fetchpriority="high">
+<meta property="og:title" content="Blog AI Agent â€” Kiáº¿n Thá»©c Thá»±c Chiáº¿n Cho Doanh Nghiá»‡p Viá»‡t">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://trolythongminh.io.vn/blog/">
 <meta property="og:locale" content="vi_VN">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 html{font-size:16px;}
 body{font-family:'Inter',sans-serif;background:#f4f2ef;color:#1a1a1a;line-height:1.6;-webkit-font-smoothing:antialiased;}
 
-/* ── HEADER ── */
+/* â”€â”€ HEADER â”€â”€ */
 .site-header{background:#fff;border-bottom:3px solid #111;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08);}
 .header-top{padding:7px 0;background:#111;text-align:center;}
 .header-top span{font-size:10.5px;color:rgba(255,255,255,.55);letter-spacing:1.2px;text-transform:uppercase;}
@@ -31,10 +33,10 @@ body{font-family:'Inter',sans-serif;background:#f4f2ef;color:#1a1a1a;line-height
 .header-nav li a{display:block;padding:9px 14px;font-size:12.5px;font-weight:600;color:#444;text-decoration:none;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;}
 .header-nav li a:hover,.header-nav li a.active{color:#0055cc;border-bottom-color:#0055cc;}
 
-/* ── LAYOUT ── */
+/* â”€â”€ LAYOUT â”€â”€ */
 .container{max-width:1140px;margin:0 auto;padding:28px 24px 80px;}
 
-/* ── FEATURED ── */
+/* â”€â”€ FEATURED â”€â”€ */
 .featured-wrap{display:grid;grid-template-columns:55% 45%;border:1px solid #ddd;border-radius:2px;overflow:hidden;margin-bottom:36px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.06);}
 .featured-img{position:relative;height:340px;overflow:hidden;}
 .featured-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
@@ -57,17 +59,17 @@ body{font-family:'Inter',sans-serif;background:#f4f2ef;color:#1a1a1a;line-height
 .stat-n{font-size:22px;font-weight:700;color:#111;font-family:'Merriweather',serif;line-height:1;}
 .stat-l{font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
 
-/* ── SECTION DIVIDER ── */
+/* â”€â”€ SECTION DIVIDER â”€â”€ */
 .sec-div{display:flex;align-items:center;gap:10px;margin:36px 0 18px;}
 .sec-div-tag{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#0055cc;white-space:nowrap;}
 .sec-div-line{flex:1;height:1px;background:#d8d8d8;}
 .sec-div-title{font-family:'Merriweather',serif;font-size:15px;font-weight:700;color:#111;white-space:nowrap;}
 
-/* ── GRID ── */
+/* â”€â”€ GRID â”€â”€ */
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:stretch;}
 
-/* ── CARD ── */
+/* â”€â”€ CARD â”€â”€ */
 .card{background:#fff;border:1px solid #e2e2e2;border-radius:2px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s;}
 .card:hover{box-shadow:0 6px 24px rgba(0,0,0,.1);transform:translateY(-2px);}
 .card-img{height:176px;overflow:hidden;position:relative;flex-shrink:0;}
@@ -80,11 +82,11 @@ body{font-family:'Inter',sans-serif;background:#f4f2ef;color:#1a1a1a;line-height
 .card-foot{font-size:11px;color:#aaa;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #f0f0f0;padding-top:10px;margin-top:auto;}
 .card-foot .rd{color:#0055cc;font-weight:600;font-size:11.5px;}
 
-/* ── MAIN + SIDEBAR ── */
+/* â”€â”€ MAIN + SIDEBAR â”€â”€ */
 .main-sidebar{display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;}
 aside{position:sticky;top:90px;}
 
-/* ── SIDEBAR WIDGETS ── */
+/* â”€â”€ SIDEBAR WIDGETS â”€â”€ */
 .s-widget{background:#fff;border:1px solid #e2e2e2;border-radius:2px;padding:18px 20px;margin-bottom:18px;}
 .s-widget-title{font-family:'Merriweather',serif;font-size:13.5px;font-weight:700;padding-bottom:10px;margin-bottom:14px;border-bottom:2px solid #111;color:#111;}
 .s-list{list-style:none;}
@@ -102,12 +104,12 @@ aside{position:sticky;top:90px;}
 .quote-box{background:#f9f7f4;border-left:3px solid #0055cc;padding:16px 18px;border-radius:0 2px 2px 0;margin-bottom:18px;}
 .quote-box p{font-family:'Merriweather',serif;font-size:12.5px;color:#444;line-height:1.65;font-style:italic;}
 
-/* ── FOOTER ── */
+/* â”€â”€ FOOTER â”€â”€ */
 footer{background:#111;color:rgba(255,255,255,.5);padding:28px 24px;text-align:center;font-size:12px;letter-spacing:.2px;}
 footer a{color:#4d9fff;text-decoration:none;}
 footer a:hover{text-decoration:underline;}
 
-/* ── RESPONSIVE ── */
+/* â”€â”€ RESPONSIVE â”€â”€ */
 @media(max-width:960px){
   .featured-wrap{grid-template-columns:1fr;}
   .featured-img{height:240px;}
@@ -127,18 +129,18 @@ footer a:hover{text-decoration:underline;}
 
 <header class="site-header">
   <div class="header-top">
-    <span>⚡ Nova AI · Trợ Lý Thông Minh Cho Doanh Nghiệp Việt · Thứ Năm, 05/03/2026</span>
+    <span>âš¡ Nova AI Â· Trá»£ LÃ½ ThÃ´ng Minh Cho Doanh Nghiá»‡p Viá»‡t Â· Thá»© NÄƒm, 05/03/2026</span>
   </div>
   <div class="header-main">
     <a href="https://trolythongminh.io.vn" class="site-name">Nova<span>.</span>AI</a>
-    <a href="https://calendly.com/willdaolamzz" target="_blank" class="header-cta">Book Demo Miễn Phí →</a>
+    <a href="https://calendly.com/willdaolamzz" target="_blank" class="header-cta">Book Demo Miá»…n PhÃ­ â†’</a>
   </div>
   <nav class="header-nav">
     <ul>
-      <li><a href="https://trolythongminh.io.vn">Trang Chủ</a></li>
+      <li><a href="https://trolythongminh.io.vn">Trang Chá»§</a></li>
       <li><a href="/blog/" class="active">Blog</a></li>
-      <li><a href="https://trolythongminh.io.vn#pricing">Bảng Giá</a></li>
-      <li><a href="https://calendly.com/willdaolamzz" target="_blank">Liên Hệ</a></li>
+      <li><a href="https://trolythongminh.io.vn#pricing">Báº£ng GiÃ¡</a></li>
+      <li><a href="https://calendly.com/willdaolamzz" target="_blank">LiÃªn Há»‡</a></li>
     </ul>
   </nav>
 </header>
@@ -148,21 +150,21 @@ footer a:hover{text-decoration:underline;}
   <!-- FEATURED -->
   <a href="case-study-kansai-osaka.html" class="featured-wrap" style="text-decoration:none;color:inherit;">
     <div class="featured-img">
-      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Kansai Osaka F&B case study">
-      <span class="featured-label">⭐ Bài Nổi Bật</span>
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Kansai Osaka F&B case study" width="400" height="230" fetchpriority="high"><!-- featured -->
+      <span class="featured-label">â­ BÃ i Ná»•i Báº­t</span>
     </div>
     <div class="featured-body">
-      <div class="featured-cat">Case Study · F&B</div>
-      <h2><a href="case-study-kansai-osaka.html">Tôi Dùng AI Agent Chạy Bếp 90 Ngày — Đây Là Số Thật</a></h2>
-      <p class="featured-excerpt">Data thật từ bếp Kansai Osaka tại TP.HCM. Từ việc phát hiện Thứ 2 doanh thu âm -72% đến tăng trưởng +75% trong 2 tháng — không có gì được làm tròn.</p>
+      <div class="featured-cat">Case Study Â· F&B</div>
+      <h2><a href="case-study-kansai-osaka.html">TÃ´i DÃ¹ng AI Agent Cháº¡y Báº¿p 90 NgÃ y â€” ÄÃ¢y LÃ  Sá»‘ Tháº­t</a></h2>
+      <p class="featured-excerpt">Data tháº­t tá»« báº¿p Kansai Osaka táº¡i TP.HCM. Tá»« viá»‡c phÃ¡t hiá»‡n Thá»© 2 doanh thu Ã¢m -72% Ä‘áº¿n tÄƒng trÆ°á»Ÿng +75% trong 2 thÃ¡ng â€” khÃ´ng cÃ³ gÃ¬ Ä‘Æ°á»£c lÃ m trÃ²n.</p>
       <div class="featured-byline-row">
-        <div class="byline-author"><img src="../will-headshot.jpg" alt="Will"><span>Will · 04/03/2026</span></div>
-        <span class="rd">Đọc tiếp →</span>
+        <div class="byline-author"><img src="../will-headshot.jpg" alt="Will" loading="lazy" width="32" height="32"><span>Will Â· 04/03/2026</span></div>
+        <span class="rd">Äá»c tiáº¿p â†’</span>
       </div>
       <div class="featured-stats">
-        <div><div class="stat-n">4,257</div><div class="stat-l">đơn hàng</div></div>
-        <div><div class="stat-n">646M₫</div><div class="stat-l">doanh thu</div></div>
-        <div><div class="stat-n">+75%</div><div class="stat-l">tăng trưởng</div></div>
+        <div><div class="stat-n">4,257</div><div class="stat-l">Ä‘Æ¡n hÃ ng</div></div>
+        <div><div class="stat-n">646Mâ‚«</div><div class="stat-l">doanh thu</div></div>
+        <div><div class="stat-n">+75%</div><div class="stat-l">tÄƒng trÆ°á»Ÿng</div></div>
       </div>
     </div>
   </a>
@@ -172,183 +174,183 @@ footer a:hover{text-decoration:underline;}
     <div>
 
       <div class="sec-div">
-        <span class="sec-div-tag">Mới Nhất</span>
+        <span class="sec-div-tag">Má»›i Nháº¥t</span>
         <div class="sec-div-line"></div>
-        <h3>Kiến Thức Thực Chiến</h3>
+        <h3>Kiáº¿n Thá»©c Thá»±c Chiáº¿n</h3>
       </div>
 
       <div class="grid-3">
 
         <a href="ai-agent-la-gi.html" class="card">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80" alt="AI Agent là gì">
-            <span class="card-cat">Cơ Bản</span>
+            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80" alt="AI Agent lÃ  gÃ¬" loading="lazy" width="400" height="230">
+            <span class="card-cat">CÆ¡ Báº£n</span>
           </div>
           <div class="card-body">
-            <h2>AI Agent Là Gì? Tại Sao Khác Hoàn Toàn Với ChatGPT</h2>
-            <p>AI Agent = AI có memory + tools + hành động. Không chỉ chat — mà làm việc thật.</p>
-            <div class="card-foot"><span>04/03/2026 · 5 phút</span><span class="rd">Đọc →</span></div>
+            <h2>AI Agent LÃ  GÃ¬? Táº¡i Sao KhÃ¡c HoÃ n ToÃ n Vá»›i ChatGPT</h2>
+            <p>AI Agent = AI cÃ³ memory + tools + hÃ nh Ä‘á»™ng. KhÃ´ng chá»‰ chat â€” mÃ  lÃ m viá»‡c tháº­t.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 5 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
         <a href="ai-agent-cho-fb-ban-hang.html" class="card">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80" alt="AI Agent Facebook bán hàng">
-            <span class="card-cat">Bán Hàng</span>
+            <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80" alt="AI Agent Facebook bÃ¡n hÃ ng" loading="lazy" width="400" height="230">
+            <span class="card-cat">BÃ¡n HÃ ng</span>
           </div>
           <div class="card-body">
-            <h2>AI Agent Cho Facebook Bán Hàng: Tự Động Trả Lời, Chốt Đơn 24/7</h2>
-            <p>78% khách kỳ vọng phản hồi trong 1 giờ. AI agent trả lời trong 2-3 phút.</p>
-            <div class="card-foot"><span>04/03/2026 · 6 phút</span><span class="rd">Đọc →</span></div>
+            <h2>AI Agent Cho Facebook BÃ¡n HÃ ng: Tá»± Äá»™ng Tráº£ Lá»i, Chá»‘t ÄÆ¡n 24/7</h2>
+            <p>78% khÃ¡ch ká»³ vá»ng pháº£n há»“i trong 1 giá». AI agent tráº£ lá»i trong 2-3 phÃºt.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 6 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
         <a href="ai-agent-nganh-fnb.html" class="card">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="AI Agent ngành F&B">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="AI Agent ngÃ nh F&B" loading="lazy" width="400" height="230">
             <span class="card-cat">F&B</span>
           </div>
           <div class="card-body">
-            <h2>AI Agent Trong Ngành F&B: Từ Báo Cáo Ca Đến Tối Ưu Menu</h2>
-            <p>Tự động hóa vận hành bếp — báo cáo, tồn kho, phân tích đơn hàng 24/7.</p>
-            <div class="card-foot"><span>04/03/2026 · 5 phút</span><span class="rd">Đọc →</span></div>
+            <h2>AI Agent Trong NgÃ nh F&B: Tá»« BÃ¡o CÃ¡o Ca Äáº¿n Tá»‘i Æ¯u Menu</h2>
+            <p>Tá»± Ä‘á»™ng hÃ³a váº­n hÃ nh báº¿p â€” bÃ¡o cÃ¡o, tá»“n kho, phÃ¢n tÃ­ch Ä‘Æ¡n hÃ ng 24/7.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 5 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
         <a href="ai-agent-cho-ke-toan-tu-do.html" class="card">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80" alt="AI Agent kế toán">
-            <span class="card-cat">Tài Chính</span>
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80" alt="AI Agent káº¿ toÃ¡n" loading="lazy" width="400" height="230">
+            <span class="card-cat">TÃ i ChÃ­nh</span>
           </div>
           <div class="card-body">
-            <h2>AI Agent Cho Kế Toán Tự Do: Tiết Kiệm 26 Giờ Nhập Liệu Mỗi Tháng</h2>
-            <p>Deadline thuế, nhập hóa đơn, trả lời khách — AI lo hết phần lặp lại.</p>
-            <div class="card-foot"><span>04/03/2026 · 5 phút</span><span class="rd">Đọc →</span></div>
+            <h2>AI Agent Cho Káº¿ ToÃ¡n Tá»± Do: Tiáº¿t Kiá»‡m 26 Giá» Nháº­p Liá»‡u Má»—i ThÃ¡ng</h2>
+            <p>Deadline thuáº¿, nháº­p hÃ³a Ä‘Æ¡n, tráº£ lá»i khÃ¡ch â€” AI lo háº¿t pháº§n láº·p láº¡i.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 5 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
         <a href="chi-phi-thue-nhan-vien-vs-ai.html" class="card">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80" alt="So sánh chi phí">
-            <span class="card-cat">So Sánh</span>
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80" alt="So sÃ¡nh chi phÃ­" loading="lazy" width="400" height="230">
+            <span class="card-cat">So SÃ¡nh</span>
           </div>
           <div class="card-body">
-            <h2>Chi Phí Thuê Nhân Viên vs AI Agent: Bảng So Sánh Thật 2026</h2>
-            <p>15 triệu/tháng vs 2 triệu/tháng — ROI cụ thể, không làm tròn số.</p>
-            <div class="card-foot"><span>04/03/2026 · 5 phút</span><span class="rd">Đọc →</span></div>
+            <h2>Chi PhÃ­ ThuÃª NhÃ¢n ViÃªn vs AI Agent: Báº£ng So SÃ¡nh Tháº­t 2026</h2>
+            <p>15 triá»‡u/thÃ¡ng vs 2 triá»‡u/thÃ¡ng â€” ROI cá»¥ thá»ƒ, khÃ´ng lÃ m trÃ²n sá»‘.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 5 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
         <a href="du-lieu-cua-ban-an-toan-khong.html" class="card">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80" alt="Bảo mật dữ liệu AI">
-            <span class="card-cat">Bảo Mật</span>
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80" alt="Báº£o máº­t dá»¯ liá»‡u AI" loading="lazy" width="400" height="230">
+            <span class="card-cat">Báº£o Máº­t</span>
           </div>
           <div class="card-body">
-            <h2>Dữ Liệu Của Bạn Có An Toàn Khi Dùng AI Agent Không?</h2>
-            <p>Sự thật về rủi ro và cách phòng: instance riêng, permission gate, guardrails.</p>
-            <div class="card-foot"><span>04/03/2026 · 5 phút</span><span class="rd">Đọc →</span></div>
+            <h2>Dá»¯ Liá»‡u Cá»§a Báº¡n CÃ³ An ToÃ n Khi DÃ¹ng AI Agent KhÃ´ng?</h2>
+            <p>Sá»± tháº­t vá» rá»§i ro vÃ  cÃ¡ch phÃ²ng: instance riÃªng, permission gate, guardrails.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 5 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
       </div>
 
       <div class="sec-div" style="margin-top:36px;">
-        <span class="sec-div-tag">Hướng Dẫn</span>
+        <span class="sec-div-tag">HÆ°á»›ng Dáº«n</span>
         <div class="sec-div-line"></div>
-        <h3>Bắt Đầu Với AI Agent</h3>
+        <h3>Báº¯t Äáº§u Vá»›i AI Agent</h3>
       </div>
 
       <div class="grid-2">
 
         <a href="ai-agent-cho-nguoi-khong-biet-code.html" class="card">
           <div class="card-img" style="height:200px;">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="AI Agent cho người không biết code">
-            <span class="card-cat">Người Mới</span>
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="AI Agent cho ngÆ°á»i khÃ´ng biáº¿t code" loading="lazy" width="400" height="230">
+            <span class="card-cat">NgÆ°á»i Má»›i</span>
           </div>
           <div class="card-body">
-            <h2>AI Agent Cho Người Không Biết Code: Hướng Dẫn Từng Bước</h2>
-            <p>Không cần kỹ thuật. Chỉ cần Telegram và 30 phút. Đây là cách bắt đầu.</p>
-            <div class="card-foot"><span>04/03/2026 · 6 phút</span><span class="rd">Đọc →</span></div>
+            <h2>AI Agent Cho NgÆ°á»i KhÃ´ng Biáº¿t Code: HÆ°á»›ng Dáº«n Tá»«ng BÆ°á»›c</h2>
+            <p>KhÃ´ng cáº§n ká»¹ thuáº­t. Chá»‰ cáº§n Telegram vÃ  30 phÃºt. ÄÃ¢y lÃ  cÃ¡ch báº¯t Ä‘áº§u.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 6 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
         <a href="bat-dau-voi-ai-agent-tu-dau.html" class="card">
           <div class="card-img" style="height:200px;">
-            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&q=80" alt="Bắt đầu với AI Agent">
-            <span class="card-cat">Hướng Dẫn</span>
+            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&q=80" alt="Báº¯t Ä‘áº§u vá»›i AI Agent" loading="lazy" width="400" height="230">
+            <span class="card-cat">HÆ°á»›ng Dáº«n</span>
           </div>
           <div class="card-body">
-            <h2>Bắt Đầu Với AI Agent Từ Đâu? Lộ Trình 4 Tuần Thực Tế</h2>
-            <p>Từ zero đến có AI agent chạy thật — lộ trình chi tiết từng tuần.</p>
-            <div class="card-foot"><span>04/03/2026 · 5 phút</span><span class="rd">Đọc →</span></div>
+            <h2>Báº¯t Äáº§u Vá»›i AI Agent Tá»« ÄÃ¢u? Lá»™ TrÃ¬nh 4 Tuáº§n Thá»±c Táº¿</h2>
+            <p>Tá»« zero Ä‘áº¿n cÃ³ AI agent cháº¡y tháº­t â€” lá»™ trÃ¬nh chi tiáº¿t tá»«ng tuáº§n.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 5 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
         <a href="tu-dong-hoa-cong-viec-bang-ai.html" class="card">
           <div class="card-img" style="height:200px;">
-            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80" alt="Tự động hóa công việc AI">
-            <span class="card-cat">Tự Động Hóa</span>
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80" alt="Tá»± Ä‘á»™ng hÃ³a cÃ´ng viá»‡c AI" loading="lazy" width="400" height="230">
+            <span class="card-cat">Tá»± Äá»™ng HÃ³a</span>
           </div>
           <div class="card-body">
-            <h2>Tự Động Hóa Công Việc Bằng AI: 7 Quy Trình Phổ Biến Nhất</h2>
-            <p>7 workflow phổ biến nhất mà doanh nghiệp Việt đang tự động hóa với AI.</p>
-            <div class="card-foot"><span>04/03/2026 · 6 phút</span><span class="rd">Đọc →</span></div>
+            <h2>Tá»± Äá»™ng HÃ³a CÃ´ng Viá»‡c Báº±ng AI: 7 Quy TrÃ¬nh Phá»• Biáº¿n Nháº¥t</h2>
+            <p>7 workflow phá»• biáº¿n nháº¥t mÃ  doanh nghiá»‡p Viá»‡t Ä‘ang tá»± Ä‘á»™ng hÃ³a vá»›i AI.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 6 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
         <a href="cau-hoi-thuong-gap-ve-ai-agent.html" class="card">
           <div class="card-img" style="height:200px;">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80" alt="FAQ AI Agent">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80" alt="FAQ AI Agent" loading="lazy" width="400" height="230">
             <span class="card-cat">FAQ</span>
           </div>
           <div class="card-body">
-            <h2>30 Câu Hỏi Thường Gặp Về AI Agent — Trả Lời Thẳng, Không Vòng Vo</h2>
-            <p>30 câu hỏi thật từ founder Việt — trả lời thẳng, không PR, không vòng vo.</p>
-            <div class="card-foot"><span>04/03/2026 · 8 phút</span><span class="rd">Đọc →</span></div>
+            <h2>30 CÃ¢u Há»i ThÆ°á»ng Gáº·p Vá» AI Agent â€” Tráº£ Lá»i Tháº³ng, KhÃ´ng VÃ²ng Vo</h2>
+            <p>30 cÃ¢u há»i tháº­t tá»« founder Viá»‡t â€” tráº£ lá»i tháº³ng, khÃ´ng PR, khÃ´ng vÃ²ng vo.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 8 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
 
       </div>
 
       <div class="sec-div" style="margin-top:36px;">
-        <span class="sec-div-tag">Phân Tích</span>
+        <span class="sec-div-tag">PhÃ¢n TÃ­ch</span>
         <div class="sec-div-line"></div>
-        <h3>Chuyên Sâu</h3>
+        <h3>ChuyÃªn SÃ¢u</h3>
       </div>
 
       <div class="grid-3">
         <a href="5-viec-nen-de-ai-lam.html" class="card">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80" alt="5 việc nên để AI làm">
-            <span class="card-cat">Thực Chiến</span>
+            <img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80" alt="5 viá»‡c nÃªn Ä‘á»ƒ AI lÃ m" loading="lazy" width="400" height="230">
+            <span class="card-cat">Thá»±c Chiáº¿n</span>
           </div>
           <div class="card-body">
-            <h2>5 Việc Chủ Doanh Nghiệp Nhỏ Nên Để AI Agent Làm Thay Ngay</h2>
-            <p>Tiết kiệm 20-30 giờ/tháng bắt đầu từ 5 việc lặp lại này.</p>
-            <div class="card-foot"><span>04/03/2026 · 4 phút</span><span class="rd">Đọc →</span></div>
+            <h2>5 Viá»‡c Chá»§ Doanh Nghiá»‡p Nhá» NÃªn Äá»ƒ AI Agent LÃ m Thay Ngay</h2>
+            <p>Tiáº¿t kiá»‡m 20-30 giá»/thÃ¡ng báº¯t Ä‘áº§u tá»« 5 viá»‡c láº·p láº¡i nÃ y.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 4 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
         <a href="loi-founders-hay-mac-khi-dung-ai.html" class="card">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80" alt="Lỗi founders hay mắc">
-            <span class="card-cat">Kinh Nghiệm</span>
+            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80" alt="Lá»—i founders hay máº¯c" loading="lazy" width="400" height="230">
+            <span class="card-cat">Kinh Nghiá»‡m</span>
           </div>
           <div class="card-body">
-            <h2>9 Lỗi Founders Hay Mắc Khi Dùng AI Lần Đầu (Và Cách Tránh)</h2>
-            <p>Từ kỳ vọng sai đến thiếu quy trình — tránh trước khi gặp phải.</p>
-            <div class="card-foot"><span>04/03/2026 · 7 phút</span><span class="rd">Đọc →</span></div>
+            <h2>9 Lá»—i Founders Hay Máº¯c Khi DÃ¹ng AI Láº§n Äáº§u (VÃ  CÃ¡ch TrÃ¡nh)</h2>
+            <p>Tá»« ká»³ vá»ng sai Ä‘áº¿n thiáº¿u quy trÃ¬nh â€” trÃ¡nh trÆ°á»›c khi gáº·p pháº£i.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 7 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
         <a href="nganh-nao-phu-hop-ai-agent-viet-nam.html" class="card">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Ngành phù hợp AI Agent">
-            <span class="card-cat">Phân Tích Ngành</span>
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="NgÃ nh phÃ¹ há»£p AI Agent" loading="lazy" width="400" height="230">
+            <span class="card-cat">PhÃ¢n TÃ­ch NgÃ nh</span>
           </div>
           <div class="card-body">
-            <h2>AI Agent Phù Hợp Với Ngành Nào Ở Việt Nam Nhất Hiện Tại</h2>
-            <p>6 ngành phù hợp nhất: F&B, kế toán, BĐS, TMĐT, giáo dục, y tế.</p>
-            <div class="card-foot"><span>04/03/2026 · 6 phút</span><span class="rd">Đọc →</span></div>
+            <h2>AI Agent PhÃ¹ Há»£p Vá»›i NgÃ nh NÃ o á»ž Viá»‡t Nam Nháº¥t Hiá»‡n Táº¡i</h2>
+            <p>6 ngÃ nh phÃ¹ há»£p nháº¥t: F&B, káº¿ toÃ¡n, BÄS, TMÄT, giÃ¡o dá»¥c, y táº¿.</p>
+            <div class="card-foot"><span>04/03/2026 Â· 6 phÃºt</span><span class="rd">Äá»c â†’</span></div>
           </div>
         </a>
       </div>
@@ -358,36 +360,36 @@ footer a:hover{text-decoration:underline;}
     <!-- SIDEBAR -->
     <aside>
       <div class="cta-box">
-        <h4>Thử Nova AI Miễn Phí</h4>
-        <p>30 phút demo thật — AI làm việc với data thật của bạn. Không ưng thì thôi.</p>
-        <a href="https://calendly.com/willdaolamzz" target="_blank">🗓 Book Demo →</a>
-        <p style="font-size:11px;margin-top:10px;opacity:.7;">Từ 2 triệu/tháng · Còn 89/100 suất</p>
+        <h4>Thá»­ Nova AI Miá»…n PhÃ­</h4>
+        <p>30 phÃºt demo tháº­t â€” AI lÃ m viá»‡c vá»›i data tháº­t cá»§a báº¡n. KhÃ´ng Æ°ng thÃ¬ thÃ´i.</p>
+        <a href="https://calendly.com/willdaolamzz" target="_blank">ðŸ—“ Book Demo â†’</a>
+        <p style="font-size:11px;margin-top:10px;opacity:.7;">Tá»« 2 triá»‡u/thÃ¡ng Â· CÃ²n 89/100 suáº¥t</p>
       </div>
 
       <div class="s-widget">
-        <div class="s-widget-title">Đọc Nhiều Nhất</div>
+        <div class="s-widget-title">Äá»c Nhiá»u Nháº¥t</div>
         <ul class="s-list">
-          <li><a href="case-study-kansai-osaka.html">AI Agent Chạy Bếp 90 Ngày — Kết Quả Thật<div class="s-meta">Case Study · 8 phút đọc</div></a></li>
-          <li><a href="chi-phi-thue-nhan-vien-vs-ai.html">Nhân Viên 15 Triệu vs AI 2 Triệu<div class="s-meta">So Sánh · 5 phút đọc</div></a></li>
-          <li><a href="ai-agent-la-gi.html">AI Agent Là Gì? Khác ChatGPT Thế Nào<div class="s-meta">Cơ Bản · 5 phút đọc</div></a></li>
-          <li><a href="cau-hoi-thuong-gap-ve-ai-agent.html">30 Câu Hỏi Thường Gặp Về AI Agent<div class="s-meta">FAQ · 8 phút đọc</div></a></li>
-          <li><a href="du-lieu-cua-ban-an-toan-khong.html">Dữ Liệu Của Bạn Có An Toàn Không?<div class="s-meta">Bảo Mật · 5 phút đọc</div></a></li>
+          <li><a href="case-study-kansai-osaka.html">AI Agent Cháº¡y Báº¿p 90 NgÃ y â€” Káº¿t Quáº£ Tháº­t<div class="s-meta">Case Study Â· 8 phÃºt Ä‘á»c</div></a></li>
+          <li><a href="chi-phi-thue-nhan-vien-vs-ai.html">NhÃ¢n ViÃªn 15 Triá»‡u vs AI 2 Triá»‡u<div class="s-meta">So SÃ¡nh Â· 5 phÃºt Ä‘á»c</div></a></li>
+          <li><a href="ai-agent-la-gi.html">AI Agent LÃ  GÃ¬? KhÃ¡c ChatGPT Tháº¿ NÃ o<div class="s-meta">CÆ¡ Báº£n Â· 5 phÃºt Ä‘á»c</div></a></li>
+          <li><a href="cau-hoi-thuong-gap-ve-ai-agent.html">30 CÃ¢u Há»i ThÆ°á»ng Gáº·p Vá» AI Agent<div class="s-meta">FAQ Â· 8 phÃºt Ä‘á»c</div></a></li>
+          <li><a href="du-lieu-cua-ban-an-toan-khong.html">Dá»¯ Liá»‡u Cá»§a Báº¡n CÃ³ An ToÃ n KhÃ´ng?<div class="s-meta">Báº£o Máº­t Â· 5 phÃºt Ä‘á»c</div></a></li>
         </ul>
       </div>
 
       <div class="s-widget">
-        <div class="s-widget-title">Theo Chủ Đề</div>
+        <div class="s-widget-title">Theo Chá»§ Äá»</div>
         <ul class="s-list">
-          <li><a href="ai-agent-nganh-fnb.html">🍜 F&B & Nhà Hàng<div class="s-meta">2 bài</div></a></li>
-          <li><a href="ai-agent-cho-ke-toan-tu-do.html">📊 Tài Chính & Kế Toán<div class="s-meta">2 bài</div></a></li>
-          <li><a href="ai-agent-cho-fb-ban-hang.html">🛒 Bán Hàng Online<div class="s-meta">2 bài</div></a></li>
-          <li><a href="bat-dau-voi-ai-agent-tu-dau.html">🚀 Bắt Đầu Với AI<div class="s-meta">3 bài</div></a></li>
-          <li><a href="du-lieu-cua-ban-an-toan-khong.html">🔒 Bảo Mật & An Toàn<div class="s-meta">2 bài</div></a></li>
+          <li><a href="ai-agent-nganh-fnb.html">ðŸœ F&B & NhÃ  HÃ ng<div class="s-meta">2 bÃ i</div></a></li>
+          <li><a href="ai-agent-cho-ke-toan-tu-do.html">ðŸ“Š TÃ i ChÃ­nh & Káº¿ ToÃ¡n<div class="s-meta">2 bÃ i</div></a></li>
+          <li><a href="ai-agent-cho-fb-ban-hang.html">ðŸ›’ BÃ¡n HÃ ng Online<div class="s-meta">2 bÃ i</div></a></li>
+          <li><a href="bat-dau-voi-ai-agent-tu-dau.html">ðŸš€ Báº¯t Äáº§u Vá»›i AI<div class="s-meta">3 bÃ i</div></a></li>
+          <li><a href="du-lieu-cua-ban-an-toan-khong.html">ðŸ”’ Báº£o Máº­t & An ToÃ n<div class="s-meta">2 bÃ i</div></a></li>
         </ul>
       </div>
 
       <div class="s-widget" style="background:#f9f7f4;border:2px dashed #ddd;">
-        <p style="font-size:12px;color:#888;text-align:center;line-height:1.6;">⚡ <strong>Nova AI</strong> đang làm việc 24/7.<br>Chủ của nó đang nghỉ ngơi.<br>Còn bạn — ai đang làm việc cho bạn?</p>
+        <p style="font-size:12px;color:#888;text-align:center;line-height:1.6;">âš¡ <strong>Nova AI</strong> Ä‘ang lÃ m viá»‡c 24/7.<br>Chá»§ cá»§a nÃ³ Ä‘ang nghá»‰ ngÆ¡i.<br>CÃ²n báº¡n â€” ai Ä‘ang lÃ m viá»‡c cho báº¡n?</p>
       </div>
     </aside>
   </div>
@@ -395,7 +397,12 @@ footer a:hover{text-decoration:underline;}
 </div>
 
 <footer>
-  <p>© 2026 Nova Trợ Lý Thông Minh · <a href="https://trolythongminh.io.vn">trolythongminh.io.vn</a> · <a href="https://calendly.com/willdaolamzz" target="_blank">Book Demo Miễn Phí</a></p>
+  <p>Â© 2026 Nova Trá»£ LÃ½ ThÃ´ng Minh Â· <a href="https://trolythongminh.io.vn">trolythongminh.io.vn</a> Â· <a href="https://calendly.com/willdaolamzz" target="_blank">Book Demo Miá»…n PhÃ­</a></p>
 </footer>
 </body>
 </html>
+
+
+
+
+
