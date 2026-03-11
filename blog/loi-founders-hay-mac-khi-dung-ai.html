@@ -76,6 +76,46 @@ h1 span{color:#22d3ee;}
 footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 48px;text-align:center;font-size:12px;color:rgba(170,185,210,.4);}
 @media(max-width:600px){nav{padding:12px 20px;}.container{padding:28px 16px 60px;}}
 </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Lỗi phổ biến nhất khi founders dùng AI lần đầu là gì?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "9 lỗi phổ biến nhất: (1) Kỳ vọng AI làm được mọi thứ ngay ngày đầu — AI cần 2–4 tuần calibration; (2) Không có data gì để bắt đầu; (3) Không review output của AI; (4) Dùng AI public cho thông tin nội bộ nhạy cảm; (5) Không define rõ AI agent làm việc gì; (6) Bỏ qua safety guardrails; (7) Không onboard team; (8) Thay đổi kỳ vọng liên tục, không cho AI học đủ; (9) Nghĩ AI là silver bullet, không cần process."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Tại sao không nên dùng ChatGPT hay AI public cho thông tin nội bộ nhạy cảm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Khi bạn nhập thông tin kinh doanh, dữ liệu khách hàng, chiến lược nội bộ vào ChatGPT, Gemini hay AI public, dữ liệu đó có thể được dùng để train model. Giải pháp: dùng AI agent trên instance riêng (private). Data nằm trong môi trường kiểm soát của bạn, không share với bên ngoài."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cần bao lâu để AI Agent thực sự hoạt động hiệu quả?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hai tuần đầu là giai đoạn calibration — AI học ngành của bạn, cách bạn làm việc, những gì quan trọng. Dành 10–15 phút/ngày để review và feedback. Sau 4 tuần mới đánh giá hiệu quả thật sự. Đừng đổi kỳ vọng liên tục — chọn 2–3 use case cốt lõi và stick với chúng ít nhất 4 tuần."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Safety guardrails cho AI Agent là gì và tại sao quan trọng?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Safety guardrails là các giới hạn quyền hạn của AI Agent — AI không được xóa, gửi, hay thay đổi dữ liệu quan trọng mà không có xác nhận từ bạn. Có trường hợp thực tế: AI agent chạy không kiểm soát xóa file, gửi email sai, tốn tiền vô tội vạ. Trợ Lý Thông Minh cài sẵn permission gate cho mọi instance từ ngày đầu."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 <nav>
