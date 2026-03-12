@@ -1,16 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://trolythongminh.io.vn/</loc>
     <lastmod>2026-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://trolythongminh.io.vn/brand.html</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/</loc>
@@ -21,62 +15,128 @@
   <url>
     <loc>https://trolythongminh.io.vn/blog/ai-agent-la-gi.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/tai-sao-chatgpt-khong-phai-nhan-vien.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/so-sanh-nhan-vien-vs-ai.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/loi-founders-hay-mac-khi-dung-ai.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/onboarding-ai-agent-48h.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/5-viec-nen-de-ai-lam.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/case-study-kansai-osaka.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/nganh-nao-phu-hop-ai-agent-viet-nam.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/bao-mat-ai-agent.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/ai-agent-hoc-business-the-nao.html</loc>
     <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/ai-agent-khac-gi-chatgpt.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/chi-phi-thue-nhan-vien-vs-ai.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/ban-la-1-nguoi-ai-lam-cua-ca-team.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/bat-dau-voi-ai-agent-tu-dau.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/ai-agent-nganh-fnb.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/ai-agent-cho-fb-ban-hang.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/ai-agent-cho-ke-toan-tu-do.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/ai-agent-cho-nguoi-khong-biet-code.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/du-lieu-cua-ban-an-toan-khong.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/cau-hoi-thuong-gap-ve-ai-agent.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/blog/tu-dong-hoa-cong-viec-bang-ai.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://trolythongminh.io.vn/blog/ai-agent-tren-zalo-cho-doanh-nghiep.html</loc>
@@ -137,5 +197,11 @@
     <lastmod>2026-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolythongminh.io.vn/brand.html</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
