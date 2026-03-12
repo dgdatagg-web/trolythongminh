@@ -71,6 +71,54 @@
     .total-saving p { margin: 8px 0 0; }
     footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 32px 0; text-align: center; font-size: 13px; color: rgba(178,192,215,0.35); margin-top: 60px; }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "5 việc nên giao cho AI Agent làm thay là những việc gì?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "5 loại việc phù hợp nhất để giao cho AI Agent: (1) Báo cáo vận hành tự động – tự kéo data, tổng hợp, gửi báo cáo vào giờ định sẵn; (2) Nhắc nhở deadline và follow-up – nhắc khách thanh toán, nhắc team nộp báo cáo, escalate khi quá hạn; (3) Trả lời câu hỏi lặp lại từ khách – giá, giờ mở cửa, còn hàng không, ship đi quận X không – 24/7; (4) Phân tích data cơ bản – tự phát hiện anomaly, so sánh với kỳ trước, đưa ra nhận xét ngắn; (5) Soạn thảo email/văn bản lặp lại – xác nhận đơn hàng, phản hồi khiếu nại, gửi báo giá."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI Agent trả lời khách hàng có tự nhiên không, hay bị cứng nhắc như chatbot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Không phải chatbot nhựa cứng nhắc. AI Agent hiểu context, trả lời tự nhiên và biết khi nào cần escalate lên người thật. Bạn train một lần theo FAQ của business, agent tự trả lời tức thì 24/7. Chỉ chuyển sang bạn khi câu hỏi ngoài kịch bản hoặc khách yêu cầu gặp người thật. Mức độ tự nhiên phụ thuộc vào chất lượng training ban đầu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI Agent tự động hóa báo cáo hoạt động như thế nào?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI Agent tự động: kéo data từ hệ thống POS/CRM/kế toán, tổng hợp theo template bạn định nghĩa một lần, gửi báo cáo vào giờ bạn muốn qua Zalo/email. Bạn chỉ nhận và đọc – không cần làm gì. Ví dụ thực tế: nhà hàng Kansai Osaka nhận báo cáo doanh thu, top món, tỷ lệ hủy đơn mỗi sáng 8h tự động. Tiết kiệm 15-20 giờ/tháng so với làm thủ công."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tôi có kiểm soát được mức độ tự động của AI Agent không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có. Bạn tự chọn mức độ tự chủ cho từng loại tác vụ. Ví dụ với email: có thể cài \"chỉ soạn, tôi approve rồi mới gửi\" hoặc \"tự gửi với các loại email thông thường như xác nhận đơn hàng\". Bạn bắt đầu với mức kiểm soát cao (approve mọi thứ), sau khi tin tưởng thì tăng dần mức tự động. Không cần lo AI làm gì ngoài tầm kiểm soát nếu bạn setup permission gate đúng."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Nhân viên của tôi sẽ làm gì khi AI làm thay 5 việc này?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Câu trả lời thật: 5 việc trên không phải việc nhân viên giỏi thích làm. Khi AI làm việc lặp lại (báo cáo, nhắc nhở, FAQ, data entry), người của bạn có thể làm việc cần não hơn: chăm sóc khách hàng quan trọng, phát triển sản phẩm, xây dựng mối quan hệ, xử lý tình huống phức tạp. Tự động hóa đúng chỗ = nhân viên làm việc có giá trị hơn, không phải ít việc hơn."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

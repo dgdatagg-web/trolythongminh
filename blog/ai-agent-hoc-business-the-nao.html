@@ -72,6 +72,54 @@
     .vt-content p { margin: 0; font-size: 14px; }
     footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 32px 0; text-align: center; font-size: 13px; color: rgba(178,192,215,0.35); margin-top: 60px; }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "AI Agent học kiến thức business của tôi như thế nào?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI Agent không \"học\" theo kiểu training lại model. Nó tích lũy context và knowledge qua hệ thống memory được thiết kế riêng: Short-term Memory (context trong một cuộc hội thoại), Long-term Memory (kiến thức được lưu trữ lâu dài: thông tin business, quy trình, lịch sử tương tác), và Tool Memory (kết quả từ các công cụ đã dùng). Bạn cung cấp thông tin một lần – agent nhớ vĩnh viễn."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "3 loại memory trong AI Agent là gì?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3 loại memory: (1) Short-term Memory – context trong một cuộc hội thoại, giống như RAM, nhanh nhưng mất khi tắt máy; (2) Long-term Memory – kiến thức được lưu trữ lâu dài: thông tin business, quy trình, lịch sử tương tác quan trọng – đây là thứ tạo ra sự khác biệt giữa AI chung và AI riêng của bạn; (3) Tool Memory – kết quả từ các công cụ agent dùng, như data từ POS, email đã gửi, báo cáo đã tạo – agent biết mình đã làm gì."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI Agent càng dùng lâu thì càng giỏi hơn không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Đúng. AI Agent tích lũy giá trị theo thời gian: Tháng 1-2 – biết basics, trả lời được 60-70% câu hỏi thường gặp. Tháng 3-4 – thấy đủ pattern để nhận biết anomaly, báo cáo chính xác hơn, trả lời được 85% câu hỏi. Tháng 6+ – hiểu sâu business, phát hiện pattern bạn chưa nhận ra. Sau 12 tháng – có lịch sử dài để so sánh cùng kỳ năm trước, dự báo chính xác hơn. Giá trị này không thể mua lại – phải tích lũy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI Agent có học từ những lần tôi sửa lỗi không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có. Khi bạn review báo cáo và nói \"con số này tính sai, đây mới là cách đúng\" – agent cập nhật logic vào knowledge base, lần sau không cần nhắc lại. Khi agent trả lời khách sai và bạn sửa – agent học cách trả lời đúng hơn trong tình huống tương tự. Đây không phải \"training lại AI model\" mà là cập nhật knowledge base – nhanh, không cần kỹ thuật, và có tác dụng ngay."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kiến thức của AI Agent có bị mất khi nhân viên nghỉ việc không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Không. Đây là điểm mạnh quan trọng của AI Agent so với nhân viên: khi nhân viên nghỉ việc, họ mang kiến thức đi theo. Kiến thức của AI Agent tích lũy trong system và thuộc về business của bạn – không bao giờ mất. Kiến thức về quy trình, khách hàng, pattern bán hàng, cách xử lý tình huống – tất cả được lưu trữ trong long-term memory và tool memory của agent."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
