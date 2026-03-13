@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Cho Nhieu Nguoi Dung Chung: Setup Team Va Business | NOVA Blog</title>
+  <meta name="description" content="Founders muon share bot OpenClaw cho ca team nhung khong biet config allowlist va permissions. Day la pain point that — de minh setup multi-user cho anh/chi trong 48h.">
+  <meta property="og:title" content="OpenClaw Cho Nhieu Nguoi Dung Chung: Setup Team Va Business">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://trolythongminh.io.vn/blog/openclaw-cho-nhieu-nguoi-dung-chung">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "OpenClaw co ho tro nhieu nguoi dung cung luc khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Co. OpenClaw ho tro nhieu nguoi dung thong qua he thong allowlist (cho phep so dien thoai hoac Telegram ID cu the truy cap), channel permissions, va cau hinh requireMention. Mot instance OpenClaw co the phuc vu nhieu nguoi dung dong thoi, moi nguoi co the co nguong truy cap rieng."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lam the nao de them thanh vien moi vao bot OpenClaw cua team?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Can them so dien thoai hoac Telegram ID cua ho vao truong allowFrom trong file config openclaw.json, sau do restart gateway. Viec nay can truy cap vao server va chinh sua file config — khong phai qua Telegram. Moi thay doi can restart service de ap dung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Co the cau hinh phan quyen khac nhau cho tung nguoi dung khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Co the cau hinh cac level truy cap khac nhau cho cac kenh Telegram khac nhau — vi du: nhom noi bo co day du quyen, nhom khach hang chi tra loi pham vi han che. Cau hinh phan quyen theo tung channel la cach pho bien nhat cho mo hinh team + khach hang."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mot OpenClaw instance co the phuc vu bao nhieu nguoi dong thoi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Phu thuoc vao VPS spec va API provider. VPS 2GB RAM + Sonnet model co the xu ly 5-15 request dong thoi (concurrent). Neu co nhieu hon 20 nguoi dung hoat dong lien tuc, can nang cap VPS hoac cai thien cau hinh concurrency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Co dich vu nao setup OpenClaw multi-user cho toan team khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Co. NOVA cung cap dich vu setup OpenClaw multi-user — cau hinh allowlist, phan quyen theo kenh, toi uu cho nhieu nguoi dung dong thoi. Goi 2M/thang bao gom ca viec quan ly va cap nhat danh sach nguoi dung sau do. Dat lich tu van mien phi tai trolythongminh.io.vn."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #fafafa; color: #1a1a1a; font-size: 16px; line-height: 1.7; }
+    a { color: #0066cc; }
+    .site-header { background: #fff; border-bottom: 3px solid #0066cc; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site-header .logo { font-size: 1.4rem; font-weight: 700; color: #0066cc; text-decoration: none; }
+    .site-header nav a { margin-left: 1.5rem; color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .site-header nav .nav-demo { background: #0066cc; color: #fff !important; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 600; }
+    .article-container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+    .breadcrumb a { color: #0066cc; text-decoration: none; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .category-tag { display: inline-block; background: #e0f2fe; color: #0284c7; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 1rem; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; line-height: 1.28; color: #111; margin-bottom: 0.5rem; }
+    h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; color: #111; border-left: 4px solid #0066cc; padding-left: 1rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 1.5rem 0 0.6rem; }
+    .byline { color: #888; font-size: 0.85rem; margin: 0.6rem 0 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .hero-image-wrapper { width: 100%; margin: 1.5rem 0 2rem; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .hero-image-wrapper svg { display: block; width: 100%; height: auto; }
+    p { line-height: 1.85; font-size: 1.05rem; color: #333; margin-bottom: 1.25rem; }
+    ul, ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.45rem; line-height: 1.7; color: #333; font-size: 1rem; }
+    .key-takeaways { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #0066cc; margin-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .key-takeaways ul { margin: 0.5rem 0 0 1.2rem; }
+    .key-takeaways li { font-size: 0.95rem; }
+    .highlight-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .highlight-box p { margin: 0; font-size: 0.95rem; }
+    .direct-answer { background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0 2rem; }
+    .direct-answer .da-label { font-size: 0.75rem; font-weight: 700; color: #0066cc; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .direct-answer p { margin: 0; font-size: 0.97rem; color: #1a1a1a; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.93rem; }
+    .compare-table th { background: #f0f4f8; color: #1a1a1a; padding: 10px 14px; text-align: left; font-size: 0.82rem; font-weight: 700; border-bottom: 2px solid #ddd; }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #333; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #fafafa; }
+    .warning-box { background: #fff7ed; border-left: 4px solid #f97316; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .warning-box p { margin: 0; font-size: 0.95rem; color: #1a1a1a; }
+    .cta-box { background: #0066cc; color: #fff; border-radius: 12px; padding: 2rem; text-align: center; margin: 3rem 0; }
+    .cta-box h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.88); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-box a.cta-btn { background: #fff; color: #0066cc; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 0.5rem; }
+    .cta-sub { margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .related-articles { border-top: 2px solid #eee; padding-top: 2rem; margin-top: 3rem; }
+    .related-articles h3 { font-size: 0.82rem; text-transform: uppercase; color: #888; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+    .related-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; text-decoration: none; color: #333; font-size: 0.85rem; line-height: 1.4; display: block; }
+    .related-card:hover { border-color: #0066cc; color: #0066cc; }
+    .faq-section { margin-top: 2.5rem; }
+    .faq-section h2 { border-left: 4px solid #0066cc; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; font-size: 1rem; }
+    .faq-a { color: #444; font-size: 0.93rem; line-height: 1.7; }
+    .site-footer { border-top: 1px solid #eee; margin-top: 4rem; padding: 2rem 1rem; text-align: center; color: #888; font-size: 0.82rem; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/trolythongminh/" class="logo">&#x1F916; NOVA Blog</a>
+    <nav>
+      <a href="/trolythongminh/">Trang chu</a>
+      <a href="/trolythongminh/blog/">Blog</a>
+      <a href="https://calendly.com/willdaolamzz" class="nav-demo">Book Demo</a>
+    </nav>
+  </header>
+
+  <div class="article-container">
+
+    <nav class="breadcrumb">
+      <a href="/trolythongminh/">Trang chu</a><span>&#x203A;</span>
+      <a href="/trolythongminh/blog/">Blog</a><span>&#x203A;</span>
+      OpenClaw Cho Nhieu Nguoi Dung Chung
+    </nav>
+
+    <span class="category-tag">OpenClaw Multi-User</span>
+
+    <h1>OpenClaw Cho Nhieu Nguoi Dung Chung: Setup Team Va Business</h1>
+
+    <div class="byline">Doi ngu NOVA &#x2022; Thang 3, 2026 &#x2022; 7 phut doc</div>
+
+    <div class="hero-image-wrapper">
+      <svg width="100%" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bgm" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2d1f4a"/>
+            <stop offset="100%" style="stop-color:#1a0f2e"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="360" fill="url(#bgm)"/>
+        <circle cx="1050" cy="280" r="180" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="40"/>
+        <text x="80" y="155" font-family="Georgia,serif" font-size="46" fill="white" opacity="0.97" font-weight="bold">OpenClaw</text>
+        <text x="80" y="215" font-family="Georgia,serif" font-size="32" fill="white" opacity="0.9">Cho Nhieu Nguoi Dung</text>
+        <text x="80" y="270" font-family="'Inter',sans-serif" font-size="17" fill="rgba(255,255,255,0.6)">Tu bot ca nhan thanh bot cho ca team &#x2014; allowlist, permissions, multi-channel</text>
+        <text x="80" y="310" font-family="'Inter',sans-serif" font-size="14" fill="rgba(255,255,255,0.4)">NOVA Blog &#x2022; Thang 3, 2026</text>
+      </svg>
+    </div>
+
+    <div class="direct-answer">
+      <div class="da-label">&#x1F4AC; Tra Loi Nhanh</div>
+      <p>OpenClaw ho tro nhieu nguoi dung thong qua <strong>he thong allowlist</strong> — them so dien thoai hoac Telegram ID cua tung thanh vien vao file config. Mot instance co the phuc vu nhieu nguoi dong thoi, voi kha nang cau hinh quyen truy cap rieng cho tung kenh. Kho nhat khong phai la "co lam duoc khong" ma la "cau hinh nhu the nao dung cach" — vi phai can bang giua bao mat (khong de nguoi la truy cap), tinh nang (tung nhom co quyen gi), va hieu nang (VPS co xu ly duoc khong). Day la ly do nhieu founders co bot ca nhan roi <strong>bi mac ket khi muon mo rong cho ca team</strong>.</p>
+    </div>
+
+    <div class="key-takeaways">
+      <h3>&#x1F4CB; Diem Chinh Can Nho</h3>
+      <ul>
+        <li>OpenClaw dung duoc cho nhieu nguoi — nhung can cau hinh allowlist va permissions ro rang</li>
+        <li>Tung kenh Telegram co the co quyen khac nhau — nhom noi bo khac nhom khach hang</li>
+        <li>VPS phai du manh de xu ly concurrent requests khi nhieu nguoi dung cung luc</li>
+        <li>Them/xoa nguoi dung can restart gateway — khong co admin panel GUI</li>
+        <li>Goi 2M/thang cua NOVA bao gom quan ly danh sach nguoi dung va phan quyen lien tuc</li>
+      </ul>
+    </div>
+
+    <h2>Tai sao chuyen tu bot ca nhan sang bot team lai kho?</h2>
+
+    <p>Khi anh/chi lan dau dung OpenClaw — thong thuong chi co 1 nguoi (chinh anh/chi) nhan tin voi bot. Moi thu don gian: 1 Telegram account, 1 chat window, 1 nguoi.</p>
+
+    <p>Nhung khi muon cho ca team cung dung — moi su viec phuc tap len nhanh:</p>
+    <ul>
+      <li>Bot can <em>biet ai duoc phep nhan tin</em> — va ai khong</li>
+      <li>Nhom noi bo (nhan vien) va nhom khach hang co the can <em>nguong quyen khac nhau</em></li>
+      <li>Nhieu nguoi nhan tin cung luc → VPS phai xu ly duoc <em>concurrent requests</em></li>
+      <li>Khi co nhan vien moi vao hoac nghi viec → can cap nhat danh sach theo thoi gian thuc</li>
+    </ul>
+
+    <p>Nhieu founders da nhan ra dieu nay: bot ca nhan chay tot, nhung <strong>khong biet bat dau tu dau khi muon share cho team.</strong></p>
+
+    <h2>He thong allowlist hoat dong nhu the nao</h2>
+
+    <p>Allowlist la co che bao mat chinh cua OpenClaw — no quy dinh <em>ai duoc phep tuong tac voi bot</em>.</p>
+
+    <p>Trong file cau hinh openclaw.json, co truong <code>allowFrom</code> — list cac so dien thoai hoac Telegram ID duoc phep nhan tin:</p>
+
+    <ul>
+      <li>Neu so/ID co trong danh sach → bot tra loi binh thuong</li>
+      <li>Neu khong co trong danh sach → bot im lang, khong nhan tin, ghi log "blocked"</li>
+      <li>Neu de danh sach trong → bot chi nhan tin tu nguoi da duoc pair (mode ca nhan)</li>
+    </ul>
+
+    <p>De them thanh vien moi:</p>
+    <ol>
+      <li>SSH vao VPS cua anh/chi</li>
+      <li>Mo file <code>~/.openclaw/openclaw.json</code></li>
+      <li>Them so dien thoai hoac Telegram ID vao mang <code>allowFrom</code></li>
+      <li>Restart gateway: <code>openclaw gateway restart</code></li>
+      <li>Thanh vien moi co the nhan tin voi bot ngay</li>
+    </ol>
+
+    <div class="warning-box">
+      <p>&#x26A0;&#xFE0F; <strong>Luu y bao mat:</strong> Khong de <code>allowFrom</code> rong neu deploy cong khai — bat ky ai biet username bot deu co the nhan tin. Luon co danh sach ro rang. Voi nhom khach hang — can kiem soat can than hon la voi nhom noi bo.</p>
+    </div>
+
+    <h2>Cau hinh quyen theo tung kenh Telegram</h2>
+
+    <p>Mot trong nhung tinh nang manh nhat cua OpenClaw la co the cau hinh <em>quyen khac nhau cho tung kenh</em>:</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Kenh / Nhom</th>
+          <th>Cau hinh phu hop</th>
+          <th>Vi du su dung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>DM ca nhan (chu bot)</strong></td>
+          <td>Full access, khong gioi han</td>
+          <td>Anh/chi tro chuyen truc tiep, day du tinh nang</td>
+        </tr>
+        <tr>
+          <td><strong>Nhom noi bo (team)</strong></td>
+          <td>Allowlist nhan vien, requireMention: true</td>
+          <td>Nhan vien hoi bot khi can, bot chi reply khi duoc tag</td>
+        </tr>
+        <tr>
+          <td><strong>Nhom khach hang</strong></td>
+          <td>Allowlist gioi han, Skills/SOUL chi pham vi CSKH</td>
+          <td>Bot CSKH tra loi cau hoi san pham, bao gio giao hang</td>
+        </tr>
+        <tr>
+          <td><strong>Nhom cong khai</strong></td>
+          <td>Rat han che, chi FAQ co dinh</td>
+          <td>Thong bao tu dong, tra loi FAQ khong can context</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Pattern pho bien nhat cho SME VN: <strong>3 kenh rieng biet</strong> — DM chu, nhom nhan vien noi bo (5&#x2013;15 nguoi), va nhom khach hang (moi khach hang 1 group rieng hoac chung 1 nhom CSKH).</p>
+
+    <h2>VPS can du manh de phuc vu nhieu nguoi</h2>
+
+    <p>Day la van de thuong bi bo qua: khi chi 1 nguoi dung, VPS 2GB RAM du o. Khi 10 nguoi nhan tin dong thoi — chuyen khac.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>So nguoi dung dong thoi</th>
+          <th>VPS khuyen nghi</th>
+          <th>Chi phi uoc tinh/thang</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1&#x2013;3 nguoi</td>
+          <td>2GB RAM, 1 vCPU</td>
+          <td>~240,000&#x2013;300,000d (Vultr/DO)</td>
+        </tr>
+        <tr>
+          <td>5&#x2013;10 nguoi</td>
+          <td>4GB RAM, 2 vCPU</td>
+          <td>~480,000&#x2013;600,000d</td>
+        </tr>
+        <tr>
+          <td>15&#x2013;30 nguoi</td>
+          <td>8GB RAM, 4 vCPU</td>
+          <td>~960,000&#x2013;1,200,000d</td>
+        </tr>
+        <tr>
+          <td>30+ nguoi / khach hang</td>
+          <td>Can xem xet kien truc rieng</td>
+          <td>Lien he de tu van cu the</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Ngoai VPS, con phai xem xet <strong>API rate limits</strong> cua provider. Anthropic Claude Sonnet co gioi han request dong thoi (concurrent) — neu nhieu nguoi nhan tin cung luc va moi request deu can AI response, co the bi 429 rate limit neuu khong cau hinh queue dung.</p>
+
+    <h2>Quan ly nguoi dung theo thoi gian — viec khong co diem ket</h2>
+
+    <p>Mot van de thuc te anh/chi se gap sau khi setup xong: quan ly danh sach nguoi dung <em>theo thoi gian</em>.</p>
+
+    <ul>
+      <li>Nhan vien moi vao → can them vao allowlist</li>
+      <li>Nhan vien nghi viec → can xoa khoi danh sach (quan trong ve bao mat)</li>
+      <li>Khach hang moi → co them vao nhom CSKH khong?</li>
+      <li>Thay doi VPS hoac cau hinh → phai restart, kiem tra allowlist con dung khong</li>
+    </ul>
+
+    <p>Voi bot ca nhan — viec nay don gian vi it nguoi. Voi bot team 20&#x2013;50 nguoi — day tro thanh cong viec quan ly deu dan, can co nguoi chiu trach nhiem.</p>
+
+    <p>Day la 1 trong nhung ly do goi <strong>Basic 2M/thang</strong> co y nghia voi mo hinh team: khong phai chi de setup 1 lan, ma de co nguoi quan ly lien tuc — them nguoi, xoa nguoi, dieu chinh quyen, xu ly khi co van de.</p>
+
+    <h2>Sau khi setup multi-user — cac buoc toi uu tiep theo</h2>
+
+    <p>Khi da co nhieu nguoi dung, cac nhu cau toi uu cung tang len. Hai viec pho bien nhat:</p>
+
+    <p><strong>1. Toi uu SOUL.md theo tung nhom:</strong> Bot noi chhuyen voi nhan vien noi bo se khac voi bot cham soc khach hang. Can chinh SOUL.md phu hop — hoac setup 2 config rieng cho 2 channel. Xem bai <a href="/trolythongminh/blog/toi-uu-openclaw-sau-khi-setup">Toi uu OpenClaw sau khi setup</a> de hieu cach lam dieu nay.</p>
+
+    <p><strong>2. Ket noi du lieu thuc cua business:</strong> Khi co nhieu nguoi dung — gia tri bot tang rat nhieu neu no ket noi duoc voi du lieu thuc: Sheets bao cao, Gmail, Calendar chung cua team. Xem bai <a href="/trolythongminh/blog/openclaw-ket-noi-google-workspace">Ket noi OpenClaw voi Google Workspace</a> de biet cach lam.</p>
+
+    <p>Neu chua co OpenClaw chay on dinh tren VPS, nen doc bai <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao">OpenClaw cai dat nhu the nao</a> truoc de co foundation vung chac truoc khi mo rong cho team.</p>
+
+    <div class="cta-box">
+      <h3>Dat Lich Tu Van Mien Phi</h3>
+      <p>Minh se demo OpenClaw chay voi nhieu nguoi dung, phan tich cau hinh phu hop cho team cua anh/chi, va tu van mo hinh allowlist + phan quyen toi uu. Truoc khi anh/chi quyet dinh bat cu dieu gi.</p>
+      <a href="https://calendly.com/willdaolamzz" class="cta-btn">&#x1F4C5; Dat Lich Tai Day</a>
+      <p class="cta-sub">Mien phi, khong rang buoc. 15 phut la du.</p>
+    </div>
+
+    <div class="faq-section">
+      <h2>Cau Hoi Thuong Gap</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">OpenClaw co ho tro nhieu nguoi dung cung luc khong?</div>
+        <div class="faq-a">Co. OpenClaw ho tro nhieu nguoi dung thong qua he thong allowlist — them so dien thoai hoac Telegram ID cua tung thanh vien vao file config. Mot instance co the phuc vu nhieu nguoi dong thoi, voi kha nang cau hinh quyen truy cap rieng cho tung kenh Telegram.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Lam the nao de them thanh vien moi vao bot OpenClaw cua team?</div>
+        <div class="faq-a">Can them so dien thoai hoac Telegram ID cua ho vao truong allowFrom trong file config openclaw.json, sau do restart gateway. Viec nay can truy cap vao server va chinh sua file config — khong phai qua Telegram hay giao dien do hoa. Moi thay doi can restart service de ap dung.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Co the cau hinh phan quyen khac nhau cho tung nguoi dung khong?</div>
+        <div class="faq-a">Co the cau hinh quyen khac nhau cho tung kenh Telegram — vi du nhom noi bo co day du quyen, nhom khach hang chi tra loi trong pham vi han che. Cau hinh theo channel la cach pho bien nhat de phan biet nhom nhan vien va nhom khach hang.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Mot OpenClaw instance co the phuc vu bao nhieu nguoi dong thoi?</div>
+        <div class="faq-a">Phu thuoc vao VPS spec va API provider. VPS 2GB RAM + Sonnet model xu ly duoc 5&#x2013;15 request dong thoi. Neu co nhieu hon 20 nguoi dung hoat dong thuong xuyen, can nang cap VPS len 4&#x2013;8GB RAM hoac toi uu cau hinh concurrency.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Co dich vu nao setup OpenClaw multi-user cho toan team khong?</div>
+        <div class="faq-a">Co. NOVA cung cap dich vu setup OpenClaw multi-user — cau hinh allowlist, phan quyen theo kenh, toi uu cho nhieu nguoi dung dong thoi. Goi 2M/thang bao gom ca viec quan ly va cap nhat danh sach nguoi dung sau do. Dat lich tu van mien phi de bat dau.</div>
+      </div>
+    </div>
+
+    <div class="related-articles">
+      <h3>Bai Viet Lien Quan</h3>
+      <div class="related-grid">
+        <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao" class="related-card">
+          OpenClaw cai dat nhu the nao? Huong dan that cho nguoi khong co team ky thuat
+        </a>
+        <a href="/trolythongminh/blog/toi-uu-openclaw-sau-khi-setup" class="related-card">
+          Toi uu OpenClaw sau khi setup: model, memory, SOUL.md
+        </a>
+        <a href="/trolythongminh/blog/openclaw-ket-noi-google-workspace" class="related-card">
+          Ket noi OpenClaw voi Google Workspace: Sheets, Docs, Gmail, Drive, Calendar
+        </a>
+        <a href="/trolythongminh/blog/openclaw-telegram-bot-khong-tra-loi" class="related-card">
+          Bot Telegram khong tra loi? 5 nguyen nhan pho bien nhat
+        </a>
+        <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu" class="related-card">
+          OpenClaw ton bao nhieu tien that su? Breakdown 2026
+        </a>
+        <a href="/trolythongminh/blog/openclaw-vs-n8n-khac-gi-nhau" class="related-card">
+          OpenClaw vs n8n: Khac gi nhau? Doanh nghiep nho dung cai nao?
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 NOVA &#x2014; Tro Ly Thong Minh | <a href="/trolythongminh/">trolythongminh.io.vn</a></p>
+  </footer>
+
+</body>
+</html>

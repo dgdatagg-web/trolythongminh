@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toi Uu OpenClaw Sau Khi Setup: Model, Memory, SOUL.md — Bot Chay Dung Y Muon | NOVA Blog</title>
+  <meta name="description" content="Setup xong roi nhung bot chay chua dung y? Day la noi dau recurring — nguoi dung khong biet tune model, cau hinh memory, chinh SOUL.md. De minh optimize cho anh/chi.">
+  <meta property="og:title" content="Toi Uu OpenClaw Sau Khi Setup: Model, Memory, SOUL.md">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://trolythongminh.io.vn/blog/toi-uu-openclaw-sau-khi-setup">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Tai sao OpenClaw da setup xong nhung bot van tra loi chung chung, khong dung y?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vi cau hinh mac dinh cua OpenClaw la generic — khong biet gi ve business cua anh/chi. Can chinh SOUL.md (personality va boi canh cua bot), tuyen chon model phu hop, va cau hinh memory de bot nho context qua cac cuoc hoi thoai. Day la buoc 'after setup' ma 80% nguoi dung bo qua."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Claude Sonnet hay Claude Opus tot hon cho business nho?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sonnet (claude-sonnet-4-6) la diem can bang tot nhat cho hau het business nho: nhanh, re hon Opus ~10x, va du thong minh cho CSKH, tong hop, tra loi chat. Chi dung Opus khi can reasoning sau (phan tich phuc tap, viet content chieu sau). Mix model theo task la cach tiet kiem nhat."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "SOUL.md la gi va co can chinh khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SOUL.md la file dinh nghia 'tinh cach' cua bot — ten, phong cach noi chuyen, nguyen tac xu ly, nhung gi bot duoc va khong duoc lam. Mac dinh la generic. Can tuy chinh theo business: neu la CSKH thi khac bot tra loi FAQ, neu la tro ly noi bo thi khac bot khach hang. Day la buoc quyet dinh chat luong trai nghiem nhat."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "OpenClaw co memory — bot co nho cac cuoc hoi thoai truoc khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Co. OpenClaw co he thong memory co the cau hinh — bot co the nho context tu cuoc hoi thoai truoc, nho thong tin khach hang, nho cac quyet dinh da duoc tra loi. Nhung memory phai duoc cau hinh dung — mac dinh chi co conversation context ngan han."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Co ai giup toi uu OpenClaw sau khi setup khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Co. NOVA cung cap dich vu optimize OpenClaw sau setup — chinh SOUL.md theo business, cau hinh model phu hop, setup memory va Skills. Goi 2M/thang bao gom ca viec nay lien tuc theo nhu cau thay doi cua business. Dat lich tu van mien phi tai trolythongminh.io.vn."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #fafafa; color: #1a1a1a; font-size: 16px; line-height: 1.7; }
+    a { color: #0066cc; }
+    .site-header { background: #fff; border-bottom: 3px solid #0066cc; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site-header .logo { font-size: 1.4rem; font-weight: 700; color: #0066cc; text-decoration: none; }
+    .site-header nav a { margin-left: 1.5rem; color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .site-header nav .nav-demo { background: #0066cc; color: #fff !important; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 600; }
+    .article-container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+    .breadcrumb a { color: #0066cc; text-decoration: none; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .category-tag { display: inline-block; background: #e0f2fe; color: #0284c7; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 1rem; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; line-height: 1.28; color: #111; margin-bottom: 0.5rem; }
+    h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; color: #111; border-left: 4px solid #0066cc; padding-left: 1rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 1.5rem 0 0.6rem; }
+    .byline { color: #888; font-size: 0.85rem; margin: 0.6rem 0 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .hero-image-wrapper { width: 100%; margin: 1.5rem 0 2rem; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .hero-image-wrapper svg { display: block; width: 100%; height: auto; }
+    p { line-height: 1.85; font-size: 1.05rem; color: #333; margin-bottom: 1.25rem; }
+    ul, ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.45rem; line-height: 1.7; color: #333; font-size: 1rem; }
+    .key-takeaways { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #0066cc; margin-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .key-takeaways ul { margin: 0.5rem 0 0 1.2rem; }
+    .key-takeaways li { font-size: 0.95rem; }
+    .highlight-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .highlight-box p { margin: 0; font-size: 0.95rem; }
+    .direct-answer { background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0 2rem; }
+    .direct-answer .da-label { font-size: 0.75rem; font-weight: 700; color: #0066cc; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .direct-answer p { margin: 0; font-size: 0.97rem; color: #1a1a1a; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.93rem; }
+    .compare-table th { background: #f0f4f8; color: #1a1a1a; padding: 10px 14px; text-align: left; font-size: 0.82rem; font-weight: 700; border-bottom: 2px solid #ddd; }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #333; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #fafafa; }
+    .warning-box { background: #fff7ed; border-left: 4px solid #f97316; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .warning-box p { margin: 0; font-size: 0.95rem; color: #1a1a1a; }
+    .cta-box { background: #0066cc; color: #fff; border-radius: 12px; padding: 2rem; text-align: center; margin: 3rem 0; }
+    .cta-box h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.88); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-box a.cta-btn { background: #fff; color: #0066cc; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 0.5rem; }
+    .cta-sub { margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .related-articles { border-top: 2px solid #eee; padding-top: 2rem; margin-top: 3rem; }
+    .related-articles h3 { font-size: 0.82rem; text-transform: uppercase; color: #888; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+    .related-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; text-decoration: none; color: #333; font-size: 0.85rem; line-height: 1.4; display: block; }
+    .related-card:hover { border-color: #0066cc; color: #0066cc; }
+    .faq-section { margin-top: 2.5rem; }
+    .faq-section h2 { border-left: 4px solid #0066cc; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; font-size: 1rem; }
+    .faq-a { color: #444; font-size: 0.93rem; line-height: 1.7; }
+    .site-footer { border-top: 1px solid #eee; margin-top: 4rem; padding: 2rem 1rem; text-align: center; color: #888; font-size: 0.82rem; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/trolythongminh/" class="logo">&#x1F916; NOVA Blog</a>
+    <nav>
+      <a href="/trolythongminh/">Trang chu</a>
+      <a href="/trolythongminh/blog/">Blog</a>
+      <a href="https://calendly.com/willdaolamzz" class="nav-demo">Book Demo</a>
+    </nav>
+  </header>
+
+  <div class="article-container">
+
+    <nav class="breadcrumb">
+      <a href="/trolythongminh/">Trang chu</a><span>&#x203A;</span>
+      <a href="/trolythongminh/blog/">Blog</a><span>&#x203A;</span>
+      Toi Uu OpenClaw Sau Khi Setup
+    </nav>
+
+    <span class="category-tag">OpenClaw Optimization</span>
+
+    <h1>Toi Uu OpenClaw Sau Khi Setup: Model, Memory, SOUL.md — Bot Chay Dung Y Muon</h1>
+
+    <div class="byline">Doi ngu NOVA &#x2022; Thang 3, 2026 &#x2022; 8 phut doc</div>
+
+    <div class="hero-image-wrapper">
+      <svg width="100%" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bgo" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1f3a20"/>
+            <stop offset="100%" style="stop-color:#0d1f0e"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="360" fill="url(#bgo)"/>
+        <circle cx="1050" cy="280" r="180" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="40"/>
+        <text x="80" y="155" font-family="Georgia,serif" font-size="46" fill="white" opacity="0.97" font-weight="bold">Toi Uu OpenClaw</text>
+        <text x="80" y="215" font-family="Georgia,serif" font-size="32" fill="white" opacity="0.9">Sau Khi Setup</text>
+        <text x="80" y="270" font-family="'Inter',sans-serif" font-size="17" fill="rgba(255,255,255,0.6)">Model, Memory, SOUL.md &#x2014; tu bot generic thanh tro ly biet business</text>
+        <text x="80" y="310" font-family="'Inter',sans-serif" font-size="14" fill="rgba(255,255,255,0.4)">NOVA Blog &#x2022; Thang 3, 2026</text>
+      </svg>
+    </div>
+
+    <div class="direct-answer">
+      <div class="da-label">&#x1F4AC; Tra Loi Nhanh</div>
+      <p>Setup xong roi nhung bot chay chua dung y la <strong>noi dau pho bien nhat sau khi co OpenClaw</strong>. Co 3 nguyen nhan chinh: (1) SOUL.md van la mac dinh — bot khong biet gi ve business cua anh/chi; (2) Model chua duoc chon theo tung task — moi cuoc hoi thoai deu dung Sonnet du phan lon chi can model nhe hon; (3) Memory chua cau hinh — bot quen moi context sau moi cuoc hoi thoai. Ba viec nay khong phai "one-time fix" ma la <strong>recurring optimization</strong> khi business thay doi.</p>
+    </div>
+
+    <div class="key-takeaways">
+      <h3>&#x1F4CB; Diem Chinh Can Nho</h3>
+      <ul>
+        <li>OpenClaw mac dinh la generic — can tuy chinh moi hoat dong dung cho business cua anh/chi</li>
+        <li>SOUL.md quyet dinh 70% chat luong trai nghiem — day la file quan trong nhat can chinh</li>
+        <li>Chon model sai = tra phi cao hon can thiet HOAC bot chay cham va kem hon muc co the</li>
+        <li>Memory cau hinh sai = bot quen khach hang sau moi cuoc hoi thoai — trai nghiem roi</li>
+        <li>Goi 2M/thang cua NOVA bao gom toi uu lien tuc — khong chi setup 1 lan</li>
+      </ul>
+    </div>
+
+    <h2>Tai sao "setup xong" khong co nghia la "bot da tot"</h2>
+
+    <p>Day la phan khong ai noi thang: khi anh/chi setup xong OpenClaw va bot da tra loi duoc, day moi chi la <em>foundation</em> — khong phai ket qua cuoi.</p>
+
+    <p>OpenClaw mac dinh la mot AI gateway thuan tuy. No biet tat ca moi thu theo nghia chung, nhung no khong biet:</p>
+    <ul>
+      <li>Business cua anh/chi ban gi, phuc vu ai, gia tri cot loi la gi</li>
+      <li>Cach noi chuyen phu hop voi khach hang cua anh/chi</li>
+      <li>Nhung gi bot duoc lam va khong duoc lam</li>
+      <li>Lich su cua khach hang da tuong tac truoc do</li>
+    </ul>
+
+    <p>Ket qua: bot tra loi dung nhung cam giac "chung chung" — nhu ChatGPT thuan, khong phai nhu mot nhan vien biet business. Khach hang nhan ra su khac biet nay ngay.</p>
+
+    <div class="highlight-box">
+      <p>&#x26A0;&#xFE0F; <strong>Thuc te hay gap:</strong> Nhieu nguoi setup xong, cho ban be thu va nghe feedback "ok nhung chung qua," roi bo qua buoc toi uu vi nghi "the nay la du roi." Bot chung chung khong tao ra gia tri kinh doanh — chi co bot biet business moi thay doi duoc trai nghiem khach hang.</p>
+    </div>
+
+    <h2>SOUL.md — file quan trong nhat anh/chi chua chinh</h2>
+
+    <p>SOUL.md la file dinh nghia <strong>tinh cach va boi canh</strong> cua bot. No tra loi cac cau hoi:</p>
+    <ul>
+      <li>Bot ten gi? Phuong cach noi chuyen nhu the nao?</li>
+      <li>Bot phuc vu ai? Muc dich chinh la gi?</li>
+      <li>Nhung nguyen tac nao bot phai tuan theo?</li>
+      <li>Khi gap cau hoi kho, bot xu ly nhu the nao?</li>
+      <li>Gioi han cua bot la gi — dieu gi se duoc chuyen cho nguoi that?</li>
+    </ul>
+
+    <p>Mac dinh SOUL.md la template chung. Khi chua chinh, bot se:</p>
+    <ul>
+      <li>Tra loi theo phong cach chung chung cua AI</li>
+      <li>Khong phan biet minh dang phuc vu cua hang nao</li>
+      <li>Co the tra loi ve nhung chu de khong lien quan den business</li>
+      <li>Tone noi chuyen khong match voi brand cua anh/chi</li>
+    </ul>
+
+    <p>Mot SOUL.md tot cho bot CSKH F&amp;B se hoan toan khac voi SOUL.md cho bot tro ly noi bo cong ty. Viec chinh SOUL.md dung — va chau chuot theo phan hoi thuc te — la cong viec <strong>khong co diem ket thuc</strong>, vi business thay doi theo thoi gian.</p>
+
+    <h2>Chon model: Sonnet, Opus, hay mix?</h2>
+
+    <p>Day la quyet dinh anh huong ca den <strong>chat luong lan chi phi</strong> hang thang. OpenClaw cho phep cau hinh model khac nhau cho tung loai request.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Tot nhat cho</th>
+          <th>Chi phi tuong doi</th>
+          <th>Khi nao tranh dung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Claude Haiku</strong></td>
+          <td>Cau hoi ngan, FAQ don gian, trigger nhanh</td>
+          <td>Thap nhat (~1x)</td>
+          <td>Tasks can reasoning sau hoac viet content dai</td>
+        </tr>
+        <tr>
+          <td><strong>Claude Sonnet</strong></td>
+          <td>CSKH, tro ly hang ngay, phan tich trung binh</td>
+          <td>Trung binh (~5x Haiku)</td>
+          <td>Cau hoi ngan co the dung Haiku; tasks phuc tap nen dung Opus</td>
+        </tr>
+        <tr>
+          <td><strong>Claude Opus</strong></td>
+          <td>Phan tich phuc tap, viet content chieu sau, chien luoc</td>
+          <td>Cao nhat (~30x Haiku)</td>
+          <td>CSKH thuong nhat, cau hoi FAQ — qua dat cho muc do can thiet</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-4o</strong></td>
+          <td>Tasks can xu ly hinh anh + text ket hop</td>
+          <td>Trung binh</td>
+          <td>Thuong ngon task text-only so voi Claude Sonnet</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Cau hinh pho bien nhat cho SME VN: <strong>Sonnet cho 80% requests + Opus chi cho 20% tasks phuc tap</strong>. Neu dang dung 100% Opus — anh/chi dang tra phi gap 3&#x2013;5 lan can thiet.</p>
+
+    <p>Nguoc lai, neu dang dung 100% Haiku de tiet kiem — chat luong tra loi co the khong du tot cho CSKH, tao an tuong xau voi khach.</p>
+
+    <h2>Memory — de bot nho khach hang</h2>
+
+    <p>Memory la tinh nang chia "bot co nho khong" thanh 2 loai:</p>
+
+    <p><strong>Conversation memory (ngan han):</strong> Bot nho context trong cung mot cuoc hoi thoai. Mac dinh da co — nhung window ngan. Bot se quen neu cuoc hoi thoai qua dai hoac sau khi restart.</p>
+
+    <p><strong>Long-term memory (dai han):</strong> Bot nho thong tin khach hang qua nhieu ngay, nhieu cuoc hoi thoai. Phan nay can cau hinh rieng — luu vao file hoac database — va quyet dinh "bot co biet khach la ai" hay khong.</p>
+
+    <p>Vi du thuc te cho thay su khac biet:</p>
+    <ul>
+      <li><strong>Chua co long-term memory:</strong> Khach nhan Telegram lan 2, ho lai phai tu gioi thieu: "Minh la Hai, order do tuyet hom qua..." — trai nghiem roi.</li>
+      <li><strong>Co long-term memory:</strong> Bot tu dong nhan ra: "Chao chi Hai! Don hang cua chi hom qua da giao chua? Chi co can ho tro gi them khong?" — trai nghiem nhu nhan vien that.</li>
+    </ul>
+
+    <p>Cau hinh memory dung — biet luu gi, luu den bao gio, biet xoa gi — la cong viec trung cap, can hieu ro kien truc OpenClaw moi lam dung.</p>
+
+    <h2>Skills va AGENTS.md — mo rong kha nang bot</h2>
+
+    <p>Sau khi da toi uu SOUL.md, model va memory, buoc tiep theo la mo rong kha nang bot qua Skills. OpenClaw co he thong Skills cho phep bot:</p>
+    <ul>
+      <li>Doc va ghi file (Excel, Google Sheets, tai lieu)</li>
+      <li>Truy cap internet, search thong tin moi nhat</li>
+      <li>Ket noi API ben ngoai (CRM, ecommerce platform, cong cu noi bo)</li>
+      <li>Thuc hien nhieu cuoc hoi thoai song song</li>
+    </ul>
+
+    <p>Moi Skill la mot module rieng — co the bat/tat theo nhu cau. Nhung cau hinh va test tung Skill can thoi gian va hieu biet ky thuat.</p>
+
+    <p>Muon ket noi them voi Google Workspace (Sheets, Docs, Gmail)? Xem bai <a href="/trolythongminh/blog/openclaw-ket-noi-google-workspace">Ket noi OpenClaw voi Google Workspace</a> de hieu buoc tiep theo.</p>
+
+    <h2>Tai sao day la cong viec recurring, khong phai one-time</h2>
+
+    <p>Mot cau hoi minh hay nghe: "Setup xong roi minh can phai chieu chuot OpenClaw bao nhieu?"</p>
+
+    <p>Cau tra loi phu thuoc vao business cua anh/chi. Nhung nhin chung — bot can duoc cap nhat khi:</p>
+    <ul>
+      <li>Business ra san pham/dich vu moi — bot can biet</li>
+      <li>Co phan hoi "bot tra loi sai" hoac "bot chua hieu y" tu khach hang — can chinh SOUL.md</li>
+      <li>Model moi ra mat va tot hon model hien tai — co the chuyen sang de giam chi phi hoac tang chat luong</li>
+      <li>Co van de ky thuat: bot cham, loi, hoac khong ket noi duoc</li>
+      <li>Muon them tinh nang moi (ket noi them ung dung, them nguon data...)</li>
+    </ul>
+
+    <p>Day la ly do goi <strong>Basic 2M/thang</strong> ton tai — khong phai de setup 1 lan roi thoi. Ma la de co nguoi dong hanh khi business thay doi, khi co van de, khi muon mo rong.</p>
+
+    <p>Neu anh/chi chua co OpenClaw chay on dinh, doc bai <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao">OpenClaw cai dat nhu the nao</a> truoc — buoc nay phai xong truoc khi toi uu.</p>
+
+    <div class="cta-box">
+      <h3>Dat Lich Tu Van Mien Phi</h3>
+      <p>Minh se review setup hien tai cua anh/chi, xac dinh dung 3 dieu can chinh nhat (SOUL.md, model, memory), va demo su khac biet truoc va sau optimize. Mien phi, khong rang buoc.</p>
+      <a href="https://calendly.com/willdaolamzz" class="cta-btn">&#x1F4C5; Dat Lich Tai Day</a>
+      <p class="cta-sub">15 phut call. Minh noi thang van de va cach fix.</p>
+    </div>
+
+    <div class="faq-section">
+      <h2>Cau Hoi Thuong Gap</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Tai sao OpenClaw da setup xong nhung bot van tra loi chung chung, khong dung y?</div>
+        <div class="faq-a">Vi cau hinh mac dinh cua OpenClaw la generic — khong biet gi ve business cua anh/chi. Can chinh SOUL.md theo dung business, chon model phu hop, va cau hinh memory de bot nho context. Day la buoc "after setup" ma 80% nguoi dung bo qua — va la su khac biet giua bot "ok" va bot "that su hieu business."</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Claude Sonnet hay Claude Opus tot hon cho business nho?</div>
+        <div class="faq-a">Sonnet la diem can bang tot nhat cho phan lon business nho: nhanh, re hon Opus khoang 6x, du thong minh cho CSKH, tong hop va tra loi chat. Chi dung Opus khi can reasoning sau (phan tich phuc tap, chien luoc). Mix model theo task la cach toi uu nhat — Sonnet 80%, Opus 20%.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">SOUL.md la gi va can chinh nhu the nao?</div>
+        <div class="faq-a">SOUL.md la file dinh nghia "tinh cach" cua bot — ten, phong cach noi chuyen, nguyen tac, gioi han. Mac dinh la generic. Can tuy chinh theo tung business: neu la CSKH F&amp;B thi khac bot tro ly ke toan, thi khac bot khach hang. Chinh dung SOUL.md la buoc quyet dinh chat luong trai nghiem nhieu nhat.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">OpenClaw co memory — bot co nho cac cuoc hoi thoai truoc khong?</div>
+        <div class="faq-a">Co. OpenClaw co he thong memory co the cau hinh — conversation memory (ngan han, mac dinh co) va long-term memory (nho qua nhieu cuoc hoi thoai, can cau hinh rieng). Long-term memory la phan quyet dinh "bot co biet khach la ai" hay khong — anh huong lon den trai nghiem khach hang.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Co ai giup toi uu OpenClaw sau khi setup khong?</div>
+        <div class="faq-a">Co. NOVA cung cap dich vu optimize OpenClaw sau setup — chinh SOUL.md theo business, cau hinh model phu hop, setup memory va Skills. Goi 2M/thang bao gom ca viec nay lien tuc theo nhu cau thay doi cua business. Dat lich tu van mien phi de bat dau.</div>
+      </div>
+    </div>
+
+    <div class="related-articles">
+      <h3>Bai Viet Lien Quan</h3>
+      <div class="related-grid">
+        <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao" class="related-card">
+          OpenClaw cai dat nhu the nao? Huong dan that cho nguoi khong co team ky thuat
+        </a>
+        <a href="/trolythongminh/blog/openclaw-ket-noi-google-workspace" class="related-card">
+          Ket noi OpenClaw voi Google Workspace: Sheets, Docs, Gmail, Drive, Calendar
+        </a>
+        <a href="/trolythongminh/blog/openclaw-cho-nhieu-nguoi-dung-chung" class="related-card">
+          OpenClaw cho nhieu nguoi dung chung: setup team va business
+        </a>
+        <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu" class="related-card">
+          OpenClaw ton bao nhieu tien that su? Breakdown 2026
+        </a>
+        <a href="/trolythongminh/blog/openclaw-model-nao-tot-nhat" class="related-card">
+          OpenClaw model nao tot nhat: Sonnet vs Opus vs GPT-4o
+        </a>
+        <a href="/trolythongminh/blog/openclaw-vs-n8n-khac-gi-nhau" class="related-card">
+          OpenClaw vs n8n: Khac gi nhau? Doanh nghiep nho dung cai nao?
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 NOVA &#x2014; Tro Ly Thong Minh | <a href="/trolythongminh/">trolythongminh.io.vn</a></p>
+  </footer>
+
+</body>
+</html>

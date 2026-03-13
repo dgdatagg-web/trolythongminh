@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kết Nối OpenClaw Với Google Workspace: Sheets, Docs, Gmail, Drive, Calendar | NOVA Blog</title>
+  <meta name="description" content="2+ người dùng thực tế hỏi về kết nối OpenClaw với Google Sheets, Docs, Gmail, Drive, Calendar. Noi doi dau that — khong biet bat dau tu dau. De minh setup cho anh/chi trong 48h.">
+  <meta property="og:title" content="Ket Noi OpenClaw Voi Google Workspace: Sheets, Docs, Gmail, Drive, Calendar">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://trolythongminh.io.vn/blog/openclaw-ket-noi-google-workspace">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "OpenClaw co the ket noi voi Google Sheets khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Co. OpenClaw ket noi Google Sheets, Docs, Gmail, Drive va Calendar thong qua Google Workspace MCP server hoac Skills tuy chinh. Bot co the doc du lieu tu Sheets, ghi ket qua, gui email tu Gmail — nhung viec nay can cau hinh OAuth2 va deployment chinh xac, khong phai plug-and-play."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can OAuth2 de ket noi OpenClaw voi Google Workspace khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Co. Ket noi voi bat ky Google service nao deu can OAuth2 credentials tu Google Cloud Console — tao project, bat API tuong ung, cau hinh consent screen, lay client ID va secret. Day la buoc hay gay confuse nhat cho nguoi non-tech."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mat bao lau de setup OpenClaw + Google Workspace?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nguoi co ky thuat: 2-4 gio cho toan bo OAuth2 + MCP config + test. Nguoi khong co ky thuat: co the mat 1-3 ngay vi chua quen Google Cloud Console va OAuth flow. Nhung khi xong — bot co the doc Sheets, gui Gmail, cap nhat Calendar tu dong."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "OpenClaw co the doc va ghi vao Google Sheets tu dong khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Co. Sau khi ket noi, bot co the: doc du lieu tu Sheet cu the, ghi them row moi, filter va summarize theo yeu cau — tat ca tu cuoc tro chuyen Telegram. Vi du: hoi 'tuan nay ban duoc bao nhieu?' va bot tra loi tu du lieu Sheets thuc."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Co dich vu nao setup OpenClaw + Google Workspace thay minh khong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Co. NOVA cung cap dich vu setup OpenClaw tich hop Google Workspace (Sheets, Docs, Gmail, Drive, Calendar) — hoan chinh trong 48 gio, anh/chi dung ngay qua Telegram ma khong can biet OAuth hay Google Cloud Console. Dat lich tu van mien phi tai trolythongminh.io.vn."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #fafafa; color: #1a1a1a; font-size: 16px; line-height: 1.7; }
+    a { color: #0066cc; }
+    .site-header { background: #fff; border-bottom: 3px solid #0066cc; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site-header .logo { font-size: 1.4rem; font-weight: 700; color: #0066cc; text-decoration: none; }
+    .site-header nav a { margin-left: 1.5rem; color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .site-header nav .nav-demo { background: #0066cc; color: #fff !important; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 600; }
+    .article-container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+    .breadcrumb a { color: #0066cc; text-decoration: none; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .category-tag { display: inline-block; background: #e0f2fe; color: #0284c7; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 1rem; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; line-height: 1.28; color: #111; margin-bottom: 0.5rem; }
+    h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; color: #111; border-left: 4px solid #0066cc; padding-left: 1rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 1.5rem 0 0.6rem; }
+    .byline { color: #888; font-size: 0.85rem; margin: 0.6rem 0 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .hero-image-wrapper { width: 100%; margin: 1.5rem 0 2rem; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .hero-image-wrapper svg { display: block; width: 100%; height: auto; }
+    p { line-height: 1.85; font-size: 1.05rem; color: #333; margin-bottom: 1.25rem; }
+    ul, ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.45rem; line-height: 1.7; color: #333; font-size: 1rem; }
+    .key-takeaways { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #0066cc; margin-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .key-takeaways ul { margin: 0.5rem 0 0 1.2rem; }
+    .key-takeaways li { font-size: 0.95rem; }
+    .highlight-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .highlight-box p { margin: 0; font-size: 0.95rem; }
+    .direct-answer { background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0 2rem; }
+    .direct-answer .da-label { font-size: 0.75rem; font-weight: 700; color: #0066cc; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .direct-answer p { margin: 0; font-size: 0.97rem; color: #1a1a1a; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.93rem; }
+    .compare-table th { background: #f0f4f8; color: #1a1a1a; padding: 10px 14px; text-align: left; font-size: 0.82rem; font-weight: 700; border-bottom: 2px solid #ddd; }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #333; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #fafafa; }
+    .warning-box { background: #fff7ed; border-left: 4px solid #f97316; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .warning-box p { margin: 0; font-size: 0.95rem; color: #1a1a1a; }
+    .cta-box { background: #0066cc; color: #fff; border-radius: 12px; padding: 2rem; text-align: center; margin: 3rem 0; }
+    .cta-box h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.88); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-box a.cta-btn { background: #fff; color: #0066cc; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 0.5rem; }
+    .cta-sub { margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .related-articles { border-top: 2px solid #eee; padding-top: 2rem; margin-top: 3rem; }
+    .related-articles h3 { font-size: 0.82rem; text-transform: uppercase; color: #888; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+    .related-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; text-decoration: none; color: #333; font-size: 0.85rem; line-height: 1.4; display: block; }
+    .related-card:hover { border-color: #0066cc; color: #0066cc; }
+    .faq-section { margin-top: 2.5rem; }
+    .faq-section h2 { border-left: 4px solid #0066cc; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; font-size: 1rem; }
+    .faq-a { color: #444; font-size: 0.93rem; line-height: 1.7; }
+    .site-footer { border-top: 1px solid #eee; margin-top: 4rem; padding: 2rem 1rem; text-align: center; color: #888; font-size: 0.82rem; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/trolythongminh/" class="logo">&#x1F916; NOVA Blog</a>
+    <nav>
+      <a href="/trolythongminh/">Trang chu</a>
+      <a href="/trolythongminh/blog/">Blog</a>
+      <a href="https://calendly.com/willdaolamzz" class="nav-demo">Book Demo</a>
+    </nav>
+  </header>
+
+  <div class="article-container">
+
+    <nav class="breadcrumb">
+      <a href="/trolythongminh/">Trang chu</a><span>&#x203A;</span>
+      <a href="/trolythongminh/blog/">Blog</a><span>&#x203A;</span>
+      Ket Noi OpenClaw Voi Google Workspace
+    </nav>
+
+    <span class="category-tag">OpenClaw Tich Hop</span>
+
+    <h1>Ket Noi OpenClaw Voi Google Workspace: Sheets, Docs, Gmail, Drive, Calendar</h1>
+
+    <div class="byline">Doi ngu NOVA &#x2022; Thang 3, 2026 &#x2022; 7 phut doc</div>
+
+    <div class="hero-image-wrapper">
+      <svg width="100%" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bgg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1a3a5c"/>
+            <stop offset="100%" style="stop-color:#0d2137"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="360" fill="url(#bgg)"/>
+        <circle cx="1050" cy="280" r="180" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="40"/>
+        <text x="80" y="155" font-family="Georgia,serif" font-size="46" fill="white" opacity="0.97" font-weight="bold">OpenClaw</text>
+        <text x="80" y="215" font-family="Georgia,serif" font-size="32" fill="white" opacity="0.9">+ Google Workspace</text>
+        <text x="80" y="270" font-family="'Inter',sans-serif" font-size="17" fill="rgba(255,255,255,0.6)">Sheets, Docs, Gmail, Drive, Calendar &#x2014; ket noi duoc, nhung khong don gian</text>
+        <text x="80" y="310" font-family="'Inter',sans-serif" font-size="14" fill="rgba(255,255,255,0.4)">NOVA Blog &#x2022; Thang 3, 2026</text>
+      </svg>
+    </div>
+
+    <div class="direct-answer">
+      <div class="da-label">&#x1F4AC; Tra Loi Nhanh</div>
+      <p>OpenClaw co the ket noi voi Google Sheets, Docs, Gmail, Drive va Calendar thong qua Google Workspace MCP server hoac Skills tuy chinh. Khi ket noi xong, bot Telegram cua anh/chi co the doc du lieu tu Sheets, gui email qua Gmail, tao lich trong Calendar, va truy cap file tren Drive. Tuy nhien, qua trinh setup can OAuth2 credentials tu Google Cloud Console — day la buoc non-technical users hay bi mac ket nhat, thuong mat <strong>1&#x2013;3 ngay</strong> neu chua quen voi Google Cloud. Tong chi phi phan mem: mien phi. Chi phi thoi gian: day la van de chinh.</p>
+    </div>
+
+    <div class="key-takeaways">
+      <h3>&#x1F4CB; Diem Chinh Can Nho</h3>
+      <ul>
+        <li>OpenClaw + Google Workspace ket noi duoc — thong qua MCP server va OAuth2</li>
+        <li>Can tao project tren Google Cloud Console va bat tung API (Sheets, Gmail, Drive...)</li>
+        <li>Khi xong: bot co the doc/ghi Sheets, gui Gmail, quan ly lich tu cuoc hoi thoai Telegram</li>
+        <li>Day la tinh nang "after setup" — pho bien nhat sau khi da co OpenClaw chay on dinh</li>
+        <li>Goi 2M/thang bao gom setup tich hop nay + ho tro khi co van de phat sinh</li>
+      </ul>
+    </div>
+
+    <h2>Tai sao 2+ nguoi dung hoi ve Google Workspace trong cung 1 tuan?</h2>
+
+    <p>Trong tuan 9&#x2013;10/03/2026, it nhat 2 nguoi dung thuc te da hoi minh cung 1 chu de: lam the nao de OpenClaw ket noi voi Google Workspace. Mot nguoi muon bot doc doanh thu tu Google Sheets roi tong hop bao cao hang ngay. Mot nguoi khac muon bot gui email xac nhan don hang qua Gmail tu dong khi co tin nhan Telegram.</p>
+
+    <p>Noi dau giong nhau: <strong>"Toi biet OpenClaw co the lam duoc, nhung toi khong biet bat dau tu dau."</strong></p>
+
+    <p>Day la noi dau co ly. Ket noi OpenClaw voi Google Workspace khong phai bam mot nut la xong — no doi hoi hieu biet ve OAuth2, Google Cloud Console, va cach cau hinh MCP server. Voi nguoi non-tech, day la mot leap kha lon.</p>
+
+    <h2>Ket noi hoat dong nhu the nao — giai thich don gian</h2>
+
+    <p>Kien truc ket noi gom 3 lop:</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Lop</th>
+          <th>La gi?</th>
+          <th>Anh/chi can lam gi?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>OpenClaw</strong></td>
+          <td>AI gateway dang chay cua anh/chi</td>
+          <td>Da co san (neu da setup)</td>
+        </tr>
+        <tr>
+          <td><strong>Google Workspace MCP</strong></td>
+          <td>Cau noi giua OpenClaw va cac dich vu Google</td>
+          <td>Cau hinh Skills hoac MCP server entry</td>
+        </tr>
+        <tr>
+          <td><strong>Google Cloud OAuth2</strong></td>
+          <td>Xac thuc — cho phep bot truy cap tai khoan Google</td>
+          <td>Tao credentials tren Google Cloud Console</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Lop kho nhat voi nguoi non-tech la <strong>Google Cloud OAuth2</strong>. Anh/chi can:</p>
+    <ol>
+      <li>Tao project tren <a href="https://console.cloud.google.com" target="_blank" rel="noopener">Google Cloud Console</a></li>
+      <li>Bat tung API can dung: Google Sheets API, Gmail API, Google Drive API, Google Calendar API</li>
+      <li>Cau hinh OAuth2 Consent Screen (internal hoac external)</li>
+      <li>Tao OAuth2 Client ID va Client Secret</li>
+      <li>Luu credentials vao file JSON, dua vao cau hinh OpenClaw</li>
+    </ol>
+
+    <p>Moi buoc nay co nut nhap rieng. Sai 1 buoc — ket noi khong hoat dong, va error message cua Google thuong kha kho hieu voi nguoi chua quen.</p>
+
+    <div class="highlight-box">
+      <p>&#x26A0;&#xFE0F; <strong>Diem hay bi mac ket nhat:</strong> Nhieu nguoi tao OAuth2 credentials dung nhung quen khong bat API tuong ung (vi du: bat Google Drive API nhung quen bat Google Sheets API). Ket qua: mot so tinh nang hoat dong, mot so thi khong — rat kho debug.</p>
+    </div>
+
+    <h2>OpenClaw co the lam gi sau khi ket noi Google Workspace?</h2>
+
+    <p>Day la phan thu vi. Khi da ket noi xong, bot Telegram cua anh/chi co the:</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Dich vu Google</th>
+          <th>Bot co the lam gi?</th>
+          <th>Vi du thuc te</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Google Sheets</strong></td>
+          <td>Doc du lieu, them row, filter, tong hop</td>
+          <td>"Tuan nay ban duoc bao nhieu hang?" &#x2192; bot tra loi tu Sheets thuc</td>
+        </tr>
+        <tr>
+          <td><strong>Gmail</strong></td>
+          <td>Gui email, doc inbox, tim email theo keyword</td>
+          <td>"Gui email xac nhan don hang 123 cho khach" &#x2192; bot gui tu Gmail cua anh/chi</td>
+        </tr>
+        <tr>
+          <td><strong>Google Drive</strong></td>
+          <td>Liet ke file, doc noi dung, tao folder</td>
+          <td>"File bao gia thang truoc dau?" &#x2192; bot tim trong Drive va tra loi</td>
+        </tr>
+        <tr>
+          <td><strong>Google Docs</strong></td>
+          <td>Doc noi dung, them text, tao doc moi</td>
+          <td>"Tom tat proposal thang nay cho minh" &#x2192; bot doc va tong hop</td>
+        </tr>
+        <tr>
+          <td><strong>Google Calendar</strong></td>
+          <td>Xem lich, tao su kien, nhac lich</td>
+          <td>"Tuan nay co cuoc hop nao?" &#x2192; bot tra loi tu Calendar thuc cua anh/chi</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Noi gon: bot Telegram bien thanh <strong>tro ly thuc su biet business cua anh/chi</strong> — khong phai bot tra loi chung chung, ma bot biet du lieu thuc, lich thuc, email thuc cua doanh nghiep.</p>
+
+    <h2>Tai sao kho tu lam — va it nguoi vuot qua buoc nay</h2>
+
+    <p>Khi minh noi "kho," day khong phai de doa. Day la nhung gi minh quan sat tu thuc te:</p>
+
+    <p><strong>1. Google Cloud Console khong friendly voi nguoi moi.</strong> Interface nhieu option, nhieu menu, nhieu khai niem ky thuat (API, credentials, scopes, service account...). Nguoi chua quen co the mat 1&#x2013;2 gio chi de tim dung chon nao can bam.</p>
+
+    <p><strong>2. OAuth2 flow can test va debug.</strong> Sau khi co credentials, can test flow xac thuc trong moi truong OpenClaw. Neu sai scope — xac thuc duoc nhung khong lam duoc gi. Neu sai redirect URI — xac thuc fail hoan toan.</p>
+
+    <p><strong>3. MCP server config voi OpenClaw can matching chinh xac.</strong> Skills config phai match dung voi credentials Google, dung voi ten field trong JSON. Mot chu sai — ca he thong khong ket noi.</p>
+
+    <p>Nhung khi da setup xong — no chay on dinh, khong can phai lam lai. Day la ly do "setup 1 lan, dung lau dai" — nhung "1 lan" do co the la mot tuan voi nguoi non-tech.</p>
+
+    <h2>Day chinh xac la nhu cau ma goi 2M/thang giai quyet</h2>
+
+    <p>Nhieu nguoi nghi setup OpenClaw la xong. Thuc ra, ket noi Google Workspace la buoc <em>tiep theo</em> sau setup — va no thuong kho hon setup ban dau voi nguoi khong co ky thuat.</p>
+
+    <p>Goi <strong>Basic 2M/thang</strong> cua NOVA bao gom:</p>
+    <ul>
+      <li>Setup OpenClaw hoan chinh tren VPS</li>
+      <li>Ket noi Google Workspace theo dich vu anh/chi can (Sheets, Gmail, Drive, Calendar, Docs)</li>
+      <li>Test va verify tung tinh nang truoc khi ban giao</li>
+      <li>Ho tro khi co van de phat sinh sau do</li>
+      <li>Update khi OpenClaw ra phien ban moi</li>
+    </ul>
+
+    <p>Anh/chi khong can biet Google Cloud Console la gi. Khong can biet OAuth2. Khong can debug loi ket noi. Minh lam het &#x2014; anh/chi chi can nhan bot va dung.</p>
+
+    <p>Muon biet them ve qua trinh setup tong the? Xem bai <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao">OpenClaw cai dat nhu the nao?</a> de co buc tranh day du hon.</p>
+
+    <p>Sau khi da ket noi Google Workspace, buoc tiep theo pho bien la toi uu hoa bot de no hoat dong dung y muon. Xem bai <a href="/trolythongminh/blog/toi-uu-openclaw-sau-khi-setup">Toi uu OpenClaw sau khi setup</a> de hieu buoc nay can gi.</p>
+
+    <div class="cta-box">
+      <h3>Dat Lich Tu Van Mien Phi</h3>
+      <p>Minh se demo OpenClaw ket noi voi Google Workspace thuc — Sheets, Gmail, Calendar — va phan tich tinh nang nao phu hop cho business cua anh/chi. Truoc khi anh/chi quyet dinh bat cu dieu gi.</p>
+      <a href="https://calendly.com/willdaolamzz" class="cta-btn">&#x1F4C5; Dat Lich Tai Day</a>
+      <p class="cta-sub">Mien phi, khong rang buoc. 15 phut la du.</p>
+    </div>
+
+    <div class="faq-section">
+      <h2>Cau Hoi Thuong Gap</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">OpenClaw co the ket noi voi Google Sheets khong?</div>
+        <div class="faq-a">Co. OpenClaw ket noi Google Sheets thong qua Google Sheets API va OAuth2. Sau khi ket noi, bot co the doc du lieu, them row moi, filter theo dieu kien — tat ca tu cuoc hoi thoai Telegram. Vi du: "bao cao doanh thu tuan nay" va bot tu dong lay tu Sheets va tra loi.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can biet lap trinh de ket noi OpenClaw voi Google Workspace khong?</div>
+        <div class="faq-a">Khong can viet code, nhung can hieu cach cau hinh OAuth2 tren Google Cloud Console va chinh sua file JSON config cua OpenClaw. Day la buoc trung cap — khong phai lap trinh, nhung cung khong phai click-and-done.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Mat bao lau de setup OpenClaw + Google Workspace?</div>
+        <div class="faq-a">Nguoi co ky thuat: 2&#x2013;4 gio cho toan bo OAuth2 + config + test. Nguoi khong co ky thuat: co the mat 1&#x2013;3 ngay vi chua quen Google Cloud Console va OAuth flow. Khi xong thi on dinh — khong can setup lai.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">OpenClaw co the gui email qua Gmail cua minh khong?</div>
+        <div class="faq-a">Co. Sau khi cau hinh Gmail API + OAuth2, bot co the gui email tu tai khoan Gmail cua anh/chi — viet noi dung tu nhien bang tieng Viet, them attachment, gui den nhieu nguoi nhan. Tat ca tu lenh Telegram don gian.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Co dich vu nao setup OpenClaw + Google Workspace thay minh khong?</div>
+        <div class="faq-a">Co. NOVA cung cap dich vu setup tich hop day du — OpenClaw + Google Workspace (Sheets, Docs, Gmail, Drive, Calendar) — hoan chinh trong 48 gio. Anh/chi dung ngay qua Telegram ma khong can biet OAuth hay Google Cloud Console. Dat lich tu van mien phi.</div>
+      </div>
+    </div>
+
+    <div class="related-articles">
+      <h3>Bai Viet Lien Quan</h3>
+      <div class="related-grid">
+        <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao" class="related-card">
+          OpenClaw cai dat nhu the nao? Huong dan that cho nguoi khong co team ky thuat
+        </a>
+        <a href="/trolythongminh/blog/toi-uu-openclaw-sau-khi-setup" class="related-card">
+          Toi uu OpenClaw sau khi setup: model, memory, SOUL.md
+        </a>
+        <a href="/trolythongminh/blog/openclaw-cho-nhieu-nguoi-dung-chung" class="related-card">
+          OpenClaw cho nhieu nguoi dung chung: setup team va business
+        </a>
+        <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu" class="related-card">
+          OpenClaw ton bao nhieu tien that su? Breakdown 2026
+        </a>
+        <a href="/trolythongminh/blog/openclaw-vs-n8n-khac-gi-nhau" class="related-card">
+          OpenClaw vs n8n: Khac gi nhau? Doanh nghiep nho dung cai nao?
+        </a>
+        <a href="/trolythongminh/blog/openclaw-api-key-khong-hoat-dong" class="related-card">
+          API Key OpenClaw khong hoat dong: 6 loi pho bien nhat
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 NOVA &#x2014; Tro Ly Thong Minh | <a href="/trolythongminh/">trolythongminh.io.vn</a></p>
+  </footer>
+
+</body>
+</html>
