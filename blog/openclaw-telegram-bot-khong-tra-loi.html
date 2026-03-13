@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Bot Telegram Không Trả Lời? 5 Nguyên Nhân Phổ Biến Nhất | NOVA Blog</title>
+  <meta name="description" content="Setup OpenClaw xong nhưng bot Telegram im lặng? 5 nguyên nhân thật và lệnh kiểm tra từng cái. Hoặc đặt lịch 15 phút — mình debug và fix cho.">
+  <meta property="og:title" content="OpenClaw Bot Telegram Không Trả Lời? 5 Nguyên Nhân Phổ Biến Nhất">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://trolythongminh.io.vn/blog/openclaw-telegram-bot-khong-tra-loi">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Bot Telegram trả lời được trong DM nhưng không trả lời trong group — tại sao?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Group chat có cấu hình requireMention. Phải tag '@tên bot' trong message mới kích hoạt bot trả lời. Đây là tính năng bảo mật mặc định của OpenClaw để tránh bot trả lời mọi tin nhắn trong group."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "OpenClaw bot đột ngột ngừng reply sau khi đang dùng bình thường?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kiểm tra 'openclaw gateway status'. Gateway có thể đã stop (do server restart, timeout, hoặc lỗi). Chạy 'openclaw gateway start' để restart. Nếu VPS restart thì gateway không tự start lại — cần setup auto-start."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Làm sao để OpenClaw bot luôn chạy 24/7 không cần mở máy tính?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cần deploy lên VPS (cloud server) thay vì máy tính cá nhân, và cấu hình auto-start (systemd service hoặc PM2) để gateway tự khởi động khi server restart. Đây là bước nhiều người bỏ qua sau khi setup xong."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lệnh nào để kiểm tra OpenClaw gateway đang chạy hay không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chạy 'openclaw gateway status'. Kết quả đúng: 'Runtime: running'. Nếu thấy 'stopped' hoặc không có output là gateway chưa chạy. Chạy 'openclaw gateway start' để khởi động."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "OpenClaw allowlist là gì và tại sao bot không reply?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AllowList là danh sách số điện thoại/user ID được phép nhắn tin với bot. Nếu số của bạn chưa có trong allowFrom config, bot sẽ nhận tin nhắn nhưng không trả lời (log hiện 'blocked / allowlist'). Cần thêm số vào allowFrom trong openclaw.json."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #fafafa; color: #1a1a1a; font-size: 16px; line-height: 1.7; }
+    a { color: #0066cc; }
+    .site-header { background: #fff; border-bottom: 3px solid #0066cc; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site-header .logo { font-size: 1.4rem; font-weight: 700; color: #0066cc; text-decoration: none; }
+    .site-header nav a { margin-left: 1.5rem; color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .site-header nav .nav-demo { background: #0066cc; color: #fff !important; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 600; }
+    .article-container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+    .breadcrumb a { color: #0066cc; text-decoration: none; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .category-tag { display: inline-block; background: #fef3c7; color: #92400e; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 1rem; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; line-height: 1.28; color: #111; margin-bottom: 0.5rem; }
+    h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; color: #111; border-left: 4px solid #0066cc; padding-left: 1rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 1.5rem 0 0.6rem; }
+    .byline { color: #888; font-size: 0.85rem; margin: 0.6rem 0 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .hero-image-wrapper { width: 100%; margin: 1.5rem 0 2rem; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .hero-image-wrapper svg { display: block; width: 100%; height: auto; }
+    p { line-height: 1.85; font-size: 1.05rem; color: #333; margin-bottom: 1.25rem; }
+    ul, ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.45rem; line-height: 1.7; color: #333; font-size: 1rem; }
+    .key-takeaways { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #0066cc; margin-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .key-takeaways ul { margin: 0.5rem 0 0 1.2rem; }
+    .key-takeaways li { font-size: 0.95rem; }
+    .direct-answer { background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0 2rem; }
+    .direct-answer .da-label { font-size: 0.75rem; font-weight: 700; color: #0066cc; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .direct-answer p { margin: 0; font-size: 0.97rem; color: #1a1a1a; }
+    .highlight-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .highlight-box p { margin: 0; font-size: 0.95rem; }
+    .check-item { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.25rem; margin: 1rem 0; }
+    .check-item .check-num { display: inline-block; background: #0066cc; color: #fff; font-size: 0.78rem; font-weight: 700; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; margin-bottom: 0.5rem; }
+    .check-item .check-title { font-weight: 700; color: #1a1a1a; margin-bottom: 0.4rem; font-size: 1rem; }
+    .check-item .check-cmd { font-family: monospace; font-size: 0.88rem; background: #f1f5f9; padding: 0.3rem 0.6rem; border-radius: 4px; display: inline-block; margin: 0.3rem 0; }
+    .check-item p { margin: 0.4rem 0 0; font-size: 0.93rem; }
+    .code-block { background: #1a1a2e; color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 0.88rem; padding: 1.25rem; border-radius: 8px; margin: 1.25rem 0; overflow-x: auto; line-height: 1.6; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.93rem; }
+    .compare-table th { background: #f0f4f8; color: #1a1a1a; padding: 10px 14px; text-align: left; font-size: 0.82rem; font-weight: 700; border-bottom: 2px solid #ddd; }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #333; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #fafafa; }
+    .cta-box { background: #0066cc; color: #fff; border-radius: 12px; padding: 2rem; text-align: center; margin: 3rem 0; }
+    .cta-box h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.88); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-box a.cta-btn { background: #fff; color: #0066cc; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 0.5rem; }
+    .cta-sub { margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .related-articles { border-top: 2px solid #eee; padding-top: 2rem; margin-top: 3rem; }
+    .related-articles h3 { font-size: 0.82rem; text-transform: uppercase; color: #888; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+    .related-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; text-decoration: none; color: #333; font-size: 0.85rem; line-height: 1.4; display: block; }
+    .related-card:hover { border-color: #0066cc; color: #0066cc; }
+    .faq-section { margin-top: 2.5rem; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; font-size: 1rem; }
+    .faq-a { color: #444; font-size: 0.93rem; line-height: 1.7; }
+    .site-footer { border-top: 1px solid #eee; margin-top: 4rem; padding: 2rem 1rem; text-align: center; color: #888; font-size: 0.82rem; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/trolythongminh/" class="logo">&#x1F916; NOVA Blog</a>
+    <nav>
+      <a href="/trolythongminh/">Trang chủ</a>
+      <a href="/trolythongminh/blog/">Blog</a>
+      <a href="https://calendly.com/willdaolamzz" class="nav-demo">Book Demo</a>
+    </nav>
+  </header>
+
+  <div class="article-container">
+
+    <nav class="breadcrumb">
+      <a href="/trolythongminh/">Trang chủ</a><span>&#x203A;</span>
+      <a href="/trolythongminh/blog/">Blog</a><span>&#x203A;</span>
+      OpenClaw Bot Telegram Không Trả Lời
+    </nav>
+
+    <span class="category-tag">Troubleshooting</span>
+
+    <h1>OpenClaw Bot Telegram Không Trả Lời? 5 Nguyên Nhân Phổ Biến Nhất (Và Cách Kiểm Tra)</h1>
+
+    <div class="byline">Đội ngũ NOVA &#x2022; Tháng 3, 2026 &#x2022; 7 phút đọc</div>
+
+    <div class="hero-image-wrapper">
+      <svg width="100%" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#422006"/>
+            <stop offset="100%" style="stop-color:#0f172a"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="360" fill="url(#bg4)"/>
+        <circle cx="1050" cy="180" r="200" fill="none" stroke="rgba(251,191,36,0.07)" stroke-width="40"/>
+        <text x="80" y="150" font-family="Georgia,serif" font-size="46" fill="white" opacity="0.97" font-weight="bold">Bot Telegram</text>
+        <text x="80" y="210" font-family="Georgia,serif" font-size="38" fill="rgba(253,230,138,0.9)">Im Lặng?</text>
+        <text x="80" y="268" font-family="'Inter',sans-serif" font-size="17" fill="rgba(255,255,255,0.6)">Setup xong nhưng bot không reply — 5 nguyên nhân thật cần check</text>
+        <text x="80" y="308" font-family="'Inter',sans-serif" font-size="14" fill="rgba(255,255,255,0.4)">NOVA Blog &#x2022; Tháng 3, 2026</text>
+      </svg>
+    </div>
+
+    <div class="direct-answer">
+      <div class="da-label">&#x1F4AC; Trả Lời Nhanh</div>
+      <p>Bot Telegram im lặng sau khi setup OpenClaw thường do một trong 5 nguyên nhân: <strong>(1)</strong> gateway chưa chạy, <strong>(2)</strong> channel chưa pair đúng cách, <strong>(3)</strong> group chat chưa cấu hình mention, <strong>(4)</strong> allowlist chưa có số điện thoại của anh/chị, <strong>(5)</strong> API provider đang lỗi. Lệnh kiểm tra nhanh nhất: <strong><code>openclaw channels status --probe</code></strong> — chạy lệnh này trước, nó sẽ chỉ ra điểm nào đang fail.</p>
+    </div>
+
+    <div class="key-takeaways">
+      <h3>&#x1F4CB; Điểm Chính Cần Nhớ</h3>
+      <ul>
+        <li>Bot im lặng là lỗi khó nhất vì có nhiều layer — Telegram → Gateway → AI provider</li>
+        <li>Lỗi group chat vs DM thường khác nhau — requireMention là nguyên nhân #1 gây nhầm lẫn</li>
+        <li>Gateway stop sau server restart là nguyên nhân hay bị bỏ qua nhất</li>
+        <li>Đọc log là cách nhanh nhất để biết đúng nguyên nhân — không cần đoán mò</li>
+      </ul>
+    </div>
+
+    <h2>Tại sao bot im lặng là lỗi khó diagnose nhất?</h2>
+
+    <p>Với lỗi API key, ít nhất anh/chị nhận được error message rõ ràng. Với bot im lặng — không có gì cả. Nhắn tin vào, không có reply, không có thông báo lỗi. Không biết vấn đề ở đâu.</p>
+
+    <p>Điều này xảy ra vì OpenClaw có <strong>nhiều layer</strong> giữa người dùng Telegram và AI:</p>
+
+    <p>Telegram API → OpenClaw Gateway → Channel config → AllowList check → AI Provider → Response</p>
+
+    <p>Lỗi ở bất kỳ điểm nào trong chuỗi này đều cho kết quả giống nhau: bot im lặng. Và không phải layer nào cũng tự báo lỗi rõ ràng.</p>
+
+    <h2>5 nguyên nhân phổ biến và cách check từng cái</h2>
+
+    <div class="check-item">
+      <div class="check-num">1</div>
+      <div class="check-title">Gateway chưa chạy (hoặc đã stop)</div>
+      <span class="check-cmd">openclaw gateway status</span>
+      <p>Kết quả đúng: <strong>"Runtime: running"</strong>. Nếu thấy "stopped" hoặc lệnh không có output — gateway chưa chạy. Chạy <code>openclaw gateway start</code> để khởi động.<br><br>
+      <strong>Hay gặp khi:</strong> Server/VPS restart (gateway không tự start lại), hoặc máy tính cá nhân vừa bật lại. Cần setup auto-start (systemd hoặc PM2) để gateway tự run khi server boot.</p>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">2</div>
+      <div class="check-title">Channel chưa pair hoặc đang ở trạng thái pending</div>
+      <span class="check-cmd">openclaw pairing list --channel telegram</span>
+      <p>Nếu thấy status "pending" = yêu cầu pair chưa được approve. Cần approve trong app hoặc qua CLI.<br><br>
+      <strong>Hay gặp khi:</strong> Setup mới, vừa tạo bot Telegram mới, hoặc sau khi đổi bot token — cần pair lại từ đầu.</p>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">3</div>
+      <div class="check-title">Group chat cần mention — requireMention chưa được set đúng</div>
+      <span class="check-cmd">Kiểm tra config: requireMention trong openclaw.json</span>
+      <p>Mặc định OpenClaw trong group chat yêu cầu người dùng tag tên bot (<code>@tênbot tin nhắn</code>) mới reply. Nếu nhắn thẳng vào group mà không tag — bot nhận được nhưng bỏ qua.<br><br>
+      <strong>Fix:</strong> Hoặc tag tên bot khi nhắn, hoặc set <code>requireMention: false</code> trong config (nhưng sẽ làm bot reply mọi tin nhắn trong group — không phải lúc nào cũng muốn).</p>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">4</div>
+      <div class="check-title">Số điện thoại chưa có trong AllowList</div>
+      <span class="check-cmd">openclaw logs --follow | grep "blocked"</span>
+      <p>Nếu log hiện <code>blocked / allowlist</code> khi nhắn tin — số của anh/chị chưa được thêm vào danh sách được phép.<br><br>
+      <strong>Fix:</strong> Thêm số vào <code>allowFrom</code> trong channel config của openclaw.json. Format: số đầy đủ kèm country code (+84...).</p>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">5</div>
+      <div class="check-title">API provider đang lỗi hoặc "all in cooldown"</div>
+      <span class="check-cmd">openclaw models status</span>
+      <p>Nếu thấy "all models in cooldown" hoặc không có model available — provider đang có lỗi hoặc API key đang bị throttle. Bot nhận tin nhắn nhưng không thể generate response.<br><br>
+      <strong>Fix:</strong> Đợi 5–10 phút. Kiểm tra API key theo hướng dẫn trong bài <a href="/trolythongminh/blog/openclaw-api-key-khong-hoat-dong">OpenClaw API key không hoạt động</a>.</p>
+    </div>
+
+    <h2>Đọc log như thế nào để tìm nguyên nhân nhanh nhất?</h2>
+
+    <p>Cách nhanh nhất: chạy log theo dõi realtime rồi thử nhắn tin vào bot:</p>
+
+    <div class="code-block">
+openclaw logs --follow
+# Rồi nhắn 1 tin nhắn vào bot từ Telegram
+# Xem log xuất hiện gì
+    </div>
+
+    <p>3 pattern log hay gặp nhất:</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Log pattern</th>
+          <th>Nghĩa là</th>
+          <th>Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>drop guild message (mention required)</code></td>
+          <td>Tin nhắn group không có tag bot</td>
+          <td>Tag @bot khi nhắn trong group</td>
+        </tr>
+        <tr>
+          <td><code>blocked / allowlist</code></td>
+          <td>Số chưa được phép nhắn</td>
+          <td>Thêm số vào allowFrom config</td>
+        </tr>
+        <tr>
+          <td><code>pairing request pending</code></td>
+          <td>Channel chưa pair xong</td>
+          <td>Approve pairing request</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Nếu log không hiện gì khi nhắn tin — nghĩa là tin nhắn chưa đến được gateway. Quay lại check nguyên nhân #1 (gateway có đang chạy không?).</p>
+
+    <h2>Sau khi fix được bot — những vấn đề tiếp theo hay gặp</h2>
+
+    <p>Dữ liệu thực tế từ người dùng VN (tuần 9–10/03/2026) cho thấy sau khi bot đã reply được, các nhu cầu phát sinh tiếp theo là:</p>
+
+    <ul>
+      <li><strong>Tối ưu cách bot trả lời:</strong> Chỉnh SOUL.md, cấu hình memory để bot nhớ context giữa các cuộc hội thoại, chọn model phù hợp cho từng loại task — đây là bước nhiều người bỏ qua nhưng ảnh hưởng lớn đến chất lượng bot.</li>
+      <li><strong>Kết nối Google Workspace:</strong> Bot đọc Google Sheets, nhắc lịch từ Google Calendar, tóm tắt email Gmail — 2+ người dùng VN đang hỏi về điều này.</li>
+      <li><strong>Mở rộng cho team:</strong> Muốn nhiều người cùng dùng bot — cần cấu hình allowlist và permissions đúng cách, không phải chỉ add 1 số.</li>
+    </ul>
+
+    <p>Không chỉ fix 1 lần là xong. Đó là lý do gói <strong>Basic 2M/tháng</strong> có ongoing support — mình đồng hành với anh/chị qua từng giai đoạn phát triển của bot.</p>
+
+    <h2>Đã check hết 5 cái mà vẫn không hoạt động</h2>
+
+    <p>Mình hiểu cảm giác này. Làm đúng từng bước, bot vẫn im lặng. Không biết còn thiếu gì.</p>
+
+    <p>Thực tế là: những lỗi này đòi hỏi phải nhìn toàn bộ stack mới diagnose được chính xác — từ Telegram config, đến gateway config, đến provider status. Không phải thứ có thể check qua chat support hay Google.</p>
+
+    <p>Mình đã debug lỗi "bot im lặng" cho nhiều khách hàng. Trong hầu hết trường hợp, <strong>15 phút screen share là đủ để tìm và fix nguyên nhân thật.</strong></p>
+
+    <div class="cta-box">
+      <h3>Bot Vẫn Im Lặng? Đặt Lịch Debug 15 Phút</h3>
+      <p>Mình nhìn qua setup của anh/chị, chạy từng check, và fix ngay trong buổi đó — không cần anh/chị biết terminal hay đọc log.</p>
+      <a href="https://calendly.com/willdaolamzz" class="cta-btn">&#x1F4C5; Đặt Lịch Ngay — Miễn Phí</a>
+      <p class="cta-sub">15 phút là đủ. Nếu fix được ngay — xong. Nếu phức tạp hơn — mình báo thật.</p>
+    </div>
+
+    <div class="faq-section">
+      <h2>Câu Hỏi Thường Gặp</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Bot trả lời được trong DM nhưng không trả lời trong group — tại sao?</div>
+        <div class="faq-a">Group chat có cấu hình requireMention. Trong group, phải tag "@tên bot" trong message mới kích hoạt bot trả lời. Đây là tính năng bảo mật mặc định để bot không reply mọi tin nhắn trong group. Có thể tắt bằng cách set requireMention: false trong config — nhưng lúc đó bot sẽ reply tất cả.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Bot đột ngột ngừng reply sau khi đang dùng bình thường?</div>
+        <div class="faq-a">Kiểm tra "openclaw gateway status". Gateway có thể đã stop do server restart hoặc lỗi. Chạy "openclaw gateway start" để restart. Để bot không bị tắt sau server restart, cần setup auto-start bằng systemd service hoặc PM2 — đây là bước nhiều người bỏ qua khi setup ban đầu.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Làm sao để bot luôn online 24/7 không cần giữ máy tính bật?</div>
+        <div class="faq-a">Cần 2 thứ: (1) Deploy OpenClaw lên VPS thay vì máy tính cá nhân, và (2) Cấu hình auto-start để gateway tự chạy khi server boot. VPS 2GB trên DigitalOcean/Vultr giá khoảng 240,000đ/tháng là đủ cho cá nhân.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Log hiện "drop guild message (mention required)" nghĩa là gì?</div>
+        <div class="faq-a">Tin nhắn trong group bị bỏ qua vì không có tag bot. Đây không phải lỗi — đây là behavior đúng của requireMention. Nhắn "@tênbot nội dung" thay vì chỉ "nội dung" là fix được ngay.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">AllowList OpenClaw là gì?</div>
+        <div class="faq-a">AllowList (allowFrom) là danh sách số điện thoại hoặc user ID được phép nhắn tin với bot. Bảo mật feature này ngăn người lạ dùng bot của anh/chị. Nếu số chưa có trong list, bot nhận tin nhắn nhưng bỏ qua (log hiện "blocked"). Cần thêm số vào allowFrom trong openclaw.json.</div>
+      </div>
+    </div>
+
+    <div class="related-articles">
+      <h3>Bài Viết Liên Quan</h3>
+      <div class="related-grid">
+        <a href="/trolythongminh/blog/openclaw-api-key-khong-hoat-dong" class="related-card">
+          API Key OpenClaw không hoạt động: 6 lỗi phổ biến nhất
+        </a>
+        <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao" class="related-card">
+          OpenClaw cài đặt như thế nào? Hướng dẫn thật cho người không có kỹ thuật
+        </a>
+        <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu" class="related-card">
+          OpenClaw tốn bao nhiêu tiền? Chi phí thật 2026
+        </a>
+        <a href="/trolythongminh/blog/toi-uu-openclaw-sau-khi-setup" class="related-card">
+          Tối ưu OpenClaw sau khi setup: model, memory, skills
+        </a>
+        <a href="/trolythongminh/blog/openclaw-ket-noi-google-workspace" class="related-card">
+          Kết nối OpenClaw với Google Workspace (Sheets, Docs, Gmail)
+        </a>
+        <a href="/trolythongminh/blog/openclaw-cho-nhieu-nguoi-dung-chung" class="related-card">
+          OpenClaw cho nhiều người dùng chung: setup team/business
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 NOVA &#x2014; Trợ Lý Thông Minh | <a href="/trolythongminh/">trolythongminh.io.vn</a></p>
+  </footer>
+
+</body>
+</html>

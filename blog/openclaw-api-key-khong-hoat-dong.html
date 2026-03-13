@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw API Key Không Hoạt Động: 6 Lỗi Phổ Biến Nhất Và Cách Xử Lý | NOVA Blog</title>
+  <meta name="description" content="API key OpenClaw báo lỗi 401, 429 hoặc 'Invalid bearer token'? 6 nguyên nhân phổ biến nhất và dấu hiệu nhận biết từng loại. Hoặc để mình debug cho — 15 phút xong.">
+  <meta property="og:title" content="OpenClaw API Key Không Hoạt Động: 6 Lỗi Phổ Biến Nhất">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://trolythongminh.io.vn/blog/openclaw-api-key-khong-hoat-dong">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Lỗi '401 Invalid bearer token' OpenClaw là gì?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Token Anthropic API key của bạn sai format hoặc đã hết hạn. Format đúng là sk-ant-api03-[...]. Kiểm tra lại key trong Anthropic Console và đảm bảo copy đủ không bị cắt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Tại sao API key đúng nhưng vẫn lỗi 401?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có thể key đặt sai vị trí trong file config. Key phải ở root level của openclaw.json (trong mục credentials), không phải trong skills.entries hay chỗ khác."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "'All in cooldown' trong OpenClaw nghĩa là gì?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OpenClaw tạm block requests vì nhiều request liên tiếp fail. Đợi 5-10 phút hoặc restart gateway bằng lệnh 'openclaw gateway restart'."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "OpenClaw 429 rate limit fix như thế nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lỗi 429 nghĩa là API key của bạn đang bị throttle bởi provider (Anthropic/OpenAI). Đợi 1 phút rồi thử lại. Nếu liên tục, kiểm tra billing tier — free tier có rate limit thấp hơn nhiều so với paid tier."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cách kiểm tra API key OpenClaw đang hoạt động hay không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chạy lệnh 'openclaw models status' — nếu thấy danh sách models với status 'available' là key đang hoạt động tốt. Nếu thấy 'cooldown' hoặc lỗi là có vấn đề cần xử lý."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #fafafa; color: #1a1a1a; font-size: 16px; line-height: 1.7; }
+    a { color: #0066cc; }
+    .site-header { background: #fff; border-bottom: 3px solid #0066cc; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site-header .logo { font-size: 1.4rem; font-weight: 700; color: #0066cc; text-decoration: none; }
+    .site-header nav a { margin-left: 1.5rem; color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .site-header nav .nav-demo { background: #0066cc; color: #fff !important; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 600; }
+    .article-container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+    .breadcrumb a { color: #0066cc; text-decoration: none; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .category-tag { display: inline-block; background: #fee2e2; color: #dc2626; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 1rem; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; line-height: 1.28; color: #111; margin-bottom: 0.5rem; }
+    h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; color: #111; border-left: 4px solid #0066cc; padding-left: 1rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 1.5rem 0 0.6rem; }
+    .byline { color: #888; font-size: 0.85rem; margin: 0.6rem 0 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .hero-image-wrapper { width: 100%; margin: 1.5rem 0 2rem; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .hero-image-wrapper svg { display: block; width: 100%; height: auto; }
+    p { line-height: 1.85; font-size: 1.05rem; color: #333; margin-bottom: 1.25rem; }
+    ul, ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.45rem; line-height: 1.7; color: #333; font-size: 1rem; }
+    .key-takeaways { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #0066cc; margin-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .key-takeaways ul { margin: 0.5rem 0 0 1.2rem; }
+    .key-takeaways li { font-size: 0.95rem; }
+    .direct-answer { background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0 2rem; }
+    .direct-answer .da-label { font-size: 0.75rem; font-weight: 700; color: #0066cc; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .direct-answer p { margin: 0; font-size: 0.97rem; color: #1a1a1a; }
+    .highlight-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .highlight-box p { margin: 0; font-size: 0.95rem; }
+    .error-box { background: #fff1f2; border-left: 3px solid #dc2626; padding: 1rem 1.25rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+    .error-box .err-code { font-family: monospace; font-size: 0.88rem; font-weight: 700; color: #dc2626; margin-bottom: 0.4rem; }
+    .error-box p { margin: 0; font-size: 0.93rem; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.93rem; }
+    .compare-table th { background: #f0f4f8; color: #1a1a1a; padding: 10px 14px; text-align: left; font-size: 0.82rem; font-weight: 700; border-bottom: 2px solid #ddd; }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #333; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #fafafa; }
+    .code-block { background: #1a1a2e; color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 0.88rem; padding: 1.25rem; border-radius: 8px; margin: 1.25rem 0; overflow-x: auto; line-height: 1.6; }
+    .code-block .comment { color: #64748b; }
+    .code-block .key { color: #7dd3fc; }
+    .code-block .value { color: #86efac; }
+    .cta-box { background: #0066cc; color: #fff; border-radius: 12px; padding: 2rem; text-align: center; margin: 3rem 0; }
+    .cta-box h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.88); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-box a.cta-btn { background: #fff; color: #0066cc; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 0.5rem; }
+    .cta-sub { margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .related-articles { border-top: 2px solid #eee; padding-top: 2rem; margin-top: 3rem; }
+    .related-articles h3 { font-size: 0.82rem; text-transform: uppercase; color: #888; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+    .related-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; text-decoration: none; color: #333; font-size: 0.85rem; line-height: 1.4; display: block; }
+    .related-card:hover { border-color: #0066cc; color: #0066cc; }
+    .faq-section { margin-top: 2.5rem; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; font-size: 1rem; }
+    .faq-a { color: #444; font-size: 0.93rem; line-height: 1.7; }
+    .site-footer { border-top: 1px solid #eee; margin-top: 4rem; padding: 2rem 1rem; text-align: center; color: #888; font-size: 0.82rem; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/trolythongminh/" class="logo">&#x1F916; NOVA Blog</a>
+    <nav>
+      <a href="/trolythongminh/">Trang chủ</a>
+      <a href="/trolythongminh/blog/">Blog</a>
+      <a href="https://calendly.com/willdaolamzz" class="nav-demo">Book Demo</a>
+    </nav>
+  </header>
+
+  <div class="article-container">
+
+    <nav class="breadcrumb">
+      <a href="/trolythongminh/">Trang chủ</a><span>&#x203A;</span>
+      <a href="/trolythongminh/blog/">Blog</a><span>&#x203A;</span>
+      OpenClaw API Key Không Hoạt Động
+    </nav>
+
+    <span class="category-tag">Troubleshooting</span>
+
+    <h1>OpenClaw API Key Không Hoạt Động: 6 Lỗi Phổ Biến Nhất Và Cách Xử Lý</h1>
+
+    <div class="byline">Đội ngũ NOVA &#x2022; Tháng 3, 2026 &#x2022; 8 phút đọc</div>
+
+    <div class="hero-image-wrapper">
+      <svg width="100%" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#7f1d1d"/>
+            <stop offset="100%" style="stop-color:#0f172a"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="360" fill="url(#bg2)"/>
+        <circle cx="1050" cy="180" r="200" fill="none" stroke="rgba(255,100,100,0.08)" stroke-width="40"/>
+        <text x="80" y="155" font-family="Georgia,serif" font-size="46" fill="white" opacity="0.97" font-weight="bold">API Key</text>
+        <text x="80" y="215" font-family="Georgia,serif" font-size="38" fill="rgba(255,200,200,0.9)">Không Hoạt Động?</text>
+        <text x="80" y="270" font-family="'Inter',sans-serif" font-size="17" fill="rgba(255,255,255,0.6)">6 nguyên nhân thật — và cách biết mình đang gặp loại nào</text>
+        <text x="80" y="310" font-family="'Inter',sans-serif" font-size="14" fill="rgba(255,255,255,0.4)">NOVA Blog &#x2022; Tháng 3, 2026</text>
+      </svg>
+    </div>
+
+    <div class="direct-answer">
+      <div class="da-label">&#x1F4AC; Trả Lời Nhanh</div>
+      <p>Khi OpenClaw báo lỗi API key, có 3 nguồn gốc khác nhau: (1) sai format key — Anthropic Claude cần format <strong>sk-ant-api03-...</strong>, (2) đặt key sai chỗ trong file config (<strong>~/.openclaw/openclaw.json</strong>), (3) billing/quota chưa active trên tài khoản provider. Thử lệnh <strong>openclaw doctor --fix</strong> trước — xử lý được khoảng 60% lỗi cấu hình thông thường. Nếu vẫn lỗi, đọc tiếp để xác định đúng nguyên nhân.</p>
+    </div>
+
+    <div class="key-takeaways">
+      <h3>&#x1F4CB; Điểm Chính Cần Nhớ</h3>
+      <ul>
+        <li>OpenClaw có 3 lớp authentication — lỗi ở lớp nào cũng hiện là "API key error"</li>
+        <li>Format key Anthropic: sk-ant-api03-[...] | OpenAI: sk-[...]</li>
+        <li>API key đặt đúng chỗ nhưng billing chưa active vẫn báo 401</li>
+        <li>Lỗi 429 (rate limit) và 401 (auth) cần fix khác nhau — đừng nhầm</li>
+      </ul>
+    </div>
+
+    <h2>Tại sao lỗi API key OpenClaw phức tạp hơn bình thường?</h2>
+
+    <p>Đây là điều làm nhiều người bối rối nhất: cùng một thông báo lỗi nhưng có thể đến từ 3 chỗ khác nhau hoàn toàn.</p>
+
+    <p>OpenClaw có kiến trúc <strong>3 lớp authentication</strong>:</p>
+
+    <ul>
+      <li><strong>Lớp 1 — Config cục bộ:</strong> File ~/.openclaw/openclaw.json trên máy/VPS của anh/chị</li>
+      <li><strong>Lớp 2 — Gateway token:</strong> Token để OpenClaw gateway giao tiếp với các services</li>
+      <li><strong>Lớp 3 — Upstream provider:</strong> API key thật của Anthropic hoặc OpenAI</li>
+    </ul>
+
+    <p>Lỗi ở bất kỳ lớp nào cũng có thể hiện lên màn hình là "authentication error" hoặc "invalid key." Đây là lý do nhiều người thử đổi API key nhiều lần nhưng vẫn không fix được — vì vấn đề không phải ở key.</p>
+
+    <div class="highlight-box">
+      <p>&#x1F4A1; <strong>Tip đầu tiên:</strong> Trước khi làm bất cứ gì, chạy <code>openclaw doctor --fix</code>. Lệnh này tự động scan và fix nhiều lỗi config thông thường. Nếu xong mà vẫn lỗi — lúc đó mới cần đọc tiếp.</p>
+    </div>
+
+    <h2>6 lỗi phổ biến nhất kèm cách xử lý</h2>
+
+    <div class="error-box">
+      <div class="err-code">Lỗi 1: 401 authentication_error — Invalid bearer token</div>
+      <p><strong>Nguyên nhân:</strong> API key sai format hoặc đã bị thu hồi. Đây là lỗi dễ fix nhất.<br>
+      <strong>Fix:</strong> Vào Anthropic Console (console.anthropic.com) hoặc OpenAI Platform, tạo key mới, copy toàn bộ (không cắt). Anthropic key bắt đầu bằng sk-ant-api03-, OpenAI key bắt đầu bằng sk-.</p>
+    </div>
+
+    <div class="error-box">
+      <div class="err-code">Lỗi 2: "No API key found" hoặc "Key not configured"</div>
+      <p><strong>Nguyên nhân:</strong> Key chưa được đặt trong file config, hoặc đặt sai chỗ.<br>
+      <strong>Fix:</strong> Kiểm tra vị trí key trong openclaw.json (xem mục dưới).</p>
+    </div>
+
+    <div class="error-box">
+      <div class="err-code">Lỗi 3: 429 rate_limit_error</div>
+      <p><strong>Nguyên nhân:</strong> API key đang bị throttle — gọi quá nhiều trong thời gian ngắn, hoặc đang dùng free tier có rate limit thấp.<br>
+      <strong>Fix:</strong> Đợi 1–2 phút. Nếu thường xuyên gặp, nâng billing tier của tài khoản Anthropic/OpenAI lên paid.</p>
+    </div>
+
+    <div class="error-box">
+      <div class="err-code">Lỗi 4: 502 Bad Gateway hoặc WebSocket error 1008</div>
+      <p><strong>Nguyên nhân:</strong> Gateway token mismatch — token trong config không khớp với gateway đang chạy.<br>
+      <strong>Fix:</strong> Restart gateway: <code>openclaw gateway restart</code>. Nếu vẫn lỗi, kiểm tra gatewayToken trong config.</p>
+    </div>
+
+    <div class="error-box">
+      <div class="err-code">Lỗi 5: "All models in cooldown"</div>
+      <p><strong>Nguyên nhân:</strong> OpenClaw đã tạm block tất cả request vì nhiều lần fail liên tiếp (auto-protection).<br>
+      <strong>Fix:</strong> Đợi 5–10 phút để cooldown hết, hoặc restart gateway.</p>
+    </div>
+
+    <div class="error-box">
+      <div class="err-code">Lỗi 6: "Billing not active" hoặc key hợp lệ nhưng fail silent</div>
+      <p><strong>Nguyên nhân:</strong> Tài khoản Anthropic/OpenAI chưa add billing method, hoặc credit đã hết.<br>
+      <strong>Fix:</strong> Vào console của provider, add payment method và nạp credit tối thiểu ($5 là đủ để test).</p>
+    </div>
+
+    <h2>File config đúng trông như thế nào?</h2>
+
+    <p>Đây là điểm dễ sai nhất. API key phải đặt ở <strong>đúng vị trí</strong> trong file cấu hình:</p>
+
+    <div class="code-block">
+<span class="comment">// ~/.openclaw/openclaw.json — Cấu trúc đúng</span>
+{
+  <span class="key">"model"</span>: <span class="value">"claude-sonnet-4-5"</span>,
+  <span class="comment">// API key phải ở root level, trong mục này:</span>
+  <span class="key">"anthropic"</span>: {
+    <span class="key">"apiKey"</span>: <span class="value">"sk-ant-api03-YOUR_KEY_HERE"</span>
+  },
+  <span class="comment">// KHÔNG đặt key trong skills.entries hay chỗ khác</span>
+  <span class="key">"gateway"</span>: {
+    <span class="key">"port"</span>: <span class="value">18789</span>
+  }
+}
+    </div>
+
+    <p>Lỗi phổ biến nhất mình thấy: key được copy vào đúng file nhưng đặt trong một block lồng nhau (ví dụ trong <code>skills</code> hay <code>plugins</code>) thay vì root level. App vẫn khởi động bình thường, không báo lỗi syntax — chỉ đến khi gọi API mới báo "key not found."</p>
+
+    <h2>Sau khi fix xong, làm sao biết API key đang hoạt động?</h2>
+
+    <p>Chạy lệnh này để kiểm tra nhanh:</p>
+
+    <div class="code-block">
+openclaw models status
+    </div>
+
+    <p>Kết quả đúng sẽ hiện danh sách models với status <strong>"available"</strong>. Nếu thấy "cooldown," "error," hay không thấy model nào — là vẫn còn vấn đề cần xử lý tiếp.</p>
+
+    <p>Muốn hiểu chi tiết hơn về chi phí API key mỗi model tốn bao nhiêu? Xem bài <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu">OpenClaw tốn bao nhiêu tiền thật sự?</a></p>
+
+    <h2>Đã thử hết mà vẫn lỗi — lúc này nên làm gì?</h2>
+
+    <p>Mình hoàn toàn hiểu cảm giác này. Đọc docs, làm đúng từng bước, nhưng màn hình vẫn đỏ.</p>
+
+    <p>Vấn đề thật sự không phải anh/chị làm sai. Vấn đề là những lỗi này đòi hỏi phải hiểu cả 3 lớp authentication của OpenClaw mới có thể diagnose chính xác. Không phải thứ có thể học nhanh qua Google.</p>
+
+    <p>Mình đã debug lỗi API key OpenClaw hàng chục lần cho các khách hàng khác nhau. Trong hầu hết trường hợp, <strong>15 phút nhìn vào setup của anh/chị là đủ để tìm ra nguyên nhân thật</strong> — và fix ngay trong buổi đó.</p>
+
+    <p>Nếu anh/chị đang stuck với bot Telegram thay vì lỗi API key — đọc bài <a href="/trolythongminh/blog/openclaw-telegram-bot-khong-tra-loi">OpenClaw bot Telegram không trả lời: 5 nguyên nhân phổ biến</a> để xem đó có phải vấn đề khác không.</p>
+
+    <h2>Những vấn đề phổ biến khác sau khi fix được API key</h2>
+
+    <p>Theo dữ liệu thực tế từ người dùng VN (tuần 9–10/03/2026), sau khi fix xong lỗi API key, nhu cầu tiếp theo thường là:</p>
+
+    <ul>
+      <li><strong>Tối ưu model:</strong> Dùng Claude Sonnet hay Opus? Cho task nào? Tốn bao nhiêu? — Nhiều người setup xong nhưng không biết cấu hình model cho từng loại task.</li>
+      <li><strong>Kết nối Google Workspace:</strong> Đọc Google Sheets, gửi email qua Gmail, cập nhật Google Docs — đây là integration được hỏi nhiều nhất sau setup cơ bản.</li>
+      <li><strong>Mở rộng cho team:</strong> Từ 1 người dùng → cả team dùng chung — cần setup allowlist và permissions đúng cách.</li>
+    </ul>
+
+    <p>Đây không phải setup 1 lần là xong. Anh/chị cần người đồng hành liên tục — đó là lý do gói <strong>Basic 2M/tháng</strong> cover cả ongoing support, không chỉ lần đầu.</p>
+
+    <div class="cta-box">
+      <h3>Đặt Lịch Debug 15 Phút Miễn Phí</h3>
+      <p>Mình nhìn qua setup của anh/chị, xác định đúng nguyên nhân lỗi, và fix ngay trong buổi đó. Không cần anh/chị biết terminal hay đọc log.</p>
+      <a href="https://calendly.com/willdaolamzz" class="cta-btn">&#x1F4C5; Đặt Lịch Ngay</a>
+      <p class="cta-sub">Miễn phí hoàn toàn. Sau 15 phút anh/chị biết vấn đề ở đâu.</p>
+    </div>
+
+    <div class="faq-section">
+      <h2>Câu Hỏi Thường Gặp</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Lỗi "authentication_error: Invalid bearer token" là gì?</div>
+        <div class="faq-a">Token Anthropic API key của bạn sai format hoặc đã hết hạn. Kiểm tra lại key trong Anthropic Console — đảm bảo key bắt đầu bằng sk-ant-api03- và copy đủ, không bị cắt cụt.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Tại sao API key đúng nhưng vẫn lỗi 401?</div>
+        <div class="faq-a">Có thể key đặt sai vị trí trong file config. Key phải ở root level của openclaw.json trong mục "anthropic" hoặc "openai", không phải trong skills.entries hay cấu trúc lồng nhau khác. Đây là lỗi thường gặp nhất mà khó phát hiện nhất.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">"All models in cooldown" nghĩa là gì?</div>
+        <div class="faq-a">OpenClaw tạm block tất cả requests vì nhiều request liên tiếp bị fail — đây là cơ chế tự bảo vệ để tránh tốn credit khi có lỗi. Đợi 5–10 phút hoặc chạy "openclaw gateway restart" để reset.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Làm sao kiểm tra API key OpenClaw đang hoạt động không?</div>
+        <div class="faq-a">Chạy lệnh "openclaw models status" trong terminal. Nếu thấy danh sách models với status "available" là key đang hoạt động bình thường. Nếu thấy "cooldown" hoặc lỗi là cần xử lý thêm.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">API key Anthropic và OpenClaw gateway token khác nhau như thế nào?</div>
+        <div class="faq-a">Đây là 2 thứ khác nhau hoàn toàn. API key Anthropic là key để gọi Claude AI — lấy từ console.anthropic.com. Gateway token là token nội bộ của OpenClaw để bảo vệ gateway — tự sinh ra khi cài. Nhầm 2 cái này với nhau là lỗi phổ biến nhất.</div>
+      </div>
+    </div>
+
+    <div class="related-articles">
+      <h3>Bài Viết Liên Quan</h3>
+      <div class="related-grid">
+        <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao" class="related-card">
+          OpenClaw cài đặt như thế nào? Hướng dẫn thật cho người không có kỹ thuật
+        </a>
+        <a href="/trolythongminh/blog/openclaw-telegram-bot-khong-tra-loi" class="related-card">
+          Bot Telegram không trả lời: 5 nguyên nhân phổ biến và cách check
+        </a>
+        <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu" class="related-card">
+          OpenClaw tốn bao nhiêu tiền? Breakdown chi phí 2026 không che giấu
+        </a>
+        <a href="/trolythongminh/blog/toi-uu-openclaw-sau-khi-setup" class="related-card">
+          Tối ưu OpenClaw sau khi setup: model, memory, skills
+        </a>
+        <a href="/trolythongminh/blog/openclaw-ket-noi-google-workspace" class="related-card">
+          Kết nối OpenClaw với Google Workspace (Sheets, Docs, Gmail)
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 NOVA &#x2014; Trợ Lý Thông Minh | <a href="/trolythongminh/">trolythongminh.io.vn</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Cài Đặt Như Thế Nào? Hướng Dẫn Thật Cho Người Không Có Team Kỹ Thuật | NOVA Blog</title>
+  <meta name="description" content="OpenClaw cần Node.js 24+, API key AI, và VPS 24/7. Người không có kỹ thuật có thể mất 3-5 ngày để qua hết lỗi. Mình setup cho anh/chị trong 48 giờ — đặt lịch demo miễn phí.">
+  <meta property="og:title" content="OpenClaw Cài Đặt Như Thế Nào? Hướng Dẫn Thật Cho Người Không Có Team Kỹ Thuật">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://trolythongminh.io.vn/blog/openclaw-cai-dat-nhu-the-nao">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "OpenClaw miễn phí không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OpenClaw phần mềm là miễn phí và open-source (MIT license). Chi phí thực tế gồm API key từ AI provider (khoảng 100k-800k/tháng) và VPS hosting (khoảng 120k-300k/tháng)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cài OpenClaw trên Windows được không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Được nhưng phức tạp hơn nhiều — cần dùng VMware + Ubuntu hoặc WSL2. Người không có kỹ thuật thường mất thêm 1-2 ngày chỉ cho bước này."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mất bao lâu để setup OpenClaw?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Người có kỹ thuật: 30-60 phút. Người không có kỹ thuật: 1-5 ngày (gặp lỗi về VPS, JSON config, port, API key). Đây không phải lỗi của bạn — đây là bản chất của tool self-hosted."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "OpenClaw cần server không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có. Để bot chạy 24/7, cần VPS (cloud server). Chạy trên máy tính cá nhân được nhưng bot tắt khi tắt máy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Có dịch vụ setup OpenClaw thay mình không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có. NOVA cung cấp dịch vụ setup OpenClaw managed — setup trong 48h, anh/chị dùng ngay qua Telegram mà không cần biết VPS hay command line. Đặt lịch tư vấn miễn phí tại trolythongminh.io.vn."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #fafafa; color: #1a1a1a; font-size: 16px; line-height: 1.7; }
+    a { color: #0066cc; }
+    .site-header { background: #fff; border-bottom: 3px solid #0066cc; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site-header .logo { font-size: 1.4rem; font-weight: 700; color: #0066cc; text-decoration: none; }
+    .site-header nav a { margin-left: 1.5rem; color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .site-header nav .nav-demo { background: #0066cc; color: #fff !important; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 600; }
+    .article-container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+    .breadcrumb a { color: #0066cc; text-decoration: none; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .category-tag { display: inline-block; background: #e0f2fe; color: #0284c7; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 1rem; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; line-height: 1.28; color: #111; margin-bottom: 0.5rem; }
+    h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; color: #111; border-left: 4px solid #0066cc; padding-left: 1rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 1.5rem 0 0.6rem; }
+    .byline { color: #888; font-size: 0.85rem; margin: 0.6rem 0 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .hero-image-wrapper { width: 100%; margin: 1.5rem 0 2rem; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .hero-image-wrapper svg { display: block; width: 100%; height: auto; }
+    p { line-height: 1.85; font-size: 1.05rem; color: #333; margin-bottom: 1.25rem; }
+    ul, ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.45rem; line-height: 1.7; color: #333; font-size: 1rem; }
+    .key-takeaways { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #0066cc; margin-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .key-takeaways ul { margin: 0.5rem 0 0 1.2rem; }
+    .key-takeaways li { font-size: 0.95rem; }
+    .highlight-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .highlight-box p { margin: 0; font-size: 0.95rem; }
+    .direct-answer { background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0 2rem; }
+    .direct-answer .da-label { font-size: 0.75rem; font-weight: 700; color: #0066cc; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .direct-answer p { margin: 0; font-size: 0.97rem; color: #1a1a1a; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.93rem; }
+    .compare-table th { background: #f0f4f8; color: #1a1a1a; padding: 10px 14px; text-align: left; font-size: 0.82rem; font-weight: 700; border-bottom: 2px solid #ddd; }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #333; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #fafafa; }
+    .warning-box { background: #fff7ed; border-left: 4px solid #f97316; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .warning-box p { margin: 0; font-size: 0.95rem; color: #1a1a1a; }
+    .cta-box { background: #0066cc; color: #fff; border-radius: 12px; padding: 2rem; text-align: center; margin: 3rem 0; }
+    .cta-box h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.88); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-box a.cta-btn { background: #fff; color: #0066cc; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 0.5rem; }
+    .cta-sub { margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .related-articles { border-top: 2px solid #eee; padding-top: 2rem; margin-top: 3rem; }
+    .related-articles h3 { font-size: 0.82rem; text-transform: uppercase; color: #888; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+    .related-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; text-decoration: none; color: #333; font-size: 0.85rem; line-height: 1.4; display: block; }
+    .related-card:hover { border-color: #0066cc; color: #0066cc; }
+    .faq-section { margin-top: 2.5rem; }
+    .faq-section h2 { border-left: 4px solid #0066cc; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; font-size: 1rem; }
+    .faq-a { color: #444; font-size: 0.93rem; line-height: 1.7; }
+    .site-footer { border-top: 1px solid #eee; margin-top: 4rem; padding: 2rem 1rem; text-align: center; color: #888; font-size: 0.82rem; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/trolythongminh/" class="logo">&#x1F916; NOVA Blog</a>
+    <nav>
+      <a href="/trolythongminh/">Trang chủ</a>
+      <a href="/trolythongminh/blog/">Blog</a>
+      <a href="https://calendly.com/willdaolamzz" class="nav-demo">Book Demo</a>
+    </nav>
+  </header>
+
+  <div class="article-container">
+
+    <nav class="breadcrumb">
+      <a href="/trolythongminh/">Trang chủ</a><span>&#x203A;</span>
+      <a href="/trolythongminh/blog/">Blog</a><span>&#x203A;</span>
+      OpenClaw Cài Đặt Như Thế Nào
+    </nav>
+
+    <span class="category-tag">OpenClaw Setup</span>
+
+    <h1>OpenClaw Cài Đặt Như Thế Nào? Hướng Dẫn Thật Cho Người Không Có Team Kỹ Thuật</h1>
+
+    <div class="byline">Đội ngũ NOVA &#x2022; Tháng 3, 2026 &#x2022; 7 phút đọc</div>
+
+    <div class="hero-image-wrapper">
+      <svg width="100%" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1e3a5f"/>
+            <stop offset="100%" style="stop-color:#0f172a"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="360" fill="url(#bg1)"/>
+        <circle cx="1050" cy="280" r="180" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="40"/>
+        <rect x="820" y="60" width="240" height="40" rx="20" fill="rgba(255,255,255,0.06)"/>
+        <rect x="840" y="115" width="180" height="32" rx="16" fill="rgba(255,255,255,0.05)"/>
+        <text x="80" y="155" font-family="Georgia,serif" font-size="46" fill="white" opacity="0.97" font-weight="bold">OpenClaw</text>
+        <text x="80" y="215" font-family="Georgia,serif" font-size="36" fill="white" opacity="0.9">Cài Đặt Như Thế Nào?</text>
+        <text x="80" y="270" font-family="'Inter',sans-serif" font-size="17" fill="rgba(255,255,255,0.6)">Sự thật về setup — và tại sao nó khó với người không có kỹ thuật</text>
+        <text x="80" y="310" font-family="'Inter',sans-serif" font-size="14" fill="rgba(255,255,255,0.4)">NOVA Blog &#x2022; Tháng 3, 2026</text>
+      </svg>
+    </div>
+
+    <div class="direct-answer">
+      <div class="da-label">&#x1F4AC; Trả Lời Nhanh</div>
+      <p>OpenClaw cần Node.js 24+, API key từ ít nhất 1 provider AI (Anthropic/OpenAI), và một máy chủ chạy 24/7. Người có kỹ thuật setup trong 30–60 phút. Người không có background tech có thể mất <strong>3–5 ngày</strong> để vượt qua các lỗi về VPS, JSON config, port 18789, và Telegram pairing. Đây không phải lỗi của anh/chị — đây là bản chất của tool self-hosted. Tổng chi phí thực tế: <strong>300,000đ – 1,500,000đ/tháng</strong> (API key + VPS) chưa tính thời gian.</p>
+    </div>
+
+    <div class="key-takeaways">
+      <h3>&#x1F4CB; Điểm Chính Cần Nhớ</h3>
+      <ul>
+        <li>OpenClaw phần mềm miễn phí — nhưng cần trả tiền API key và VPS riêng</li>
+        <li>Setup trên Windows phức tạp hơn nhiều so với Linux (cần VMware hoặc WSL2)</li>
+        <li>80% người mới bị stuck ngay từ bước cấu hình JSON và kết nối Telegram</li>
+        <li>Có thể thuê setup managed — dùng ngay trong 48h mà không cần biết terminal</li>
+      </ul>
+    </div>
+
+    <h2>OpenClaw cần những thứ gì để chạy được?</h2>
+
+    <p>Trước khi bắt đầu, cần hiểu rõ kiến trúc của OpenClaw. Tool này không phải app bình thường — nó là một <strong>gateway self-hosted</strong> kết nối AI models với các kênh chat như Telegram, WhatsApp, Discord.</p>
+
+    <p>Để OpenClaw chạy được, anh/chị cần đủ 4 thành phần:</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Thành phần</th>
+          <th>Yêu cầu</th>
+          <th>"Gotcha" hay gặp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Node.js</strong></td>
+          <td>Version 24+ (không phải 20 hay 22)</td>
+          <td>Cài sai version — app không chạy, báo lỗi khó hiểu</td>
+        </tr>
+        <tr>
+          <td><strong>API Key AI</strong></td>
+          <td>Anthropic (Claude) hoặc OpenAI hoặc cả hai</td>
+          <td>Billing chưa active — key hợp lệ nhưng gọi API vẫn fail</td>
+        </tr>
+        <tr>
+          <td><strong>Máy chủ 24/7</strong></td>
+          <td>VPS tối thiểu 2GB RAM, Ubuntu 22.04</td>
+          <td>Dùng máy tính cá nhân — bot tắt khi tắt máy</td>
+        </tr>
+        <tr>
+          <td><strong>File config JSON5</strong></td>
+          <td>~/.openclaw/openclaw.json</td>
+          <td>Đặt API key sai chỗ — key đúng nhưng app không đọc được</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Mỗi thành phần này đều có điểm dễ mắc lỗi riêng. Với người có kỹ thuật, những lỗi này nhỏ và fix nhanh. Với người không quen terminal, mỗi điểm lỗi có thể mất vài giờ để tìm ra.</p>
+
+    <h2>Tại sao 80% người mới gặp khó ngay từ bước đầu?</h2>
+
+    <p>Mình đã hỗ trợ setup OpenClaw cho nhiều khách hàng, và 3 điểm này là nguyên nhân phổ biến nhất:</p>
+
+    <p><strong>1. Cần dùng terminal / command line.</strong> OpenClaw không có GUI installer. Cài đặt, start, stop, debug — tất cả đều qua dòng lệnh. Với người chưa từng dùng terminal, đây là rào cản đầu tiên.</p>
+
+    <p><strong>2. File config JSON5 không quen.</strong> Config file của OpenClaw dùng format JSON5 (không phải JSON thuần) — cho phép comment nhưng dễ bị lỗi syntax. Đặt API key sai key, sai vị trí trong file — app vẫn khởi động nhưng báo "API key not found" hoặc 401 lúc gọi.</p>
+
+    <p><strong>3. VPS/server không giống app bình thường.</strong> Hầu hết người dùng VN quen dùng phần mềm cài trên máy tính. VPS là một "máy tính ở đâu đó trên internet" — cần SSH vào, cài dependencies, manage process. Không có icon để click.</p>
+
+    <div class="highlight-box">
+      <p>&#x26A0;&#xFE0F; <strong>Thực tế hay gặp:</strong> Nhiều người đọc guide, làm đúng từng bước, nhưng vẫn stuck vì guide đó viết cho Linux — trong khi họ đang dùng Windows. Đây là trường hợp cực kỳ phổ biến trong cộng đồng VN.</p>
+    </div>
+
+    <h2>Windows thì sao? Vấn đề đặc biệt của người dùng Việt Nam</h2>
+
+    <p>OpenClaw được thiết kế native cho Linux/macOS. Trên Windows, anh/chị có 2 lựa chọn:</p>
+
+    <ul>
+      <li><strong>WSL2 (Windows Subsystem for Linux):</strong> Cài Ubuntu trong Windows, chạy OpenClaw trong đó. Nhẹ hơn VMware nhưng cần bật Hyper-V, cấu hình thêm.</li>
+      <li><strong>VMware + Ubuntu:</strong> Cài máy ảo Ubuntu đầy đủ. Ổn định hơn nhưng ngốn RAM (cần tối thiểu 8GB RAM máy thật).</li>
+    </ul>
+
+    <p>Cả hai cách này đều thêm ít nhất <strong>1–2 giờ setup</strong> so với Linux trực tiếp, và tạo ra nhiều điểm lỗi mới hơn. Đặc biệt với WSL2, port forwarding và file permissions thường gây headache.</p>
+
+    <p>Đây là lý do nhiều người trong nhóm "Cộng Đồng OpenClaw Việt Nam" (hiện có hơn 3,000 members) share setup guide cho Mac/Linux nhưng lại ít ai viết Windows đầy đủ — vì chính các member kỹ thuật cũng hay dùng Mac hoặc VPS Linux.</p>
+
+    <h2>Chi phí thật khi setup và dùng OpenClaw</h2>
+
+    <p>OpenClaw phần mềm là <strong>miễn phí hoàn toàn</strong> (MIT license, open-source). Nhưng chi phí thật nằm ở đây:</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Khoản chi</th>
+          <th>Mức thấp</th>
+          <th>Mức trung bình</th>
+          <th>Ghi chú</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>API key (Claude Sonnet)</td>
+          <td>~100,000đ/tháng</td>
+          <td>~350,000đ/tháng</td>
+          <td>Phụ thuộc số lượt dùng</td>
+        </tr>
+        <tr>
+          <td>VPS (DigitalOcean/Vultr 2GB)</td>
+          <td>~240,000đ/tháng</td>
+          <td>~300,000đ/tháng</td>
+          <td>Cần 24/7, không dùng máy cá nhân</td>
+        </tr>
+        <tr>
+          <td>Thời gian setup ban đầu</td>
+          <td>5 giờ</td>
+          <td>15–20 giờ</td>
+          <td>Người không có kỹ thuật mất nhiều hơn</td>
+        </tr>
+        <tr>
+          <td>Maintenance hàng tháng</td>
+          <td>1 giờ/tháng</td>
+          <td>3–4 giờ/tháng</td>
+          <td>Update, debug lỗi phát sinh</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Tổng chi phí tiền mặt: khoảng <strong>340,000đ – 1,200,000đ/tháng</strong>. Nhưng chi phí thật sự với người không có kỹ thuật là <strong>thời gian</strong> — đặc biệt trong tháng đầu.</p>
+
+    <p>Muốn tìm hiểu chi tiết hơn về chi phí? Đọc thêm bài <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu">OpenClaw tốn bao nhiêu tiền thật sự?</a></p>
+
+    <h2>Thay vì tự setup — có lựa chọn nào khác không?</h2>
+
+    <p>Có. Và đây là lý do mình tồn tại.</p>
+
+    <p>Mình không viết bài này để dạy anh/chị tự cài đặt. Mình viết để anh/chị hiểu rõ <em>tại sao</em> nó khó — và quyết định xem có nên tự làm không.</p>
+
+    <p>Nếu anh/chị:</p>
+    <ul>
+      <li>Không có background kỹ thuật và không muốn học</li>
+      <li>Không có nhân viên IT trong team</li>
+      <li>Muốn dùng được ngay trong 1–2 ngày thay vì 1–2 tuần</li>
+      <li>Giá trị thời gian của anh/chị cao hơn 200,000đ/giờ</li>
+    </ul>
+
+    <p>...thì <strong>thuê setup managed có ROI tốt hơn nhiều</strong> so với tự làm.</p>
+
+    <p>Mình setup OpenClaw trong 48 giờ: cấu hình VPS, API key, kết nối Telegram, tuỳ chỉnh bot theo nhu cầu biz. Anh/chị chỉ cần nhắn tin vào Telegram và dùng.</p>
+
+    <p>Sau khi setup, nếu bot gặp vấn đề gì — mình xử lý. Anh/chị không cần biết log, không cần biết SSH.</p>
+
+    <p>Muốn so sánh với n8n và Zapier trước khi quyết định? Xem bài <a href="/trolythongminh/blog/openclaw-vs-n8n-khac-gi-nhau">OpenClaw vs n8n: khác gì nhau?</a></p>
+
+    <h2>Sau khi setup xong — vẫn còn nhiều thứ cần làm</h2>
+
+    <p>Đây là điều ít ai nói thật: setup xong chỉ là bước đầu. Từ dữ liệu thực tế của người dùng VN trong tuần 9–10/03/2026, các nhu cầu phổ biến <em>sau khi</em> setup thành công gồm:</p>
+
+    <ul>
+      <li><strong>Tối ưu model và memory:</strong> Chọn model nào cho từng task, cấu hình memory để bot nhớ context, chỉnh SOUL.md theo đúng business — đây là recurring work, không phải one-time.</li>
+      <li><strong>Kết nối Google Workspace:</strong> 2+ người dùng hỏi về kết nối Google Sheets, Docs, Gmail, Drive, Calendar — để bot có thể đọc/ghi dữ liệu thật của biz.</li>
+      <li><strong>Setup cho nhiều người dùng chung:</strong> Từ bot cá nhân → bot cho cả team hoặc nhiều khách hàng — cần cấu hình allowlist, permissions, multi-user.</li>
+    </ul>
+
+    <p>Đây là lý do gói <strong>Basic 2M/tháng</strong> tồn tại — không phải chỉ để setup 1 lần rồi thôi. Anh/chị cần người đồng hành liên tục khi business thay đổi, khi cần thêm tính năng mới, khi có lỗi phát sinh.</p>
+
+    <div class="cta-box">
+      <h3>Đặt Lịch Demo 15 Phút Miễn Phí</h3>
+      <p>Mình sẽ demo OpenClaw đang chạy thật, phân tích setup phù hợp cho business của anh/chị, và trả lời mọi câu hỏi — trước khi anh/chị quyết định bất cứ điều gì.</p>
+      <a href="https://calendly.com/willdaolamzz" class="cta-btn">&#x1F4C5; Đặt Lịch Tại Đây</a>
+      <p class="cta-sub">Miễn phí, không ràng buộc. 15 phút là đủ.</p>
+    </div>
+
+    <div class="faq-section">
+      <h2>Câu Hỏi Thường Gặp</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">OpenClaw có miễn phí không?</div>
+        <div class="faq-a">OpenClaw phần mềm miễn phí và open-source (MIT license). Chi phí thực tế gồm API key từ AI provider (Anthropic/OpenAI) khoảng 100,000đ–800,000đ/tháng tùy mức dùng, và VPS hosting khoảng 240,000đ–300,000đ/tháng.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Cài OpenClaw trên Windows được không?</div>
+        <div class="faq-a">Được nhưng phức tạp hơn nhiều so với Linux. Cần dùng WSL2 (Windows Subsystem for Linux) hoặc VMware + Ubuntu. Người không quen thường mất thêm 1–2 ngày chỉ cho bước này, và gặp thêm lỗi về port forwarding và permissions.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Mất bao lâu để setup OpenClaw từ đầu?</div>
+        <div class="faq-a">Người có kỹ thuật (biết terminal, Linux, VPS): 30–60 phút. Người không có background kỹ thuật: thường 1–5 ngày kể cả thời gian gặp lỗi và tự debug. Đây không phải lỗi của bạn — đây là đặc điểm của tool self-hosted cần nhiều component.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">OpenClaw có cần chạy trên server riêng không?</div>
+        <div class="faq-a">Để bot hoạt động 24/7 thì cần VPS (cloud server). Chạy trên máy tính cá nhân được nhưng bot tắt khi tắt máy hoặc mất mạng. VPS DigitalOcean/Vultr 2GB RAM giá khoảng $5–6/tháng là đủ cho cá nhân/SME nhỏ.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Có dịch vụ setup OpenClaw thay mình không?</div>
+        <div class="faq-a">Có. NOVA cung cấp dịch vụ setup OpenClaw managed — setup hoàn chỉnh trong 48 giờ, anh/chị nhận bot qua Telegram và dùng ngay mà không cần biết VPS hay command line. Đặt lịch tư vấn miễn phí tại đây.</div>
+      </div>
+    </div>
+
+    <div class="related-articles">
+      <h3>Bài Viết Liên Quan</h3>
+      <div class="related-grid">
+        <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu" class="related-card">
+          OpenClaw tốn bao nhiêu tiền? Breakdown chi phí 2026 không che giấu
+        </a>
+        <a href="/trolythongminh/blog/openclaw-api-key-khong-hoat-dong" class="related-card">
+          API Key OpenClaw không hoạt động: 6 lỗi phổ biến nhất
+        </a>
+        <a href="/trolythongminh/blog/openclaw-vs-n8n-khac-gi-nhau" class="related-card">
+          OpenClaw vs n8n: Khác gì nhau? Doanh nghiệp nhỏ dùng cái nào?
+        </a>
+        <a href="/trolythongminh/blog/toi-uu-openclaw-sau-khi-setup" class="related-card">
+          Tối ưu OpenClaw sau khi setup: model, memory, skills
+        </a>
+        <a href="/trolythongminh/blog/openclaw-ket-noi-google-workspace" class="related-card">
+          Kết nối OpenClaw với Google Workspace (Sheets, Docs, Gmail)
+        </a>
+        <a href="/trolythongminh/blog/openclaw-cho-nhieu-nguoi-dung-chung" class="related-card">
+          OpenClaw cho nhiều người dùng chung: setup team/business
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 NOVA &#x2014; Trợ Lý Thông Minh | <a href="/trolythongminh/">trolythongminh.io.vn</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw vs n8n: Khác Gì Nhau? Doanh Nghiệp Nhỏ Nên Dùng Cái Nào? | NOVA Blog</title>
+  <meta name="description" content="OpenClaw và n8n là 2 tool khác nhau hoàn toàn. So sánh trực tiếp 3 chiều: mục đích, chi phí, độ khó setup. SME Việt nên dùng cái nào và khi nào?">
+  <meta property="og:title" content="OpenClaw vs n8n: Khác Gì Nhau? Doanh Nghiệp Nhỏ Nên Dùng Cái Nào?">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://trolythongminh.io.vn/blog/openclaw-vs-n8n-khac-gi-nhau">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "OpenClaw có phải workflow automation như Zapier không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Không. OpenClaw là AI agent gateway — để chat với AI thông minh qua Telegram/WhatsApp và giao AI thực hiện tasks phức tạp. Zapier và n8n là workflow automation tools kết nối các ứng dụng theo quy tắc cố định, không có AI reasoning."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cần biết lập trình để dùng n8n không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "n8n cloud (trả phí) không cần lập trình — có visual drag-and-drop builder. n8n self-hosted cần biết cơ bản về server. OpenClaw đều cần biết terminal commands và config file JSON, bất kể cloud hay self-hosted."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "SME Việt Nam nên bắt đầu với tool nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zapier hoặc Make cho automation đơn giản (kết nối apps theo rule cố định). OpenClaw cho AI assistant thông minh qua Telegram/WhatsApp (hiểu ngôn ngữ tự nhiên, nhớ context). Hai tool serve nhu cầu khác nhau — không phải cái nào tốt hơn."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Có thể dùng OpenClaw và n8n cùng nhau không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có, và đây là pattern phổ biến. n8n trigger event → OpenClaw xử lý AI task → n8n gửi kết quả đi. Tuy nhiên setup kiến trúc này phức tạp và cần người hiểu cả 2 tool."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "OpenClaw khác Zapier ở điểm nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zapier kết nối apps theo trigger-action cố định (nếu X thì Y). OpenClaw là AI agent có thể hiểu ngôn ngữ tự nhiên, suy luận, nhớ context và thực hiện tasks không theo script cố định. Zapier dễ dùng hơn nhiều nhưng không có AI reasoning."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #fafafa; color: #1a1a1a; font-size: 16px; line-height: 1.7; }
+    a { color: #0066cc; }
+    .site-header { background: #fff; border-bottom: 3px solid #0066cc; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .site-header .logo { font-size: 1.4rem; font-weight: 700; color: #0066cc; text-decoration: none; }
+    .site-header nav a { margin-left: 1.5rem; color: #333; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .site-header nav .nav-demo { background: #0066cc; color: #fff !important; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 600; }
+    .article-container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: #888; margin-bottom: 1.5rem; }
+    .breadcrumb a { color: #0066cc; text-decoration: none; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .category-tag { display: inline-block; background: #ede9fe; color: #5b21b6; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 1rem; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; line-height: 1.28; color: #111; margin-bottom: 0.5rem; }
+    h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.4rem; color: #111; border-left: 4px solid #0066cc; padding-left: 1rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 1.5rem 0 0.6rem; }
+    .byline { color: #888; font-size: 0.85rem; margin: 0.6rem 0 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .hero-image-wrapper { width: 100%; margin: 1.5rem 0 2rem; border-radius: 8px; overflow: hidden; line-height: 0; }
+    .hero-image-wrapper svg { display: block; width: 100%; height: auto; }
+    p { line-height: 1.85; font-size: 1.05rem; color: #333; margin-bottom: 1.25rem; }
+    ul, ol { margin: 0.75rem 0 1.25rem 1.5rem; }
+    li { margin-bottom: 0.45rem; line-height: 1.7; color: #333; font-size: 1rem; }
+    .key-takeaways { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+    .key-takeaways h3 { color: #0066cc; margin-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .key-takeaways ul { margin: 0.5rem 0 0 1.2rem; }
+    .key-takeaways li { font-size: 0.95rem; }
+    .direct-answer { background: #f0f7ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0 2rem; }
+    .direct-answer .da-label { font-size: 0.75rem; font-weight: 700; color: #0066cc; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .direct-answer p { margin: 0; font-size: 0.97rem; color: #1a1a1a; }
+    .highlight-box { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 6px 6px 0; }
+    .highlight-box p { margin: 0; font-size: 0.95rem; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.93rem; }
+    .compare-table th { background: #f0f4f8; color: #1a1a1a; padding: 10px 14px; text-align: left; font-size: 0.82rem; font-weight: 700; border-bottom: 2px solid #ddd; }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #333; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #fafafa; }
+    .usecase-box { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.25rem; margin: 1rem 0; }
+    .usecase-box .uc-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #0066cc; margin-bottom: 0.5rem; }
+    .usecase-box p { margin: 0; font-size: 0.95rem; }
+    .cta-box { background: #0066cc; color: #fff; border-radius: 12px; padding: 2rem; text-align: center; margin: 3rem 0; }
+    .cta-box h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #fff; margin-top: 0; margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.88); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-box a.cta-btn { background: #fff; color: #0066cc; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 0.5rem; }
+    .cta-sub { margin-top: 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .related-articles { border-top: 2px solid #eee; padding-top: 2rem; margin-top: 3rem; }
+    .related-articles h3 { font-size: 0.82rem; text-transform: uppercase; color: #888; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+    .related-card { border: 1px solid #eee; border-radius: 8px; padding: 1rem; text-decoration: none; color: #333; font-size: 0.85rem; line-height: 1.4; display: block; }
+    .related-card:hover { border-color: #0066cc; color: #0066cc; }
+    .faq-section { margin-top: 2.5rem; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; font-size: 1rem; }
+    .faq-a { color: #444; font-size: 0.93rem; line-height: 1.7; }
+    .site-footer { border-top: 1px solid #eee; margin-top: 4rem; padding: 2rem 1rem; text-align: center; color: #888; font-size: 0.82rem; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/trolythongminh/" class="logo">&#x1F916; NOVA Blog</a>
+    <nav>
+      <a href="/trolythongminh/">Trang chủ</a>
+      <a href="/trolythongminh/blog/">Blog</a>
+      <a href="https://calendly.com/willdaolamzz" class="nav-demo">Book Demo</a>
+    </nav>
+  </header>
+
+  <div class="article-container">
+
+    <nav class="breadcrumb">
+      <a href="/trolythongminh/">Trang chủ</a><span>&#x203A;</span>
+      <a href="/trolythongminh/blog/">Blog</a><span>&#x203A;</span>
+      OpenClaw vs n8n Khác Gì Nhau
+    </nav>
+
+    <span class="category-tag">So Sánh Tool</span>
+
+    <h1>OpenClaw vs n8n: Khác Gì Nhau? Doanh Nghiệp Nhỏ Nên Dùng Cái Nào?</h1>
+
+    <div class="byline">Đội ngũ NOVA &#x2022; Tháng 3, 2026 &#x2022; 8 phút đọc</div>
+
+    <div class="hero-image-wrapper">
+      <svg width="100%" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2e1065"/>
+            <stop offset="100%" style="stop-color:#0f172a"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="360" fill="url(#bg5)"/>
+        <circle cx="1050" cy="180" r="200" fill="none" stroke="rgba(167,139,250,0.07)" stroke-width="40"/>
+        <text x="80" y="150" font-family="Georgia,serif" font-size="42" fill="white" opacity="0.97" font-weight="bold">OpenClaw vs n8n</text>
+        <text x="80" y="210" font-family="Georgia,serif" font-size="34" fill="rgba(196,181,253,0.9)">Khác Gì Nhau?</text>
+        <text x="80" y="268" font-family="'Inter',sans-serif" font-size="17" fill="rgba(255,255,255,0.6)">So sánh trực tiếp — và SME Việt nên chọn cái nào</text>
+        <text x="80" y="308" font-family="'Inter',sans-serif" font-size="14" fill="rgba(255,255,255,0.4)">NOVA Blog &#x2022; Tháng 3, 2026</text>
+      </svg>
+    </div>
+
+    <div class="direct-answer">
+      <div class="da-label">&#x1F4AC; Trả Lời Nhanh</div>
+      <p>OpenClaw và n8n là 2 tool <strong>khác nhau về bản chất</strong>: n8n là <strong>workflow automation</strong> (kết nối ứng dụng, trigger actions theo quy tắc cố định), OpenClaw là <strong>AI agent gateway</strong> (chat với AI thông minh qua Telegram/WhatsApp, AI có memory và có thể xử lý requests không có quy tắc cố định). Dùng n8n khi cần kết nối nhiều ứng dụng theo rule có thể định nghĩa trước. Dùng OpenClaw khi cần AI <em>suy luận</em>, nhớ context, và handle các yêu cầu phức tạp, linh hoạt.</p>
+    </div>
+
+    <div class="key-takeaways">
+      <h3>&#x1F4CB; Điểm Chính Cần Nhớ</h3>
+      <ul>
+        <li>n8n = dây chuyền nhà máy (rule-based, predictable). OpenClaw = nhân viên thông minh (adaptive)</li>
+        <li>n8n có 400+ integrations sẵn. OpenClaw cần cấu hình integration thủ công hơn</li>
+        <li>OpenClaw khó setup hơn đáng kể so với n8n cloud</li>
+        <li>Hai tool có thể kết hợp với nhau — n8n trigger, OpenClaw xử lý AI task</li>
+        <li>Dùng cả hai cùng nhau = phức tạp nhất, cần người setup am hiểu cả hai</li>
+      </ul>
+    </div>
+
+    <h2>OpenClaw và n8n làm gì — giải thích đơn giản nhất</h2>
+
+    <p>Cách dễ hiểu nhất: tưởng tượng anh/chị muốn tự động hóa việc khi có đơn hàng mới trên Shopee → tự động gửi email xác nhận cho khách → cập nhật Google Sheets.</p>
+
+    <p><strong>n8n / Zapier làm được điều này rất tốt.</strong> Trigger: đơn hàng mới. Action: gửi email + cập nhật Sheet. Rule rõ ràng, predictable, chạy đúng 100% lần.</p>
+
+    <p><strong>OpenClaw không phải thứ đó.</strong> OpenClaw là để anh/chị (hoặc khách hàng) nhắn tin với một AI qua Telegram, và AI đó có thể: hiểu câu hỏi phức tạp, nhớ context từ cuộc hội thoại trước, thực hiện các task đòi hỏi suy luận — như "tóm tắt tất cả feedback khách hàng tuần này và đề xuất 3 cải tiến."</p>
+
+    <div class="highlight-box">
+      <p>&#x1F4A1; <strong>Metaphor chuẩn nhất:</strong> n8n = dây chuyền sản xuất nhà máy (tự động, theo quy trình cố định). OpenClaw = nhân viên thông minh bạn có thể nhắn tin bất cứ lúc nào (linh hoạt, biết suy nghĩ).</p>
+    </div>
+
+    <h2>Bảng so sánh trực tiếp OpenClaw vs n8n vs Zapier</h2>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Tiêu chí</th>
+          <th>OpenClaw</th>
+          <th>n8n</th>
+          <th>Zapier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Dùng để làm gì</strong></td>
+          <td>AI agent chat + tasks linh hoạt</td>
+          <td>Workflow automation</td>
+          <td>Workflow automation</td>
+        </tr>
+        <tr>
+          <td><strong>Cần kỹ thuật?</strong></td>
+          <td>Medium-High (VPS, CLI, JSON config)</td>
+          <td>Low (cloud) / Medium (self-hosted)</td>
+          <td>Low (không cần tech)</td>
+        </tr>
+        <tr>
+          <td><strong>Chi phí phần mềm</strong></td>
+          <td>Free (+ API key + VPS)</td>
+          <td>Free self-hosted / $20+/tháng cloud</td>
+          <td>$20–100+/tháng</td>
+        </tr>
+        <tr>
+          <td><strong>Integrations sẵn</strong></td>
+          <td>Telegram, WhatsApp, Discord, Slack</td>
+          <td>400+ apps (Sheets, Gmail, Shopee...)</td>
+          <td>6,000+ apps</td>
+        </tr>
+        <tr>
+          <td><strong>AI reasoning</strong></td>
+          <td>&#x2705; Core feature</td>
+          <td>&#x26A0;&#xFE0F; Có thể add nhưng không native</td>
+          <td>&#x26A0;&#xFE0F; Có AI feature nhưng giới hạn</td>
+        </tr>
+        <tr>
+          <td><strong>Nhớ context</strong></td>
+          <td>&#x2705; Memory built-in</td>
+          <td>&#x274C; Không native</td>
+          <td>&#x274C; Không</td>
+        </tr>
+        <tr>
+          <td><strong>Tốt cho</strong></td>
+          <td>AI assistant, chatbot thông minh</td>
+          <td>Tự động hóa quy trình cố định</td>
+          <td>Simple automation, non-tech team</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Khi nào dùng OpenClaw — 3 use case điển hình</h2>
+
+    <div class="usecase-box">
+      <div class="uc-label">Use Case 1</div>
+      <p><strong>AI trợ lý cá nhân / business qua Telegram:</strong> Nhắn tin hỏi, AI trả lời dựa trên context của anh/chị, nhớ các cuộc hội thoại trước, có thể search web, đọc file, tóm tắt — không theo script cố định.</p>
+    </div>
+
+    <div class="usecase-box">
+      <div class="uc-label">Use Case 2</div>
+      <p><strong>Bot CSKH thông minh hiểu ngữ cảnh:</strong> Khách hỏi bất kỳ câu gì, bot hiểu intent, nhớ thông tin khách từ lần trước, có thể escalate đúng lúc — không phải chatbot button-based bình thường.</p>
+    </div>
+
+    <div class="usecase-box">
+      <div class="uc-label">Use Case 3</div>
+      <p><strong>AI đọc file, research, tổng hợp:</strong> "Đọc 20 feedback khách tuần này và tóm tắt 5 vấn đề chính" — loại task đòi hỏi suy luận, không thể làm với workflow automation rule-based.</p>
+    </div>
+
+    <h2>Khi nào nên dùng n8n hoặc Zapier thay OpenClaw</h2>
+
+    <p>Không phải mọi thứ cần AI. n8n/Zapier thường là lựa chọn tốt hơn khi:</p>
+
+    <ul>
+      <li>Quy trình rõ ràng: nếu A thì B, nếu C thì D — không cần AI suy nghĩ</li>
+      <li>Cần kết nối nhiều app sẵn có (CRM, email, Google Sheets, Shopee, Zalo OA...)</li>
+      <li>Team không có ai kỹ thuật và không muốn thuê setup</li>
+      <li>Automation đơn giản, volume cao, cần stable 100%</li>
+    </ul>
+
+    <h2>Có thể dùng cả hai cùng nhau không?</h2>
+
+    <p>Có, và đây là pattern mình thấy hiệu quả nhất với SME:</p>
+
+    <p><strong>n8n xử lý automation cứng</strong> (đơn hàng mới → cập nhật Sheet → gửi notification) + <strong>OpenClaw xử lý AI task mềm</strong> (phân tích feedback → tóm tắt → đề xuất action).</p>
+
+    <p>Hai tool kết hợp: n8n trigger khi có data mới → gọi OpenClaw để AI analyze → n8n gửi kết quả đến đúng người.</p>
+
+    <div class="highlight-box">
+      <p>&#x26A0;&#xFE0F; <strong>Lưu ý thật:</strong> Setup kiến trúc n8n + OpenClaw kết hợp là phức tạp nhất trong tất cả các option. Cần người hiểu rõ cả hai tool, biết thiết kế data flow, và có thể debug khi một trong hai bên có vấn đề. Không phải thứ nên tự mày mò nếu không có background kỹ thuật.</p>
+    </div>
+
+    <h2>Những vấn đề thường phát sinh sau khi chọn OpenClaw</h2>
+
+    <p>Nếu anh/chị quyết định dùng OpenClaw, dữ liệu thực tế từ người dùng VN (9–10/03/2026) cho thấy các nhu cầu phát sinh sau khi chọn tool và setup xong:</p>
+
+    <ul>
+      <li><strong>Kết nối Google Workspace:</strong> Đây là nhu cầu #1 sau setup — muốn bot đọc Google Sheets, cập nhật Calendar, gửi email qua Gmail. OpenClaw có thể làm được nhưng cần cấu hình skills riêng, không phải out-of-the-box như n8n.</li>
+      <li><strong>Tối ưu model cho từng loại task:</strong> Chọn model nào cho task nào, cấu hình memory bao nhiêu, SOUL.md viết thế nào — những câu hỏi này xuất hiện sau khi đã dùng được vài ngày.</li>
+      <li><strong>Scale lên nhiều người dùng:</strong> Từ bot cá nhân → bot cho cả team hoặc nhiều khách hàng — cần config lại toàn bộ allowlist và permissions.</li>
+    </ul>
+
+    <p>Đây là lý do gói <strong>Basic 2M/tháng</strong> không chỉ là "setup rồi thôi" — mà là ongoing partnership: mình ở đây khi anh/chị cần kết nối thêm integration, optimize, hoặc mở rộng quy mô.</p>
+
+    <p>Muốn biết chi phí cụ thể để setup và vận hành? Xem bài <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu">OpenClaw tốn bao nhiêu tiền thật sự?</a> Hoặc nếu đang bị stuck với setup ban đầu, đọc <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao">OpenClaw cài đặt như thế nào</a>.</p>
+
+    <div class="cta-box">
+      <h3>Không Chắc Tool Nào Phù Hợp? Demo 15 Phút Là Rõ</h3>
+      <p>Mình phân tích use case cụ thể của anh/chị, recommend đúng tool (kể cả nếu câu trả lời là không phải OpenClaw), và demo live nếu OpenClaw là fit.</p>
+      <a href="https://calendly.com/willdaolamzz" class="cta-btn">&#x1F4C5; Đặt Lịch Tư Vấn Miễn Phí</a>
+      <p class="cta-sub">Không ràng buộc. Mình tư vấn thật, không push nếu không phù hợp.</p>
+    </div>
+
+    <div class="faq-section">
+      <h2>Câu Hỏi Thường Gặp</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">OpenClaw có phải workflow automation như Zapier không?</div>
+        <div class="faq-a">Không. OpenClaw là AI agent gateway — để chat với AI thông minh qua Telegram/WhatsApp. Zapier và n8n là workflow tools kết nối các ứng dụng theo quy tắc trigger-action cố định, không có AI reasoning. Đây là 2 loại tool phục vụ nhu cầu khác nhau.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Cần biết lập trình để dùng n8n không?</div>
+        <div class="faq-a">n8n cloud (trả phí) không cần lập trình — có visual drag-and-drop builder, dễ dùng hơn nhiều. n8n self-hosted cần biết cơ bản về server. OpenClaw đều cần biết terminal commands và config JSON, bất kể cách deploy nào.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">SME Việt Nam nên bắt đầu với tool nào?</div>
+        <div class="faq-a">Zapier hoặc Make.com cho automation đơn giản (kết nối apps theo rule cố định, không cần kỹ thuật). OpenClaw cho AI assistant thông minh qua Telegram/WhatsApp (hiểu ngôn ngữ tự nhiên, nhớ context). Hai tool serve nhu cầu khác nhau — không phải cái nào "tốt hơn" mà là cái nào phù hợp với use case của anh/chị.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Có thể dùng OpenClaw và n8n cùng nhau không?</div>
+        <div class="faq-a">Có. Pattern phổ biến: n8n trigger event (đơn hàng mới, form submit...) → gọi OpenClaw để AI xử lý → n8n nhận kết quả và gửi đi. Tuy nhiên setup kiến trúc này phức tạp và cần người hiểu rõ cả hai tool — không phải thứ nên tự mày mò.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">n8n có tích hợp với Google Sheets và Gmail không?</div>
+        <div class="faq-a">Có — n8n có native nodes cho Google Sheets, Gmail, Google Drive, Calendar với setup đơn giản hơn nhiều so với OpenClaw. Nếu nhu cầu chính là kết nối Google Workspace với automation rule-based, n8n là lựa chọn tốt hơn. Nếu muốn AI thông minh qua Telegram kết hợp Google Workspace, cần cả hai hoặc cần mình setup cho.</div>
+      </div>
+    </div>
+
+    <div class="related-articles">
+      <h3>Bài Viết Liên Quan</h3>
+      <div class="related-grid">
+        <a href="/trolythongminh/blog/openclaw-cai-dat-nhu-the-nao" class="related-card">
+          OpenClaw cài đặt như thế nào? Hướng dẫn thật cho người không có kỹ thuật
+        </a>
+        <a href="/trolythongminh/blog/openclaw-chi-phi-het-bao-nhieu" class="related-card">
+          OpenClaw tốn bao nhiêu tiền? Breakdown chi phí 2026
+        </a>
+        <a href="/trolythongminh/blog/tu-dong-hoa-cong-viec-bang-ai" class="related-card">
+          Tự động hóa công việc bằng AI: Bắt đầu từ đâu?
+        </a>
+        <a href="/trolythongminh/blog/openclaw-ket-noi-google-workspace" class="related-card">
+          Kết nối OpenClaw với Google Workspace (Sheets, Docs, Gmail)
+        </a>
+        <a href="/trolythongminh/blog/toi-uu-openclaw-sau-khi-setup" class="related-card">
+          Tối ưu OpenClaw sau khi setup: model, memory, skills
+        </a>
+        <a href="/trolythongminh/blog/openclaw-cho-nhieu-nguoi-dung-chung" class="related-card">
+          OpenClaw cho nhiều người dùng chung: setup team/business
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 NOVA &#x2014; Trợ Lý Thông Minh | <a href="/trolythongminh/">trolythongminh.io.vn</a></p>
+  </footer>
+
+</body>
+</html>
