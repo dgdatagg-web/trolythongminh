@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DG HR Bot — Hướng dẫn Nhân viên</title>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+    --border: #2e3347; --accent: #6c63ff; --accent2: #00d4aa;
+    --accent3: #ff6b6b; --accent4: #ffd166;
+    --text: #e8eaf6; --text-muted: #8892b0; --radius: 12px; --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.7; font-size: 15px; }
+  header { background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%); border-bottom: 1px solid var(--border); padding: 40px 24px 32px; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,212,170,0.12) 0%, transparent 70%); pointer-events: none; }
+  .header-badge { display: inline-block; background: rgba(0,212,170,0.15); border: 1px solid rgba(0,212,170,0.4); color: #6ee8d0; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; margin-bottom: 16px; }
+  header h1 { font-size: clamp(24px, 5vw, 40px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 10px; }
+  header h1 span { color: var(--accent2); }
+  header p.subtitle { color: var(--text-muted); font-size: 15px; max-width: 500px; margin: 0 auto 24px; }
+  .header-roles { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .role-pill { display: flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+  .role-pill.newbie  { background: rgba(0,212,170,0.15); border: 1px solid rgba(0,212,170,0.4); color: #6ee8d0; }
+  .role-pill.nv      { background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.4); color: #a89dff; }
+  .role-pill.kycuu   { background: rgba(255,107,107,0.15); border: 1px solid rgba(255,107,107,0.4); color: #ffaaaa; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
+  .version-bar { background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: var(--radius-sm); padding: 10px 16px; margin: 28px 0 0; display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--accent2); }
+  .version-bar strong { color: var(--text); }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-top: 28px; }
+  .toc h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 12px; }
+  .toc ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  @media (max-width:580px) { .toc ul { grid-template-columns: 1fr; } }
+  .toc ul li a { color: var(--text-muted); text-decoration: none; font-size: 14px; padding: 3px 0; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+  .toc ul li a:hover { color: var(--accent2); }
+  .toc ul li a span { opacity: 0.5; }
+  .section { margin-top: 40px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .section-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .section-icon.teal   { background: rgba(0,212,170,0.2); }
+  .section-icon.purple { background: rgba(108,99,255,0.2); }
+  .section-icon.yellow { background: rgba(255,209,102,0.2); }
+  .section-icon.red    { background: rgba(255,107,107,0.2); }
+  .section-icon.blue   { background: rgba(99,179,255,0.2); }
+  .section-title { font-size: 20px; font-weight: 700; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 12px; }
+  .card-title { font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .step-list { list-style: none; counter-reset: steps; }
+  .step-list li { counter-increment: steps; display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid rgba(46,51,71,0.4); font-size: 14px; }
+  .step-list li:last-child { border-bottom: none; }
+  .step-list li::before { content: counter(steps); background: rgba(0,212,170,0.2); color: var(--accent2); font-weight: 700; font-size: 12px; min-width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .cmd-block { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 18px; margin-bottom: 10px; }
+  .cmd-block:last-child { margin-bottom: 0; }
+  .cmd-line { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+  .cmd-name { font-family: 'Courier New', monospace; font-size: 14px; font-weight: 700; color: var(--accent2); white-space: nowrap; flex-shrink: 0; }
+  .cmd-desc { font-size: 14px; color: var(--text-muted); }
+  .cmd-example { font-family: 'Courier New', monospace; font-size: 13px; color: #a89dff; background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2); border-radius: 6px; padding: 6px 10px; margin-top: 6px; display: block; }
+  .cmd-note { font-size: 12px; color: var(--text-muted); margin-top: 6px; padding-left: 4px; border-left: 2px solid var(--border); }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .exp-grid { grid-template-columns: 1fr; } }
+  .exp-card { background: var(--surface); border-radius: var(--radius-sm); padding: 16px; }
+  .exp-card.positive { border: 1px solid rgba(0,212,170,0.3); }
+  .exp-card.negative { border: 1px solid rgba(255,107,107,0.3); }
+  .exp-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .exp-card.positive h4 { color: var(--accent2); }
+  .exp-card.negative h4 { color: var(--accent3); }
+  .exp-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid rgba(46,51,71,0.4); font-size: 13px; }
+  .exp-row:last-child { border-bottom: none; }
+  .exp-row .event { color: var(--text-muted); }
+  .exp-row .val { font-weight: 700; font-family: monospace; }
+  .exp-row .val.plus { color: var(--accent2); }
+  .exp-row .val.minus { color: var(--accent3); }
+  .badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .badge-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; }
+  .badge-card .icon { font-size: 24px; margin-bottom: 6px; }
+  .badge-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .badge-card p { font-size: 12px; color: var(--text-muted); }
+  .role-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .role-table th { background: var(--surface2); padding: 10px 14px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+  .role-table td { padding: 10px 14px; border-bottom: 1px solid rgba(46,51,71,0.5); }
+  .role-table tr:last-child td { border-bottom: none; }
+  .scenario-list { list-style: none; }
+  .scenario-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 10px; }
+  .scenario-item .q { font-weight: 700; font-size: 14px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+  .scenario-item .q::before { content: '❓'; flex-shrink: 0; }
+  .scenario-item .a { font-size: 14px; color: var(--text-muted); padding-left: 24px; }
+  .scenario-item .a li { margin-bottom: 4px; }
+  .alert { border-radius: var(--radius-sm); padding: 14px 16px; margin: 12px 0; font-size: 14px; display: flex; gap: 10px; align-items: flex-start; }
+  .alert-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+  .alert.warning { background: rgba(255,209,102,0.08); border: 1px solid rgba(255,209,102,0.25); color: #e8d89a; }
+  .alert.info    { background: rgba(108,99,255,0.08); border: 1px solid rgba(108,99,255,0.25); color: #c0baff; }
+  .alert.success { background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); color: #8de8d8; }
+  .alert.danger  { background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.25); color: #ffaaaa; }
+  footer { text-align: center; padding: 32px 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 13px; margin-top: 60px; }
+  footer strong { color: var(--text); }
+  html { scroll-behavior: smooth; }
+  @media (max-width: 600px) { .cmd-line { flex-direction: column; gap: 4px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">Tài liệu nội bộ · DG Group</div>
+  <h1>DG HR Bot<br><span>Hướng dẫn Nhân viên</span></h1>
+  <p class="subtitle">Hướng dẫn đầy đủ cho nhân viên — từ đăng ký đến thăng cấp, mọi tình huống thực tế.</p>
+  <div class="header-roles">
+    <div class="role-pill newbie">🐣 Newbie</div>
+    <div class="role-pill nv">⚡ Nhân viên</div>
+    <div class="role-pill kycuu">🔥 Kỳ cựu</div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="version-bar">
+    <span>📄</span>
+    <span>Phiên bản <strong>1.0</strong> · Cập nhật: <strong>09/03/2026</strong> · Mọi lệnh cá nhân thực hiện trong <strong>DM với bot</strong>, không phải trong nhóm.</span>
+  </div>
+
+  <div class="toc">
+    <h3>Nội dung</h3>
+    <ul>
+      <li><a href="#dangky"><span>01</span> Đăng ký lần đầu</a></li>
+      <li><a href="#checkin"><span>02</span> Check-in mỗi ngày</a></li>
+      <li><a href="#checkout"><span>03</span> Checkout cuối ca</a></li>
+      <li><a href="#bc"><span>04</span> Bàn giao ca</a></li>
+      <li><a href="#thongtin"><span>05</span> Xem thông tin cá nhân</a></li>
+      <li><a href="#exp"><span>06</span> Hệ thống EXP</a></li>
+      <li><a href="#badges"><span>07</span> Huy hiệu</a></li>
+      <li><a href="#thangcap"><span>08</span> Thăng cấp</a></li>
+      <li><a href="#tinhhuo"><span>09</span> Tình huống thường gặp</a></li>
+      <li><a href="#nhom"><span>10</span> Quy tắc nhóm &amp; DM</a></li>
+    </ul>
+  </div>
+
+  <!-- 01 ĐĂNG KÝ -->
+  <div class="section" id="dangky">
+    <div class="section-header">
+      <div class="section-icon teal">👋</div>
+      <div><div class="section-title">01 — Đăng ký lần đầu</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Các bước đăng ký</div>
+      <ol class="step-list">
+        <li>Mở chat riêng với <strong>@DG_HR_BOT</strong></li>
+        <li>Gõ <code>/dangky [tên thật của bạn]</code> — ví dụ: <code>/dangky Minh Tuấn</code></li>
+        <li>Bot hỏi bộ phận và vị trí — chọn bằng nút bấm</li>
+        <li>Xong ngay, không cần chờ duyệt</li>
+      </ol>
+    </div>
+    <div class="alert info">
+      <span class="alert-icon">💡</span>
+      <span><strong>Tên nhập lần đầu được lưu vĩnh viễn.</strong> Nếu đăng ký sai tên, báo GM để sửa trong hệ thống.</span>
+    </div>
+    <div class="alert success">
+      <span class="alert-icon">✅</span>
+      <span>Sau khi đăng ký: Role mặc định <strong>Newbie 🐣</strong>, EXP = 0. Lên <strong>Nhân viên ⚡</strong> tự động khi đạt 100 EXP.</span>
+    </div>
+  </div>
+
+  <!-- 02 CHECK-IN -->
+  <div class="section" id="checkin">
+    <div class="section-header">
+      <div class="section-icon teal">📍</div>
+      <div><div class="section-title">02 — Check-in mỗi ngày</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Các bước check-in</div>
+      <ol class="step-list">
+        <li>Mở DM với bot</li>
+        <li>Gõ <code>/checkin</code></li>
+        <li>Bot yêu cầu gửi <strong>vị trí GPS</strong> — bấm nút "Chia sẻ vị trí" trong Telegram</li>
+        <li>Nếu đang ở trong quán → check-in thành công</li>
+        <li>Bot thông báo lên nhóm làm việc rằng bạn đã vào ca</li>
+      </ol>
+    </div>
+    <div class="exp-grid" style="margin-top:12px;">
+      <div class="exp-card positive">
+        <h4>EXP check-in</h4>
+        <div class="exp-row"><span class="event">Đúng giờ (trễ &lt; 5 phút)</span><span class="val plus">+3</span></div>
+        <div class="exp-row"><span class="event">Trễ 5–15 phút</span><span class="val plus">+1</span></div>
+        <div class="exp-row"><span class="event">Trễ &gt; 15 phút</span><span class="val" style="color:var(--text-muted)">0</span></div>
+      </div>
+      <div class="exp-card positive">
+        <h4>Streak bonus</h4>
+        <div class="exp-row"><span class="event">7 ngày liên tiếp</span><span class="val plus">+20</span></div>
+        <div class="exp-row"><span class="event">14 ngày liên tiếp</span><span class="val plus">+40</span></div>
+        <div class="exp-row"><span class="event">30 ngày liên tiếp</span><span class="val plus">+80</span></div>
+        <div class="exp-row"><span class="event">60 ngày liên tiếp</span><span class="val plus">+150</span></div>
+      </div>
+    </div>
+    <div class="alert info" style="margin-top:12px;">
+      <span class="alert-icon">🔥</span>
+      <span>Streak bonus chỉ nhận đúng vào <strong>mốc ngày</strong> (7, 14, 30, 60). Không có +1 EXP mỗi ngày bình thường.</span>
+    </div>
+  </div>
+
+  <!-- 03 CHECKOUT -->
+  <div class="section" id="checkout">
+    <div class="section-header">
+      <div class="section-icon purple">🚪</div>
+      <div><div class="section-title">03 — Checkout cuối ca</div></div>
+    </div>
+    <div class="cmd-block">
+      <div class="cmd-line">
+        <span class="cmd-name">/checkout</span>
+        <span class="cmd-desc">Kết thúc ca. Bot ghi nhận giờ ra và tổng số giờ làm. Thông báo lên nhóm.</span>
+      </div>
+    </div>
+    <div class="alert warning">
+      <span class="alert-icon">⚠️</span>
+      <span><strong>Luôn checkout trước khi về.</strong> Nếu quên checkout: báo quản lý hoặc GM để ghi nhận thủ công.</span>
+    </div>
+  </div>
+
+  <!-- 04 BÀN GIAO CA -->
+  <div class="section" id="bc">
+    <div class="section-header">
+      <div class="section-icon yellow">📋</div>
+      <div><div class="section-title">04 — Bàn giao ca</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Các bước bàn giao</div>
+      <ol class="step-list">
+        <li>Mở DM với bot</li>
+        <li>Gõ <code>/bc</code></li>
+        <li>Bot hỏi từng bước theo checklist bộ phận của bạn</li>
+        <li>Trả lời từng câu — bot dẫn qua hết</li>
+        <li>Kết quả tự đăng lên nhóm làm việc</li>
+      </ol>
+    </div>
+    <div class="alert warning">
+      <span class="alert-icon">⚠️</span>
+      <span>Bỏ bàn giao ca = <strong>-15 EXP</strong>. Bàn giao đúng hạn = <strong>+2 EXP</strong>.</span>
+    </div>
+    <div class="alert info">
+      <span class="alert-icon">💡</span>
+      <span>Bị gián đoạn giữa chừng? Gõ <code>/cancel</code> hoặc <code>/huy</code> để thoát, rồi bắt đầu lại khi sẵn sàng. Timeout ~10–15 phút.</span>
+    </div>
+  </div>
+
+  <!-- 05 THÔNG TIN -->
+  <div class="section" id="thongtin">
+    <div class="section-header">
+      <div class="section-icon blue">👤</div>
+      <div><div class="section-title">05 — Xem thông tin cá nhân</div></div>
+    </div>
+    <div class="cmd-block">
+      <div class="cmd-line"><span class="cmd-name">/profile</span><span class="cmd-desc">Xem EXP, role, streak, số ca. Alias: <code>/me</code> hoặc <code>/stats</code></span></div>
+    </div>
+    <div class="cmd-block">
+      <div class="cmd-line"><span class="cmd-name">/leaderboard</span><span class="cmd-desc">Bảng xếp hạng EXP toàn nhóm. Alias: <code>/lb</code></span></div>
+    </div>
+    <div class="cmd-block">
+      <div class="cmd-line"><span class="cmd-name">/roadmap</span><span class="cmd-desc">Lộ trình thăng cấp — còn bao nhiêu EXP và badges gì còn thiếu.</span></div>
+    </div>
+    <div class="cmd-block">
+      <div class="cmd-line"><span class="cmd-name">/badges</span><span class="cmd-desc">Bộ sưu tập huy hiệu đã đạt được.</span></div>
+    </div>
+  </div>
+
+  <!-- 06 EXP -->
+  <div class="section" id="exp">
+    <div class="section-header">
+      <div class="section-icon teal">⭐</div>
+      <div><div class="section-title">06 — Hệ thống EXP</div></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card positive">
+        <h4>➕ Cộng EXP (tự động)</h4>
+        <div class="exp-row"><span class="event">Check-in đúng giờ</span><span class="val plus">+3</span></div>
+        <div class="exp-row"><span class="event">Check-in trễ 5–15 phút</span><span class="val plus">+1</span></div>
+        <div class="exp-row"><span class="event">Bàn giao ca /bc</span><span class="val plus">+2</span></div>
+        <div class="exp-row"><span class="event">Streak 7 ngày</span><span class="val plus">+20</span></div>
+        <div class="exp-row"><span class="event">Streak 14 ngày</span><span class="val plus">+40</span></div>
+        <div class="exp-row"><span class="event">Streak 30 ngày</span><span class="val plus">+80</span></div>
+        <div class="exp-row"><span class="event">Streak 60 ngày</span><span class="val plus">+150</span></div>
+      </div>
+      <div class="exp-card positive" style="border-color: rgba(255,209,102,0.3);">
+        <h4 style="color:var(--accent4);">⭐ Cộng EXP (GM ghi nhận)</h4>
+        <div class="exp-row"><span class="event">Thêm ca ngoài lịch</span><span class="val plus">+15</span></div>
+        <div class="exp-row"><span class="event">KPI tháng 100%</span><span class="val plus">+30</span></div>
+        <div class="exp-row"><span class="event">Khách khen 5 sao</span><span class="val plus">+15</span></div>
+        <div class="exp-row"><span class="event">Đi làm đầy đủ cả tháng</span><span class="val plus">+50</span></div>
+        <div class="exp-row"><span class="event">Mentor Newbie lên NV</span><span class="val plus">+30</span></div>
+      </div>
+    </div>
+    <div class="exp-grid" style="margin-top:12px;">
+      <div class="exp-card negative">
+        <h4>➖ Trừ EXP (vi phạm)</h4>
+        <div class="exp-row"><span class="event">Đi trễ không báo</span><span class="val minus">-20</span></div>
+        <div class="exp-row"><span class="event">Không nộp BC</span><span class="val minus">-15</span></div>
+        <div class="exp-row"><span class="event">Vắng không báo</span><span class="val minus">-50</span></div>
+        <div class="exp-row"><span class="event">Hủy hàng không lý do</span><span class="val minus">-20</span></div>
+        <div class="exp-row"><span class="event">Lỗi đơn Grab</span><span class="val minus">-25</span></div>
+        <div class="exp-row"><span class="event">Vi phạm vệ sinh ATTP</span><span class="val minus">-100</span></div>
+        <div class="exp-row"><span class="event">Gian lận GPS check-in</span><span class="val minus">-200</span></div>
+      </div>
+      <div class="exp-card negative" style="border-color:rgba(255,209,102,0.3);">
+        <h4 style="color:var(--accent4);">🤖 No-show tự động</h4>
+        <div class="exp-row"><span class="event">Có lịch ca, không check-in</span><span class="val minus">-50</span></div>
+        <p style="font-size:12px; color:var(--text-muted); margin-top:10px; line-height:1.5;">Hệ thống phát hiện lúc <strong style="color:var(--text)">23:30 ICT</strong> mỗi ngày. Nếu có lịch ca mà không check-in, tự động trừ 50 EXP.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 BADGES -->
+  <div class="section" id="badges">
+    <div class="section-header">
+      <div class="section-icon yellow">🏅</div>
+      <div><div class="section-title">07 — Huy hiệu (Badges)</div></div>
+    </div>
+    <div class="alert success">
+      <span class="alert-icon">🔔</span>
+      <span>Bot tự động trao huy hiệu khi bạn đạt điều kiện. Nhận được huy hiệu → bot nhắn DM ngay.</span>
+    </div>
+    <div class="badge-grid" style="margin-top:12px;">
+      <div class="badge-card"><div class="icon">🩸</div><h4>First Blood</h4><p>Ca đầu tiên hoàn thành</p></div>
+      <div class="badge-card"><div class="icon">⚙️</div><h4>Grinder</h4><p>30 ca tích lũy</p></div>
+      <div class="badge-card"><div class="icon">💯</div><h4>Century</h4><p>100 ca tích lũy</p></div>
+      <div class="badge-card"><div class="icon">🔥</div><h4>On Fire</h4><p>Streak 7 ngày liên tiếp</p></div>
+      <div class="badge-card"><div class="icon">🌟</div><h4>Legendary</h4><p>Streak 30 ngày liên tiếp</p></div>
+      <div class="badge-card"><div class="icon">🎓</div><h4>Mentor</h4><p>1 người bạn giới thiệu lên được Nhân viên</p></div>
+      <div class="badge-card"><div class="icon">👑</div><h4>KPI King</h4><p>3 tháng KPI 100% liên tiếp</p></div>
+      <div class="badge-card"><div class="icon">🧹</div><h4>Clean Slate</h4><p>30 ngày không vi phạm</p></div>
+      <div class="badge-card"><div class="icon">⚡</div><h4>Comeback</h4><p>EXP từ âm thực sự (&lt;0) lên dương</p></div>
+    </div>
+  </div>
+
+  <!-- 08 THĂNG CẤP -->
+  <div class="section" id="thangcap">
+    <div class="section-header">
+      <div class="section-icon purple">🚀</div>
+      <div><div class="section-title">08 — Thăng cấp</div></div>
+    </div>
+    <div class="card">
+      <table class="role-table">
+        <thead><tr><th>Role</th><th>EXP cần</th><th>Cách lên</th></tr></thead>
+        <tbody>
+          <tr><td>🐣 Newbie</td><td>0</td><td>Tự động khi đăng ký</td></tr>
+          <tr><td>⚡ Nhân viên</td><td>100</td><td>Tự động khi đủ EXP</td></tr>
+          <tr><td>🔥 Kỳ cựu</td><td>500</td><td>Tự động khi đủ EXP</td></tr>
+          <tr><td>🛡️ Quản lý</td><td>1000+</td><td>Cần GM duyệt thủ công</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert info">
+      <span class="alert-icon">🗺️</span>
+      <span>Dùng <code>/roadmap</code> để xem còn bao nhiêu EXP và badges gì còn thiếu trên đường thăng cấp.</span>
+    </div>
+  </div>
+
+  <!-- 09 TÌNH HUỐNG -->
+  <div class="section" id="tinhhuo">
+    <div class="section-header">
+      <div class="section-icon red">🛠️</div>
+      <div><div class="section-title">09 — Tình huống thường gặp</div></div>
+    </div>
+
+    <ul class="scenario-list">
+      <li class="scenario-item">
+        <div class="q">GPS không hoạt động hoặc không gửi được vị trí</div>
+        <ul class="a">
+          <li>Kiểm tra Telegram có quyền truy cập vị trí chưa (Cài đặt → Ứng dụng)</li>
+          <li>Tắt WiFi, dùng 4G — GPS qua WiFi đôi khi không chính xác</li>
+          <li>Ra gần cửa sổ hoặc cửa ra vào, thử lại</li>
+          <li>Vẫn không được: <strong>báo ngay quản lý ca</strong> để ghi nhận thủ công</li>
+        </ul>
+      </li>
+      <li class="scenario-item">
+        <div class="q">GPS bắt đúng vị trí nhưng bot báo "ngoài phạm vi"</div>
+        <ul class="a">
+          <li>Di chuyển ra gần cửa sổ hoặc cửa ra vào — GPS cần tín hiệu tốt hơn</li>
+          <li>Tắt và mở lại Telegram, thử lại</li>
+          <li>Lỗi lặp lại nhiều lần: báo GM để kiểm tra bán kính venue trong hệ thống</li>
+        </ul>
+      </li>
+      <li class="scenario-item">
+        <div class="q">Quên checkout</div>
+        <ul class="a">
+          <li>Báo ngay quản lý ca hoặc GM</li>
+          <li>GM xử lý thủ công trong database</li>
+          <li>Không tự ý check-in ngày hôm sau nếu chưa checkout hôm trước</li>
+        </ul>
+      </li>
+      <li class="scenario-item">
+        <div class="q">Check-in xong nhưng nhóm không thấy thông báo</div>
+        <ul class="a">
+          <li>Check-in đã ghi nhận trong hệ thống — thông báo đôi khi delay 1–2 phút</li>
+          <li>Sau 5 phút vẫn không thấy: báo quản lý kiểm tra</li>
+        </ul>
+      </li>
+      <li class="scenario-item">
+        <div class="q">Bot không phản hồi</div>
+        <ul class="a">
+          <li>Chờ 1–2 phút rồi thử lại</li>
+          <li>Gõ <code>/cancel</code> trước rồi gõ lại lệnh cần dùng</li>
+          <li>Nếu im lặng hơn 5 phút: báo quản lý — có thể API đang lỗi, không phải lỗi của bạn</li>
+        </ul>
+      </li>
+      <li class="scenario-item">
+        <div class="q">Đang làm bàn giao ca bị gián đoạn hoặc muốn dừng</div>
+        <ul class="a">
+          <li>Gõ <code>/cancel</code> hoặc <code>/huy</code> để thoát</li>
+          <li>Bước đang làm bị xóa — làm lại từ đầu khi sẵn sàng</li>
+          <li>Timeout ~10–15 phút nếu không trả lời — cũng cần làm lại từ đầu</li>
+        </ul>
+      </li>
+      <li class="scenario-item">
+        <div class="q">Bàn giao ca hoàn thành nhưng kết quả không lên nhóm</div>
+        <ul class="a">
+          <li>Chờ thêm 2–3 phút — đôi khi delay</li>
+          <li>Nếu sau 5 phút không thấy: làm lại <code>/bc</code> từ đầu</li>
+        </ul>
+      </li>
+      <li class="scenario-item">
+        <div class="q">Đăng ký sai tên</div>
+        <ul class="a">
+          <li>Báo GM để sửa trong database — không tự tạo tài khoản mới</li>
+          <li>Hệ thống theo dõi theo username Telegram — trùng username sẽ xung đột</li>
+        </ul>
+      </li>
+      <li class="scenario-item">
+        <div class="q">EXP bị trừ không rõ lý do</div>
+        <ul class="a">
+          <li>Dùng <code>/profile</code> xem tổng EXP hiện tại</li>
+          <li>Hỏi GM để xem chi tiết lịch sử trừ EXP</li>
+        </ul>
+      </li>
+      <li class="scenario-item">
+        <div class="q">Không thấy mình trong leaderboard sau khi đăng ký</div>
+        <ul class="a">
+          <li>Leaderboard chỉ hiện người có EXP &gt; 0 — check-in ca đầu tiên sẽ xuất hiện</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 10 QUY TẮC -->
+  <div class="section" id="nhom">
+    <div class="section-header">
+      <div class="section-icon blue">📣</div>
+      <div><div class="section-title">10 — Quy tắc nhóm &amp; DM</div></div>
+    </div>
+    <div class="alert danger">
+      <span class="alert-icon">🔴</span>
+      <span><strong>Mọi lệnh cá nhân → làm trong DM với bot.</strong> Gõ lệnh trong nhóm sẽ không được phản hồi.</span>
+    </div>
+    <div class="card" style="margin-top:12px;">
+      <div class="card-title">Bot tự đăng vào nhóm khi</div>
+      <table class="role-table">
+        <thead><tr><th>Sự kiện</th><th>Nội dung bot đăng</th></tr></thead>
+        <tbody>
+          <tr><td>Check-in thành công</td><td>Thông báo vào ca</td></tr>
+          <tr><td>Checkout thành công</td><td>Thông báo ra ca + tổng giờ làm</td></tr>
+          <tr><td>/moca hoàn thành</td><td>Báo cáo mở ca đầy đủ</td></tr>
+          <tr><td>/dongca hoàn thành</td><td>Báo cáo đóng ca</td></tr>
+          <tr><td>/bc hoàn thành</td><td>Bàn giao ca theo bộ phận</td></tr>
+          <tr><td>Mỗi sáng (tự động)</td><td>Bảng điểm danh ngày</td></tr>
+          <tr><td>Mỗi tuần (tự động)</td><td>Bảng xếp hạng EXP</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert info" style="margin-top:12px;">
+      <span class="alert-icon">🤖</span>
+      <span>Bot <strong>không đọc</strong> tin nhắn thường trong nhóm. Bot <strong>không trả lời</strong> khi mọi người chat với nhau.</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>DG HR Bot</strong> — Hướng dẫn Nhân viên<br>
+  <span>Tài liệu nội bộ · Phiên bản 1.0 · 09/03/2026</span><br><br>
+  <span>Cần hỗ trợ: báo quản lý ca hoặc <a href="https://t.me/Will_AgenticAI" style="color:var(--accent2); text-decoration:none;">@Will_AgenticAI</a></span>
+</footer>
+
+</body>
+</html>
