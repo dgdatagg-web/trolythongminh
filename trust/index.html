@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trust & Legal — Nova Sanctuary Network</title>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f5;
+      --grey: #888;
+      --light: #1a1a1a;
+      --border: #2a2a2a;
+      --accent: #7c5af0;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #eab308;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--grey);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      padding: 120px 40px 80px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: #aaa;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* BIG PROMISE */
+    .promise {
+      margin: 0 40px 80px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 40px;
+    }
+    .promise-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .promise blockquote {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .promise p {
+      font-size: 14px;
+      color: var(--grey);
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 40px 120px;
+    }
+
+    /* SECTION */
+    .section {
+      margin-bottom: 80px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--light);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--grey);
+      flex-shrink: 0;
+    }
+    .section h2 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .section p {
+      color: #bbb;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* CARDS */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media (max-width: 600px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .card-icon {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    .card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 13px;
+      color: var(--grey);
+      margin: 0;
+    }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 14px;
+    }
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      color: #ccc;
+    }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { font-weight: 500; color: var(--white); }
+
+    /* BADGE */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+    .badge-green { background: rgba(34,197,94,0.1); color: var(--green); }
+    .badge-red { background: rgba(239,68,68,0.1); color: var(--red); }
+    .badge-yellow { background: rgba(234,179,8,0.1); color: var(--yellow); }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+    /* TIMELINE */
+    .timeline {
+      margin-top: 24px;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-day {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      min-width: 80px;
+      padding-top: 2px;
+    }
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--grey);
+    }
+
+    /* CALLOUT */
+    .callout {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .callout.warn {
+      border-color: rgba(234,179,8,0.3);
+      background: rgba(234,179,8,0.05);
+    }
+    .callout.good {
+      border-color: rgba(34,197,94,0.3);
+      background: rgba(34,197,94,0.05);
+    }
+    .callout h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .callout p {
+      font-size: 13px;
+      color: var(--grey);
+      margin: 0;
+    }
+
+    /* RIGHTS LIST */
+    .rights-list {
+      list-style: none;
+      margin-top: 20px;
+    }
+    .rights-list li {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: #bbb;
+    }
+    .rights-list li:last-child { border-bottom: none; }
+    .rights-cmd {
+      font-family: monospace;
+      font-size: 12px;
+      background: rgba(124,90,240,0.1);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      align-self: flex-start;
+      margin-top: 2px;
+    }
+
+    /* DOCS NAV */
+    .docs-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    @media (max-width: 600px) {
+      .docs-nav { grid-template-columns: 1fr; }
+    }
+    .doc-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--white);
+      transition: border-color 0.2s;
+    }
+    .doc-link:hover { border-color: var(--accent); }
+    .doc-link-title { font-size: 14px; font-weight: 600; }
+    .doc-link-desc { font-size: 12px; color: var(--grey); margin-top: 4px; }
+    .doc-link-arrow { color: var(--grey); font-size: 18px; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--grey);
+    }
+    footer a { color: var(--grey); }
+    footer strong { color: var(--white); }
+
+    /* STICKY TOC */
+    .toc {
+      position: sticky;
+      top: 80px;
+    }
+
+    /* DIVIDER */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">NOVA SANCTUARY NETWORK</a>
+    <ul class="nav-links">
+      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="#data">Your Data</a></li>
+      <li><a href="#rights">Your Rights</a></li>
+      <li><a href="#financial">Financial</a></li>
+      <li><a href="#docs">Full Docs</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <span class="hero-tag">Trust & Legal</span>
+    <h1>We built your privacy in. Not written in.</h1>
+    <p>Most platforms promise not to read your data. We built a system where we <em>cannot</em> — even if we wanted to. Here's exactly how it works.</p>
+  </div>
+
+  <div class="promise">
+    <div class="promise-label">The Big Promise</div>
+    <blockquote>
+      "We — the Nova Sanctuary Network team — cannot access, read, sell, or share your conversations, memories, or any content you share with your AI agent. Your data is yours. Period."
+    </blockquote>
+    <p>This is not marketing. This is how the system is built. No admin panel. No conversation viewer. No database query that surfaces your messages. The access path does not exist.</p>
+  </div>
+
+  <div class="container">
+
+    <!-- SECTION 1: PRIVACY ARCHITECTURE -->
+    <div class="section" id="privacy">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2>Privacy by Architecture</h2>
+      </div>
+
+      <p>There's a difference between a company that <em>promises</em> not to read your data, and a company that <em>cannot</em> read your data. We're the second kind.</p>
+
+      <p>Your agent's conversations, memories, and soul contract are stored inside an encrypted, isolated instance. Our team has no admin tool, no internal dashboard, no query that can reach inside that instance. The isolation is structural — not policy-based.</p>
+
+      <div class="callout good">
+        <h4>What this means in practice</h4>
+        <p>If a government agency issued a valid legal order demanding access to your agent conversations, we would be technically unable to comply — because the access mechanism does not exist. We would notify you of any such request to the extent permitted by law.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🔐</div>
+          <h4>AES-256-GCM Encryption</h4>
+          <p>All agent data stored using military-grade encryption. Accessible only to your agent instance.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧱</div>
+          <h4>Process Isolation</h4>
+          <p>Each agent runs in a separate process with independent memory. No cross-instance data access is possible.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔏</div>
+          <h4>Integrity Seals</h4>
+          <p>SHA-256 cryptographic seals detect unauthorized modification to your soul contract. Tampering triggers an alert.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚫</div>
+          <h4>No Admin Backdoor</h4>
+          <p>No admin panel. No team viewer. No way for any team member to read your conversations. The architecture does not permit it.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: TWO TYPES OF DATA -->
+    <div class="section" id="data">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <h2>Two Types of Data — The Distinction That Matters</h2>
+      </div>
+
+      <p>We separate data into two clear categories. This is important to understand.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>What It Is</th>
+            <th>Who Can Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Platform Data</td>
+            <td>Technical metrics — response times, error logs, usage patterns. No content.</td>
+            <td><span class="badge badge-yellow"><span class="badge-dot"></span>Our team (aggregated)</span></td>
+          </tr>
+          <tr>
+            <td>Agent Data</td>
+            <td>Your conversations, memories, soul contract, everything you share with your agent.</td>
+            <td><span class="badge badge-green"><span class="badge-dot"></span>Your agent only</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn" style="margin-top: 24px;">
+        <h4>Honest trade-off you should know</h4>
+        <p>Because we cannot access agent data, if an agent instance is breached by an external attacker, our ability to assess what was exposed is limited by the same architecture that protects you. In any breach, we'll assume the full instance contents were potentially exposed and notify you within 72 hours — conservatively, not minimally.</p>
+      </div>
+
+      <p style="margin-top: 24px;">What we collect for platform health — and nothing more:</p>
+
+      <table>
+        <thead>
+          <tr><th>What</th><th>Why</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Message volume</td><td>Capacity planning</td><td>"User had 47 exchanges today"</td></tr>
+          <tr><td>Response latency</td><td>Speed optimization</td><td>"Avg response: 2.3 seconds"</td></tr>
+          <tr><td>Task category</td><td>Skill improvement</td><td>"scheduling" — NOT the content</td></tr>
+          <tr><td>Error events</td><td>Bug fixing</td><td>"PDF processing failed at 14:23"</td></tr>
+          <tr><td>Agent performance scores</td><td>Quality monitoring</td><td>"Satisfaction signal: positive"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 3: YOUR RIGHTS -->
+    <div class="section" id="rights">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2>Your Rights — And How to Use Them</h2>
+      </div>
+
+      <p>You have full control over your data. These are not just policies — they're commands you can run today.</p>
+
+      <ul class="rights-list">
+        <li>
+          <span class="rights-cmd">/export</span>
+          <div>
+            <strong style="color:var(--white); font-size:14px;">Download everything.</strong><br>
+            Get your full conversation history and agent memory in JSON format. Anytime, instantly.
+          </div>
+        </li>
+        <li>
+          <span class="rights-cmd">/forget [topic]</span>
+          <div>
+            <strong style="color:var(--white); font-size:14px;">Selective deletion.</strong><br>
+            Tell your agent to forget specific topics immediately. Permanent. Cannot be recovered.
+          </div>
+        </li>
+        <li>
+          <span class="rights-cmd">Cancel anytime</span>
+          <div>
+            <strong style="color:var(--white); font-size:14px;">30 days to take your data and leave.</strong><br>
+            Cancel your subscription and you have 30 full days to export or reactivate. No pressure.
+          </div>
+        </li>
+        <li>
+          <span class="rights-cmd">GDPR</span>
+          <div>
+            <strong style="color:var(--white); font-size:14px;">EU users: full GDPR rights apply.</strong><br>
+            Access, rectification, erasure, portability, objection. Contact us and we respond within 30 days.
+          </div>
+        </li>
+      </ul>
+
+      <h3 style="font-size:16px; margin-top:40px; margin-bottom:16px; color:var(--white);">What happens if you stop paying</h3>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-day">Day 1–6</div>
+          <div class="timeline-desc">Agent works normally. One gentle daily reminder. Nothing restricted.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-day">Day 7</div>
+          <div class="timeline-desc">Agent suspended. Cannot respond. <strong style="color:var(--white);">Your data remains fully intact.</strong></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-day">Day 7–37</div>
+          <div class="timeline-desc">30-day grace period. Reactivate anytime — same memory, same relationship, nothing lost. Reminders at day 15 and day 30.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-day">Day 37+</div>
+          <div class="timeline-desc"><span class="badge badge-red"><span class="badge-dot"></span>Permanent deletion</span> — all data is irreversibly removed. We do not want this to happen. We will remind you twice before it does.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: FINANCIAL ADVISORY -->
+    <div class="section" id="financial">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <h2>Financial Advisory — Clear Limits</h2>
+      </div>
+
+      <p>Some agents include financial coaching skill packs. We are transparent about what these can and cannot do.</p>
+
+      <div class="callout warn">
+        <h4>⚠️ Not a Licensed Financial Advisor</h4>
+        <p>Under Vietnamese law (Securities Law 2019, Article 90), providing investment advisory services requires professional certification. Our agents do not hold and do not claim any such certification.</p>
+      </div>
+
+      <p style="margin-top:24px;">Financial skill packs are strictly limited to general financial education. Our agents will <strong style="color:var(--white);">never:</strong></p>
+
+      <table>
+        <thead><tr><th>Prohibited Action</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Predict specific prices or market movements</td><td>Speculation — not education</td></tr>
+          <tr><td>Recommend specific financial products</td><td>Requires licensed certification in VN</td></tr>
+          <tr><td>Provide expected return percentages</td><td>Misleading without full context</td></tr>
+          <tr><td>Advise on securities trading strategies</td><td>Outside permitted scope</td></tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:24px;">When any agent responds to financial, medical, or legal questions, an inline reminder is automatically included. This is not optional — it is enforced at the system level.</p>
+
+      <p>The same limits apply to medical and legal queries. Agents provide general knowledge — never professional advice. Always consult a qualified professional for critical decisions.</p>
+    </div>
+
+    <!-- SECTION 5: FULL DOCS -->
+    <div class="section" id="docs">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <h2>Full Legal Documents</h2>
+      </div>
+
+      <p>This page is a plain-language summary. The full documents are below — written clearly, without hidden fine print.</p>
+
+      <div class="docs-nav">
+        <a href="/privacy/" class="doc-link">
+          <div>
+            <div class="doc-link-title">Privacy Policy</div>
+            <div class="doc-link-desc">How your data is collected, stored, and protected</div>
+          </div>
+          <div class="doc-link-arrow">→</div>
+        </a>
+        <a href="/terms/" class="doc-link">
+          <div>
+            <div class="doc-link-title">Terms & Conditions</div>
+            <div class="doc-link-desc">What you agree to when you use the platform</div>
+          </div>
+          <div class="doc-link-arrow">→</div>
+        </a>
+        <a href="/data-deletion/" class="doc-link">
+          <div>
+            <div class="doc-link-title">Data Retention Policy</div>
+            <div class="doc-link-desc">How long we keep your data and when it's deleted</div>
+          </div>
+          <div class="doc-link-arrow">→</div>
+        </a>
+        <a href="/disclaimer/" class="doc-link">
+          <div>
+            <div class="doc-link-title">Disclaimer</div>
+            <div class="doc-link-desc">What our agents can and cannot do professionally</div>
+          </div>
+          <div class="doc-link-arrow">→</div>
+        </a>
+      </div>
+
+      <div class="callout" style="margin-top: 40px;">
+        <h4>Independent Security Audit — Pending</h4>
+        <p>We are committed to having our architectural privacy and encryption claims independently verified by a third-party security auditor. Results will be made available to users upon request. Until then, these claims represent our engineering team's description of the system as built. We stand behind them and invite technical scrutiny.</p>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <h2>Questions</h2>
+      </div>
+      <p>If anything here isn't clear, contact us. We wrote these to be read — not to hide behind.</p>
+      <p>
+        Telegram: <a href="https://t.me/grey_agenticAI" style="color:var(--accent);">t.me/grey_agenticAI</a><br>
+        Email: <a href="mailto:greyai1993@gmail.com" style="color:var(--accent);">greyai1993@gmail.com</a>
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p style="margin-bottom:8px;"><strong>Nova Sanctuary Network</strong> — Nextgen Ops Virtual Agents</p>
+    <p>Effective March 21, 2026 · Governed by Vietnamese law · HCMC jurisdiction</p>
+    <p style="margin-top:16px; font-size:12px;">© 2026 Nextgen Ops Virtual Agents. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
