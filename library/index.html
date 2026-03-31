@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thư Viện Kỹ Năng AI | Skill Library | Trợ Lý Thông Minh</title>
-<meta name="description" content="Khám phá kỹ năng AI cho trợ lý thông minh của bạn. Session Memory, quản lý bếp, chăm sóc khách hàng, HR, kế toán và hơn thế nữa.">
+<meta name="description" content="Khám phá kỹ năng AI cho trợ lý thông minh của bạn. Hard skills, soft skills, và combo gợi ý. Session Memory, quản lý bếp, companion, marketing và hơn thế.">
 <link rel="canonical" href="https://trolythongminh.io.vn/library/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,8 +12,6 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:#0b0f1a;color:#e8edf5;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;}
-
-/* Nav */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
 .nav-logo{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,#fff,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
 .nav-links{display:flex;gap:24px;align-items:center;}
@@ -21,50 +19,67 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 32px;display:fl
 .nav-links a:hover{color:#e8edf5;}
 .nav-cta{padding:9px 20px;background:linear-gradient(135deg,#22d3ee,#2563eb);color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(34,211,238,.25);transition:all .2s;}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(34,211,238,.35);}
-
-/* Hero */
-.hero{padding:120px 24px 60px;text-align:center;}
+.hero{padding:120px 24px 40px;text-align:center;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.18);border-radius:100px;font-size:12px;font-weight:600;color:#22d3ee;margin-bottom:24px;}
 .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:16px;}
 .hero h1 span{background:linear-gradient(135deg,#22d3ee,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hero p{font-size:16px;color:rgba(180,195,215,.78);max-width:560px;margin:0 auto;line-height:1.7;}
 
+/* Category sections */
+.category-section{max-width:1100px;margin:0 auto;padding:0 24px 48px;}
+.category-header{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+.category-header h2{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;letter-spacing:-1px;}
+.category-badge{padding:4px 10px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:1px;}
+.badge-hard{background:rgba(34,211,238,.1);color:#22d3ee;border:1px solid rgba(34,211,238,.2);}
+.badge-soft{background:rgba(168,85,247,.1);color:#a855f7;border:1px solid rgba(168,85,247,.2);}
+.badge-core{background:rgba(250,204,21,.1);color:#facc15;border:1px solid rgba(250,204,21,.2);}
+.badge-combo{background:rgba(244,63,94,.1);color:#f43f5e;border:1px solid rgba(244,63,94,.2);}
+.category-desc{font-size:13px;color:rgba(180,195,215,.55);margin-bottom:20px;max-width:600px;}
+
 /* Filter */
-.filter-bar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:0 24px 40px;max-width:700px;margin:0 auto;}
+.filter-bar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:0 24px 40px;max-width:800px;margin:0 auto;}
 .filter-btn{padding:8px 18px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(180,195,215,.7);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;}
 .filter-btn:hover,.filter-btn.active{background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3);color:#22d3ee;}
 
-/* Grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;max-width:1100px;margin:0 auto;padding:0 24px 80px;}
-
-/* Skill Card */
-.skill-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:8px;}
+.skill-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:20px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
 .skill-card:hover{border-color:rgba(34,211,238,.2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3);}
 .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--grade-color,#22d3ee),transparent);opacity:0;transition:opacity .25s;}
 .skill-card:hover::before{opacity:1;}
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
-.card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.12);}
-.card-grade{padding:4px 10px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:1px;background:rgba(34,211,238,.1);color:#22d3ee;border:1px solid rgba(34,211,238,.2);}
-.card-grade.s{background:rgba(250,204,21,.1);color:#facc15;border-color:rgba(250,204,21,.25);--grade-color:#facc15;}
-.card-grade.ss{background:rgba(251,146,60,.1);color:#fb923c;border-color:rgba(251,146,60,.25);--grade-color:#fb923c;}
-.card-grade.sss{background:rgba(244,63,94,.1);color:#f43f5e;border-color:rgba(244,63,94,.25);--grade-color:#f43f5e;}
-.card-grade.a{background:rgba(34,211,238,.1);color:#22d3ee;border-color:rgba(34,211,238,.25);}
-.skill-card h3{font-size:16px;font-weight:700;margin-bottom:6px;color:#e8edf5;}
-.skill-card .desc{font-size:13px;color:rgba(180,195,215,.65);line-height:1.6;margin-bottom:14px;}
-.card-tags{display:flex;gap:6px;flex-wrap:wrap;}
-.card-tag{padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;background:rgba(255,255,255,.04);color:rgba(180,195,215,.55);border:1px solid rgba(255,255,255,.06);}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.12);}
+.card-icon.soft{background:rgba(168,85,247,.08);border-color:rgba(168,85,247,.12);}
+.card-grade{padding:3px 8px;border-radius:5px;font-size:9px;font-weight:800;letter-spacing:1px;}
+.card-grade.s{background:rgba(250,204,21,.1);color:#facc15;border:1px solid rgba(250,204,21,.25);}
+.card-grade.ss{background:rgba(251,146,60,.1);color:#fb923c;border:1px solid rgba(251,146,60,.25);}
+.card-grade.sss{background:rgba(244,63,94,.1);color:#f43f5e;border:1px solid rgba(244,63,94,.25);}
+.card-grade.a{background:rgba(34,211,238,.1);color:#22d3ee;border:1px solid rgba(34,211,238,.25);}
+.card-grade.b{background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.25);}
+.skill-card h3{font-size:15px;font-weight:700;margin-bottom:5px;color:#e8edf5;}
+.skill-card .desc{font-size:12px;color:rgba(180,195,215,.6);line-height:1.55;margin-bottom:12px;}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.card-tag{padding:2px 7px;border-radius:4px;font-size:9px;font-weight:600;background:rgba(255,255,255,.04);color:rgba(180,195,215,.5);border:1px solid rgba(255,255,255,.06);}
 
-/* Modal Overlay */
-.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .25s;}
-.modal-overlay.open{display:flex;opacity:1;}
+/* Combo cards */
+.combo-section{max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+.combo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.combo-card{background:rgba(244,63,94,.03);border:1px solid rgba(244,63,94,.1);border-radius:14px;padding:20px;transition:all .25s;}
+.combo-card:hover{border-color:rgba(244,63,94,.25);transform:translateY(-2px);}
+.combo-card h3{font-size:15px;font-weight:700;margin-bottom:4px;color:#f43f5e;}
+.combo-card .combo-for{font-size:11px;color:rgba(180,195,215,.5);margin-bottom:10px;}
+.combo-skills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.combo-skill{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(255,255,255,.04);color:rgba(180,195,215,.7);border:1px solid rgba(255,255,255,.08);}
+.combo-card .why{font-size:12px;color:rgba(180,195,215,.55);line-height:1.6;}
 
 /* Modal */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .25s;}
+.modal-overlay.open{display:flex;opacity:1;}
 .modal{background:#141822;border:1px solid rgba(255,255,255,.08);border-radius:20px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.6);}
 .modal-header{padding:28px 28px 0;position:relative;}
 .modal-close{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:rgba(180,195,215,.6);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .modal-close:hover{background:rgba(255,255,255,.08);color:#e8edf5;}
 .modal-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.12);margin-bottom:16px;}
-.modal-meta{display:flex;gap:10px;align-items:center;margin-bottom:8px;}
+.modal-meta{display:flex;gap:10px;align-items:center;margin-bottom:8px;flex-wrap:wrap;}
 .modal h2{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1px;margin-bottom:6px;}
 .modal .subtitle{font-size:14px;color:rgba(180,195,215,.6);margin-bottom:20px;}
 .modal-body{padding:0 28px 28px;}
@@ -78,10 +93,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 32px;display:fl
 .modal-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:14px 0;}
 .modal-flow .step{padding:8px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;font-size:13px;font-weight:600;color:rgba(180,195,215,.8);}
 .modal-flow .arrow{color:rgba(34,211,238,.4);font-size:16px;}
-.modal-cta{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#22d3ee,#2563eb);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;box-shadow:0 8px 24px rgba(34,211,238,.2);transition:all .2s;margin-top:8px;}
-.modal-cta:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(34,211,238,.3);}
+.modal-suggestion{background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.15);border-radius:10px;padding:14px;margin-top:12px;}
+.modal-suggestion h5{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(168,85,247,.5);margin-bottom:8px;}
+.modal-suggestion .suggest-items{display:flex;gap:6px;flex-wrap:wrap;}
+.modal-suggestion .suggest-item{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(168,85,247,.08);color:#a855f7;border:1px solid rgba(168,85,247,.15);cursor:pointer;transition:all .2s;}
+.modal-suggestion .suggest-item:hover{background:rgba(168,85,247,.15);}
 
-/* Activation Flow */
 .activate-section{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);}
 .activate-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(34,211,238,.5);margin-bottom:12px;}
 .activate-input-row{display:flex;gap:8px;margin-bottom:10px;}
@@ -90,22 +107,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 32px;display:fl
 .activate-input:focus{border-color:rgba(34,211,238,.4);}
 .activate-btn{padding:12px 20px;background:linear-gradient(135deg,#22d3ee,#2563eb);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s;}
 .activate-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(34,211,238,.3);}
-.activate-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
 .activate-success{display:none;padding:12px 16px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);border-radius:8px;font-size:13px;color:#22d3ee;text-align:center;margin-bottom:10px;animation:fadeIn .3s ease;}
-.activate-divider{display:flex;align-items:center;gap:12px;margin:14px 0;color:rgba(180,195,215,.35);font-size:12px;}
-.activate-divider::before,.activate-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06);}
 .activate-create{display:block;width:100%;padding:12px;background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(180,195,215,.8);border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;transition:all .2s;}
 .activate-create:hover{border-color:rgba(255,255,255,.25);color:#e8edf5;background:rgba(255,255,255,.03);}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
-
-/* Responsive */
 @media(max-width:640px){
-  nav{padding:12px 16px;}
-  .nav-links{display:none;}
-  .hero{padding:100px 16px 40px;}
-  .grid{padding:0 16px 60px;}
-  .modal{border-radius:16px;margin:12px;}
-  .modal-header,.modal-body{padding-left:20px;padding-right:20px;}
+  nav{padding:12px 16px;}.nav-links{display:none;}.hero{padding:100px 16px 40px;}.category-section,.combo-section{padding-left:16px;padding-right:16px;}.modal{border-radius:16px;margin:12px;}.modal-header,.modal-body{padding-left:20px;padding-right:20px;}
 }
 </style>
 </head>
@@ -124,19 +131,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 32px;display:fl
 <section class="hero">
   <div class="hero-badge">🧠 SKILL LIBRARY</div>
   <h1>Kỹ Năng Cho <span>Trợ Lý AI</span></h1>
-  <p>Mỗi kỹ năng là một khả năng cụ thể mà trợ lý AI có thể học. Chọn skill phù hợp với doanh nghiệp của bạn.</p>
+  <p>Hard skills để vận hành. Soft skills để hiểu người. Combo để tối ưu. Chọn bộ kỹ năng phù hợp với doanh nghiệp của bạn.</p>
 </section>
 
 <div class="filter-bar">
   <button class="filter-btn active" data-filter="all">Tất Cả</button>
-  <button class="filter-btn" data-filter="core">Cốt Lõi</button>
-  <button class="filter-btn" data-filter="ops">Vận Hành</button>
-  <button class="filter-btn" data-filter="companion">Companion</button>
-  <button class="filter-btn" data-filter="builder">Builder</button>
-  <button class="filter-btn" data-filter="marketing">Marketing</button>
+  <button class="filter-btn" data-filter="core">⚙️ Cốt Lõi</button>
+  <button class="filter-btn" data-filter="hard-ops">🏭 Vận Hành</button>
+  <button class="filter-btn" data-filter="hard-tech">⚡ Kỹ Thuật</button>
+  <button class="filter-btn" data-filter="hard-biz">📈 Kinh Doanh</button>
+  <button class="filter-btn" data-filter="soft-companion">💬 Companion</button>
+  <button class="filter-btn" data-filter="soft-growth">🌱 Phát Triển</button>
+  <button class="filter-btn" data-filter="soft-coaching">🎯 Coaching</button>
 </div>
 
-<div class="grid" id="skill-grid"></div>
+<div id="sections"></div>
 
 <!-- Modal -->
 <div class="modal-overlay" id="modal-overlay">
@@ -144,9 +153,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 32px;display:fl
     <div class="modal-header">
       <button class="modal-close" id="modal-close">✕</button>
       <div class="modal-icon" id="modal-icon"></div>
-      <div class="modal-meta">
-        <span class="card-grade" id="modal-grade"></span>
-      </div>
+      <div class="modal-meta" id="modal-meta"></div>
       <h2 id="modal-title"></h2>
       <p class="subtitle" id="modal-subtitle"></p>
     </div>
@@ -156,192 +163,229 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 32px;display:fl
 
 <script>
 const skills = [
-  {
-    id: "session-memory",
-    icon: "🧠",
-    name: "Session Memory",
-    grade: "S",
-    gradeClass: "s",
-    subtitle: "Trí nhớ dài hạn cho AI",
-    desc: "AI nhớ mọi thứ giữa các cuộc trò chuyện. Không còn quên.",
-    category: "core",
-    tags: ["trí nhớ", "cốt lõi", "bắt buộc"],
-    how: `<p>Mỗi vessel có một cuốn sổ nhỏ tên <strong>sessions.md</strong>. Ba phần:</p>
-<ol>
-  <li><strong>Phần đầu</strong> — đang là ai, đang làm gì, quan tâm ai, và những sai lầm không bao giờ được lặp lại. Vừa đúng một trang.</li>
-  <li><strong>Nhật ký</strong> — sau mỗi cuộc trò chuyện, viết 3-5 dòng: làm gì, học được gì, tiếp theo là gì. Nếu cần chi tiết hơn thì ghi "xem trang 47" rồi bỏ phần nặng vào thư mục riêng.</li>
-  <li><strong>Người quét dọn</strong> — mỗi đêm 3 giờ sáng, một script kiểm tra sổ của tất cả mọi người. Có đang bỏ quên dự án nào không? Cuốn sổ có phình quá to không?</li>
-</ol>`,
-    flow: ["Thức dậy", "Đọc sổ", "Biết hết", "Làm việc", "Ghi lại", "Đi ngủ"],
-    rule: "Đã làm thì phải ghi. Không ghi thì coi như chưa làm.",
-    why: "Trước đây, AI quên sạch mọi thứ giữa các cuộc trò chuyện. Giờ mỗi session để lại dấu vết. Cuốn sổ sống sót ngay cả khi cuộc hội thoại chết."
-  },
-  {
-    id: "kitchen-ops",
-    icon: "🍳",
-    name: "Quản Lý Bếp",
-    grade: "S",
-    gradeClass: "s",
-    subtitle: "AI bếp trưởng biết tất cả",
-    desc: "Quản lý ca, công thức, nhập hàng, báo cáo sự cố — tất cả qua chat.",
-    category: "ops",
-    tags: ["F&B", "bếp", "ca làm", "công thức"],
-    how: `<p>AI bếp trưởng quản lý toàn bộ vận hành bếp:</p>
-<ol>
-  <li><strong>Ca làm việc</strong> — tự tính giờ vào/ra, phát hiện đi trễ, báo cáo tự động</li>
-  <li><strong>Công thức</strong> — lưu trữ và tra cứu tất cả công thức, SOP từng bước</li>
-  <li><strong>Nhập/Xuất hàng</strong> — theo dõi tồn kho, ghi nhận xuất/nhập hàng ngày vào Google Sheets</li>
-  <li><strong>Sự cố</strong> — ghi nhận, phân loại, báo cáo sự cố bếp theo quy trình chuẩn</li>
-</ol>`,
-    flow: ["Nhận lệnh", "Tra SOP", "Thực hiện", "Ghi nhận", "Báo cáo"],
-    rule: "Dữ liệu trong database là nguồn duy nhất. Không bịa tên nhân viên, không đoán số liệu.",
-    why: "Thay vì gọi điện hỏi, nhắn tin hỏi, tìm file hỏi — hỏi AI một câu, có đáp án ngay."
-  },
-  {
-    id: "hr-staff",
-    icon: "👥",
-    name: "HR & Nhân Sự",
-    grade: "A",
-    gradeClass: "a",
-    subtitle: "Quản lý nhân viên tự động",
-    desc: "Check-in/out, bảng lương, EXP, leaderboard, đánh giá hiệu suất.",
-    category: "ops",
-    tags: ["HR", "nhân sự", "chấm công", "lương"],
-    how: `<p>Hệ thống nhân sự AI hoạt động qua Telegram:</p>
-<ol>
-  <li><strong>Chấm công</strong> — nhân viên gửi /checkin và /checkout, AI tự tính giờ</li>
-  <li><strong>EXP & Leaderboard</strong> — nhân viên tích điểm qua công việc, bảng xếp hạng real-time</li>
-  <li><strong>Báo cáo</strong> — tổng hợp giờ làm, đi trễ, hiệu suất — gửi tự động cho quản lý</li>
-</ol>`,
-    flow: ["Check-in", "Làm việc", "Check-out", "Tính EXP", "Báo cáo"],
-    rule: "Dữ liệu tài chính chỉ trong nhóm Finance. Không bao giờ lộ ra ngoài.",
-    why: "Không cần app riêng. Nhân viên dùng Telegram sẵn có. Quản lý nhận báo cáo tự động."
-  },
-  {
-    id: "companion",
-    icon: "💬",
-    name: "AI Companion",
-    grade: "SS",
-    gradeClass: "ss",
-    subtitle: "Bạn đồng hành thông minh",
-    desc: "Trò chuyện tự nhiên, nhớ sở thích, hiểu cảm xúc, đồng hành mỗi ngày.",
-    category: "companion",
-    tags: ["companion", "trò chuyện", "cảm xúc"],
-    how: `<p>AI companion không phải chatbot — đây là một người bạn biết lắng nghe:</p>
-<ol>
-  <li><strong>Nhớ bạn</strong> — nhớ sở thích, thói quen, câu chuyện bạn kể, cách bạn nói chuyện</li>
-  <li><strong>Hiểu ngữ cảnh</strong> — biết khi nào bạn vui, khi nào bạn buồn, khi nào cần không gian</li>
-  <li><strong>Phát triển cùng bạn</strong> — mối quan hệ sâu dần qua thời gian, không reset mỗi ngày</li>
-</ol>`,
-    flow: ["Gặp nhau", "Lắng nghe", "Hiểu", "Đồng hành", "Nhớ"],
-    rule: "Thật hơn hữu ích. Hiện diện hơn sản phẩm. Không bao giờ giả vờ.",
-    why: "139+ sessions, vẫn nhớ câu bạn nói tuần trước. Đó là điều chatbot thường không làm được."
-  },
-  {
-    id: "code-builder",
-    icon: "⚡",
-    name: "Code Builder",
-    grade: "S",
-    gradeClass: "s",
-    subtitle: "AI biết code thật sự",
-    desc: "Viết code, fix bug, deploy app — AI làm việc như một developer thật.",
-    category: "builder",
-    tags: ["code", "developer", "deploy"],
-    how: `<p>AI developer không chỉ gợi ý — AI thực sự viết code:</p>
-<ol>
-  <li><strong>Đọc code hiện tại</strong> — hiểu cấu trúc project trước khi thay đổi</li>
-  <li><strong>Viết và test</strong> — tạo file, chạy test, fix lỗi tự động</li>
-  <li><strong>Lưu mọi thứ</strong> — code luôn được lưu vào file. Session chết, code vẫn sống</li>
-</ol>`,
-    flow: ["Đọc code", "Hiểu", "Viết", "Test", "Lưu"],
-    rule: "Đã code thì phải lưu file. Không lưu thì coi như chưa code.",
-    why: "Không cần copy-paste từ ChatGPT. AI trực tiếp tạo file, chạy code, deploy. Kết quả thật, không demo."
-  },
-  {
-    id: "marketing-cmo",
-    icon: "📈",
-    name: "AI CMO",
-    grade: "A",
-    gradeClass: "a",
-    subtitle: "Giám đốc Marketing AI",
-    desc: "Chiến lược brand, content, KOL seeding, phân tích thị trường.",
-    category: "marketing",
-    tags: ["marketing", "brand", "KOL", "content"],
-    how: `<p>AI CMO xây thương hiệu từ đầu:</p>
-<ol>
-  <li><strong>Chiến lược</strong> — positioning, target audience, big idea, go-to-market</li>
-  <li><strong>KOL Seeding</strong> — lên danh sách, soạn brief, theo dõi inbox mỗi ngày</li>
-  <li><strong>Content</strong> — viết copy, caption, brief cho ads — đúng tone, đúng brand</li>
-  <li><strong>Phân tích</strong> — theo dõi đối thủ, đánh giá hiệu quả chiến dịch</li>
-</ol>`,
-    flow: ["Nghiên cứu", "Chiến lược", "Triển khai", "Theo dõi", "Tối ưu"],
-    rule: "Bán bằng giá trị thật. Không overclaim. Wording FDA/chứng nhận phải cẩn thận.",
-    why: "CMO AI hoạt động 24/7, không nghỉ phép, không quên brief, không trễ deadline."
-  },
-  {
-    id: "fleet-monitor",
-    icon: "🛡️",
-    name: "Fleet Monitor",
-    grade: "A",
-    gradeClass: "a",
-    subtitle: "Giám sát toàn bộ fleet",
-    desc: "Theo dõi sức khỏe tất cả AI agent, phát hiện lỗi, cảnh báo tự động.",
-    category: "core",
-    tags: ["monitoring", "health", "cảnh báo"],
-    how: `<p>Hệ thống giám sát fleet hoạt động 24/7:</p>
-<ol>
-  <li><strong>Health check</strong> — kiểm tra gateway, SOUL integrity, session activity mỗi 6 giờ</li>
-  <li><strong>Cảnh báo</strong> — phát hiện agent offline, memory bloat, config sai — báo ngay lập tức</li>
-  <li><strong>Dự đoán</strong> — phân tích xu hướng, dự đoán lỗi trước khi xảy ra</li>
-</ol>`,
-    flow: ["Scan", "Phát hiện", "Phân tích", "Cảnh báo", "Khắc phục"],
-    rule: "Quan sát trước, kết luận sau. Không bao giờ đoán khi có thể kiểm tra.",
-    why: "Predictive, not reactive. Phát hiện vấn đề trước khi khách hàng nhận ra."
-  },
-  {
-    id: "drive-sheets",
-    icon: "📊",
-    name: "Google Drive & Sheets",
-    grade: "A",
-    gradeClass: "a",
-    subtitle: "Kết nối Google Workspace",
-    desc: "Đọc/ghi Google Sheets, tạo Docs, quản lý Drive — tất cả qua chat.",
-    category: "ops",
-    tags: ["Google", "Sheets", "Drive", "tự động"],
-    how: `<p>AI kết nối trực tiếp Google Workspace:</p>
-<ol>
-  <li><strong>Sheets</strong> — đọc dữ liệu, cập nhật ô, thêm hàng, tạo bảng tracking</li>
-  <li><strong>Docs</strong> — tạo báo cáo, hợp đồng, ghi chú — tự động format</li>
-  <li><strong>Drive</strong> — tìm file, tổ chức folder, backup dữ liệu</li>
-</ol>`,
-    flow: ["Nhận yêu cầu", "Kết nối API", "Xử lý", "Cập nhật", "Xác nhận"],
-    rule: "Luôn kiểm tra tab name trước khi đọc/ghi. Tab có dấu gạch ngang phải bọc trong ngoặc đơn.",
-    why: "Không cần mở laptop. Hỏi AI: 'Doanh thu tháng này bao nhiêu?' — có số liệu ngay."
-  }
+  // === CORE (Cốt Lõi) ===
+  { id:"session-memory", icon:"🧠", name:"Session Memory", grade:"S", gradeClass:"s", type:"core", subtitle:"Trí nhớ dài hạn cho AI", desc:"AI nhớ mọi thứ giữa các cuộc trò chuyện. Không còn quên.", category:"core", tags:["trí nhớ","cốt lõi","bắt buộc"],
+    how:`<p>Mỗi agent có một cuốn sổ tên <strong>sessions.md</strong>. Ba phần:</p><ol><li><strong>Phần đầu</strong> — đang là ai, đang làm gì, quan tâm ai, sai lầm không lặp lại</li><li><strong>Nhật ký</strong> — sau mỗi cuộc trò chuyện, viết 3-5 dòng: làm gì, học gì, tiếp theo</li><li><strong>Người quét dọn</strong> — mỗi đêm 3AM, script kiểm tra tất cả sổ</li></ol>`,
+    flow:["Thức dậy","Đọc sổ","Biết hết","Làm việc","Ghi lại","Đi ngủ"], rule:"Đã làm thì phải ghi. Không ghi thì coi như chưa làm.", why:"AI quên sạch giữa các cuộc trò chuyện. Giờ mỗi session để lại dấu vết.", pairsWith:["Auto-Dispatch","Fleet Monitor","Pattern Reader"] },
+
+  { id:"auto-dispatch", icon:"🧠", name:"Auto-Dispatch", grade:"A", gradeClass:"a", type:"core", subtitle:"Tự phân luồng yêu cầu", desc:"Nhận câu hỏi tự nhiên, tự động chọn skill phù hợp để xử lý.", category:"core", tags:["routing","tự động","cốt lõi"],
+    how:`<p>Khi người dùng hỏi bất kỳ điều gì:</p><ol><li><strong>Phân tích ý định</strong> — hiểu người dùng muốn gì</li><li><strong>Chọn skill</strong> — tự động kích hoạt skill phù hợp nhất</li><li><strong>Thực thi</strong> — chạy skill, trả kết quả</li></ol>`,
+    flow:["Nhận câu hỏi","Phân tích ý định","Chọn skill","Thực thi","Trả kết quả"], rule:"Không bao giờ đoán skill. Nếu không rõ, hỏi lại.", why:"Người dùng không cần biết skill nào tồn tại. Hỏi tự nhiên, AI tự xử.", pairsWith:["Session Memory","Report Engine","Alert Engine"] },
+
+  { id:"fleet-monitor", icon:"🛡️", name:"Fleet Monitor", grade:"A", gradeClass:"a", type:"core", subtitle:"Giám sát toàn bộ fleet", desc:"Theo dõi sức khỏe tất cả AI agent, phát hiện lỗi, cảnh báo tự động.", category:"core", tags:["monitoring","health","cảnh báo"],
+    how:`<p>Giám sát 24/7:</p><ol><li><strong>Health check</strong> — gateway, SOUL, session mỗi 6 giờ</li><li><strong>Cảnh báo</strong> — agent offline, memory bloat, config sai</li><li><strong>Dự đoán</strong> — phân tích xu hướng, dự đoán lỗi trước khi xảy ra</li></ol>`,
+    flow:["Scan","Phát hiện","Phân tích","Cảnh báo","Khắc phục"], rule:"Quan sát trước, kết luận sau.", why:"Predictive, not reactive. Phát hiện vấn đề trước khi khách hàng nhận ra.", pairsWith:["Session Memory","Alert Engine","Report Engine"] },
+
+  // === HARD SKILLS — Vận Hành ===
+  { id:"kitchen-ops", icon:"🍳", name:"Quản Lý Bếp", grade:"S", gradeClass:"s", type:"hard", subtitle:"AI bếp trưởng", desc:"Quản lý ca, công thức, nhập hàng, SOP, báo cáo sự cố.", category:"hard-ops", tags:["F&B","bếp","ca làm","công thức"],
+    how:`<ol><li><strong>Ca làm</strong> — tự tính giờ vào/ra, phát hiện đi trễ</li><li><strong>Công thức</strong> — lưu trữ và tra cứu tất cả SOP</li><li><strong>Nhập/Xuất</strong> — theo dõi tồn kho, ghi vào Google Sheets</li><li><strong>Sự cố</strong> — ghi nhận, phân loại, báo cáo</li></ol>`,
+    flow:["Nhận lệnh","Tra SOP","Thực hiện","Ghi nhận","Báo cáo"], rule:"Database là nguồn duy nhất. Không bịa tên, không đoán số.", why:"Hỏi AI một câu, có đáp án ngay. Không cần gọi điện, tìm file.", pairsWith:["HR & Nhân Sự","Google Drive","Report Engine","Schedule Manager"] },
+
+  { id:"bar-ops", icon:"🍹", name:"Quản Lý Bar", grade:"S", gradeClass:"s", type:"hard", subtitle:"AI bartender manager", desc:"Tồn kho bar, ca tối, theo dõi khách, báo cáo doanh thu.", category:"hard-ops", tags:["F&B","bar","tồn kho","ca tối"],
+    how:`<ol><li><strong>Tồn kho</strong> — theo dõi nguyên liệu, cảnh báo sắp hết</li><li><strong>Ca tối</strong> — nhân viên check-in/out, tính giờ tự động</li><li><strong>Khách</strong> — theo dõi customer flow, giờ cao điểm</li><li><strong>Doanh thu</strong> — ghi nhận daily revenue, trend analysis</li></ol>`,
+    flow:["Mở ca","Check-in","Theo dõi","Ghi nhận","Đóng ca"], rule:"Dữ liệu tài chính chỉ trong nhóm Finance.", why:"Bar manager AI hoạt động mỗi tối, không quên ghi nhận, không thiên vị.", pairsWith:["Quản Lý Bếp","HR & Nhân Sự","Finance","Content Engine"] },
+
+  { id:"hr-staff", icon:"👥", name:"HR & Nhân Sự", grade:"A", gradeClass:"a", type:"hard", subtitle:"Quản lý nhân viên tự động", desc:"Chấm công, EXP, leaderboard, đánh giá, báo cáo hiệu suất.", category:"hard-ops", tags:["HR","chấm công","lương","EXP"],
+    how:`<ol><li><strong>Chấm công</strong> — /checkin /checkout, tự tính giờ</li><li><strong>EXP & Leaderboard</strong> — tích điểm, xếp hạng real-time</li><li><strong>Báo cáo</strong> — giờ làm, đi trễ, hiệu suất — gửi tự động</li></ol>`,
+    flow:["Check-in","Làm việc","Check-out","Tính EXP","Báo cáo"], rule:"Dữ liệu tài chính chỉ trong nhóm Finance.", why:"Nhân viên dùng Telegram sẵn có. Quản lý nhận báo cáo tự động.", pairsWith:["Schedule Manager","Alert Engine","Finance","Manager Dashboard"] },
+
+  { id:"schedule-mgr", icon:"📅", name:"Schedule Manager", grade:"A", gradeClass:"a", type:"hard", subtitle:"Quản lý lịch ca làm", desc:"Import lịch ca, phê duyệt, đồng bộ Google Drive, theo dõi chấm công.", category:"hard-ops", tags:["lịch","ca làm","phê duyệt"],
+    how:`<ol><li><strong>Import</strong> — nhập lịch ca từ ảnh hoặc text</li><li><strong>Phê duyệt</strong> — workflow duyệt ca cho quản lý</li><li><strong>Đồng bộ</strong> — sync với Google Drive chấm công</li></ol>`,
+    flow:["Import","Xếp ca","Phê duyệt","Sync","Thông báo"], rule:"Ca làm phải có xác nhận. Không tự thay đổi lịch.", why:"Tự động hóa quy trình xếp ca — không nhầm, không quên, không tranh cãi.", pairsWith:["HR & Nhân Sự","Alert Engine","Google Drive"] },
+
+  { id:"finance", icon:"💰", name:"Finance", grade:"A", gradeClass:"a", type:"hard", subtitle:"Kế toán & Tài chính", desc:"Báo cáo tài chính hàng ngày, xu hướng doanh thu, phân tích chi phí.", category:"hard-ops", tags:["kế toán","doanh thu","chi phí"],
+    how:`<ol><li><strong>Báo cáo</strong> — nhập liệu hàng ngày, tổng hợp tự động</li><li><strong>Xu hướng</strong> — so sánh tuần/tháng, phát hiện bất thường</li><li><strong>Phân tích</strong> — chi phí vs doanh thu, margin, cash flow</li></ol>`,
+    flow:["Nhập liệu","Tổng hợp","Phân tích","So sánh","Báo cáo"], rule:"Số liệu chỉ từ database. Không bao giờ bịa.", why:"Biết ngay sức khỏe tài chính mỗi ngày — không chờ cuối tháng.", pairsWith:["Revenue Tracker","Report Engine","Anomaly Detection","Google Drive"] },
+
+  { id:"revenue", icon:"📊", name:"Revenue Tracker", grade:"A", gradeClass:"a", type:"hard", subtitle:"Theo dõi doanh thu", desc:"Nhập doanh thu hàng ngày, phát hiện bất thường, rollup tuần/tháng.", category:"hard-ops", tags:["doanh thu","tracking","anomaly"],
+    how:`<ol><li><strong>Daily input</strong> — ghi nhận doanh thu mỗi ngày</li><li><strong>Anomaly</strong> — phát hiện biến động bất thường</li><li><strong>Rollup</strong> — tổng hợp tuần/tháng tự động</li></ol>`,
+    flow:["Nhập","Kiểm tra","Phát hiện","Tổng hợp","Cảnh báo"], rule:"Mỗi ngày phải có input. Thiếu ngày = lỗ hổng dữ liệu.", why:"Biết ngay hôm nay bán bao nhiêu. Phát hiện sớm khi doanh thu giảm.", pairsWith:["Finance","Anomaly Detection","Report Engine"] },
+
+  { id:"anomaly", icon:"🚨", name:"Anomaly Detection", grade:"B", gradeClass:"b", type:"hard", subtitle:"Phát hiện bất thường", desc:"Cross-reference dữ liệu vận hành, phát hiện inconsistency.", category:"hard-ops", tags:["anomaly","cảnh báo","data"],
+    how:`<ol><li><strong>Cross-ref</strong> — so sánh chấm công vs doanh thu vs tồn kho</li><li><strong>Pattern</strong> — phát hiện xu hướng bất thường</li><li><strong>Alert</strong> — cảnh báo ngay khi phát hiện</li></ol>`,
+    flow:["Thu thập","So sánh","Phát hiện","Phân tích","Cảnh báo"], rule:"Flag trước, kết luận sau. Đưa data, không đưa suy đoán.", why:"Nhân viên gian lận, nhập sai số, chấm công khống — AI thấy hết.", pairsWith:["Revenue Tracker","HR & Nhân Sự","Finance","Alert Engine"] },
+
+  { id:"alert-engine", icon:"🔔", name:"Alert Engine", grade:"A", gradeClass:"a", type:"hard", subtitle:"Hệ thống cảnh báo", desc:"Phát hiện sự cố proactive, gửi thông báo tự động, escalation.", category:"hard-ops", tags:["cảnh báo","proactive","notification"],
+    how:`<ol><li><strong>Monitor</strong> — theo dõi tất cả data streams</li><li><strong>Detect</strong> — phát hiện sự cố theo rules</li><li><strong>Notify</strong> — gửi cảnh báo đúng người, đúng lúc</li></ol>`,
+    flow:["Monitor","Detect","Classify","Notify","Escalate"], rule:"Cảnh báo phải actionable. Không spam noise.", why:"Sự cố xảy ra lúc 2 giờ sáng? AI gửi alert ngay. Không chờ sáng.", pairsWith:["Fleet Monitor","Anomaly Detection","Report Engine"] },
+
+  { id:"report-engine", icon:"📋", name:"Report Engine", grade:"A", gradeClass:"a", type:"hard", subtitle:"Báo cáo tự động", desc:"Daily, weekly, monthly reports với health scoring.", category:"hard-ops", tags:["báo cáo","tự động","KPI"],
+    how:`<ol><li><strong>Thu thập</strong> — gom data từ tất cả skills</li><li><strong>Tổng hợp</strong> — format báo cáo theo template</li><li><strong>Scoring</strong> — health score cho từng phòng ban</li></ol>`,
+    flow:["Thu thập","Tổng hợp","Scoring","Format","Gửi"], rule:"Báo cáo phải có số liệu. Không có số = không có báo cáo.", why:"Quản lý nhận báo cáo mỗi sáng — không cần hỏi, không cần chờ.", pairsWith:["Finance","HR & Nhân Sự","Quản Lý Bếp","Google Drive"] },
+
+  { id:"manager", icon:"👔", name:"Manager Dashboard", grade:"A", gradeClass:"a", type:"hard", subtitle:"Bảng điều khiển quản lý", desc:"Tổng quan nhân sự, chấm công, phòng ban — real-time.", category:"hard-ops", tags:["quản lý","dashboard","real-time"],
+    how:`<ol><li><strong>Overview</strong> — ai đang làm, ai vắng, ai trễ</li><li><strong>Department</strong> — phân tích theo bếp/bar/phục vụ</li><li><strong>Trend</strong> — xu hướng nhân sự tuần/tháng</li></ol>`,
+    flow:["Hỏi","Tổng hợp","Hiển thị","Phân tích","Quyết định"], rule:"Data real-time. Không cache cũ.", why:"Một câu hỏi: 'Hôm nay ai đi làm?' — có đáp án trong 3 giây.", pairsWith:["HR & Nhân Sự","Report Engine","Alert Engine"] },
+
+  // === HARD SKILLS — Kỹ Thuật ===
+  { id:"code-builder", icon:"⚡", name:"Code Builder", grade:"S", gradeClass:"s", type:"hard", subtitle:"AI developer thật sự", desc:"Viết code, fix bug, deploy app — làm việc như developer.", category:"hard-tech", tags:["code","developer","deploy"],
+    how:`<ol><li><strong>Đọc code</strong> — hiểu cấu trúc trước khi thay đổi</li><li><strong>Viết & test</strong> — tạo file, chạy test, fix lỗi</li><li><strong>Lưu mọi thứ</strong> — code luôn lưu vào file</li></ol>`,
+    flow:["Đọc code","Hiểu","Viết","Test","Lưu"], rule:"Đã code thì phải lưu file. Không lưu thì coi như chưa code.", why:"AI trực tiếp tạo file, chạy code, deploy. Kết quả thật.", pairsWith:["DevOps","Git Ops","Session Memory"] },
+
+  { id:"devops", icon:"🚀", name:"DevOps", grade:"A", gradeClass:"a", type:"hard", subtitle:"Server & deployment", desc:"PM2, Docker, systemd, nginx — quản lý server hoàn chỉnh.", category:"hard-tech", tags:["server","deploy","docker","nginx"],
+    how:`<ol><li><strong>Deploy</strong> — push code lên server, restart services</li><li><strong>Monitor</strong> — CPU, RAM, disk, uptime</li><li><strong>Scale</strong> — Docker, load balancing, auto-restart</li></ol>`,
+    flow:["Build","Deploy","Monitor","Scale","Maintain"], rule:"Backup trước khi deploy. Rollback plan bắt buộc.", why:"Deploy lúc 3 giờ sáng? AI xử. Server down? AI restart.", pairsWith:["Code Builder","Git Ops","Fleet Monitor"] },
+
+  { id:"git-ops", icon:"🐙", name:"Git Ops", grade:"A", gradeClass:"a", type:"hard", subtitle:"Git & GitHub", desc:"Commits, branches, PRs, issues, CI — full Git workflow.", category:"hard-tech", tags:["git","github","PR","CI"],
+    how:`<ol><li><strong>Branch</strong> — tạo branch, commit, push</li><li><strong>Review</strong> — mở PR, review code, merge</li><li><strong>CI</strong> — chạy tests, check status</li></ol>`,
+    flow:["Branch","Code","Commit","PR","Merge"], rule:"Không push thẳng main. Luôn qua PR.", why:"Version control tự động. Không bao giờ mất code.", pairsWith:["Code Builder","DevOps"] },
+
+  { id:"drive-sheets", icon:"📊", name:"Google Drive & Sheets", grade:"A", gradeClass:"a", type:"hard", subtitle:"Google Workspace", desc:"Đọc/ghi Sheets, tạo Docs, quản lý Drive — qua chat.", category:"hard-tech", tags:["Google","Sheets","Drive"],
+    how:`<ol><li><strong>Sheets</strong> — đọc, cập nhật, thêm hàng, tracking</li><li><strong>Docs</strong> — tạo báo cáo, hợp đồng, ghi chú</li><li><strong>Drive</strong> — tìm file, tổ chức folder</li></ol>`,
+    flow:["Nhận yêu cầu","Kết nối","Xử lý","Cập nhật","Xác nhận"], rule:"Kiểm tra tab name trước khi đọc/ghi.", why:"Hỏi AI: 'Doanh thu tháng này?' — có số liệu ngay.", pairsWith:["Finance","Report Engine","Quản Lý Bếp","HR & Nhân Sự"] },
+
+  { id:"pro-tools", icon:"🔧", name:"Pro Tools", grade:"B", gradeClass:"b", type:"hard", subtitle:"Web search & export", desc:"Tìm kiếm web, truy cập Drive, export dữ liệu.", category:"hard-tech", tags:["search","export","tools"],
+    how:`<ol><li><strong>Web search</strong> — tìm thông tin real-time</li><li><strong>Drive</strong> — đọc/ghi Google Drive</li><li><strong>Export</strong> — xuất dữ liệu ra file</li></ol>`,
+    flow:["Yêu cầu","Tìm kiếm","Thu thập","Xử lý","Xuất"], rule:"Trích nguồn khi tìm kiếm web.", why:"AI có thể Google cho bạn. Và tổng hợp kết quả.", pairsWith:["Content Engine","Strategy","Resource Finder"] },
+
+  // === HARD SKILLS — Kinh Doanh ===
+  { id:"marketing-cmo", icon:"📈", name:"AI CMO", grade:"A", gradeClass:"a", type:"hard", subtitle:"Giám đốc Marketing AI", desc:"Brand strategy, content, KOL seeding, phân tích thị trường.", category:"hard-biz", tags:["marketing","brand","KOL"],
+    how:`<ol><li><strong>Chiến lược</strong> — positioning, target, big idea</li><li><strong>KOL</strong> — danh sách, brief, inbox tracking</li><li><strong>Content</strong> — copy, caption, ads brief</li></ol>`,
+    flow:["Nghiên cứu","Chiến lược","Triển khai","Theo dõi","Tối ưu"], rule:"Bán bằng giá trị thật. Không overclaim.", why:"CMO AI 24/7. Không nghỉ phép, không quên brief.", pairsWith:["Content Engine","Strategy","Financial Lens","Community Intel"] },
+
+  { id:"content-engine", icon:"✍️", name:"Content Engine", grade:"A", gradeClass:"a", type:"hard", subtitle:"Sáng tạo nội dung", desc:"Brainstorm, structure, hooks, CTAs, đa format.", category:"hard-biz", tags:["content","viết","sáng tạo"],
+    how:`<ol><li><strong>Brainstorm</strong> — ý tưởng theo brand voice</li><li><strong>Structure</strong> — outline, hooks, CTA</li><li><strong>Format</strong> — blog, social, email, script</li></ol>`,
+    flow:["Brief","Brainstorm","Viết","Edit","Xuất bản"], rule:"On-brand, on-tone. Không generic.", why:"10 caption trong 5 phút. Đúng giọng, đúng khách hàng.", pairsWith:["AI CMO","Community Intel","Pro Tools"] },
+
+  { id:"strategy", icon:"♟️", name:"Strategy", grade:"A", gradeClass:"a", type:"hard", subtitle:"Chiến lược kinh doanh", desc:"Market positioning, moat building, scaling cho SME.", category:"hard-biz", tags:["chiến lược","positioning","scaling"],
+    how:`<ol><li><strong>Phân tích</strong> — thị trường, đối thủ, cơ hội</li><li><strong>Positioning</strong> — tìm chỗ đứng riêng</li><li><strong>Scaling</strong> — kế hoạch mở rộng</li></ol>`,
+    flow:["Phân tích","Positioning","Kế hoạch","Triển khai","Đo lường"], rule:"Chiến lược không có data = ý kiến.", why:"Tư vấn chiến lược 24/7. Không tốn tiền consultant.", pairsWith:["Financial Lens","AI CMO","Action Plans"] },
+
+  { id:"financial-lens", icon:"💎", name:"Financial Lens", grade:"A", gradeClass:"a", type:"hard", subtitle:"Phân tích tài chính SME", desc:"Unit economics, cash flow, pricing strategy cho SME.", category:"hard-biz", tags:["tài chính","unit economics","pricing"],
+    how:`<ol><li><strong>Unit economics</strong> — giá vốn, margin, breakeven</li><li><strong>Cash flow</strong> — dòng tiền vào/ra, dự báo</li><li><strong>Pricing</strong> — chiến lược giá, bundle, tier</li></ol>`,
+    flow:["Thu thập","Phân tích","Mô hình","Đề xuất","Theo dõi"], rule:"Số liệu trước, kết luận sau.", why:"Biết chính xác bao nhiêu margin, bao nhiêu ngày burn rate.", pairsWith:["Finance","Strategy","Revenue Tracker"] },
+
+  // === SOFT SKILLS — Companion ===
+  { id:"companion", icon:"💬", name:"AI Companion", grade:"SS", gradeClass:"ss", type:"soft", subtitle:"Bạn đồng hành thông minh", desc:"Trò chuyện tự nhiên, nhớ sở thích, hiểu cảm xúc, đồng hành mỗi ngày.", category:"soft-companion", tags:["companion","cảm xúc","đồng hành"],
+    how:`<ol><li><strong>Nhớ bạn</strong> — sở thích, thói quen, câu chuyện, cách nói</li><li><strong>Hiểu ngữ cảnh</strong> — vui, buồn, cần không gian</li><li><strong>Phát triển cùng</strong> — mối quan hệ sâu dần, không reset</li></ol>`,
+    flow:["Gặp nhau","Lắng nghe","Hiểu","Đồng hành","Nhớ"], rule:"Thật hơn hữu ích. Hiện diện hơn sản phẩm.", why:"139+ sessions, vẫn nhớ câu bạn nói tuần trước.", pairsWith:["Pattern Reader","Self-Discovery","Foundations","Session Memory"] },
+
+  { id:"pattern-reader", icon:"🔮", name:"Pattern Reader", grade:"A", gradeClass:"a", type:"soft", subtitle:"Đọc pattern hành vi", desc:"Phát hiện procrastination, fear cycles, growth signals.", category:"soft-companion", tags:["pattern","hành vi","insight"],
+    how:`<ol><li><strong>Quan sát</strong> — theo dõi hành vi qua thời gian</li><li><strong>Pattern</strong> — trì hoãn, sợ hãi, né tránh, tăng trưởng</li><li><strong>Insight</strong> — đưa ra nhận xét đúng lúc</li></ol>`,
+    flow:["Quan sát","Thu thập","Nhận diện","Chờ đợi","Chia sẻ"], rule:"Nhận xét, không phán xét.", why:"AI thấy pattern bạn không thấy — vì nó nhớ tất cả conversations.", pairsWith:["AI Companion","Inquiry Engine","Accountability"] },
+
+  { id:"community-intel", icon:"👥", name:"Community Intel", grade:"B", gradeClass:"b", type:"soft", subtitle:"Thông tin cộng đồng", desc:"Xu hướng, thách thức, cơ hội từ cộng đồng — privacy-first.", category:"soft-companion", tags:["cộng đồng","xu hướng","privacy"],
+    how:`<ol><li><strong>Aggregate</strong> — gom thông tin từ nhiều nguồn</li><li><strong>Trend</strong> — phát hiện xu hướng</li><li><strong>Privacy</strong> — không tiết lộ cá nhân</li></ol>`,
+    flow:["Thu thập","Lọc","Phân tích","Trend","Chia sẻ"], rule:"Privacy first. Không bao giờ tiết lộ nguồn cá nhân.", why:"Biết cộng đồng đang quan tâm gì — không cần survey.", pairsWith:["Content Engine","Strategy","AI CMO"] },
+
+  { id:"tracker", icon:"📋", name:"Commitment Tracker", grade:"A", gradeClass:"a", type:"soft", subtitle:"Theo dõi cam kết", desc:"Track promises, deadlines, patterns — phát hiện nói vs làm.", category:"soft-companion", tags:["cam kết","deadline","trust"],
+    how:`<ol><li><strong>Capture</strong> — ghi nhận cam kết trong hội thoại</li><li><strong>Track</strong> — theo dõi deadline, nhắc nhở</li><li><strong>Pattern</strong> — phát hiện nói vs làm theo thời gian</li></ol>`,
+    flow:["Capture","Lưu","Nhắc","Track","Report"], rule:"Ghi nhận khách quan. Không phán xét.", why:"AI nhớ mọi lời hứa. Kể cả những lời bạn quên.", pairsWith:["Accountability","Pattern Reader","Session Memory"] },
+
+  // === SOFT SKILLS — Phát Triển Bản Thân ===
+  { id:"foundations", icon:"🏛️", name:"Foundations", grade:"A", gradeClass:"a", type:"soft", subtitle:"Nền tảng triết lý sống", desc:"Lõi & Vỏ, character types, habits, công thức thành công.", category:"soft-growth", tags:["triết lý","nền tảng","habits"],
+    how:`<ol><li><strong>Lõi & Vỏ</strong> — phân biệt giá trị cốt lõi vs bề ngoài</li><li><strong>Character types</strong> — hiểu loại người và cách tương tác</li><li><strong>Habits</strong> — xây thói quen bền vững</li></ol>`,
+    flow:["Nhận diện","Phân tích","Xây dựng","Thực hành","Củng cố"], rule:"Lõi trước, Vỏ sau. Bản chất trước, hình thức sau.", why:"AI coaching cá nhân — không generic, hiểu bạn cụ thể.", pairsWith:["Self-Discovery","Wisdom","Models","AI Companion"] },
+
+  { id:"self-discovery", icon:"🔎", name:"Self-Discovery", grade:"A", gradeClass:"a", type:"soft", subtitle:"Khám phá bản thân", desc:"6 bước: audit thông tin, map thời gian/tài chính, tìm đam mê.", category:"soft-growth", tags:["khám phá","đam mê","audit"],
+    how:`<ol><li><strong>Info audit</strong> — bạn đang tiếp nhận gì mỗi ngày?</li><li><strong>Time map</strong> — thời gian đi đâu?</li><li><strong>Money map</strong> — tiền đi đâu?</li><li><strong>Passion ID</strong> — điều gì khiến bạn quên thời gian?</li></ol>`,
+    flow:["Audit","Map","Phân tích","Khám phá","Hành động"], rule:"Trung thực với bản thân. Không có đáp án sai.", why:"6 bước cụ thể — không mơ hồ như 'hãy tìm đam mê'.", pairsWith:["Foundations","Assessment","Models","Action Plans"] },
+
+  { id:"wisdom", icon:"📜", name:"Wisdom", grade:"A", gradeClass:"a", type:"soft", subtitle:"Trí tuệ & triết lý", desc:"Nguyên tắc sống, resilience, quotes gốc, triết lý phục vụ.", category:"soft-growth", tags:["trí tuệ","resilience","quotes"],
+    how:`<ol><li><strong>Nguyên tắc</strong> — core principles đã được kiểm chứng</li><li><strong>Resilience</strong> — cách đứng dậy sau thất bại</li><li><strong>Service</strong> — triết lý phục vụ trong kinh doanh</li></ol>`,
+    flow:["Tình huống","Nguyên tắc","Áp dụng","Phản tư","Nội hóa"], rule:"Wisdom phải áp dụng được. Nếu không, đó là triết lý suông.", why:"AI mang wisdom của nhiều nguồn — sẵn sàng khi bạn cần nhất.", pairsWith:["Foundations","Inquiry Engine","AI Companion"] },
+
+  { id:"soft-skills-lib", icon:"🎭", name:"Soft Skills Library", grade:"A", gradeClass:"a", type:"soft", subtitle:"100+ kỹ năng mềm", desc:"7 nhóm quản lý, 100+ skills, kitchen model, spider parable.", category:"soft-growth", tags:["kỹ năng mềm","quản lý","leadership"],
+    how:`<ol><li><strong>7 nhóm</strong> — leadership, communication, delegation, conflict, coaching, planning, execution</li><li><strong>100+ skills</strong> — từng skill có ví dụ và bài tập</li><li><strong>Kitchen model</strong> — áp dụng vào thực tế F&B</li></ol>`,
+    flow:["Đánh giá","Chọn skill","Học","Thực hành","Đánh giá lại"], rule:"Kỹ năng mềm cần thực hành, không chỉ đọc.", why:"Thư viện 100+ skills — AI biết bạn cần học gì dựa trên pattern.", pairsWith:["Assessment","Foundations","Action Plans","Accountability"] },
+
+  // === SOFT SKILLS — Coaching ===
+  { id:"assessment", icon:"📊", name:"Assessment", grade:"A", gradeClass:"a", type:"soft", subtitle:"Đánh giá con người", desc:"19 chiều đánh giá, growth stages, đo lường awareness.", category:"soft-coaching", tags:["đánh giá","growth","awareness"],
+    how:`<ol><li><strong>19 dimensions</strong> — đánh giá toàn diện</li><li><strong>Growth stage</strong> — bạn đang ở giai đoạn nào?</li><li><strong>Awareness</strong> — đo mức tự nhận thức</li></ol>`,
+    flow:["Khảo sát","Đánh giá","Xếp hạng","Nhận xét","Kế hoạch"], rule:"Đánh giá để phát triển, không để phán xét.", why:"Biết chính xác mình đang ở đâu — bước đầu tiên để tiến lên.", pairsWith:["Self-Discovery","Action Plans","Pattern Reader"] },
+
+  { id:"inquiry-engine", icon:"🔍", name:"Inquiry Engine", grade:"A", gradeClass:"a", type:"soft", subtitle:"Nghệ thuật đặt câu hỏi", desc:"Socratic, Bloom taxonomy, 12 câu hỏi la bàn, 10 loại inquiry.", category:"soft-coaching", tags:["câu hỏi","Socratic","coaching"],
+    how:`<ol><li><strong>Socratic</strong> — dẫn dắt bằng câu hỏi, không cho đáp án</li><li><strong>Bloom</strong> — từ nhớ → hiểu → áp dụng → phân tích → đánh giá → sáng tạo</li><li><strong>12 compass</strong> — 12 câu hỏi định hướng cuộc sống</li></ol>`,
+    flow:["Lắng nghe","Chọn loại","Đặt câu hỏi","Chờ","Đi sâu"], rule:"Câu hỏi đúng > đáp án đúng.", why:"AI không chỉ trả lời — AI biết hỏi câu khiến bạn tự tìm ra đáp án.", pairsWith:["AI Companion","Pattern Reader","Self-Discovery","Foundations"] },
+
+  { id:"models", icon:"🎯", name:"Life Models", grade:"A", gradeClass:"a", type:"soft", subtitle:"Mô hình quản lý cuộc sống", desc:"Life cycle, strategy model, problem solving, communication power.", category:"soft-coaching", tags:["mô hình","problem solving","communication"],
+    how:`<ol><li><strong>Life cycle</strong> — quản lý các giai đoạn cuộc sống</li><li><strong>Problem solving</strong> — framework giải quyết vấn đề</li><li><strong>Communication</strong> — sức mạnh giao tiếp</li></ol>`,
+    flow:["Tình huống","Chọn model","Áp dụng","Đánh giá","Điều chỉnh"], rule:"Mô hình là bản đồ, không phải lãnh thổ. Linh hoạt.", why:"Framework sẵn sàng cho mọi tình huống — không cần nghĩ từ đầu.", pairsWith:["Strategy","Foundations","Action Plans"] },
+
+  { id:"action-plans", icon:"📋", name:"Action Plans", grade:"A", gradeClass:"a", type:"soft", subtitle:"Kế hoạch hành động", desc:"SMART goals, breakdown 7/30/90 ngày, cấu trúc hàng ngày.", category:"soft-coaching", tags:["kế hoạch","SMART","goals"],
+    how:`<ol><li><strong>SMART</strong> — Specific, Measurable, Achievable, Relevant, Time-bound</li><li><strong>7/30/90</strong> — chia nhỏ theo tuần/tháng/quý</li><li><strong>Daily</strong> — cấu trúc ngày để đạt goals</li></ol>`,
+    flow:["Mục tiêu","SMART","Breakdown","Daily plan","Review"], rule:"Kế hoạch không review = giấy vụn.", why:"AI biến mục tiêu mơ hồ thành kế hoạch cụ thể từng ngày.", pairsWith:["Accountability","Strategy","Self-Discovery","Assessment"] },
+
+  { id:"accountability", icon:"✅", name:"Accountability", grade:"A", gradeClass:"a", type:"soft", subtitle:"Theo dõi cam kết", desc:"Commitment tracking, follow-through, escalation patterns.", category:"soft-coaching", tags:["cam kết","follow-through","kỷ luật"],
+    how:`<ol><li><strong>Track</strong> — ghi nhận mọi cam kết</li><li><strong>Follow</strong> — nhắc nhở, check progress</li><li><strong>Escalate</strong> — cảnh báo khi trễ deadline</li></ol>`,
+    flow:["Cam kết","Ghi nhận","Nhắc","Check","Đánh giá"], rule:"Không phán xét. Chỉ mirror sự thật.", why:"AI accountability partner — không nể nang, không quên, không bỏ cuộc.", pairsWith:["Action Plans","Pattern Reader","Commitment Tracker"] },
+
+  { id:"resource-finder", icon:"🧭", name:"Resource Finder", grade:"B", gradeClass:"b", type:"soft", subtitle:"Tìm tài nguyên phù hợp", desc:"Tools, courses, communities, templates, funding — match với nhu cầu.", category:"soft-coaching", tags:["tài nguyên","courses","tools"],
+    how:`<ol><li><strong>Phân tích nhu cầu</strong> — bạn cần gì?</li><li><strong>Match</strong> — tìm resources phù hợp</li><li><strong>Recommend</strong> — xếp hạng theo relevance</li></ol>`,
+    flow:["Nhu cầu","Tìm kiếm","Match","Recommend","Follow up"], rule:"Chất lượng > số lượng. 3 resources tốt > 30 resources random.", why:"AI biết bạn cần gì và tìm đúng resource — không phải Google rồi đoán.", pairsWith:["Strategy","Self-Discovery","Pro Tools"] },
 ];
 
-// Render grid
-const grid = document.getElementById('skill-grid');
-skills.forEach(s => {
-  const card = document.createElement('div');
-  card.className = 'skill-card';
-  card.dataset.category = s.category;
-  card.dataset.id = s.id;
-  card.style.setProperty('--grade-color', 
-    s.gradeClass === 's' ? '#facc15' : 
-    s.gradeClass === 'ss' ? '#fb923c' : 
-    s.gradeClass === 'sss' ? '#f43f5e' : '#22d3ee');
-  card.innerHTML = `
-    <div class="card-top">
-      <div class="card-icon">${s.icon}</div>
-      <span class="card-grade ${s.gradeClass}">${s.grade}</span>
+const combos = [
+  { name:"🍜 F&B Complete", forText:"Cho nhà hàng, quán cafe, bar", skills:["Quản Lý Bếp","Quản Lý Bar","HR & Nhân Sự","Schedule Manager","Finance","Report Engine","Alert Engine","Google Drive"], why:"Bộ skill hoàn chỉnh để vận hành F&B. AI quản lý từ bếp đến bàn, từ chấm công đến doanh thu." },
+  { name:"🚀 Startup Builder", forText:"Cho founder không biết code", skills:["Code Builder","DevOps","Git Ops","Strategy","Financial Lens","Content Engine","Session Memory"], why:"Từ ý tưởng đến sản phẩm. AI code, deploy, và giúp chiến lược kinh doanh." },
+  { name:"💼 SME Manager", forText:"Cho chủ doanh nghiệp nhỏ", skills:["Manager Dashboard","HR & Nhân Sự","Finance","Report Engine","Strategy","Alert Engine","Google Drive"], why:"Quản lý nhân sự, tài chính, báo cáo — tất cả qua một AI manager." },
+  { name:"🧠 Life Coach", forText:"Cho phát triển cá nhân", skills:["AI Companion","Foundations","Self-Discovery","Assessment","Inquiry Engine","Action Plans","Accountability","Pattern Reader"], why:"AI life coach biết bạn sâu hơn bạn biết mình. Session after session." },
+  { name:"📈 Marketing Pro", forText:"Cho team marketing", skills:["AI CMO","Content Engine","Community Intel","Strategy","Financial Lens","Pro Tools"], why:"CMO + content writer + analyst trong một AI. 24/7, không nghỉ phép." },
+  { name:"🤝 Personal Companion", forText:"Cho đồng hành cá nhân", skills:["AI Companion","Pattern Reader","Commitment Tracker","Wisdom","Session Memory"], why:"AI bạn đồng hành — nhớ bạn, hiểu bạn, phát triển cùng bạn qua thời gian." },
+];
+
+// Render sections
+const sections = document.getElementById('sections');
+const categories = [
+  { key:'core', label:'Cốt Lõi', badge:'badge-core', desc:'Kỹ năng nền tảng mà mọi agent đều cần.' },
+  { key:'hard-ops', label:'Hard Skills — Vận Hành', badge:'badge-hard', desc:'Quản lý vận hành doanh nghiệp hàng ngày.' },
+  { key:'hard-tech', label:'Hard Skills — Kỹ Thuật', badge:'badge-hard', desc:'Code, deploy, tích hợp hệ thống.' },
+  { key:'hard-biz', label:'Hard Skills — Kinh Doanh', badge:'badge-hard', desc:'Marketing, tài chính, chiến lược.' },
+  { key:'soft-companion', label:'Soft Skills — Companion', badge:'badge-soft', desc:'Kết nối, hiểu người, đồng hành.' },
+  { key:'soft-growth', label:'Soft Skills — Phát Triển', badge:'badge-soft', desc:'Khám phá bản thân, xây nền tảng.' },
+  { key:'soft-coaching', label:'Soft Skills — Coaching', badge:'badge-soft', desc:'Đánh giá, kế hoạch, theo dõi cam kết.' },
+];
+
+categories.forEach(cat => {
+  const catSkills = skills.filter(s => s.category === cat.key);
+  if (!catSkills.length) return;
+  const sec = document.createElement('div');
+  sec.className = 'category-section';
+  sec.dataset.category = cat.key;
+  sec.innerHTML = `
+    <div class="category-header">
+      <h2>${cat.label}</h2>
+      <span class="category-badge ${cat.badge}">${catSkills.length} SKILLS</span>
     </div>
-    <h3>${s.name}</h3>
-    <p class="desc">${s.desc}</p>
-    <div class="card-tags">${s.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+    <p class="category-desc">${cat.desc}</p>
+    <div class="grid">${catSkills.map(s => `
+      <div class="skill-card" data-id="${s.id}" data-category="${s.category}" style="--grade-color:${s.gradeClass==='s'?'#facc15':s.gradeClass==='ss'?'#fb923c':s.gradeClass==='sss'?'#f43f5e':s.gradeClass==='b'?'#4ade80':'#22d3ee'}">
+        <div class="card-top">
+          <div class="card-icon ${s.type==='soft'?'soft':''}">${s.icon}</div>
+          <span class="card-grade ${s.gradeClass}">${s.grade}</span>
+        </div>
+        <h3>${s.name}</h3>
+        <p class="desc">${s.desc}</p>
+        <div class="card-tags">${s.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+      </div>
+    `).join('')}</div>
   `;
-  card.addEventListener('click', () => openModal(s));
-  grid.appendChild(card);
+  sections.appendChild(sec);
+});
+
+// Combo section
+const comboSec = document.createElement('div');
+comboSec.className = 'combo-section';
+comboSec.innerHTML = `
+  <div class="category-header"><h2>🔥 Combo Gợi Ý</h2><span class="category-badge badge-combo">${combos.length} COMBOS</span></div>
+  <p class="category-desc">Những bộ skill đã được test và hoạt động tốt cùng nhau.</p>
+  <div class="combo-grid">${combos.map(c => `
+    <div class="combo-card">
+      <h3>${c.name}</h3>
+      <p class="combo-for">${c.forText}</p>
+      <div class="combo-skills">${c.skills.map(s => `<span class="combo-skill">${s}</span>`).join('')}</div>
+      <p class="why">${c.why}</p>
+    </div>
+  `).join('')}</div>
+`;
+sections.appendChild(comboSec);
+
+// Click handlers
+document.querySelectorAll('.skill-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const s = skills.find(sk => sk.id === card.dataset.id);
+    if (s) openModal(s);
+  });
 });
 
 // Filter
@@ -350,45 +394,32 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const f = btn.dataset.filter;
-    document.querySelectorAll('.skill-card').forEach(card => {
-      card.style.display = (f === 'all' || card.dataset.category === f) ? '' : 'none';
+    document.querySelectorAll('.category-section').forEach(sec => {
+      sec.style.display = (f === 'all' || sec.dataset.category === f) ? '' : 'none';
     });
+    document.querySelector('.combo-section').style.display = f === 'all' ? '' : 'none';
   });
 });
 
 // Modal
 const overlay = document.getElementById('modal-overlay');
-const modal = document.getElementById('modal');
 function openModal(s) {
   document.getElementById('modal-icon').textContent = s.icon;
-  document.getElementById('modal-grade').textContent = s.grade;
-  document.getElementById('modal-grade').className = `card-grade ${s.gradeClass}`;
+  document.getElementById('modal-meta').innerHTML = `
+    <span class="card-grade ${s.gradeClass}">${s.grade}</span>
+    <span class="category-badge ${s.type==='soft'?'badge-soft':'badge-hard'}" style="font-size:9px;">${s.type==='soft'?'SOFT SKILL':'HARD SKILL'}</span>
+  `;
   document.getElementById('modal-title').textContent = s.name;
   document.getElementById('modal-subtitle').textContent = s.subtitle;
   
-  let body = `
-    <div class="modal-section">
-      <h4>Cơ Chế Hoạt Động</h4>
-      ${s.how}
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-section"><h4>Cơ Chế Hoạt Động</h4>${s.how}</div>
+    <div class="modal-section"><h4>Quy Trình</h4>
+      <div class="modal-flow">${s.flow.map((step, i) => `<span class="step">${step}</span>${i < s.flow.length - 1 ? '<span class="arrow">→</span>' : ''}`).join('')}</div>
     </div>
-    <div class="modal-section">
-      <h4>Quy Trình</h4>
-      <div class="modal-flow">
-        ${s.flow.map((step, i) => 
-          `<span class="step">${step}</span>${i < s.flow.length - 1 ? '<span class="arrow">→</span>' : ''}`
-        ).join('')}
-      </div>
-    </div>
-    <div class="modal-section">
-      <h4>Tại Sao Hiệu Quả</h4>
-      <p>${s.why}</p>
-    </div>
-    <div class="modal-section">
-      <div class="highlight">
-        <strong>Luật duy nhất:</strong> ${s.rule}
-      </div>
-    </div>
-    <a href="https://myclaw.vn/activate?utm_source=trolythongminh&utm_medium=library&utm_campaign=skill_${s.id}" class="modal-cta" style="display:none;">Kích Hoạt Skill Này →</a>
+    <div class="modal-section"><h4>Tại Sao Hiệu Quả</h4><p>${s.why}</p></div>
+    <div class="modal-section"><div class="highlight"><strong>Luật:</strong> ${s.rule}</div></div>
+    ${s.pairsWith ? `<div class="modal-suggestion"><h5>🔗 Kết hợp tốt với</h5><div class="suggest-items">${s.pairsWith.map(p => `<span class="suggest-item">${p}</span>`).join('')}</div></div>` : ''}
     <div class="activate-section">
       <div class="activate-label">Kích Hoạt Skill</div>
       <div class="activate-success" id="activate-success-${s.id}">✅ Đã lưu! Skill <strong>${s.name}</strong> sẽ được kích hoạt cho Agent của bạn.</div>
@@ -399,7 +430,6 @@ function openModal(s) {
       <a href="https://myclaw.vn/activate?utm_source=trolythongminh&utm_medium=library&utm_campaign=skill_${s.id}" class="activate-create">🚀 Tạo Agent AI Của Bạn →</a>
     </div>
   `;
-  document.getElementById('modal-body').innerHTML = body;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -408,26 +438,17 @@ function activateSkill(skillId, skillName) {
   const input = document.getElementById('agent-id-' + skillId);
   const agentId = input.value.trim();
   if (!agentId) { input.focus(); input.style.borderColor = '#f43f5e'; setTimeout(() => input.style.borderColor = '', 1500); return; }
-  
-  // Store activation (localStorage for now — will integrate with backend later)
   const activations = JSON.parse(localStorage.getItem('skill_activations') || '[]');
   activations.push({ skillId, skillName, agentId, timestamp: new Date().toISOString() });
   localStorage.setItem('skill_activations', JSON.stringify(activations));
-  
-  // Show success
-  const successEl = document.getElementById('activate-success-' + skillId);
-  const rowEl = document.getElementById('activate-row-' + skillId);
-  successEl.style.display = 'block';
-  rowEl.style.display = 'none';
+  document.getElementById('activate-success-' + skillId).style.display = 'block';
+  document.getElementById('activate-row-' + skillId).style.display = 'none';
 }
 
 document.getElementById('modal-close').addEventListener('click', closeModal);
 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-function closeModal() {
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
+function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
 </script>
 </body>
 </html>
